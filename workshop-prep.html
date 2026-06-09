@@ -270,7 +270,7 @@
       <p>Type straight into it and tick as you go. Everything saves to this browser automatically, so you can close the tab and come back. The progress counter at the top tracks the boxes. When you're done, hit <strong>Save to PDF</strong> and bring the PDF plus the files it points to.</p>
 
       <div class="callout">
-        <p style="margin:0"><strong>One folder, one page.</strong> Before you start, make a folder on your laptop called <em>Workshop Pack</em> in a cloud-backed location (iCloud Drive, Dropbox, Google Drive or OneDrive, not Downloads). As you gather files, drop them in there. This page is the index. The folder is the cargo.</p>
+        <p style="margin:0"><strong>One folder, one page.</strong> Before you start, make a folder on your laptop called <em>Workshop Pack</em> in a cloud-backed location (iCloud Drive, Dropbox, Google Drive or OneDrive, not Downloads). As you gather files, drop them in there. This page is the index. The folder is the cargo. Everything you gather stays on your own laptop, nothing is uploaded anywhere.</p>
       </div>
 
       <div class="field">
@@ -294,7 +294,7 @@
       <span class="pillar-tag">Section one</span>
       <h2>Set up before you arrive<span class="time-chip">~30 min</span></h2>
       <p>The technical bit, done at home so the room doesn't stall at 9.05am. None of it is hard. All of it is preventable friction.</p>
-      <div class="check-row"><input type="checkbox" id="c_claudecode" data-save data-count><label for="c_claudecode"><strong>Claude Code installed and signed in.</strong><span class="check-note">Install instructions come a week ahead. Open it once at home to check it works. If it won't install, reply and we'll do a quick pre-flight call. This is the single biggest day-of risk.</span></label></div>
+      <div class="check-row"><input type="checkbox" id="c_claudecode" data-save data-count><label for="c_claudecode"><strong>Claude Code installed and signed in.</strong><span class="check-note">Install instructions come a week ahead. Open it once at home to check it works. Make sure you're on a plan with enough usage for a full hands-on day, the entry tiers run out fast. If it won't install, reply and we'll do a quick pre-flight call. This is the single biggest day-of risk.</span></label></div>
       <div class="check-row"><input type="checkbox" id="c_admin" data-save data-count><label for="c_admin"><strong>You can install software on your laptop.</strong><span class="check-note">You'll need your computer's admin password to install and to connect your tools. If your laptop is locked down by IT, sort that this week.</span></label></div>
       <div class="check-row"><input type="checkbox" id="c_folder" data-save data-count><label for="c_folder"><strong>A cloud-backed folder ready.</strong><span class="check-note">Dropbox, Google Drive, iCloud Drive or OneDrive, installed and syncing. Your OS lives in here so it's safe and follows you between machines.</span></label></div>
       <div class="check-row"><input type="checkbox" id="c_laptop" data-save data-count><label for="c_laptop"><strong>Laptop, charger and phone.</strong><span class="check-note">The phone is for the security codes when we connect your tools on the day.</span></label></div>
@@ -322,20 +322,35 @@
       <div class="check-row"><input type="checkbox" id="c_logo" data-save data-count><label for="c_logo"><strong>Logo file, any format.</strong><span class="check-note">SVG or PNG ideal, but anything works.</span></label></div>
       <div class="check-row"><input type="checkbox" id="c_photos" data-save data-count><label for="c_photos"><strong>Two or three recent photos of yourself you'd actually use.</strong><span class="check-note">Profile-grade, not holiday snaps.</span></label></div>
       <div class="check-row"><input type="checkbox" id="c_brandkit" data-save data-count><label for="c_brandkit"><strong>Your brand kit.</strong><span class="check-note">Colours, fonts, any brand guide, even an old PDF, so everything it makes for you looks right.</span></label></div>
+      <div class="check-row"><input type="checkbox" id="c_written" data-save data-count><label for="c_written"><strong>Anything you've written about the business.</strong><span class="check-note">An about-us, a one-pager, a manifesto, a pinned doc. All gold for teaching it how you think.</span></label></div>
     </section>
 
     <!-- 3. MEMORY EXPORT -->
     <section>
       <span class="pillar-tag">Section three · The accelerator</span>
       <h2>Export your AI's memory<span class="time-chip">~20 min</span></h2>
-      <p>If you've used ChatGPT or Claude for a while, it already knows things about you and your business. The fastest way to give your new OS a head start is to ask the old one to write down what it knows, then save that into your folder. Run the prompt below in each AI tool and project you've used. More handovers means a richer OS.</p>
+      <p>If you've used ChatGPT or Claude for a while, it has built up a memory of you and your business across your conversations. The fastest way to give your new OS a head start is to ask it to write down what it knows, then save that into your folder. Run the prompt below in ChatGPT and Claude, across each project or custom GPT you've set up. More handovers means a richer OS.</p>
+      <p class="field-hint">This only works in tools that remember you across conversations, which really means ChatGPT and Claude. Others like Gemini or Manus start each chat fresh, so they've got nothing to hand over. Skip them.</p>
 
       <div class="prompt-block no-print">
         <div class="prompt-head">
           <span class="prompt-label">The handover prompt</span>
           <button class="copy-btn" id="copyBtn">Copy</button>
         </div>
-        <pre id="promptText">I'm building a business operating system and moving my context across to a new tool. Write down everything you know about me and my business from our conversations. Be thorough and specific. Cover: who I am and what the business does; what I sell and roughly what it costs; my clients and the kind of work I do for them; how I write and the way I sound; my goals for the next year; and how I make decisions. Write it as plain text I can save to a file. Don't summarise lightly, give me the detail.</pre>
+        <pre id="promptText">I'm handing over our work to a new assistant who knows nothing about me or my business yet. Please write a complete handover document so they can pick up exactly where you left off.
+
+Organise it under clear headings, and be specific. Use real names, numbers, dates, and examples wherever you can, not vague generalities. Cover:
+
+1. My business: what it is, what I sell, who my customers are, where I operate.
+2. Me: my name, my role, how I like to work, anything personal you've learned that's relevant.
+3. My goals: what I'm working towards, and what matters most right now.
+4. Ongoing work: projects and jobs in motion, and where each one is up to.
+5. Key people: clients, team, suppliers, and the relationship with each.
+6. My preferences: how I like things done, my tone and writing style, pet hates.
+7. Decisions and rules: anything I've told you to always or never do.
+8. Anything else a new assistant would need to not start from zero.
+
+Write it as a clear document I can hand straight to someone else. Don't ask me questions first, just write the fullest handover you can from everything you already know.</pre>
       </div>
 
       <div class="check-row"><input type="checkbox" id="c_handover" data-save data-count><label for="c_handover"><strong>Run it in each AI tool and project you've used,</strong><span class="check-note">and save every answer into your Workshop Pack folder.</span></label></div>
@@ -358,6 +373,7 @@
       <div class="check-row"><input type="checkbox" id="c_invoices" data-save data-count><label for="c_invoices"><strong>Your invoices, the last year or two.</strong><span class="check-note">These teach it your clients, your real pricing, your job sizes, and who pays well.</span></label></div>
       <div class="check-row"><input type="checkbox" id="c_clientlist" data-save data-count><label for="c_clientlist"><strong>Your client and account list.</strong><span class="check-note">Export it from your CRM as a spreadsheet, or knock up a quick list. Names, what you do for them, revenue per client.</span></label></div>
       <div class="check-row"><input type="checkbox" id="c_bestwork" data-save data-count><label for="c_bestwork"><strong>A few pieces of your best delivered work.</strong><span class="check-note">So it learns what "good" means to you.</span></label></div>
+      <div class="check-row"><input type="checkbox" id="c_currentjobs" data-save data-count><label for="c_currentjobs"><strong>Your current jobs and where each is up to.</strong><span class="check-note">The work in flight right now, even rough notes. Lets the OS help with live work, not just in the abstract.</span></label></div>
 
       <div class="field">
         <label class="field-label" for="f_tools">The tools you run the business on</label>
@@ -369,6 +385,8 @@
         <p class="field-hint">Usually whatever's costing you the most time. Email or calendar is the common pick. Have the login to hand on the day.</p>
         <input class="field-input" id="f_connect_first" data-save type="text">
       </div>
+      <div class="check-row"><input type="checkbox" id="c_logins" data-save data-count><label for="c_logins"><strong>Check you can log in to each tool.</strong><span class="check-note">Bring your password manager, or have your logins to hand. We connect them on the day.</span></label></div>
+      <p class="field-hint">Don't worry about the technical side. You don't need to know what an API or a connector is. Bring the list and the logins, and we sort the rest together on the day.</p>
     </section>
 
     <!-- 5. IDEAL CLIENT -->
@@ -397,6 +415,12 @@
         <label class="field-label" for="f_icp_pattern">The pattern across them</label>
         <p class="field-hint">Look at the three. What do they share? That's the start of your ideal-client picture.</p>
         <textarea class="field-area" id="f_icp_pattern" data-save></textarea>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="f_client_knowledge">What you keep in your head about your key clients</label>
+        <p class="field-hint">Preferences, history, quirks, the things you just know. Getting them out of your head and into the OS is the whole point.</p>
+        <textarea class="field-area" id="f_client_knowledge" data-save></textarea>
       </div>
     </section>
 
