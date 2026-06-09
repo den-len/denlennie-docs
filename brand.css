@@ -1,0 +1,405 @@
+/*
+ * brand.css: Den Lennie · the single source of brand styling.
+ * ------------------------------------------------------------
+ * Source of truth: Brand Guidelines, Version 2.0, 2026.
+ * Entity: F-Stop Academy Australia Pty Ltd.
+ *
+ * Every HTML document built in this OS pulls its look from this file.
+ * Update the variables in :root below, and every quote, proposal, slide
+ * and handout updates with it.
+ *
+ * IMPORTANT FOR FONTS:
+ * Setting a font name in CSS does not load the font. Each HTML file must
+ * also pull the fonts in with a <link> tag inside the <head>, like this:
+ *
+ *   <link rel="preconnect" href="https://fonts.googleapis.com">
+ *   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ *   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+ *
+ * Use <link> not @import. @import fails silently in PDF rendering and the
+ * document quietly falls back to the wrong font.
+ */
+
+:root {
+
+  /* === COLOURS ===
+     The 2026 system: two darks, one accent, room to breathe.
+     Working ratio is roughly 70% dark, 20% paper or white, 10% orange.
+     The old cyan, magenta and yellow are retired. */
+
+  --color-anchor-navy:   #0B2141;  /* Anchors the brand. The primary surface.        */
+  --color-ink-black:     #0C0C0D;  /* Where the brand feels modern and a bit sharper. */
+  --color-burnt-orange:  #D9531E;  /* Accent only. A scalpel, never a paint roller.  */
+  --color-paper:         #F5F4EF;  /* Carries the quiet. The default page colour.    */
+  --color-white:         #FFFFFF;
+
+  /* Aliases so generic class names still work */
+  --color-primary:    var(--color-anchor-navy);
+  --color-secondary:  var(--color-ink-black);
+  --color-accent:     var(--color-burnt-orange);
+  --color-background: var(--color-paper);
+  --color-text:       var(--color-ink-black);
+
+  /* Light working tints. Use sparingly, never as a primary surface. */
+  --tint-navy-08:    rgba(11, 33, 65, 0.08);
+  --tint-ink-08:     rgba(12, 12, 13, 0.08);
+  --tint-orange-10:  rgba(217, 83, 30, 0.10);
+
+  /* === FONTS ===
+     Poppins for display and headings. Ubuntu for body and detail.
+     A web-safe fallback is included after each, in case the Google
+     Fonts <link> fails to load. */
+
+  --font-display: 'Poppins', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --font-heading: 'Poppins', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --font-body:    'Ubuntu',  system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --font-caption: 'Ubuntu',  system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+
+  /* === SPACING AND RHYTHM === */
+  --line-height: 1.6;
+  --space-unit:  16px;
+
+  /* === TYPE SCALE ===
+     Fluid sizes that breathe with the viewport. */
+  --type-display: clamp(2.6rem, 6vw, 5rem);
+  --type-h1:      clamp(1.9rem, 3.4vw, 2.8rem);
+  --type-h2:      clamp(1.3rem, 2vw, 1.6rem);
+  --type-h3:      1.05rem;
+  --type-body:    1.0625rem;
+  --type-small:   0.875rem;
+  --type-caption: 0.75rem;
+}
+
+/* ---------------------------------------------------------------
+   BASE
+   --------------------------------------------------------------- */
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-paper);
+  color: var(--color-ink-black);
+  font-family: var(--font-body);
+  font-weight: 300;                 /* Ubuntu Light */
+  font-size: var(--type-body);
+  line-height: var(--line-height);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---------------------------------------------------------------
+   TYPOGRAPHY
+   --------------------------------------------------------------- */
+
+.display, h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--color-anchor-navy);
+  margin: 0 0 1rem;
+}
+
+.display {
+  font-weight: 700;                 /* Poppins Bold */
+  font-size: var(--type-display);
+  letter-spacing: -0.035em;         /* -3.5% tracking, per 2026 guidelines */
+  line-height: 1.05;
+}
+
+h1 {
+  font-weight: 600;                 /* Poppins SemiBold */
+  font-size: var(--type-h1);
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+
+h2 {
+  font-weight: 600;
+  font-size: var(--type-h2);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-top: 2.5rem;
+}
+
+h3 {
+  font-weight: 600;
+  font-size: var(--type-h3);
+  letter-spacing: -0.01em;
+  margin-top: 1.5rem;
+}
+
+p { margin: 0 0 1rem; }
+
+strong {
+  font-weight: 500;
+  color: var(--color-anchor-navy);
+}
+
+a {
+  color: var(--color-burnt-orange);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-burnt-orange);
+  padding-bottom: 1px;
+}
+a:hover {
+  color: var(--color-ink-black);
+  border-bottom-color: var(--color-ink-black);
+}
+
+/* ---------------------------------------------------------------
+   EDITORIAL POSTER PRIMITIVES
+   The 2026 layout system: eyebrow row, big headline,
+   one short orange rule, heavy negative space.
+   --------------------------------------------------------------- */
+
+.eyebrow {
+  font-family: var(--font-caption);
+  font-weight: 400;
+  font-size: var(--type-caption);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-anchor-navy);
+  margin: 0 0 1.5rem;
+}
+
+.eyebrow .index {
+  color: var(--color-burnt-orange);
+  margin-left: 0.75rem;
+}
+
+.orange-rule {
+  width: 96px;
+  height: 3px;
+  background: var(--color-burnt-orange);
+  border: 0;
+  margin: 1.5rem 0 2rem;
+}
+
+.caption {
+  font-family: var(--font-caption);
+  font-weight: 400;
+  font-size: var(--type-caption);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-ink-black);
+  opacity: 0.7;
+}
+
+.lead {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: var(--color-ink-black);
+  max-width: 60ch;
+  margin: 0 0 2.5rem;
+}
+
+/* ---------------------------------------------------------------
+   LAYOUT CONTAINERS
+   --------------------------------------------------------------- */
+
+.page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 4rem 2rem 6rem;
+}
+
+.poster-header {
+  padding: 1rem 0 3rem;
+  border-bottom: 1px solid var(--tint-ink-08);
+  margin-bottom: 3.5rem;
+}
+
+.poster-footer {
+  margin-top: 5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--tint-ink-08);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-family: var(--font-caption);
+  font-size: var(--type-caption);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-ink-black);
+  opacity: 0.7;
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: -0.025em;
+  color: var(--color-anchor-navy);
+  text-transform: none;
+}
+
+/* ---------------------------------------------------------------
+   CARDS AND BLOCKS
+   --------------------------------------------------------------- */
+
+.card {
+  background: var(--color-white);
+  border: 1px solid var(--tint-ink-08);
+  padding: 2rem;
+  margin: 0 0 1.5rem;
+  border-radius: 2px;
+}
+
+.card .card-eyebrow {
+  font-family: var(--font-caption);
+  font-size: var(--type-caption);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-burnt-orange);
+  margin: 0 0 0.5rem;
+  font-weight: 500;
+}
+
+.card h2 { margin-top: 0; }
+
+.dark-inset {
+  background: var(--color-anchor-navy);
+  color: var(--color-paper);
+  padding: 3rem 2.5rem;
+  margin: 3rem 0;
+  border-radius: 2px;
+}
+
+.dark-inset .display,
+.dark-inset h1,
+.dark-inset h2,
+.dark-inset h3,
+.dark-inset strong {
+  color: var(--color-paper);
+}
+
+.dark-inset .orange-rule { background: var(--color-burnt-orange); }
+
+/* Must-have vs nice-to-have label chips */
+.tier {
+  margin: 1.5rem 0 1rem;
+}
+
+.tier-label {
+  display: inline-block;
+  font-family: var(--font-caption);
+  font-size: var(--type-caption);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.75rem;
+  margin: 0 0 0.75rem;
+}
+
+.tier-must {
+  background: var(--color-anchor-navy);
+  color: var(--color-paper);
+}
+
+.tier-nice {
+  background: var(--color-paper);
+  color: var(--color-anchor-navy);
+  border: 1px solid var(--color-anchor-navy);
+}
+
+/* ---------------------------------------------------------------
+   LISTS
+   --------------------------------------------------------------- */
+
+ul.brand-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+}
+
+ul.brand-list li {
+  padding: 0.6rem 0 0.6rem 1.75rem;
+  border-bottom: 1px solid var(--tint-ink-08);
+  position: relative;
+}
+
+ul.brand-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.05rem;
+  width: 12px;
+  height: 1px;
+  background: var(--color-burnt-orange);
+}
+
+ul.brand-list li:last-child { border-bottom: 0; }
+
+/* Generic body list, lightly styled */
+ul.body-list, ol.body-list {
+  margin: 0 0 1.5rem 1.25rem;
+  padding: 0;
+}
+
+ul.body-list li, ol.body-list li {
+  margin: 0.4rem 0;
+}
+
+/* ---------------------------------------------------------------
+   TABLES
+   --------------------------------------------------------------- */
+
+table.brand-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0 2.5rem;
+  font-size: var(--type-small);
+}
+
+table.brand-table th {
+  text-align: left;
+  font-family: var(--font-caption);
+  font-weight: 500;
+  font-size: var(--type-caption);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-anchor-navy);
+  padding: 0.75rem 1rem;
+  border-bottom: 2px solid var(--color-anchor-navy);
+}
+
+table.brand-table td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--tint-ink-08);
+  vertical-align: top;
+}
+
+table.brand-table tr:last-child td { border-bottom: 0; }
+
+/* Callout you can drop into any document for a single key point. */
+.callout {
+  background: var(--color-white);
+  border-left: 3px solid var(--color-burnt-orange);
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+}
+
+/* ---------------------------------------------------------------
+   PRINT
+   --------------------------------------------------------------- */
+
+@media print {
+  body { background: var(--color-white); }
+  .page { padding: 1.5rem; }
+  .card, .dark-inset { box-shadow: none; }
+  a { color: var(--color-ink-black); border-bottom: none; }
+  .poster-footer { break-inside: avoid; }
+}
+
+/* ---------------------------------------------------------------
+   MOBILE
+   --------------------------------------------------------------- */
+
+@media (max-width: 720px) {
+  .page { padding: 2.5rem 1.25rem 4rem; }
+  .poster-footer { flex-direction: column; align-items: flex-start; }
+  .dark-inset { padding: 2rem 1.5rem; }
+  .card { padding: 1.5rem; }
+}

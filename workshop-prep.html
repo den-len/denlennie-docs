@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="What to prepare before the VBA Elite Mastermind so you walk out with a working AI operating system for your business.">
+  <title>Elite Mastermind · Workshop Prep · Den Lennie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./brand.css">
+  <style>
+    /* Working-document primitives, built on the brand variables.
+       Local to this page so the shared stylesheet stays untouched. */
+
+    /* Sticky progress + actions bar */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: var(--color-anchor-navy);
+      color: var(--color-paper);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      padding: 0.7rem 1.25rem;
+    }
+    .topbar .progress {
+      font-family: var(--font-caption);
+      font-size: var(--type-caption);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+    .progress .bar {
+      width: 140px;
+      height: 5px;
+      background: rgba(245,244,239,0.25);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .progress .bar span {
+      display: block;
+      height: 100%;
+      width: 0%;
+      background: var(--color-burnt-orange);
+      transition: width 0.25s ease;
+    }
+    .progress .count strong { color: var(--color-paper); font-weight: 500; }
+    .topbar .actions { display: flex; gap: 0.55rem; }
+    .btn {
+      font-family: var(--font-caption);
+      font-size: var(--type-caption);
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.5rem 0.95rem;
+      border-radius: 2px;
+      border: 1px solid var(--color-paper);
+      background: transparent;
+      color: var(--color-paper);
+      cursor: pointer;
+    }
+    .btn:hover { background: var(--color-paper); color: var(--color-anchor-navy); }
+    .btn-primary { background: var(--color-burnt-orange); border-color: var(--color-burnt-orange); color: var(--color-white); }
+    .btn-primary:hover { background: var(--color-white); color: var(--color-burnt-orange); }
+
+    /* Time estimate chip beside section headings */
+    .time-chip {
+      display: inline-block;
+      font-family: var(--font-caption);
+      font-size: var(--type-caption);
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-burnt-orange);
+      border: 1px solid var(--tint-orange-10);
+      background: var(--tint-orange-10);
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+      margin-left: 0.75rem;
+      vertical-align: middle;
+    }
+    .pillar-tag {
+      display: inline-block;
+      font-family: var(--font-caption);
+      font-size: var(--type-caption);
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-burnt-orange);
+      margin: 0 0 0.4rem;
+    }
+
+    /* Fillable fields */
+    .field { margin: 1.25rem 0; }
+    .field-label {
+      display: block;
+      font-family: var(--font-caption);
+      font-size: var(--type-caption);
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-anchor-navy);
+      margin: 0 0 0.5rem;
+    }
+    .field-hint { font-size: var(--type-small); opacity: 0.75; margin: 0 0 0.5rem; }
+    .field-input, .field-area {
+      width: 100%;
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: var(--type-body);
+      color: var(--color-ink-black);
+      background: var(--color-white);
+      border: 1px solid var(--tint-ink-08);
+      border-radius: 2px;
+      padding: 0.7rem 0.85rem;
+      line-height: 1.5;
+    }
+    .field-input:focus, .field-area:focus {
+      outline: none;
+      border-color: var(--color-burnt-orange);
+      box-shadow: 0 0 0 2px var(--tint-orange-10);
+    }
+    .field-area { min-height: 5.5rem; resize: vertical; }
+    .field-area.tall { min-height: 8.5rem; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.5rem; }
+    @media (max-width: 720px) { .grid-2 { grid-template-columns: 1fr; } }
+
+    /* Checklist rows that remember their state and feed the progress bar */
+    .check-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid var(--tint-ink-08);
+    }
+    .check-row:last-child { border-bottom: 0; }
+    .check-row input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      flex: 0 0 auto;
+      width: 20px;
+      height: 20px;
+      margin-top: 0.15rem;
+      border: 1.5px solid var(--color-anchor-navy);
+      border-radius: 3px;
+      background: var(--color-white);
+      cursor: pointer;
+      position: relative;
+    }
+    .check-row input[type="checkbox"]:checked { background: var(--color-burnt-orange); border-color: var(--color-burnt-orange); }
+    .check-row input[type="checkbox"]:checked::after {
+      content: "";
+      position: absolute;
+      left: 6px; top: 2px;
+      width: 5px; height: 10px;
+      border: solid var(--color-white);
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+    .check-row label { cursor: pointer; }
+    .check-row .check-note { display: block; font-size: var(--type-small); opacity: 0.7; }
+
+    .repeat-block {
+      background: var(--color-white);
+      border: 1px solid var(--tint-ink-08);
+      border-radius: 2px;
+      padding: 1.25rem 1.5rem;
+      margin: 0 0 1rem;
+    }
+    .repeat-block .repeat-index {
+      font-family: var(--font-caption);
+      font-size: var(--type-caption);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-burnt-orange);
+      font-weight: 500;
+    }
+
+    /* Copyable prompt block */
+    .prompt-block {
+      background: var(--color-ink-black);
+      color: var(--color-paper);
+      border-radius: 2px;
+      padding: 1.5rem 1.5rem 1.25rem;
+      margin: 1.25rem 0;
+    }
+    .prompt-block .prompt-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin: 0 0 0.85rem;
+    }
+    .prompt-block .prompt-label {
+      font-family: var(--font-caption);
+      font-size: var(--type-caption);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-burnt-orange);
+      font-weight: 500;
+    }
+    .prompt-block pre {
+      font-family: 'Ubuntu', monospace;
+      font-size: var(--type-small);
+      line-height: 1.55;
+      white-space: pre-wrap;
+      margin: 0;
+      color: var(--color-paper);
+    }
+    .copy-btn {
+      font-family: var(--font-caption);
+      font-size: var(--type-caption);
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.85rem;
+      border-radius: 2px;
+      border: 1px solid var(--color-paper);
+      background: transparent;
+      color: var(--color-paper);
+      cursor: pointer;
+      flex: 0 0 auto;
+    }
+    .copy-btn:hover { background: var(--color-paper); color: var(--color-ink-black); }
+
+    /* Print: drop the controls, keep the answers */
+    @media print {
+      .topbar, .no-print, .copy-btn { display: none; }
+      .field-input, .field-area {
+        border: 0; border-bottom: 1px solid var(--tint-ink-08);
+        border-radius: 0; padding: 0.2rem 0;
+      }
+      .prompt-block { background: var(--color-paper); color: var(--color-ink-black); border: 1px solid var(--tint-ink-08); }
+      .prompt-block pre, .prompt-block .prompt-label { color: var(--color-ink-black); }
+      .check-row input[type="checkbox"] { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar no-print">
+    <span class="progress">
+      <span class="count">Workshop prep · <strong><span id="progDone">0</span> of <span id="progTotal">0</span></strong> ready</span>
+      <span class="bar"><span id="progFill"></span></span>
+    </span>
+    <span class="actions">
+      <button class="btn btn-primary" onclick="window.print()">Save to PDF</button>
+      <button class="btn" onclick="clearAll()">Clear</button>
+    </span>
+  </div>
+
+  <main class="page">
+
+    <header class="poster-header">
+      <p class="eyebrow">VBA Elite Mastermind · Workshop Prep<span class="index">NO. 02</span></p>
+      <h1 class="display">Come ready, and we build your OS in a couple of hours.</h1>
+      <hr class="orange-rule">
+      <p class="lead">The whole day comes down to one thing: what you bring with you. Spend an hour or two this week gathering the raw material, and the day becomes about building rather than hunting. Tick the boxes, fill in the fields, hit Save to PDF, and bring it on the day.</p>
+    </header>
+
+    <section>
+      <h2>How this works</h2>
+      <p>Three things go into an OS that sounds like you and knows your numbers: your <strong>style</strong> (how you sound and look), your <strong>data</strong> (what you sell, to whom, for how much), and your <strong>assets</strong> (the files we feed it). This page gathers all three.</p>
+      <p>Type straight into it and tick as you go. Everything saves to this browser automatically, so you can close the tab and come back. The progress counter at the top tracks the boxes. When you're done, hit <strong>Save to PDF</strong> and bring the PDF plus the files it points to.</p>
+
+      <div class="callout">
+        <p style="margin:0"><strong>One folder, one page.</strong> Before you start, make a folder on your laptop called <em>Workshop Pack</em> in a cloud-backed location (iCloud Drive, Dropbox, Google Drive or OneDrive, not Downloads). As you gather files, drop them in there. This page is the index. The folder is the cargo.</p>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="f_name">Your name</label>
+        <input class="field-input" id="f_name" data-save type="text">
+      </div>
+      <div class="grid-2">
+        <div class="field">
+          <label class="field-label" for="f_business">Business name</label>
+          <input class="field-input" id="f_business" data-save type="text">
+        </div>
+        <div class="field">
+          <label class="field-label" for="f_website">Website address</label>
+          <input class="field-input" id="f_website" data-save type="text" placeholder="The wizard reads your site and fills in a surprising amount on its own">
+        </div>
+      </div>
+    </section>
+
+    <!-- 1. SET UP -->
+    <section>
+      <span class="pillar-tag">Section one</span>
+      <h2>Set up before you arrive<span class="time-chip">~30 min</span></h2>
+      <p>The technical bit, done at home so the room doesn't stall at 9.05am. None of it is hard. All of it is preventable friction.</p>
+      <div class="check-row"><input type="checkbox" id="c_claudecode" data-save data-count><label for="c_claudecode"><strong>Claude Code installed and signed in.</strong><span class="check-note">Install instructions come a week ahead. Open it once at home to check it works. If it won't install, reply and we'll do a quick pre-flight call. This is the single biggest day-of risk.</span></label></div>
+      <div class="check-row"><input type="checkbox" id="c_admin" data-save data-count><label for="c_admin"><strong>You can install software on your laptop.</strong><span class="check-note">You'll need your computer's admin password to install and to connect your tools. If your laptop is locked down by IT, sort that this week.</span></label></div>
+      <div class="check-row"><input type="checkbox" id="c_folder" data-save data-count><label for="c_folder"><strong>A cloud-backed folder ready.</strong><span class="check-note">Dropbox, Google Drive, iCloud Drive or OneDrive, installed and syncing. Your OS lives in here so it's safe and follows you between machines.</span></label></div>
+      <div class="check-row"><input type="checkbox" id="c_laptop" data-save data-count><label for="c_laptop"><strong>Laptop, charger and phone.</strong><span class="check-note">The phone is for the security codes when we connect your tools on the day.</span></label></div>
+    </section>
+
+    <!-- 2. STYLE -->
+    <section>
+      <span class="pillar-tag">Section two · Style</span>
+      <h2>How you sound and how you look<span class="time-chip">~15 min</span></h2>
+      <p>The part most owners skip, and the part that decides whether the OS sounds like you or like every other AI on the internet. Your voice lives in what you've already written.</p>
+
+      <div class="field">
+        <label class="field-label" for="f_voice_desc">In a few lines, how would you describe the way you write to a client?</label>
+        <p class="field-hint">Direct? Warm? Dry? Short sentences or long? We mostly learn this from your samples, but your own read on it helps.</p>
+        <textarea class="field-area" id="f_voice_desc" data-save></textarea>
+      </div>
+      <div class="field">
+        <label class="field-label" for="f_voice_samples">Paste two or three short things you've written that sound like you</label>
+        <p class="field-hint">A recent email, a social post, a paragraph from a proposal. Real ones you wrote, not AI-generated. This is the single most valuable thing here. The fuller set (five to ten emails) goes in your Workshop Pack folder.</p>
+        <textarea class="field-area tall" id="f_voice_samples" data-save></textarea>
+      </div>
+
+      <h3>Brand assets for the folder</h3>
+      <p class="field-hint">Tick each once it's in your Workshop Pack folder.</p>
+      <div class="check-row"><input type="checkbox" id="c_logo" data-save data-count><label for="c_logo"><strong>Logo file, any format.</strong><span class="check-note">SVG or PNG ideal, but anything works.</span></label></div>
+      <div class="check-row"><input type="checkbox" id="c_photos" data-save data-count><label for="c_photos"><strong>Two or three recent photos of yourself you'd actually use.</strong><span class="check-note">Profile-grade, not holiday snaps.</span></label></div>
+      <div class="check-row"><input type="checkbox" id="c_brandkit" data-save data-count><label for="c_brandkit"><strong>Your brand kit.</strong><span class="check-note">Colours, fonts, any brand guide, even an old PDF, so everything it makes for you looks right.</span></label></div>
+    </section>
+
+    <!-- 3. MEMORY EXPORT -->
+    <section>
+      <span class="pillar-tag">Section three · The accelerator</span>
+      <h2>Export your AI's memory<span class="time-chip">~20 min</span></h2>
+      <p>If you've used ChatGPT or Claude for a while, it already knows things about you and your business. The fastest way to give your new OS a head start is to ask the old one to write down what it knows, then save that into your folder. Run the prompt below in each AI tool and project you've used. More handovers means a richer OS.</p>
+
+      <div class="prompt-block no-print">
+        <div class="prompt-head">
+          <span class="prompt-label">The handover prompt</span>
+          <button class="copy-btn" id="copyBtn">Copy</button>
+        </div>
+        <pre id="promptText">I'm building a business operating system and moving my context across to a new tool. Write down everything you know about me and my business from our conversations. Be thorough and specific. Cover: who I am and what the business does; what I sell and roughly what it costs; my clients and the kind of work I do for them; how I write and the way I sound; my goals for the next year; and how I make decisions. Write it as plain text I can save to a file. Don't summarise lightly, give me the detail.</pre>
+      </div>
+
+      <div class="check-row"><input type="checkbox" id="c_handover" data-save data-count><label for="c_handover"><strong>Run it in each AI tool and project you've used,</strong><span class="check-note">and save every answer into your Workshop Pack folder.</span></label></div>
+      <div class="check-row"><input type="checkbox" id="c_custominstructions" data-save data-count><label for="c_custominstructions"><strong>Grab any custom instructions or saved prompts you've built up.</strong><span class="check-note">The setup you've fed ChatGPT or Claude over time. All gold.</span></label></div>
+    </section>
+
+    <!-- 4. BUSINESS DATA -->
+    <section>
+      <span class="pillar-tag">Section four · Data</span>
+      <h2>What you sell, and to whom<span class="time-chip">~20 min</span></h2>
+
+      <div class="field">
+        <label class="field-label" for="f_services">Your services, with rough pricing</label>
+        <p class="field-hint">List your main services and what each roughly costs. A note on a napkin is fine. We tidy it on the day.</p>
+        <textarea class="field-area" id="f_services" data-save></textarea>
+      </div>
+
+      <p class="field-hint">For the folder, gather these. Tick as they land.</p>
+      <div class="check-row"><input type="checkbox" id="c_proposals" data-save data-count><label for="c_proposals"><strong>Your recent proposals.</strong><span class="check-note">As many as you can find. They teach it what you sell and how you pitch.</span></label></div>
+      <div class="check-row"><input type="checkbox" id="c_invoices" data-save data-count><label for="c_invoices"><strong>Your invoices, the last year or two.</strong><span class="check-note">These teach it your clients, your real pricing, your job sizes, and who pays well.</span></label></div>
+      <div class="check-row"><input type="checkbox" id="c_clientlist" data-save data-count><label for="c_clientlist"><strong>Your client and account list.</strong><span class="check-note">Export it from your CRM as a spreadsheet, or knock up a quick list. Names, what you do for them, revenue per client.</span></label></div>
+      <div class="check-row"><input type="checkbox" id="c_bestwork" data-save data-count><label for="c_bestwork"><strong>A few pieces of your best delivered work.</strong><span class="check-note">So it learns what "good" means to you.</span></label></div>
+
+      <div class="field">
+        <label class="field-label" for="f_tools">The tools you run the business on</label>
+        <p class="field-hint">Email, calendar, accounting (Xero, QuickBooks, MYOB), CRM, project tool, file storage, payments. You're on SceneOps already, so note what sits alongside it. A simple list is fine.</p>
+        <textarea class="field-area" id="f_tools" data-save></textarea>
+      </div>
+      <div class="field">
+        <label class="field-label" for="f_connect_first">The one tool you'd most like to connect first</label>
+        <p class="field-hint">Usually whatever's costing you the most time. Email or calendar is the common pick. Have the login to hand on the day.</p>
+        <input class="field-input" id="f_connect_first" data-save type="text">
+      </div>
+    </section>
+
+    <!-- 5. IDEAL CLIENT -->
+    <section>
+      <span class="pillar-tag">Section five · Data</span>
+      <h2>The clients you'd clone<span class="time-chip">~15 min</span></h2>
+      <p>The bit most people undercook. Worth real thought before you arrive. Name your three best clients of the last two years, and say what made each one good.</p>
+
+      <div class="repeat-block">
+        <span class="repeat-index">Best client 01</span>
+        <div class="field"><label class="field-label" for="f_bc1_name">Who</label><input class="field-input" id="f_bc1_name" data-save type="text"></div>
+        <div class="field" style="margin-bottom:0"><label class="field-label" for="f_bc1_why">Why they were one of the best</label><textarea class="field-area" id="f_bc1_why" data-save></textarea></div>
+      </div>
+      <div class="repeat-block">
+        <span class="repeat-index">Best client 02</span>
+        <div class="field"><label class="field-label" for="f_bc2_name">Who</label><input class="field-input" id="f_bc2_name" data-save type="text"></div>
+        <div class="field" style="margin-bottom:0"><label class="field-label" for="f_bc2_why">Why they were one of the best</label><textarea class="field-area" id="f_bc2_why" data-save></textarea></div>
+      </div>
+      <div class="repeat-block">
+        <span class="repeat-index">Best client 03</span>
+        <div class="field"><label class="field-label" for="f_bc3_name">Who</label><input class="field-input" id="f_bc3_name" data-save type="text"></div>
+        <div class="field" style="margin-bottom:0"><label class="field-label" for="f_bc3_why">Why they were one of the best</label><textarea class="field-area" id="f_bc3_why" data-save></textarea></div>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="f_icp_pattern">The pattern across them</label>
+        <p class="field-hint">Look at the three. What do they share? That's the start of your ideal-client picture.</p>
+        <textarea class="field-area" id="f_icp_pattern" data-save></textarea>
+      </div>
+    </section>
+
+    <!-- 6. THE THINKING -->
+    <section>
+      <span class="pillar-tag">Section six · The thinking</span>
+      <h2>Come having thought about these<span class="time-chip">~15 min</span></h2>
+      <p>The most important part of the day, and the one that needs the least paperwork. Just clear thinking. Skip it and the OS reads like a manual instead of like its owner.</p>
+
+      <div class="field">
+        <label class="field-label" for="f_target">Your revenue target for the next twelve months</label>
+        <p class="field-hint">The actual number, not a range.</p>
+        <input class="field-input" id="f_target" data-save type="text">
+      </div>
+      <div class="field">
+        <label class="field-label" for="f_one_thing">Your one big goal right now</label>
+        <p class="field-hint">The single thing that, if it went well over the next few months, would make the biggest difference.</p>
+        <textarea class="field-area" id="f_one_thing" data-save></textarea>
+      </div>
+      <div class="field">
+        <label class="field-label" for="f_values">Your values</label>
+        <p class="field-hint">How you treat clients, what you believe about your work, the lines you won't cross. Push past "integrity, honesty, quality". For each, think of a moment in the last year where holding to it cost you. That's the one worth writing down.</p>
+        <textarea class="field-area tall" id="f_values" data-save></textarea>
+      </div>
+      <div class="field">
+        <label class="field-label" for="f_philosophy">How you think</label>
+        <p class="field-hint">What "good work" looks like to you, and how you make a call when it's a tough one.</p>
+        <textarea class="field-area" id="f_philosophy" data-save></textarea>
+      </div>
+    </section>
+
+    <!-- 7. FIRST WIN -->
+    <section>
+      <h2>The one real task you'll bring<span class="time-chip">~5 min</span></h2>
+      <p>Early on the day, you'll do one real piece of work with your OS. Something small you were going to do this week anyway: a quote, a follow-up, a piece of content, the awkward reply you've been avoiding. Small finishes in the room. Big strategic questions don't, so save those.</p>
+      <div class="field">
+        <label class="field-label" for="f_first_win">The small task I'll bring to do live</label>
+        <textarea class="field-area" id="f_first_win" data-save></textarea>
+      </div>
+    </section>
+
+    <div class="dark-inset">
+      <p class="eyebrow" style="color: var(--color-paper)">If you do nothing else this week</p>
+      <hr class="orange-rule">
+      <h2 style="margin-top:0">Bring these five.</h2>
+      <ul class="brand-list">
+        <li>Your <strong>website URL</strong> and revenue target, filled in above</li>
+        <li><strong>Two or three things you've written</strong> that sound like you, pasted in above</li>
+        <li>Your <strong>last year's clients with revenue</strong>, in the folder</li>
+        <li>The <strong>three best clients</strong> you'd clone, named above</li>
+        <li><strong>Claude Code installed</strong>, with your Workshop Pack folder ready</li>
+      </ul>
+      <p style="margin-top:1.5rem">That carries you through the opening, your first real win, and most of the money and pipeline work. The floor, not the ceiling.</p>
+    </div>
+
+    <section class="no-print">
+      <h2>Last step</h2>
+      <p>Hit <strong>Save to PDF</strong> at the top, save it into your Workshop Pack folder, and you're ready. See you on the day.</p>
+    </section>
+
+    <footer class="poster-footer">
+      <span class="wordmark">Den Lennie.</span>
+      <span>VBA Elite Mastermind · Workshop Prep · v1.0</span>
+    </footer>
+
+  </main>
+
+  <script>
+    // Everything saves to this browser. No server, nothing leaves the machine.
+    var KEY = 'vba-elite-workshop-prep-v1';
+
+    function fields() { return document.querySelectorAll('[data-save]'); }
+
+    function loadAll() {
+      var saved;
+      try { saved = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { saved = {}; }
+      fields().forEach(function (el) {
+        if (!(el.id in saved)) return;
+        if (el.type === 'checkbox') { el.checked = saved[el.id]; } else { el.value = saved[el.id]; }
+      });
+      updateProgress();
+    }
+
+    function saveAll() {
+      var data = {};
+      fields().forEach(function (el) {
+        data[el.id] = (el.type === 'checkbox') ? el.checked : el.value;
+      });
+      localStorage.setItem(KEY, JSON.stringify(data));
+      updateProgress();
+    }
+
+    function updateProgress() {
+      var boxes = document.querySelectorAll('[data-count]');
+      var total = boxes.length;
+      var done = 0;
+      boxes.forEach(function (b) { if (b.checked) done++; });
+      document.getElementById('progDone').textContent = done;
+      document.getElementById('progTotal').textContent = total;
+      var pct = total ? Math.round((done / total) * 100) : 0;
+      document.getElementById('progFill').style.width = pct + '%';
+    }
+
+    function clearAll() {
+      if (!confirm('Clear everything you have typed and ticked on this page? This cannot be undone.')) return;
+      localStorage.removeItem(KEY);
+      fields().forEach(function (el) {
+        if (el.type === 'checkbox') { el.checked = false; } else { el.value = ''; }
+      });
+      updateProgress();
+    }
+
+    function setupCopy() {
+      var btn = document.getElementById('copyBtn');
+      if (!btn) return;
+      btn.addEventListener('click', function () {
+        var text = document.getElementById('promptText').textContent;
+        function done() { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy'; }, 1800); }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done, function () {});
+        } else {
+          var r = document.createRange(); r.selectNode(document.getElementById('promptText'));
+          window.getSelection().removeAllRanges(); window.getSelection().addRange(r);
+          try { document.execCommand('copy'); done(); } catch (e) {}
+          window.getSelection().removeAllRanges();
+        }
+      });
+    }
+
+    document.addEventListener('input', saveAll);
+    document.addEventListener('change', saveAll);
+    window.addEventListener('DOMContentLoaded', function () { loadAll(); setupCopy(); });
+  </script>
+
+</body>
+</html>
