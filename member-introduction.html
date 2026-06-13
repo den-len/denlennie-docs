@@ -52,6 +52,27 @@
     .btn-primary { background: var(--color-burnt-orange); border-color: var(--color-burnt-orange); color: var(--color-white); }
     .btn-primary:hover { background: var(--color-white); color: var(--color-burnt-orange); }
 
+    /* Navy masthead band carrying the VBA wordmark. The grey wordmark
+       is a light logo built for dark surfaces, so it sits on navy.
+       Prints, unlike the screen-only savebar above it. */
+    .masthead {
+      background: var(--color-anchor-navy);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .masthead-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 1.35rem 2rem;
+      display: flex;
+      align-items: center;
+    }
+    .masthead-logo { height: 42px; width: auto; display: block; }
+    @media (max-width: 720px) {
+      .masthead-inner { padding: 1.1rem 1.25rem; }
+      .masthead-logo { height: 34px; }
+    }
+
     /* Section heading row: small orange index + title */
     .q-index {
       font-family: var(--font-caption);
@@ -187,6 +208,12 @@
       <button class="btn" onclick="clearAll()">Clear</button>
     </span>
   </div>
+
+  <header class="masthead">
+    <div class="masthead-inner">
+      <img class="masthead-logo" src="./VBA_wordmark_grey.png" alt="Video Business Accelerator">
+    </div>
+  </header>
 
   <main class="page">
 
