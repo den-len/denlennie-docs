@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VBA Elite · Room Intro · Sydney Workshop · Den Lennie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./brand.css">
+  <style>
+    /* Form primitives, built on the brand variables. Local to this
+       working document so the shared stylesheet stays untouched.
+       Mirrors the pattern in pre-work-capture.html. */
+
+    .savebar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--color-anchor-navy);
+      color: var(--color-paper);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      padding: 0.85rem 1.5rem;
+    }
+    .savebar .save-state {
+      font-family: var(--font-caption);
+      font-size: var(--type-caption);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.85;
+    }
+    .savebar .save-state strong { color: var(--color-paper); font-weight: 500; }
+    .savebar .save-actions { display: flex; gap: 0.6rem; }
+    .btn {
+      font-family: var(--font-caption);
+      font-size: var(--type-caption);
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.55rem 1rem;
+      border-radius: 2px;
+      border: 1px solid var(--color-paper);
+      background: transparent;
+      color: var(--color-paper);
+      cursor: pointer;
+    }
+    .btn:hover { background: var(--color-paper); color: var(--color-anchor-navy); }
+    .btn-primary { background: var(--color-burnt-orange); border-color: var(--color-burnt-orange); color: var(--color-white); }
+    .btn-primary:hover { background: var(--color-white); color: var(--color-burnt-orange); }
+
+    /* Section heading row: small orange index + title */
+    .q-index {
+      font-family: var(--font-caption);
+      font-size: var(--type-caption);
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-burnt-orange);
+      margin: 0 0 0.4rem;
+    }
+
+    .field { margin: 1.1rem 0; }
+    .field-label {
+      display: block;
+      font-family: var(--font-caption);
+      font-size: var(--type-caption);
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-anchor-navy);
+      margin: 0 0 0.5rem;
+    }
+    .field-hint {
+      font-size: var(--type-small);
+      opacity: 0.75;
+      margin: 0 0 0.5rem;
+    }
+    .field-input,
+    .field-area {
+      width: 100%;
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: var(--type-body);
+      color: var(--color-ink-black);
+      background: var(--color-white);
+      border: 1px solid var(--tint-ink-08);
+      border-radius: 2px;
+      padding: 0.7rem 0.85rem;
+      line-height: 1.5;
+    }
+    .field-input:focus,
+    .field-area:focus {
+      outline: none;
+      border-color: var(--color-burnt-orange);
+      box-shadow: 0 0 0 2px var(--tint-orange-10);
+    }
+    .field-area { min-height: 4.5rem; resize: vertical; }
+    .field-area.tall { min-height: 6.5rem; }
+
+    /* Running-sentence fields (the intro line and the numbers line) */
+    .sentence {
+      font-size: 1.2rem;
+      line-height: 2.2;
+      color: var(--color-ink-black);
+      max-width: 64ch;
+    }
+    .inline-field {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 1.05rem;
+      color: var(--color-anchor-navy);
+      background: var(--color-white);
+      border: 0;
+      border-bottom: 1.5px solid var(--color-burnt-orange);
+      padding: 0.1rem 0.4rem;
+      min-width: 6rem;
+      line-height: 1.5;
+    }
+    .inline-field:focus { outline: none; background: var(--tint-orange-10); }
+    .inline-field.wide { min-width: 12rem; }
+    .inline-field.pct { min-width: 3.2rem; text-align: center; }
+
+    /* Up / down / neutral choice pills (single-select) */
+    .choice-group { display: inline-flex; flex-wrap: wrap; gap: 0.45rem; vertical-align: middle; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 5.25rem;
+      font-family: var(--font-caption);
+      font-size: var(--type-small);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      border: 1.5px solid var(--color-anchor-navy);
+      color: var(--color-anchor-navy);
+      background: var(--color-white);
+      cursor: pointer;
+      user-select: none;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .pill input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .pill:has(input:checked) { background: var(--color-anchor-navy); color: var(--color-paper); }
+    .pill:has(input:focus-visible) { box-shadow: 0 0 0 2px var(--tint-orange-10); }
+
+    .block { margin: 2.4rem 0; }
+    .block h2 { margin-top: 0; }
+
+    @media print {
+      .savebar, .no-print { display: none; }
+      body { background: var(--color-white); }
+      .block, .dark-inset { break-inside: avoid; }
+      .field-input, .field-area {
+        border: 0;
+        border-bottom: 1px solid var(--tint-ink-08);
+        border-radius: 0;
+        padding: 0.2rem 0;
+        background: transparent;
+      }
+      .sentence { line-height: 2.6; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       RESKIN PER EVENT. Den changes this document every event
+       (two a year). Only two things change. Find and edit both:
+
+       1. EVENT NAME  search: "Sydney Workshop"   (eyebrow + footer)
+       2. FINANCIAL YEAR  search: "2025&ndash;2026"  (numbers line)
+
+       Everything else stays. Save As a new filename if you want to
+       keep the old one (e.g. member-introduction-sydney-2026.html).
+       ============================================================ -->
+
+  <div class="savebar no-print">
+    <span class="save-state">Your answers save to this browser as you type. <strong id="saveStamp">Not saved yet.</strong></span>
+    <span class="save-actions">
+      <button class="btn btn-primary" onclick="window.print()">Save to PDF</button>
+      <button class="btn" onclick="clearAll()">Clear</button>
+    </span>
+  </div>
+
+  <main class="page">
+
+    <header class="poster-header">
+      <p class="eyebrow">VBA Elite · Sydney Workshop<span class="index">ROOM INTRO</span></p>
+      <h1 class="display">Six months on.</h1>
+      <hr class="orange-rule">
+      <p class="lead">Before we get into the work, we go round the room. This is the shape of what you'll share: where the business is, how the year actually felt, and the one thing you want to crack while we're together. Keep it short. The honest version is the useful one.</p>
+    </header>
+
+    <!-- ===================== 01 · THE INTRO ===================== -->
+    <section class="block">
+      <p class="q-index">01 · The intro</p>
+      <h2>Say hello</h2>
+      <p class="sentence">
+        Hi, I'm
+        <input class="inline-field" data-save id="f_name" type="text" placeholder="name">,
+        from
+        <input class="inline-field wide" data-save id="f_company" type="text" placeholder="company">,
+        a production company in
+        <input class="inline-field" data-save id="f_city" type="text" placeholder="city">.
+      </p>
+    </section>
+
+    <!-- ===================== 02 · THE NUMBERS ===================== -->
+    <section class="block">
+      <p class="q-index">02 · The year, by the numbers</p>
+      <h2>How the year moved</h2>
+      <p class="field-hint">Percentages are easier to say out loud than dollars, and tell us just as much. If you'd rather not put a number on it, pick the direction and leave the percentage blank. Up, down or steady is plenty.</p>
+
+      <p class="sentence" style="margin-top:1.25rem">
+        Our 2025&ndash;2026 revenue was
+        <span class="choice-group">
+          <label class="pill"><input type="radio" name="rev_dir" data-save id="r_rev_up">Up</label>
+          <label class="pill"><input type="radio" name="rev_dir" data-save id="r_rev_down">Down</label>
+          <label class="pill"><input type="radio" name="rev_dir" data-save id="r_rev_flat">Steady</label>
+        </span>
+        by
+        <input class="inline-field pct" data-save id="f_rev_pct" type="text" inputmode="numeric">%
+        on the year before.
+      </p>
+
+      <p class="sentence">
+        Profitability was
+        <span class="choice-group">
+          <label class="pill"><input type="radio" name="profit_dir" data-save id="r_profit_up">Up</label>
+          <label class="pill"><input type="radio" name="profit_dir" data-save id="r_profit_down">Down</label>
+          <label class="pill"><input type="radio" name="profit_dir" data-save id="r_profit_flat">Steady</label>
+        </span>.
+      </p>
+    </section>
+
+    <!-- ===================== 03 · THE REAL MEASURE ===================== -->
+    <section class="block">
+      <p class="q-index">03 · The real measure</p>
+      <h2>But the measure of my year is this</h2>
+      <p class="field-hint">Not the revenue line. How the business actually changed your life in the last twelve months. More time with the kids, fewer late nights, a holiday where you genuinely switched off. That kind of thing.</p>
+      <div class="field">
+        <textarea class="field-area" data-save id="f_measure"></textarea>
+      </div>
+    </section>
+
+    <!-- ===================== 04 · THE CHECK-IN ===================== -->
+    <section class="block">
+      <p class="q-index">04 · The check-in</p>
+      <h2>It's been six months. How do you feel about where the business is right now?</h2>
+      <div class="field">
+        <textarea class="field-area" data-save id="f_checkin"></textarea>
+      </div>
+    </section>
+
+    <!-- ===================== 05 · THE BLOCK ===================== -->
+    <section class="block">
+      <p class="q-index">05 · The block</p>
+      <h2>The number one thing blocking me right now is</h2>
+      <div class="field">
+        <textarea class="field-area" data-save id="f_block"></textarea>
+      </div>
+    </section>
+
+    <!-- ===================== 06 · THE ASK ===================== -->
+    <section class="block">
+      <p class="q-index">06 · The ask</p>
+      <h2>The one thing I want from the event is</h2>
+      <div class="field">
+        <textarea class="field-area" data-save id="f_ask"></textarea>
+      </div>
+    </section>
+
+    <!-- ===================== 07 · THE AI ONE ===================== -->
+    <section class="block">
+      <p class="q-index">07 · The AI one</p>
+      <h2>If I could solve one problem with AI, it would be</h2>
+      <div class="field">
+        <textarea class="field-area" data-save id="f_ai"></textarea>
+      </div>
+    </section>
+
+    <div class="dark-inset no-print">
+      <p class="eyebrow" style="color: var(--color-paper)">When you're done</p>
+      <hr class="orange-rule">
+      <h2 style="margin-top:0">Save it and bring it.</h2>
+      <p style="margin-bottom:0">Hit <strong>Save to PDF</strong> at the top, or just have this open on your screen. We'll go round the room and you'll share the headlines, not the whole page.</p>
+    </div>
+
+    <footer class="poster-footer">
+      <span class="wordmark">Den Lennie.</span>
+      <span>VBA Elite · Sydney Workshop · Room Intro · 2026</span>
+    </footer>
+
+  </main>
+
+  <script>
+    // Auto-save every field to this browser. No server, nothing leaves the machine.
+    var KEY = 'vba-elite-room-intro-sydney-2026';
+
+    function isToggle(el) { return el.type === 'checkbox' || el.type === 'radio'; }
+
+    function loadAll() {
+      var saved;
+      try { saved = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { saved = {}; }
+      document.querySelectorAll('[data-save]').forEach(function (el) {
+        if (!(el.id in saved)) return;
+        if (isToggle(el)) { el.checked = saved[el.id]; }
+        else { el.value = saved[el.id]; }
+      });
+      if (localStorage.getItem(KEY)) { stamp('Saved'); }
+    }
+
+    function saveAll() {
+      var data = {};
+      document.querySelectorAll('[data-save]').forEach(function (el) {
+        data[el.id] = isToggle(el) ? el.checked : el.value;
+      });
+      localStorage.setItem(KEY, JSON.stringify(data));
+      stamp('Saved');
+    }
+
+    function stamp(word) {
+      var s = document.getElementById('saveStamp');
+      if (s) { s.textContent = word + ' to this browser.'; }
+    }
+
+    function clearAll() {
+      if (!confirm('Clear everything you have typed on this page? This cannot be undone.')) return;
+      localStorage.removeItem(KEY);
+      document.querySelectorAll('[data-save]').forEach(function (el) {
+        if (isToggle(el)) { el.checked = false; } else { el.value = ''; }
+      });
+      stamp('Cleared');
+    }
+
+    document.addEventListener('input', saveAll);
+    document.addEventListener('change', saveAll);
+    window.addEventListener('DOMContentLoaded', loadAll);
+  </script>
+
+</body>
+</html>
