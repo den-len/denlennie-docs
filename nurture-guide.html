@@ -53,6 +53,56 @@
     }
     @media print { .masthead-pdf { display: none; } }
 
+    /* Access bar: where to sign in to the live tool. */
+    .access-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      background: var(--color-white);
+      border: 1px solid var(--tint-ink-08);
+      border-left: 3px solid var(--color-burnt-orange);
+      padding: 1.5rem 1.75rem;
+      margin: 0 0 2.5rem;
+      border-radius: 2px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .access-bar .access-label {
+      font-family: var(--font-caption);
+      font-size: var(--type-caption);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-ink-black);
+      opacity: 0.7;
+      margin: 0 0 0.25rem;
+    }
+    .access-bar .access-url {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.25rem;
+      color: var(--color-anchor-navy);
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+    .access-cta {
+      font-family: var(--font-caption);
+      font-size: var(--type-small);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--color-anchor-navy);
+      color: var(--color-paper);
+      border: 0;
+      border-radius: 2px;
+      padding: 0.8rem 1.4rem;
+      white-space: nowrap;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .access-cta:hover { background: var(--color-burnt-orange); color: var(--color-white); border: 0; }
+
     .step {
       display: grid;
       grid-template-columns: 3.25rem 1fr;
@@ -117,6 +167,14 @@
       <hr class="orange-rule">
       <p class="lead">Prospecting opens the conversation. This keeps you good in it. Paste in where a thread has stalled and get three ways to reopen it, turning a dead end back into an open loop you can carry forward.</p>
     </header>
+
+    <div class="access-bar">
+      <div>
+        <p class="access-label">Sign in at</p>
+        <p class="access-url">nurture.denlennie.com/engine</p>
+      </div>
+      <a class="access-cta" href="https://nurture.denlennie.com/engine">Open the Nurture Engine</a>
+    </div>
 
     <h2>What it is</h2>
     <p>The Nurture Engine is the companion to the Prospector. The Prospector finds the right people and gives you a reason to reach out. The Nurture Engine helps you handle what happens next: the back-and-forth where most conversations quietly die.</p>
@@ -201,7 +259,7 @@
     </div>
 
     <h2>Your access</h2>
-    <p>The Nurture Engine sits inside your VBA membership, alongside the Prospector and the rest of the toolset. Elite members have access as part of the membership. It is being opened to the room at the Sydney workshop, where a few members have already been beta testing it. As it settles in, this guide is the place to come back to.</p>
+    <p>The Nurture Engine lives at <strong>nurture.denlennie.com/engine</strong>. Sign in there to get started. It sits inside your VBA membership, alongside the Prospector and the rest of the toolset. Elite members have access as part of the membership. It is being opened to the room at the Sydney workshop, where a few members have already been beta testing it. As it settles in, this guide is the place to come back to.</p>
 
     <footer class="poster-footer">
       <span class="wordmark">Den Lennie · VBA</span>
