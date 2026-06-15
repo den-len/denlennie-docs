@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VBA Elite · Sydney Workshop · Running Order · 16–17 June 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./brand.css">
+  <style>
+    /* Navy masthead band carrying the VBA wordmark (light logo on dark). */
+    .masthead { background: var(--color-anchor-navy); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .masthead-inner { max-width: 1080px; margin: 0 auto; padding: 1.35rem 2rem; display: flex; align-items: center; }
+    .masthead-logo { height: 42px; width: auto; display: block; }
+
+    .day { margin: 3rem 0 1rem; }
+    .day-head {
+      display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap;
+      border-bottom: 2px solid var(--color-anchor-navy); padding-bottom: 0.6rem; margin-bottom: 1.25rem;
+    }
+    .day-head h2 { margin: 0; }
+    .day-head .day-meta {
+      font-family: var(--font-caption); font-size: var(--type-small);
+      letter-spacing: 0.04em; color: var(--color-ink-black); opacity: 0.7;
+    }
+
+    /* Schedule rows: time | block + note */
+    .row {
+      display: grid; grid-template-columns: 130px 1fr; gap: 0 1.25rem;
+      padding: 0.85rem 0; border-bottom: 1px solid var(--tint-ink-08);
+    }
+    .row:last-child { border-bottom: 0; }
+    .row .t {
+      font-family: var(--font-display); font-weight: 600; font-size: 0.95rem;
+      color: var(--color-anchor-navy); letter-spacing: -0.01em; white-space: nowrap;
+    }
+    .row .b .title { font-weight: 500; color: var(--color-anchor-navy); }
+    .row .b .note { display: block; font-size: var(--type-small); opacity: 0.78; margin-top: 0.2rem; }
+
+    /* Meals + breaks read softer, with an orange tick */
+    .row.meal, .row.brk { background: var(--tint-orange-10); }
+    .row.meal .t, .row.brk .t { color: var(--color-burnt-orange); }
+    .row.meal, .row.brk { padding-left: 0.75rem; border-radius: 2px; }
+
+    .chip {
+      display: inline-block; font-family: var(--font-caption); font-size: 0.65rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase; padding: 0.1rem 0.45rem; border-radius: 2px;
+      background: var(--color-burnt-orange); color: var(--color-paper); margin-left: 0.5rem; vertical-align: middle;
+    }
+
+    .row .b a { color: var(--color-burnt-orange); border-bottom: 1px solid var(--color-burnt-orange); }
+
+    @media (max-width: 720px) {
+      .masthead-inner { padding: 1.1rem 1.25rem; }
+      .masthead-logo { height: 34px; }
+      .row { grid-template-columns: 96px 1fr; gap: 0 0.75rem; }
+    }
+    @media print {
+      body { background: var(--color-white); }
+      .day { break-inside: avoid; }
+      .row.meal, .row.brk { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="masthead">
+    <div class="masthead-inner">
+      <img class="masthead-logo" src="./VBA_wordmark_grey.png" alt="Video Business Accelerator">
+    </div>
+  </header>
+
+  <main class="page">
+
+    <header class="poster-header">
+      <p class="eyebrow">VBA Elite · Sydney Workshop<span class="index">RUNNING ORDER</span></p>
+      <h1 class="display">The running order.</h1>
+      <hr class="orange-rule">
+      <p class="lead">16&ndash;17 June 2026. Two days, both starting at 10:00. Day one opens with the room and builds your AI operating system. Day two starts with the pre-built tools, then back into the build. Times may flex a little on the day.</p>
+    </header>
+
+    <!-- ===================== DAY ONE ===================== -->
+    <section class="day">
+      <div class="day-head">
+        <h2>Day one</h2>
+        <span class="day-meta">Tuesday 16 June · the room, then the build</span>
+      </div>
+
+      <div class="row">
+        <span class="t">10:00</span>
+        <span class="b"><span class="title">Welcome</span></span>
+      </div>
+      <div class="row">
+        <span class="t">10:15</span>
+        <span class="b"><span class="title">Six-month check-in, going round the room</span><span class="note">Where the business is, how the year actually felt, and what you want from the two days.</span></span>
+      </div>
+      <div class="row brk">
+        <span class="t">11:05</span>
+        <span class="b"><span class="title">Break</span></span>
+      </div>
+      <div class="row">
+        <span class="t">11:15</span>
+        <span class="b"><span class="title">Check-in continues</span></span>
+      </div>
+      <div class="row">
+        <span class="t">12:05</span>
+        <span class="b"><span class="title">Drawing the themes together</span><span class="note">Den pulls the patterns across the room and sets up the afternoon.</span></span>
+      </div>
+      <div class="row meal">
+        <span class="t">13:00</span>
+        <span class="b"><span class="title">Lunch at Evie</span><span class="note">On the corner. Back at 14:15.</span></span>
+      </div>
+      <div class="row">
+        <span class="t">14:15</span>
+        <span class="b"><span class="title">Arek: building your AI operating system</span><span class="note">The main session of day one. Hands-on.</span></span>
+      </div>
+      <div class="row brk">
+        <span class="t">15:45</span>
+        <span class="b"><span class="title">Break</span></span>
+      </div>
+      <div class="row">
+        <span class="t">16:00</span>
+        <span class="b"><span class="title">Build continues</span></span>
+      </div>
+      <div class="row">
+        <span class="t">17:00</span>
+        <span class="b"><span class="title">Close of day one</span><span class="note">Wrap by 17:15&ndash;17:30.</span></span>
+      </div>
+      <div class="row meal">
+        <span class="t">18:30</span>
+        <span class="b"><span class="title">Dinner at Regina La Pizzeria <span class="chip">TBC</span></span><span class="note">RL 107/109/2 Baptist St, Redfern NSW 2016. We'll confirm closer to the day.</span></span>
+      </div>
+    </section>
+
+    <!-- ===================== DAY TWO ===================== -->
+    <section class="day">
+      <div class="day-head">
+        <h2>Day two</h2>
+        <span class="day-meta">Wednesday 17 June · the tools, then back to the build</span>
+      </div>
+
+      <div class="row">
+        <span class="t">10:00</span>
+        <span class="b"><span class="title">Recap of day one</span></span>
+      </div>
+      <div class="row">
+        <span class="t">10:20</span>
+        <span class="b"><span class="title">The pre-built tools: Prospector and Nurture</span><span class="note">A walkthrough, then you load them up. Your member guides: <a href="./prospector-guide.html">prospector-guide</a> and <a href="./nurture-guide.html">nurture-guide</a>.</span></span>
+      </div>
+      <div class="row brk">
+        <span class="t">11:30</span>
+        <span class="b"><span class="title">Break</span></span>
+      </div>
+      <div class="row">
+        <span class="t">11:40</span>
+        <span class="b"><span class="title">Back into the AI build with Arek</span></span>
+      </div>
+      <div class="row meal">
+        <span class="t">13:00</span>
+        <span class="b"><span class="title">Working lunch</span><span class="note">We order in. Eat in the room and keep the momentum.</span></span>
+      </div>
+      <div class="row">
+        <span class="t">13:45</span>
+        <span class="b"><span class="title">Build continues</span></span>
+      </div>
+      <div class="row brk">
+        <span class="t">15:15</span>
+        <span class="b"><span class="title">Break</span></span>
+      </div>
+      <div class="row">
+        <span class="t">15:30</span>
+        <span class="b"><span class="title">Bringing it together</span><span class="note">Your OS plus the tools loaded, and the first move you'll make with it.</span></span>
+      </div>
+      <div class="row">
+        <span class="t">16:30</span>
+        <span class="b"><span class="title">Commitments and close</span></span>
+      </div>
+    </section>
+
+    <footer class="poster-footer">
+      <span class="wordmark">Den Lennie.</span>
+      <span>VBA Elite · Sydney Workshop · Running Order · 16–17 June 2026</span>
+    </footer>
+
+  </main>
+
+</body>
+</html>
