@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Nurture Engine · Member Guide · Den Lennie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./brand.css">
+  <style>
+    /* Local primitives for this guide, built on the brand variables.
+       Kept here so the shared stylesheet stays untouched. */
+
+    /* Navy masthead band carrying the VBA wordmark. The grey wordmark
+       is a light logo built for dark surfaces, so it sits on navy.
+       Forced to print, since brand backgrounds drop by default. */
+    .masthead {
+      background: var(--color-anchor-navy);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .masthead-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 1.35rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .masthead-logo { height: 42px; width: auto; display: block; }
+    .masthead-pdf {
+      font-family: var(--font-caption);
+      font-size: var(--type-caption);
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-paper);
+      border: 1px solid rgba(245, 244, 239, 0.5);
+      border-radius: 2px;
+      padding: 0.5rem 0.9rem;
+      white-space: nowrap;
+    }
+    .masthead-pdf:hover {
+      background: var(--color-paper);
+      color: var(--color-anchor-navy);
+      border-color: var(--color-paper);
+    }
+    @media (max-width: 720px) {
+      .masthead-inner { padding: 1.1rem 1.25rem; }
+      .masthead-logo { height: 34px; }
+    }
+    @media print { .masthead-pdf { display: none; } }
+
+    .step {
+      display: grid;
+      grid-template-columns: 3.25rem 1fr;
+      gap: 1.25rem;
+      align-items: start;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--tint-ink-08);
+    }
+    .step:last-child { border-bottom: 0; }
+    .step-num {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 2rem;
+      line-height: 1;
+      color: var(--color-burnt-orange);
+      letter-spacing: -0.03em;
+    }
+    .step h3 { margin-top: 0; }
+
+    /* The three-option panel: a dark inset listing what comes back */
+    .option {
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(245, 244, 239, 0.18);
+    }
+    .option:last-child { border-bottom: 0; }
+    .option-tag {
+      font-family: var(--font-caption);
+      font-size: var(--type-caption);
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-burnt-orange);
+      display: block;
+      margin: 0 0 0.35rem;
+    }
+
+    .gridtwo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 720px) {
+      .gridtwo { grid-template-columns: 1fr; }
+      .step { grid-template-columns: 1fr; gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="masthead">
+    <div class="masthead-inner">
+      <img class="masthead-logo" src="./VBA_wordmark_grey.png" alt="Video Business Accelerator">
+      <a class="masthead-pdf" href="./nurture-guide.pdf" download>Download PDF</a>
+    </div>
+  </header>
+
+  <main class="page">
+
+    <header class="poster-header">
+      <p class="eyebrow">VBA Toolset <span class="index">/ Member Guide</span></p>
+      <h1 class="display">The Nurture Engine</h1>
+      <hr class="orange-rule">
+      <p class="lead">Prospecting opens the conversation. This keeps you good in it. Paste in where a thread has stalled and get three ways to reopen it, turning a dead end back into an open loop you can carry forward.</p>
+    </header>
+
+    <h2>What it is</h2>
+    <p>The Nurture Engine is the companion to the Prospector. The Prospector finds the right people and gives you a reason to reach out. The Nurture Engine helps you handle what happens next: the back-and-forth where most conversations quietly die.</p>
+    <p>You give it some context and the latest message from your prospect. It hands back three different replies you can use to nurture that conversation. You read them, pick the one that fits, and copy it across. You stay in control of every word that gets sent.</p>
+
+    <div class="callout">
+      <strong>It does not connect to LinkedIn, by design.</strong> Automating LinkedIn is against their terms of service and a fast way to get an account restricted. The Nurture Engine never touches your account. You paste context in, you copy a reply out, and you send it yourself. That is the safe way to do this, and it keeps you in the driver's seat.
+    </div>
+
+    <h2>Why it works: open loops</h2>
+    <p>Most stalled conversations stall for the same reason. A message lands that closes the loop: a yes or no answer, a polite "thanks, we're all good for now," a dead end. Reply badly and you either chase, which reads as need, or you let it die.</p>
+    <p>The Nurture Engine turns those closed loops back into open ones. Each option is built to keep the conversation moving without pushing, so you hold the frame of the calm authority who does not need the deal. That posture is what keeps the right people talking, and it is the posture that enrols.</p>
+
+    <h2>How to use it: three steps</h2>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div>
+        <h3>Give it the context</h3>
+        <p>Tell it what it needs to know about the conversation: who the prospect is, what you do, where the thread has got to, and anything that shapes the right next move. The more context you give, the sharper the replies. A line about who they are and what they care about beats a cold paste every time.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div>
+        <h3>Paste in their message</h3>
+        <p>Drop in the latest message from the prospect, the one you need to respond to. This is the loop the engine is going to reopen. If the thread has gone quiet rather than ended on a message, say so, and give it the last thing that was said.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div>
+        <h3>Choose from three options and send</h3>
+        <p>The engine returns three different replies, each a different way to keep the conversation open. Read them, pick the one that fits this person and this moment, and copy it across to LinkedIn yourself. Edit it if you want to. It is your conversation and your voice, the engine just gives you the on-ramp.</p>
+      </div>
+    </div>
+
+    <div class="dark-inset">
+      <p class="eyebrow" style="color:var(--color-paper);opacity:0.8;">What comes back</p>
+      <h2>Three replies, three angles</h2>
+      <hr class="orange-rule">
+      <p>You get three options rather than one so you are choosing, not accepting. Each takes a slightly different line into the same goal: reopen the loop and keep the frame. Pick on instinct. You know this person better than the engine does.</p>
+      <div class="option">
+        <span class="option-tag">Option 1</span>
+        <p style="margin:0;">A way back in that picks up the thread and adds a little value or curiosity.</p>
+      </div>
+      <div class="option">
+        <span class="option-tag">Option 2</span>
+        <p style="margin:0;">A different angle, often a reframe or an easier on-ramp tied to what they actually care about.</p>
+      </div>
+      <div class="option">
+        <span class="option-tag">Option 3</span>
+        <p style="margin:0;">A third option so you are never stuck with a single take. Choose the one that sounds most like you.</p>
+      </div>
+    </div>
+
+    <h2>How to use your replies well</h2>
+    <p>The engine gives you the words. These principles make them land. They are the same ones that run through every good nurture conversation.</p>
+    <div class="gridtwo">
+      <div class="card">
+        <p class="card-eyebrow">Calm authority, never urgency</p>
+        <p>The posture that enrols is the one that does not need the prospect. If you feel the pull to chase, that pull is the signal to slow down. Pick the option that sounds patient, not hungry.</p>
+      </div>
+      <div class="card">
+        <p class="card-eyebrow">Diagnose before you direct</p>
+        <p>Lead with something you have noticed about their situation, not a pitch. One observation that shows you see something they don't earns the rest of the conversation.</p>
+      </div>
+      <div class="card">
+        <p class="card-eyebrow">A question beats a call push</p>
+        <p>A good reflective question does the qualifying for you and keeps the loop open. It almost always beats jumping straight to "let's book a call."</p>
+      </div>
+      <div class="card">
+        <p class="card-eyebrow">Mind the nudge</p>
+        <p>If they have gone quiet, give them two to three business days before you nudge, and never "just checking in." When you do nudge, lower the friction or add value. The nudge should signal patience, not need.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>Read every reply before you send it.</strong> The engine is good, but you are the one in the relationship. Check it sounds like you, check it fits what you know about this person, and adjust anything that feels off. A reply you would actually write beats a perfect one that is not quite yours.
+    </div>
+
+    <h2>Your access</h2>
+    <p>The Nurture Engine sits inside your VBA membership, alongside the Prospector and the rest of the toolset. Elite members have access as part of the membership. It is being opened to the room at the Sydney workshop, where a few members have already been beta testing it. As it settles in, this guide is the place to come back to.</p>
+
+    <footer class="poster-footer">
+      <span class="wordmark">Den Lennie · VBA</span>
+      <span>The Nurture Engine · Member Guide · 2026</span>
+      <span>Questions? den@denlennie.com</span>
+    </footer>
+
+  </main>
+</body>
+</html>
