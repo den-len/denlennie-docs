@@ -54,6 +54,56 @@
     }
     @media print { .masthead-pdf { display: none; } }
 
+    /* Access bar: where to sign in to the live tool. */
+    .access-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      background: var(--color-white);
+      border: 1px solid var(--tint-ink-08);
+      border-left: 3px solid var(--color-burnt-orange);
+      padding: 1.5rem 1.75rem;
+      margin: 0 0 2.5rem;
+      border-radius: 2px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .access-bar .access-label {
+      font-family: var(--font-caption);
+      font-size: var(--type-caption);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-ink-black);
+      opacity: 0.7;
+      margin: 0 0 0.25rem;
+    }
+    .access-bar .access-url {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.25rem;
+      color: var(--color-anchor-navy);
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+    .access-cta {
+      font-family: var(--font-caption);
+      font-size: var(--type-small);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--color-anchor-navy);
+      color: var(--color-paper);
+      border: 0;
+      border-radius: 2px;
+      padding: 0.8rem 1.4rem;
+      white-space: nowrap;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .access-cta:hover { background: var(--color-burnt-orange); color: var(--color-white); border: 0; }
+
     .step {
       display: grid;
       grid-template-columns: 3.25rem 1fr;
@@ -140,6 +190,14 @@
       <hr class="orange-rule">
       <p class="lead">Find the right clients without losing an afternoon to LinkedIn. You tell it who you serve. It finds the companies, the decision-makers, and a reason to reach out to every one.</p>
     </header>
+
+    <div class="access-bar">
+      <div>
+        <p class="access-label">Sign in at</p>
+        <p class="access-url">prospector.denlennie.com</p>
+      </div>
+      <a class="access-cta" href="https://prospector.denlennie.com">Open the Prospector</a>
+    </div>
 
     <h2>What it is</h2>
     <p>The Prospector Engine is a tool built for video production company owners who want to find new clients without spending hours on manual research.</p>
@@ -256,7 +314,7 @@
     </ul>
 
     <h2>Your access</h2>
-    <p>How much you can run depends on how you are using the Prospector.</p>
+    <p>The Prospector lives at <strong>prospector.denlennie.com</strong>. Sign in there to get started. How much you can run depends on how you are using it.</p>
 
     <h3>Elite members</h3>
     <p>Unlimited lookups, no expiry. Run discovery and enrichment as often as you need, across as many client profiles as you want. Your profiles, prospects and scored results are saved and waiting whenever you come back.</p>
