@@ -300,6 +300,38 @@
       </ul>
     </section>
 
+    <section>
+      <h2>Going further: building a front-end tool of your own</h2>
+      <p>Most of what you'll do sits in files and a chat window. But a few of you will want to go further and build an actual tool other people log into and use, the way the <a href="./prospector-guide.html">Prospector Engine</a> works. You don't need a development team to do it. You need two pieces of plumbing, and it's worth knowing the words before you start.</p>
+
+      <dl class="glossary">
+        <dt>Railway</dt>
+        <dd>Where your app lives so it runs all the time at a web address, not only when your laptop is open. You hand it your code, it builds the app and serves it, and your secret keys sit in its settings rather than buried in the code. Roughly the difference between a film on your hard drive and the same film on a streaming service anyone can reach.
+          <span class="why">Why you care: this is the step that turns a script that works on your machine into something a member, or a client, can open from anywhere.</span></dd>
+
+        <dt>Supabase</dt>
+        <dd>The database and the login desk in one. It stores everything the app needs to remember, and it handles accounts and passwords so you don't build that part from scratch. PostgreSQL underneath (the industry-standard database), with a free tier to start on.
+          <span class="why">Why you care: the moment more than one person uses your tool, you need somewhere to keep their data and a way to sign them in. This is that, without a month of work.</span></dd>
+      </dl>
+
+      <div class="card">
+        <p class="card-eyebrow">Worked example</p>
+        <h2>How the Prospector is put together</h2>
+        <p>The Prospector is the proof that this stack is enough. It was built by one person working with Claude Code, not a team, and it runs end to end on these parts:</p>
+        <table class="brand-table">
+          <tbody>
+            <tr><td>The thing members see and click</td><td>Streamlit, a Python framework that turns a script into a web app</td></tr>
+            <tr><td>Where it lives</td><td>Railway</td></tr>
+            <tr><td>What it remembers</td><td>Supabase</td></tr>
+            <tr><td>Finding matching companies</td><td>Google Gemini, with live web search</td></tr>
+            <tr><td>Reading and scoring each one</td><td>Claude Haiku, the small fast tier</td></tr>
+            <tr><td>Names, emails, LinkedIn</td><td>Apollo and ProxyCurl</td></tr>
+          </tbody>
+        </table>
+        <p>The stack is small on purpose. Streamlit, Railway and Supabase are about the cheapest honest way to take a script that works on your machine and make it a tool other people can log into. Same principle as everything else here: fewer moving parts, each one used well. If you want the full walkthrough of what it does, the <a href="./prospector-guide.html">Prospector Engine guide</a> covers it.</p>
+      </div>
+    </section>
+
     <footer class="poster-footer">
       <span class="wordmark">Den Lennie</span>
       <span>VBA Elite Boardroom · Sydney · 16–17 June 2026</span>
