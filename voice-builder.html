@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Set Your Voice · VBA AI Workshop · Den Lennie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./brand.css">
+  <style>
+    .masthead { background: var(--color-anchor-navy); }
+    .masthead-inner { max-width: 1080px; margin: 0 auto; padding: 1.35rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .masthead-logo { height: 40px; width: auto; display: block; }
+    .masthead-where { font-family: var(--font-caption); font-size: var(--type-caption); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-paper); opacity: 0.85; white-space: nowrap; }
+
+    ol.steps { list-style: none; counter-reset: step; padding: 0; margin: 1.5rem 0; }
+    ol.steps li { counter-increment: step; position: relative; padding: 0.6rem 0 0.6rem 2.8rem; border-bottom: 1px solid var(--tint-ink-08); line-height: 1.5; }
+    ol.steps li:last-child { border-bottom: 0; }
+    ol.steps li::before {
+      content: counter(step); position: absolute; left: 0; top: 0.55rem;
+      width: 1.8rem; height: 1.8rem; border-radius: 50%;
+      background: var(--color-burnt-orange); color: var(--color-white);
+      font-family: var(--font-display); font-weight: 700; font-size: 0.95rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .prompt-wrap { margin: 1.5rem 0; }
+    .prompt-bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 0.6rem; flex-wrap: wrap; }
+    .prompt-bar .label { font-family: var(--font-caption); font-size: var(--type-caption); font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-anchor-navy); }
+    .copybtn {
+      font-family: var(--font-caption); font-size: var(--type-caption); font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.55rem 1.1rem; border-radius: 2px; border: 0; cursor: pointer;
+      background: var(--color-burnt-orange); color: var(--color-white);
+    }
+    .copybtn:hover { background: var(--color-anchor-navy); }
+    #prompt {
+      background: var(--color-white); border: 1px solid var(--tint-ink-08); border-left: 3px solid var(--color-burnt-orange);
+      border-radius: 2px; padding: 1.4rem 1.6rem; margin: 0;
+      font-family: var(--font-body); font-weight: 300; font-size: 1rem; line-height: 1.6; color: var(--color-ink-black);
+      white-space: pre-wrap; word-wrap: break-word;
+    }
+    @media (max-width: 720px) { .masthead-inner { padding: 1.1rem 1.25rem; } .masthead-logo { height: 32px; } }
+  </style>
+</head>
+<body>
+
+  <div class="masthead">
+    <div class="masthead-inner">
+      <img class="masthead-logo" src="./VBA_wordmark_grey.png" alt="Video Business Accelerator">
+      <span class="masthead-where">London · Set your voice</span>
+    </div>
+  </div>
+
+  <main class="page">
+
+    <header class="poster-header">
+      <p class="eyebrow">VBA AI Workshop · London<span class="index">STEP ONE</span></p>
+      <h1 class="display">Set your voice.</h1>
+      <hr class="orange-rule">
+      <p class="lead">Before the tools can sound like you, they need to know how you actually talk. This takes ten to fifteen minutes, and you do it by talking, not typing. Have a quick spoken interview with ChatGPT, and it writes up your voice. Then you paste that into your tool and everything you make sounds like you.</p>
+    </header>
+
+    <section>
+      <h2>How to do it</h2>
+      <ol class="steps">
+        <li>Open <strong>ChatGPT</strong> on your phone or laptop, and turn on <strong>voice mode</strong> (the headphones or microphone icon).</li>
+        <li>Hit <strong>Copy the prompt</strong> below, and paste it in as your first message.</li>
+        <li><strong>Talk.</strong> It will interview you, one question at a time. Answer like you're chatting to a mate, tangents and all. That's where your real phrases live.</li>
+        <li>When you've had enough, say <strong>"stop"</strong>. It writes up your voice profile.</li>
+        <li><strong>Copy that profile</strong> and paste it into the <strong>My Voice</strong> tab in your tool. From now on, everything you generate sounds like you.</li>
+      </ol>
+    </section>
+
+    <section>
+      <div class="prompt-wrap">
+        <div class="prompt-bar">
+          <span class="label">The prompt</span>
+          <button class="copybtn" id="copybtn" onclick="copyPrompt()">Copy the prompt</button>
+        </div>
+        <pre id="prompt">We're going to do a short spoken interview so you can capture how I really talk about my work, and my posts and replies can sound like me, not like AI.
+
+Interview me one question at a time, conversational, like a chat not a form. After each answer, ask one short follow-up if a better phrase or story is hiding in it. The good lines come in the tangents, so don't rush me.
+
+Ask these one at a time:
+1. What do you actually do? Say it like you would at a barbecue, not your website.
+2. What do you always tell a nervous client?
+3. What's the bit of your job people get wrong?
+4. Tell me about a job that went well, and the moment it turned.
+5. Tell me about a job that went sideways, and what you learned.
+6. What's a phrase or analogy you use all the time?
+7. What do you care about that most people in your trade don't?
+8. Why do clients pick you over the cheaper option, in your words?
+
+When I say stop, write up MY VOICE PROFILE under these headings, using my own words wherever you can: How I describe what I do; Phrases and analogies I use; Stories I tell; My honest take on my process; What I stand for and won't do. Give it to me as one clean block I can save and reuse.</pre>
+      </div>
+    </section>
+
+    <footer class="poster-footer">
+      <span class="wordmark">Den Lennie</span>
+      <span>VBA AI Workshop · London · June 2026</span>
+      <span>denlennie.com</span>
+    </footer>
+
+  </main>
+
+  <script>
+    function copyPrompt() {
+      var t = document.getElementById('prompt').textContent;
+      var b = document.getElementById('copybtn');
+      navigator.clipboard.writeText(t).then(function(){
+        b.textContent = 'Copied';
+        setTimeout(function(){ b.textContent = 'Copy the prompt'; }, 2000);
+      }).catch(function(){
+        b.textContent = 'Press Ctrl/Cmd C';
+      });
+    }
+  </script>
+</body>
+</html>
