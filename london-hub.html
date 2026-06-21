@@ -36,6 +36,15 @@
     .tool.soon { border-left-color: var(--tint-ink-08); opacity: 0.72; pointer-events: none; }
     .tool.soon .tool-go { color: var(--color-ink-black); opacity: 0.6; }
 
+    /* Start-here banner: the first thing to do */
+    .start-here { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; background: var(--color-anchor-navy); color: var(--color-paper); border-radius: 3px; border-left: 4px solid var(--color-burnt-orange); padding: 1.6rem 1.8rem; text-decoration: none; margin: 1.5rem 0 0.5rem; transition: transform 0.15s ease, box-shadow 0.15s ease; }
+    .start-here:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(11,33,65,0.18); }
+    .start-eyebrow { font-family: var(--font-caption); font-size: var(--type-caption); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-burnt-orange); margin: 0 0 0.4rem; }
+    .start-title { font-family: var(--font-heading); font-weight: 600; color: var(--color-white); margin: 0 0 0.4rem; }
+    .start-desc { font-size: 0.95rem; line-height: 1.45; color: var(--color-paper); opacity: 0.9; margin: 0; }
+    .start-go { font-family: var(--font-caption); font-size: 1rem; font-weight: 600; letter-spacing: 0.04em; color: var(--color-burnt-orange); white-space: nowrap; }
+    @media (max-width: 720px) { .start-here { flex-direction: column; align-items: flex-start; gap: 0.9rem; } }
+
     /* Running order */
     .day { margin: 1.5rem 0 0; }
     .day-head { display: flex; align-items: baseline; gap: 0.9rem; flex-wrap: wrap; border-bottom: 2px solid var(--color-anchor-navy); padding-bottom: 0.5rem; margin-bottom: 0.4rem; }
@@ -70,8 +79,19 @@
       <p class="eyebrow">VBA AI Workshop · London<span class="index">YOUR HUB</span></p>
       <h1 class="display">Everything, one place.</h1>
       <hr class="orange-rule">
-      <p class="lead">Your home base for the two days. The tools you'll use are below, one click each, and the running order so you always know what's next. Bookmark this page and keep it open.</p>
+      <p class="lead">Your home base for the two days. Start at the top with your Scorecard and intro, then the tools below, one click each, and the running order so you always know what's next. Bookmark this page and keep it open.</p>
     </header>
+
+    <section>
+      <a class="start-here" href="./member-introduction-london.html">
+        <div>
+          <p class="start-eyebrow">Start here · do this first</p>
+          <h2 class="start-title">Your Scorecard and room intro</h2>
+          <p class="start-desc">Find your stage on the staircase, then tell us where you're starting from. Before anything else.</p>
+        </div>
+        <span class="start-go">Open →</span>
+      </a>
+    </section>
 
     <section>
       <h2>Your tools</h2>
