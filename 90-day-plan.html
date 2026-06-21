@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your 90-Day Plan · VBA AI Workshop · Den Lennie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./brand.css">
+  <style>
+    .savebar {
+      position: sticky; top: 0; z-index: 10;
+      background: var(--color-anchor-navy); color: var(--color-paper);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 0.75rem; padding: 0.85rem 1.5rem;
+    }
+    .savebar .save-state { font-family: var(--font-caption); font-size: var(--type-caption); letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.85; }
+    .savebar .save-state strong { color: var(--color-paper); font-weight: 500; }
+    .savebar .save-actions { display: flex; gap: 0.6rem; }
+    .btn { font-family: var(--font-caption); font-size: var(--type-caption); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.55rem 1rem; border-radius: 2px; border: 1px solid var(--color-paper); background: transparent; color: var(--color-paper); cursor: pointer; }
+    .btn:hover { background: var(--color-paper); color: var(--color-anchor-navy); }
+    .btn-primary { background: var(--color-burnt-orange); border-color: var(--color-burnt-orange); color: var(--color-white); }
+    .btn-primary:hover { background: var(--color-white); color: var(--color-burnt-orange); }
+
+    .field { margin: 1.25rem 0; }
+    .field-label { display: block; font-family: var(--font-caption); font-size: var(--type-caption); font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-anchor-navy); margin: 0 0 0.5rem; }
+    .field-hint { font-size: var(--type-small); opacity: 0.75; margin: 0 0 0.5rem; }
+    .field-input, .field-area { width: 100%; font-family: var(--font-body); font-weight: 300; font-size: var(--type-body); color: var(--color-ink-black); background: var(--color-white); border: 1px solid var(--tint-ink-08); border-radius: 2px; padding: 0.7rem 0.85rem; line-height: 1.5; }
+    .field-input:focus, .field-area:focus { outline: none; border-color: var(--color-burnt-orange); box-shadow: 0 0 0 2px var(--tint-orange-10); }
+    .field-area { min-height: 5.5rem; resize: vertical; }
+    .field-area.tall { min-height: 7.5rem; }
+
+    /* Month blocks, numbered like the report's structure */
+    .month { display: flex; gap: 1rem; align-items: flex-start; margin: 1.4rem 0; }
+    .month-num { font-family: var(--font-display); font-weight: 700; font-size: 1.8rem; color: var(--color-burnt-orange); line-height: 1; flex: 0 0 auto; width: 2.2rem; }
+    .month-body { flex: 1; }
+
+    .rhythm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.5rem; }
+    @media (max-width: 720px) { .rhythm-grid { grid-template-columns: 1fr; } .month-num { font-size: 1.5rem; } }
+
+    @media print {
+      .no-print { display: none !important; }
+      body { background: var(--color-white); }
+      .page { padding: 1.2rem; }
+      .field-input, .field-area { border: 0; border-bottom: 1px solid var(--tint-ink-08); border-radius: 0; padding: 0.2rem 0; }
+      .month, section { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="savebar no-print">
+    <span class="save-state">Your plan saves to this browser as you type. <strong id="saveStamp">Not saved yet.</strong></span>
+    <span class="save-actions">
+      <button class="btn btn-primary" onclick="window.print()">Save to PDF</button>
+      <button class="btn" onclick="clearAll()">Clear</button>
+    </span>
+  </div>
+
+  <main class="page">
+
+    <header class="poster-header">
+      <p class="eyebrow">VBA AI Workshop · London<span class="index">90-DAY PLAN</span></p>
+      <h1 class="display">Your next 90 days.</h1>
+      <hr class="orange-rule">
+      <p class="lead">This is the page you leave with. Set the intention, name the moves, commit to the rhythm. Your diagnostic already mapped your first month, so this is where you build the quarter around it. Fill it in, save it to PDF, and put it somewhere you'll see it. Then the only job is to follow it.</p>
+    </header>
+
+    <section>
+      <h2>How this works</h2>
+      <p>Type straight into it. Everything saves to this browser automatically, so you can close the tab and come back. When you're done, hit <strong>Save to PDF</strong> at the top, and keep it close. One domino a month, with the rhythms running underneath. That's the whole plan.</p>
+
+      <div class="field">
+        <label class="field-label" for="f_name">Your name</label>
+        <input class="field-input" id="f_name" data-save type="text" placeholder="">
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="f_destination">Your destination, day 90</label>
+        <p class="field-hint">In one line, what's true at the end of 90 days that isn't true now? Make it real and specific. For example: "Three genuine conversations a week with the right clients, and the follow-up running without me chasing."</p>
+        <textarea class="field-area" id="f_destination" data-save></textarea>
+      </div>
+    </section>
+
+    <section>
+      <h2>The three moves</h2>
+
+      <div class="month">
+        <div class="month-num">1</div>
+        <div class="month-body">
+          <div class="field" style="margin-top:0">
+            <label class="field-label" for="f_month1">Month one, your first move</label>
+            <p class="field-hint">Lift this straight from your Growth Intelligence Report. Your One Move and its four weeks. The whole plan starts here, so write it down.</p>
+            <textarea class="field-area tall" id="f_month1" data-save></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="month">
+        <div class="month-num">2</div>
+        <div class="month-body">
+          <div class="field" style="margin-top:0">
+            <label class="field-label" for="f_month2">Month two, work what it produced</label>
+            <p class="field-hint">Once the first move has landed, what's next? The leads worked, the offer tightened, the second client, whatever your report points to after the first domino.</p>
+            <textarea class="field-area" id="f_month2" data-save></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="month">
+        <div class="month-num">3</div>
+        <div class="month-body">
+          <div class="field" style="margin-top:0">
+            <label class="field-label" for="f_month3">Month three, compound and review</label>
+            <p class="field-hint">Keep it running, see what's working, and name next quarter's move. By here, the system should be a habit, not a push.</p>
+            <textarea class="field-area" id="f_month3" data-save></textarea>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>The rhythms, every week for 90 days</h2>
+      <p class="field-hint">The moves change each month. These run underneath the whole time. Commit to when, not just what.</p>
+      <div class="rhythm-grid">
+        <div class="field">
+          <label class="field-label" for="f_rhythm_prospect">Weekly Prospector run</label>
+          <input class="field-input" id="f_rhythm_prospect" data-save type="text" placeholder="When each week? e.g. Monday, 9 to 10am">
+        </div>
+        <div class="field">
+          <label class="field-label" for="f_rhythm_followup">Follow-up rhythm</label>
+          <input class="field-input" id="f_rhythm_followup" data-save type="text" placeholder="How often you work your replies and nudges">
+        </div>
+        <div class="field">
+          <label class="field-label" for="f_rhythm_content">Content-capture habit</label>
+          <input class="field-input" id="f_rhythm_content" data-save type="text" placeholder="When you capture a photo and a voice memo from a shoot">
+        </div>
+        <div class="field">
+          <label class="field-label" for="f_rhythm_hub">Your daily hub</label>
+          <input class="field-input" id="f_rhythm_hub" data-save type="text" placeholder="Run the day from your Claude Project">
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="field">
+        <label class="field-label" for="f_commit">The one thing I commit to, starting Monday</label>
+        <p class="field-hint">Not the whole plan. The single first action you will take. Write it as a promise to yourself.</p>
+        <textarea class="field-area" id="f_commit" data-save></textarea>
+      </div>
+    </section>
+
+    <div class="dark-inset">
+      <p class="eyebrow" style="color: var(--color-paper)">What carries a plan</p>
+      <h2>A plan is only as strong as the follow-through.</h2>
+      <hr class="orange-rule">
+      <p>You've got the plan now. For some people, that's enough, they fill it in and they run it. For most of us, what actually carries it isn't the page, it's the accountability: a room that's in it with you, and someone keeping you honest when the week gets busy.</p>
+      <p>That's what the Elite Boardroom is. We take this plan and we run it together, documented and tracked, with a direct line to me one to one. You set the intention here. Elite is where it gets done. If that's the support you want, let's talk while we're in the room.</p>
+    </div>
+
+    <footer class="poster-footer">
+      <span class="wordmark">Den Lennie</span>
+      <span>VBA AI Workshop · London · June 2026</span>
+      <span>denlennie.com</span>
+    </footer>
+
+  </main>
+
+  <script>
+    var KEY = 'vba-90day-plan';
+    function fields() { return document.querySelectorAll('[data-save]'); }
+    function save() {
+      var data = {};
+      fields().forEach(function(el){ data[el.id] = (el.type === 'checkbox') ? el.checked : el.value; });
+      localStorage.setItem(KEY, JSON.stringify(data));
+      var s = document.getElementById('saveStamp'); if (s) s.textContent = 'Saved to this browser.';
+    }
+    function restore() {
+      var data = {};
+      try { data = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) {}
+      fields().forEach(function(el){
+        if (el.id in data) { if (el.type === 'checkbox') el.checked = data[el.id]; else el.value = data[el.id]; }
+      });
+      if (Object.keys(data).length) { var s = document.getElementById('saveStamp'); if (s) s.textContent = 'Saved to this browser.'; }
+    }
+    function clearAll() {
+      if (!confirm('Clear everything on this page?')) return;
+      localStorage.removeItem(KEY);
+      fields().forEach(function(el){ if (el.type === 'checkbox') el.checked = false; else el.value = ''; });
+      var s = document.getElementById('saveStamp'); if (s) s.textContent = 'Cleared.';
+    }
+    document.addEventListener('DOMContentLoaded', function(){
+      restore();
+      fields().forEach(function(el){ el.addEventListener('input', save); el.addEventListener('change', save); });
+    });
+  </script>
+</body>
+</html>

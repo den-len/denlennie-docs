@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The AI Field Guide · Den Lennie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./brand.css">
+  <style>
+    /* Structural layout only. All colour and type comes from brand.css. */
+    dl.glossary { margin: 0 0 2.5rem; }
+    dl.glossary dt {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      color: var(--color-anchor-navy);
+      margin: 1.5rem 0 0.25rem;
+      letter-spacing: -0.01em;
+    }
+    dl.glossary dt:first-child { margin-top: 0; }
+    dl.glossary dd {
+      margin: 0;
+      padding: 0 0 1.25rem;
+      border-bottom: 1px solid var(--tint-ink-08);
+      max-width: 68ch;
+    }
+    dl.glossary dd:last-child { border-bottom: 0; }
+    dl.glossary .why {
+      display: block;
+      margin-top: 0.35rem;
+      font-size: var(--type-small);
+      color: var(--color-anchor-navy);
+    }
+    @media print {
+      dl.glossary dd { break-inside: avoid; }
+      section { break-inside: avoid-page; }
+      h2 { break-after: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+
+    <header class="poster-header">
+      <p class="eyebrow">VBA AI Workshop · London<span class="index">NO. 03</span></p>
+      <h1 class="display">The field guide.</h1>
+      <hr class="orange-rule">
+      <p class="lead">Every word you'll hear over the two days, translated into plain English. You don't need to memorise any of this. Keep it nearby, and when a term lands that you don't recognise, look it up here instead of nodding along.</p>
+    </header>
+
+    <section>
+      <h2>Which model for which job</h2>
+      <p>Every AI company sells roughly the same range: a big, slower, more thoughtful model, a middle everyday model, and a small fast one. The names change every few months. The tiers don't. Think of it like camera bodies: you don't bring the cinema rig to shoot a quick behind-the-scenes clip, and you don't shoot the hero brand film on your phone.</p>
+
+      <table class="brand-table">
+        <thead>
+          <tr>
+            <th>The job</th>
+            <th>Reach for</th>
+            <th>Why</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Deep thinking.</strong> Strategy, pricing decisions, reviewing a contract, planning a quarter, untangling a messy problem.</td>
+            <td>The biggest model on offer (Claude Opus, or the top tier from OpenAI or Google).</td>
+            <td>These models reason better and miss less. Slower and dearer per use, but a pricing decision is worth thirty seconds of waiting.</td>
+          </tr>
+          <tr>
+            <td><strong>Everyday writing.</strong> Emails, proposals, social posts, call summaries, meeting prep.</td>
+            <td>The middle tier (Claude Sonnet or equivalent).</td>
+            <td>Fast, capable, and cheap enough to use fifty times a day. This is where most of your week lives.</td>
+          </tr>
+          <tr>
+            <td><strong>High volume, simple jobs.</strong> Tagging leads, sorting lists, pulling names out of transcripts.</td>
+            <td>The small fast tier (Claude Haiku or equivalent).</td>
+            <td>When the task is simple and you're running it hundreds of times, speed and cost win.</td>
+          </tr>
+          <tr>
+            <td><strong>Research that needs sources.</strong> Checking a market, scoping a niche, background on a prospect.</td>
+            <td>Any model with web search or a deep research mode turned on.</td>
+            <td>Models answer from training data unless they can search. For anything factual and current, make it look things up.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        <p style="margin:0"><strong>The rule that matters more than any model name:</strong> the quality of what comes out is set by the context that goes in. A mid-tier model with your voice files, your client list and your pricing will beat the biggest model in the world starting from a blank page.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Which tool for which task</h2>
+      <p>The section above was about model tiers, the engine sizes. This is about the actual products you'll hear named, and where each one earns its place. You don't need all of them. Most owners settle on one or two and use them well. Here's the honest shape of the landscape.</p>
+      <dl class="glossary">
+        <dt>ChatGPT (OpenAI)</dt>
+        <dd>Think of it as your intern. The capable all-rounder that started the wave: quick to answer, good at drafting, brainstorming and the everyday jobs, and the one most people reach for first. Like any intern, it's fast and eager but needs a clear brief and a check on its work before anything goes out.
+          <span class="why">Best for: everyday drafting, first drafts, quick answers, thinking out loud.</span></dd>
+
+        <dt>Gemini (Google)</dt>
+        <dd>Google's model, and the one to reach for when the job touches Google's world. Strong at reading websites, pulling from Search and YouTube, and broad marketing research where you want it to range across the web rather than answer from memory.
+          <span class="why">Best for: web and YouTube research, reading sites, broad marketing scans.</span></dd>
+
+        <dt>Claude (Anthropic)</dt>
+        <dd>The model this whole approach runs on, and the strongest at careful reasoning and writing in your voice. Three ways to use it: Chat for conversation and writing, Cowork for working alongside you inside your documents and tools, and Code (Claude Code) for building and running things.
+          <span class="why">Best for: writing that sounds like you, careful reasoning, working with your documents, building tools.</span></dd>
+
+        <dt>Manus</dt>
+        <dd>An autonomous research agent: you hand it a brief and it works the problem through over many steps, rather than answering in one turn. Worth reaching for on the heavy research jobs and as a marketing second opinion.
+          <span class="why">Best for: deep, multi-step research that runs in the background while you get on with something else.</span></dd>
+
+        <dt>Grok (xAI)</dt>
+        <dd>Elon Musk's model, built into X, formerly Twitter. Its edge is the here and now: it can pull what's happening on X and across the web in real time, so it's useful for live events, trends and the current pulse, with a more irreverent, less-filtered tone than the others. Less commonly reached for in everyday business writing.
+          <span class="why">Best for: real-time questions, what's happening now, the social pulse.</span></dd>
+      </dl>
+    </section>
+
+    <section>
+      <h2>The AI words</h2>
+      <dl class="glossary">
+        <dt>Model (or LLM)</dt>
+        <dd>The AI itself. LLM stands for large language model: a system trained on enormous amounts of text that predicts what should come next. Claude, ChatGPT and Gemini are all products built around models.
+          <span class="why">Why you care: "which model" is just "which engine". Pick by the job, not by the brand ad.</span></dd>
+
+        <dt>Prompt</dt>
+        <dd>Whatever you type to the model. A question, an instruction, a half-formed thought.
+          <span class="why">Why you care: vague prompt, vague answer. The fix is rarely a better model, it's a clearer brief, the same as briefing a freelancer.</span></dd>
+
+        <dt>System prompt (or custom instructions)</dt>
+        <dd>Standing instructions the model reads before every conversation. Your voice rules, your spelling preferences, your banned words. Set them once as custom instructions and you never repeat yourself.
+          <span class="why">Why you care: this is the difference between sounding like you and sounding like every other AI-written post on LinkedIn.</span></dd>
+
+        <dt>Context window</dt>
+        <dd>The model's working memory: how much it can hold in mind at once during a conversation. Big, but not infinite. When a chat gets very long, the earliest parts fall out of view.
+          <span class="why">Why you care: long rambling chats drift. Start fresh conversations for fresh jobs, and keep the permanent stuff in files the AI re-reads each time.</span></dd>
+
+        <dt>Token</dt>
+        <dd>The unit models read and bill in. Roughly three quarters of a word. A thousand tokens is about 750 words.
+          <span class="why">Why you care: API pricing is per token. It's the AI equivalent of being billed per minute of footage.</span></dd>
+
+        <dt>Hallucination</dt>
+        <dd>When a model states something false with complete confidence: an invented statistic, a made-up quote, a client name that doesn't exist.
+          <span class="why">Why you care: never send AI-drafted numbers, names or claims to a client without checking them. The model isn't lying, it's pattern-matching, but the damage is the same.</span></dd>
+
+        <dt>Agent</dt>
+        <dd>An AI that doesn't just answer, it acts: reads files, runs steps, checks its own work, carries a task through to a finish. The Prospector Engine, finding and scoring your leads, is agents in a row.
+          <span class="why">Why you care: chat is you doing the work with help. Agents are the work happening while you do something else.</span></dd>
+
+        <dt>MCP</dt>
+        <dd>Model Context Protocol. A standard plug that lets an AI connect to your other tools: your CRM, your calendar, your email. One connector per tool, and the AI can read from and act in it.
+          <span class="why">Why you care: this is how the OS stops being a writing tool and starts touching your actual pipeline.</span></dd>
+
+        <dt>API</dt>
+        <dd>Application programming interface: the way two pieces of software talk to each other directly, without a human clicking buttons. When a tool "integrates with" another tool, it's using an API.
+          <span class="why">Why you care: the chat subscription and the API are different doors into the same model. Tools you build, like the Prospector Engine, go through the API door.</span></dd>
+
+        <dt>API key</dt>
+        <dd>The password that lets a tool use an API on your account, and bill your card for it.
+          <span class="why">Why you care: treat keys like bank details. Never paste one into a shared doc, a chat, or a website you don't trust. Anyone holding your key is spending your money as you.</span></dd>
+
+        <dt>Training cutoff</dt>
+        <dd>The date the model's built-in knowledge stops. Anything after it, the model only knows if it searches the web or you tell it.
+          <span class="why">Why you care: asking a model about last month's news without search turned on is asking it to guess.</span></dd>
+      </dl>
+    </section>
+
+    
+
+    
+
+    <section>
+      <h2>The two tools you'll use on the day</h2>
+      <p>Everything above is vocabulary. These are the two working tools we put in your hands at the workshop, and between them they use almost every word in this guide. Both are private, members-only tools: you'll be given your login on the day, so don't worry if the links show you a sign-in page before then.</p>
+
+      <div class="card">
+        <p class="card-eyebrow">Tool one · prospector.denlennie.com</p>
+        <h2>The Prospector Engine</h2>
+        <p>An AI prospecting tool built specifically for video production companies. You tell it about your business, and it does the afternoon of grind you've been putting off: finds companies that match your ideal client, identifies the decision-makers, pulls their contact details, scores every prospect from 0 to 10, and hands back a ranked list with a personal reason to reach out to each one.</p>
+        <p>Four steps on the day:</p>
+        <ul class="brand-list">
+          <li><strong>Profile.</strong> Paste your website address. The engine drafts your ideal client profile, you correct it. Upload a list of past clients and it learns the pattern from real examples.</li>
+          <li><strong>Find.</strong> It searches for matching companies in your geography. Fifty prospects in three to eight minutes.</li>
+          <li><strong>Enrich and score.</strong> It reads each company's website, finds the decision-makers, and scores the fit. A-tier means start here. D-tier means park it.</li>
+          <li><strong>Export.</strong> A CSV with everything you need for outreach, including a personalised angle per lead referencing real evidence from their site.</li>
+        </ul>
+        <p>One practical note: workshop accounts are time-boxed. Run your real searches during the window and export your CSV. The results are yours to keep.</p>
+        <p><strong>Words from this guide you'll meet inside it:</strong> it's a Streamlit app, deployed on a server, talking to models through APIs, spending tokens per lead, with the small fast model tier doing the scoring. You now know what every one of those means.</p>
+      </div>
+
+      <div class="card">
+        <p class="card-eyebrow">Tool two · nurture.denlennie.com/engine</p>
+        <h2>The Nurture Engine</h2>
+        <p>The companion to the Prospector. Prospecting gets you into conversations. This tool keeps you good in them. It drafts replies to your LinkedIn messages in your voice, following the nurture discipline we teach on day two: diagnose before you direct, never sound desperate, end on a question that makes the prospect think rather than a push for a call.</p>
+        <p>The point isn't speed for its own sake. It's consistency. The fourth follow-up you'd normally fumble, or skip entirely, gets the same calm quality as the first reply you wrote when you were fresh. Leads stop dying of silence.</p>
+        <p><strong>Words from this guide you'll meet inside it:</strong> a system prompt carrying your voice rules, a model drafting against your context, and you verifying before anything leaves the building. The AI drafts. You sign.</p>
+      </div>
+    </section>
+
+    <div class="dark-inset">
+      <p class="eyebrow" style="color: var(--color-paper)">The operating principle</p>
+      <h2>Less AI. Used better.</h2>
+      <hr class="orange-rule">
+      <p>Every term in this guide describes machinery, and machinery is not the point. Two tools used well beat ten used badly. The owners who win with AI over the next few years won't be the ones who know the most jargon. They'll be the ones whose context is the sharpest: who they serve, how they sound, what they charge, and why. The files carry that. The tools just read them.</p>
+    </div>
+
+    <footer class="poster-footer">
+      <span class="wordmark">Den Lennie</span>
+      <span>VBA AI Workshop · London · June 2026</span>
+      <span>denlennie.com</span>
+    </footer>
+
+  </main>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>London AI Workshop · Your Hub · Den Lennie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./brand.css">
+  <style>
+    /* Local primitives for the hub, built on the brand variables. */
+    .masthead { background: var(--color-anchor-navy); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .masthead-inner {
+      max-width: 1080px; margin: 0 auto; padding: 1.35rem 2rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .masthead-logo { height: 40px; width: auto; display: block; }
+    .masthead-where {
+      font-family: var(--font-caption); font-size: var(--type-caption); font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-paper); opacity: 0.85; white-space: nowrap;
+    }
+
+    /* Tool grid */
+    .tools { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.1rem; margin: 1.5rem 0 1rem; }
+    .tool {
+      display: block; background: var(--color-white); border: 1px solid var(--tint-ink-08);
+      border-left: 3px solid var(--color-burnt-orange); border-radius: 2px;
+      padding: 1.5rem 1.6rem; text-decoration: none; color: var(--color-ink-black);
+      transition: box-shadow 0.15s ease, transform 0.15s ease;
+    }
+    .tool:hover { box-shadow: 0 6px 20px rgba(12,12,13,0.08); transform: translateY(-2px); }
+    .tool .tool-name { font-family: var(--font-heading); font-weight: 600; font-size: 1.15rem; color: var(--color-anchor-navy); margin: 0 0 0.35rem; }
+    .tool .tool-desc { font-size: 0.95rem; line-height: 1.45; margin: 0 0 0.7rem; }
+    .tool .tool-go { font-family: var(--font-caption); font-size: var(--type-caption); font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-burnt-orange); }
+    .tool.soon { border-left-color: var(--tint-ink-08); opacity: 0.72; pointer-events: none; }
+    .tool.soon .tool-go { color: var(--color-ink-black); opacity: 0.6; }
+
+    /* Running order */
+    .day { margin: 1.5rem 0 0; }
+    .day-head { display: flex; align-items: baseline; gap: 0.9rem; flex-wrap: wrap; border-bottom: 2px solid var(--color-anchor-navy); padding-bottom: 0.5rem; margin-bottom: 0.4rem; }
+    .day-head h2 { margin: 0; }
+    .day-meta { font-family: var(--font-caption); font-size: var(--type-small); color: var(--color-ink-black); opacity: 0.7; }
+    .row { display: flex; gap: 1rem; padding: 0.6rem 0; border-bottom: 1px solid var(--tint-ink-08); }
+    .row:last-child { border-bottom: 0; }
+    .row .t { font-family: var(--font-heading); font-weight: 600; font-size: 0.9rem; color: var(--color-burnt-orange); width: 4.5rem; flex-shrink: 0; }
+    .row .s { font-size: 1rem; }
+    .row.meal .s, .row.brk .s { opacity: 0.7; font-style: italic; }
+
+    @media (max-width: 720px) {
+      .masthead-inner { padding: 1.1rem 1.25rem; }
+      .masthead-logo { height: 32px; }
+      .tools { grid-template-columns: 1fr; }
+      .row .t { width: 3.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="masthead">
+    <div class="masthead-inner">
+      <img class="masthead-logo" src="./VBA_wordmark_grey.png" alt="Video Business Accelerator">
+      <span class="masthead-where">London · 23–24 June 2026</span>
+    </div>
+  </div>
+
+  <main class="page">
+
+    <header class="poster-header">
+      <p class="eyebrow">VBA AI Workshop · London<span class="index">YOUR HUB</span></p>
+      <h1 class="display">Everything, one place.</h1>
+      <hr class="orange-rule">
+      <p class="lead">Your home base for the two days. The tools you'll use are below, one click each, and the running order so you always know what's next. Bookmark this page and keep it open.</p>
+    </header>
+
+    <section>
+      <h2>Your tools</h2>
+      <div class="tools">
+
+        <a class="tool" href="https://prospector.denlennie.com">
+          <div class="tool-name">The Prospector Engine</div>
+          <p class="tool-desc">Find the companies that fit you, the decision-makers, and a reason to reach out to each one. Your scored list of real leads.</p>
+          <span class="tool-go">Open prospector.denlennie.com →</span>
+        </a>
+
+        <a class="tool" href="https://nurture.denlennie.com/engine">
+          <div class="tool-name">The Nurture Engine</div>
+          <p class="tool-desc">Reply to your messages in your own voice, and follow up without ever feeling like you're chasing.</p>
+          <span class="tool-go">Open nurture.denlennie.com →</span>
+        </a>
+
+        <a class="tool" href="./field-guide-london.html">
+          <div class="tool-name">The Field Guide</div>
+          <p class="tool-desc">Every term you'll hear over the two days, translated into plain English, plus which AI tool is best for which job.</p>
+          <span class="tool-go">Open the glossary →</span>
+        </a>
+
+        <a class="tool" href="https://claude.ai">
+          <div class="tool-name">Claude, your hub</div>
+          <p class="tool-desc">Set up a Project that knows your business and run your day from it. The one place everything starts.</p>
+          <span class="tool-go">Open claude.ai →</span>
+        </a>
+
+        <a class="tool" href="./90-day-plan.html">
+          <div class="tool-name">Your 90-Day Plan</div>
+          <p class="tool-desc">Set your destination and your next three moves, then save it to PDF. The page you leave with.</p>
+          <span class="tool-go">Open your plan →</span>
+        </a>
+
+        <span class="tool soon">
+          <div class="tool-name">On-location content</div>
+          <p class="tool-desc">A photo and a voice memo in, headlines and content ideas out. We'll set this up on day two.</p>
+          <span class="tool-go">In the room, day two</span>
+        </span>
+
+      </div>
+    </section>
+
+    <section>
+      <h2>The two days</h2>
+
+      <div class="day">
+        <div class="day-head">
+          <h2 style="font-size: var(--type-h2)">Day one</h2>
+          <span class="day-meta">Tuesday 23 June · Clarity, and the fast win</span>
+        </div>
+        <div class="row"><span class="t">09:30</span><span class="s">Arrive, coffee, sign in</span></div>
+        <div class="row"><span class="t">10:00</span><span class="s">Welcome, and the plan for the two days</span></div>
+        <div class="row"><span class="t">10:15</span><span class="s">Go-round: who you are, and the one thing you want</span></div>
+        <div class="row"><span class="t">10:45</span><span class="s">The real problem: getting clients</span></div>
+        <div class="row"><span class="t">11:00</span><span class="s">Positioning and niche sprint</span></div>
+        <div class="row"><span class="t">11:40</span><span class="s">Prospector: profile your business</span></div>
+        <div class="row"><span class="t">12:15</span><span class="s">Prospector: find clients and run the pipeline</span></div>
+        <div class="row meal"><span class="t">12:45</span><span class="s">Lunch (your pipelines run while you eat)</span></div>
+        <div class="row"><span class="t">13:45</span><span class="s">Results review: your first real leads</span></div>
+        <div class="row"><span class="t">14:25</span><span class="s">SceneOps: where your leads go</span></div>
+        <div class="row"><span class="t">14:35</span><span class="s">The Offer Architect, live</span></div>
+        <div class="row"><span class="t">14:55</span><span class="s">The AI landscape: which tool for which job</span></div>
+        <div class="row brk"><span class="t">15:30</span><span class="s">Break</span></div>
+        <div class="row"><span class="t">15:45</span><span class="s">Going deeper on Claude</span></div>
+        <div class="row"><span class="t">16:35</span><span class="s">Recap, homework, and your signed book</span></div>
+        <div class="row"><span class="t">16:50</span><span class="s">Close</span></div>
+      </div>
+
+      <div class="day">
+        <div class="day-head">
+          <h2 style="font-size: var(--type-h2)">Day two</h2>
+          <span class="day-meta">Wednesday 24 June · Deploy, and your plan</span>
+        </div>
+        <div class="row"><span class="t">09:30</span><span class="s">Coffee, settle in</span></div>
+        <div class="row"><span class="t">10:00</span><span class="s">Recap, and today's destination</span></div>
+        <div class="row"><span class="t">10:10</span><span class="s">Following up without chasing</span></div>
+        <div class="row"><span class="t">10:30</span><span class="s">The Nurture Engine, hands on</span></div>
+        <div class="row brk"><span class="t">11:15</span><span class="s">Break</span></div>
+        <div class="row"><span class="t">11:30</span><span class="s">Work and track your leads</span></div>
+        <div class="row"><span class="t">12:10</span><span class="s">A taste of Claude Code</span></div>
+        <div class="row meal"><span class="t">12:45</span><span class="s">Lunch</span></div>
+        <div class="row"><span class="t">13:45</span><span class="s">Content from the field</span></div>
+        <div class="row"><span class="t">14:30</span><span class="s">Build your 90-day plan</span></div>
+        <div class="row brk"><span class="t">15:15</span><span class="s">Break</span></div>
+        <div class="row"><span class="t">15:30</span><span class="s">What's next, and close</span></div>
+      </div>
+    </section>
+
+    <footer class="poster-footer">
+      <span class="wordmark">Den Lennie</span>
+      <span>VBA AI Workshop · London · June 2026</span>
+      <span>denlennie.com</span>
+    </footer>
+
+  </main>
+</body>
+</html>
