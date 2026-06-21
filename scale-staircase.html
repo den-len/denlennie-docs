@@ -30,6 +30,11 @@
     .step .desc { font-family: var(--font-body); font-weight: 300; font-size: 0.82rem; line-height: 1.4; color: var(--color-ink-black); opacity: 0.82; margin: 0; }
     .step.stall { border-bottom: 3px solid var(--color-burnt-orange); }
 
+    .stage-cta { margin-top: 3.5rem; display: flex; align-items: center; gap: 1.3rem; flex-wrap: wrap; }
+    .cta-btn { display: inline-block; font-family: var(--font-display); font-weight: 600; font-size: 1.02rem; background: var(--color-burnt-orange); color: var(--color-white); text-decoration: none; padding: 0.85rem 1.7rem; border-radius: 3px; transition: background 0.15s ease; }
+    .cta-btn:hover { background: var(--color-anchor-navy); }
+    .cta-note { font-family: var(--font-body); font-weight: 300; font-size: 1.05rem; color: var(--color-ink-black); opacity: 0.85; margin: 0; }
+
     .stage-foot { max-width: 1180px; margin: 3rem auto 0; padding: 0 2.5rem; font-family: var(--font-caption); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-anchor-navy); opacity: 0.6; display: flex; justify-content: space-between; gap: 1rem; }
 
     @media (max-width: 820px) {
@@ -73,6 +78,11 @@
         <div class="name">Scaler</div>
         <p class="desc">The business grows without more of your time.</p>
       </div>
+    </div>
+
+    <div class="stage-cta">
+      <a class="cta-btn" href="https://denlennie.com/scorecard">Take the 3-minute test →</a>
+      <p class="cta-note">Take it yourself and find out where you are on the staircase right now.</p>
     </div>
   </div>
 
