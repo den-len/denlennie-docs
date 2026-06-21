@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The S.C.A.L.E. Staircase · Den Lennie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./brand.css">
+  <style>
+    body { background: var(--color-paper); }
+    .stage-wrap { max-width: 1180px; margin: 0 auto; padding: 4rem 2.5rem 3.5rem; }
+
+    .eyebrow-line { font-family: var(--font-caption); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-anchor-navy); opacity: 0.65; margin: 0 0 1rem; }
+    .stage-title { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1.04; letter-spacing: -0.02em; color: var(--color-ink-black); margin: 0 0 1.2rem; max-width: 14ch; }
+    .stage-lead { font-family: var(--font-body); font-weight: 300; font-size: 1.15rem; line-height: 1.55; color: var(--color-ink-black); max-width: 56ch; margin: 0; opacity: 0.92; }
+
+    .stairs { display: flex; gap: 1.4rem; align-items: flex-start; margin-top: 3.5rem; }
+    .step { flex: 1; background: var(--color-white); border-radius: 3px; padding: 1.5rem 1.5rem 1.7rem; box-shadow: 0 10px 30px rgba(11,33,65,0.06); border-top: 1px solid var(--tint-ink-08); }
+    .step:nth-child(1) { margin-top: 165px; }
+    .step:nth-child(2) { margin-top: 124px; }
+    .step:nth-child(3) { margin-top: 83px; }
+    .step:nth-child(4) { margin-top: 42px; }
+    .step:nth-child(5) { margin-top: 0; }
+
+    .step .num { font-family: var(--font-caption); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.18em; color: var(--color-ink-black); opacity: 0.45; }
+    .step .where { font-family: var(--font-caption); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.04em; color: var(--color-burnt-orange); margin-left: 0.5rem; }
+    .step .name { font-family: var(--font-display); font-weight: 600; font-size: 1.35rem; color: var(--color-anchor-navy); margin: 1.4rem 0 0.7rem; }
+    .step .desc { font-family: var(--font-body); font-weight: 300; font-size: 0.95rem; line-height: 1.45; color: var(--color-ink-black); opacity: 0.82; margin: 0; }
+    .step.stall { border-bottom: 3px solid var(--color-burnt-orange); }
+
+    .stage-foot { max-width: 1180px; margin: 3rem auto 0; padding: 0 2.5rem; font-family: var(--font-caption); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-anchor-navy); opacity: 0.6; display: flex; justify-content: space-between; gap: 1rem; }
+
+    @media (max-width: 820px) {
+      .stage-wrap { padding: 2.5rem 1.25rem; }
+      .stairs { flex-direction: column; gap: 0.9rem; margin-top: 2rem; }
+      .step, .step:nth-child(n) { margin-top: 0; }
+      .stage-foot { padding: 0 1.25rem; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="stage-wrap">
+    <p class="eyebrow-line">Why it gets harder, not easier</p>
+    <h1 class="stage-title">Every video business hits the same wall</h1>
+    <p class="stage-lead">Doing everything yourself works, right up until it doesn't. The owners who break through stop being the best editor in the room and start being the one who builds the room. Here's the climb.</p>
+
+    <div class="stairs">
+      <div class="step">
+        <span class="num">01</span>
+        <div class="name">Operator</div>
+        <p class="desc">You do everything. Income equals your hours.</p>
+      </div>
+      <div class="step stall">
+        <span class="num">02</span><span class="where">· where most stall</span>
+        <div class="name">Juggler</div>
+        <p class="desc">Revenue's there but unpredictable. You're the bottleneck.</p>
+      </div>
+      <div class="step">
+        <span class="num">03</span>
+        <div class="name">Stabiliser</div>
+        <p class="desc">Systems exist, but you're still needed to deliver.</p>
+      </div>
+      <div class="step">
+        <span class="num">04</span>
+        <div class="name">Strategist</div>
+        <p class="desc">The team runs the work. You set direction.</p>
+      </div>
+      <div class="step">
+        <span class="num">05</span>
+        <div class="name">Scaler</div>
+        <p class="desc">The business grows without more of your time.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="stage-foot">
+    <span>Den Lennie · The S.C.A.L.E. Method</span>
+    <span>Where are you on the staircase?</span>
+  </div>
+
+</body>
+</html>
