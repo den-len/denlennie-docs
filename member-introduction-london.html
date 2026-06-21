@@ -166,8 +166,10 @@
     .pill:has(input:checked) { background: var(--color-anchor-navy); color: var(--color-paper); }
     .pill:has(input:focus-visible) { box-shadow: 0 0 0 2px var(--tint-orange-10); }
 
-    .quiz-link { color: var(--color-burnt-orange); font-weight: 500; text-decoration: none; border-bottom: 1.5px solid var(--color-burnt-orange); white-space: nowrap; }
-    .quiz-link:hover { color: var(--color-anchor-navy); border-color: var(--color-anchor-navy); }
+    .lead-cta { margin: 1.5rem 0 2.5rem; display: flex; align-items: center; gap: 1.1rem; flex-wrap: wrap; }
+    .cta-btn { display: inline-block; font-family: var(--font-display); font-weight: 600; font-size: 1.02rem; background: var(--color-burnt-orange); color: var(--color-white); text-decoration: none; padding: 0.85rem 1.7rem; border-radius: 3px; }
+    .cta-btn:hover { background: var(--color-anchor-navy); }
+    .cta-note { font-family: var(--font-body); font-weight: 300; font-size: 0.95rem; color: var(--color-ink-black); opacity: 0.8; }
 
     .block { margin: 2.4rem 0; }
     .block h2 { margin-top: 0; }
@@ -209,8 +211,13 @@
       <p class="eyebrow">VBA AI Workshop · London<span class="index">ROOM INTRO</span></p>
       <h1 class="display">Where you're starting from.</h1>
       <hr class="orange-rule">
-      <p class="lead">Before we get into the work, we go round the room. You've just placed yourself on the staircase, so start there. This is the shape of what you'll share: where you are, how the year actually felt, and the one thing you want to crack while we're together. Keep it short. The honest version is the useful one.</p>
+      <p class="lead">This is your first stop. Step one, take the SCALE Scorecard, it tells you which stage of the climb you're on. Then come back and fill this in. It's the shape of what you'll share when we go round the room: where you are, how the year actually felt, and the one thing you want to crack while we're together. Keep it short. The honest version is the useful one.</p>
     </header>
+
+    <div class="lead-cta no-print">
+      <a class="cta-btn" href="https://denlennie.com/scorecard" target="_blank" rel="noopener">Take the 3-minute Scorecard →</a>
+      <span class="cta-note">Opens in a new tab. Do this first, then fill in the form below.</span>
+    </div>
 
     <!-- ===================== 01 · THE INTRO ===================== -->
     <section class="block">
@@ -230,7 +237,7 @@
     <section class="block">
       <p class="q-index">02 · On the staircase</p>
       <h2>Where I put myself today</h2>
-      <p class="field-hint">From the Scorecard you just did, reconciled with the honest gut check. A starting point, not a verdict. We'll sharpen it together over the two days. Not done it yet, or want to check? <a href="https://denlennie.com/scorecard" target="_blank" rel="noopener" class="quiz-link">Take the 3-minute SCALE quiz →</a></p>
+      <p class="field-hint">From your Scorecard result up top, reconciled with the honest gut check. A starting point, not a verdict. We'll sharpen it together over the two days.</p>
       <p class="sentence" style="margin-top:1rem">
         Right now I'm a
         <span class="choice-group">
