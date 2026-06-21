@@ -37,72 +37,17 @@
       section { break-inside: avoid-page; }
       h2 { break-after: avoid; }
     }
-
-    /* Navy masthead band carrying the VBA wordmark, matching the other
-       docs.denlennie.com guides. The grey wordmark is a light logo built
-       for dark surfaces, so it sits on navy. Forced to print. */
-    .masthead {
-      background: var(--color-anchor-navy);
-      -webkit-print-color-adjust: exact;
-      print-color-adjust: exact;
-    }
-    .masthead-inner {
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 1.35rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-    .masthead-logo { height: 42px; width: auto; display: block; }
-    .masthead-pdf {
-      font-family: var(--font-caption);
-      font-size: var(--type-caption);
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--color-paper);
-      border: 1px solid rgba(245, 244, 239, 0.5);
-      border-radius: 2px;
-      padding: 0.5rem 0.9rem;
-      white-space: nowrap;
-    }
-    .masthead-pdf:hover {
-      background: var(--color-paper);
-      color: var(--color-anchor-navy);
-      border-color: var(--color-paper);
-    }
-    @media (max-width: 720px) {
-      .masthead-inner { padding: 1.1rem 1.25rem; }
-      .masthead-logo { height: 34px; }
-    }
-    @media print { .masthead-pdf { display: none; } }
   </style>
 </head>
 <body>
-
-  <header class="masthead">
-    <div class="masthead-inner">
-      <img class="masthead-logo" src="./VBA_wordmark_grey.png" alt="Video Business Accelerator">
-      <a class="masthead-pdf" href="./field-guide.pdf" download>Download PDF</a>
-    </div>
-  </header>
-
   <main class="page">
 
     <header class="poster-header">
-      <p class="eyebrow">VBA AI OS Workshop · London<span class="index">NO. 03</span></p>
+      <p class="eyebrow">VBA AI Workshop · London<span class="index">NO. 03</span></p>
       <h1 class="display">The field guide.</h1>
       <hr class="orange-rule">
       <p class="lead">Every word you'll hear over the two days, translated into plain English. You don't need to memorise any of this. Keep it nearby, and when a term lands that you don't recognise, look it up here instead of nodding along.</p>
     </header>
-
-    <section>
-      <h2>Before the jargon: what an AI operating system actually is</h2>
-      <p>Strip the mystique away and an AI operating system is three things. A <strong>folder of plain text files</strong> that describe your business: who you are, how you sound, what you sell, who you sell it to. An <strong>AI that can read and write those files</strong>, so every piece of work starts from your real context instead of a blank chat box. And a <strong>handful of repeatable workflows</strong> built on top: prospecting, proposals, content, follow-up.</p>
-      <p>That's it. Not another app. Not a subscription stack. The files are the asset. The AI is the operator. The rest of this guide explains the machinery around those two ideas.</p>
-    </section>
 
     <section>
       <h2>Which model for which job</h2>
@@ -137,17 +82,38 @@
             <td>Any model with web search or a deep research mode turned on.</td>
             <td>Models answer from training data unless they can search. For anything factual and current, make it look things up.</td>
           </tr>
-          <tr>
-            <td><strong>Working inside your files.</strong> Building and running the AI OS itself.</td>
-            <td>Claude Code, with whichever model tier suits the task.</td>
-            <td>Chat tools can only see what you paste in. Claude Code reads and writes your actual folder, which is the whole point of an OS.</td>
-          </tr>
         </tbody>
       </table>
 
       <div class="callout">
         <p style="margin:0"><strong>The rule that matters more than any model name:</strong> the quality of what comes out is set by the context that goes in. A mid-tier model with your voice files, your client list and your pricing will beat the biggest model in the world starting from a blank page.</p>
       </div>
+    </section>
+
+    <section>
+      <h2>Which tool for which task</h2>
+      <p>The section above was about model tiers, the engine sizes. This is about the actual products you'll hear named, and where each one earns its place. You don't need all of them. Most owners settle on one or two and use them well. Here's the honest shape of the landscape.</p>
+      <dl class="glossary">
+        <dt>ChatGPT (OpenAI)</dt>
+        <dd>Think of it as your intern. The capable all-rounder that started the wave: quick to answer, good at drafting, brainstorming and the everyday jobs, and the one most people reach for first. Like any intern, it's fast and eager but needs a clear brief and a check on its work before anything goes out.
+          <span class="why">Best for: everyday drafting, first drafts, quick answers, thinking out loud.</span></dd>
+
+        <dt>Gemini (Google)</dt>
+        <dd>Google's model, and the one to reach for when the job touches Google's world. Strong at reading websites, pulling from Search and YouTube, and broad marketing research where you want it to range across the web rather than answer from memory.
+          <span class="why">Best for: web and YouTube research, reading sites, broad marketing scans.</span></dd>
+
+        <dt>Claude (Anthropic)</dt>
+        <dd>The model this whole approach runs on, and the strongest at careful reasoning and writing in your voice. Three ways to use it: Chat for conversation and writing, Cowork for working alongside you inside your documents and tools, and Code (Claude Code) for building and running things.
+          <span class="why">Best for: writing that sounds like you, careful reasoning, working with your documents, building tools.</span></dd>
+
+        <dt>Manus</dt>
+        <dd>An autonomous research agent: you hand it a brief and it works the problem through over many steps, rather than answering in one turn. Worth reaching for on the heavy research jobs and as a marketing second opinion.
+          <span class="why">Best for: deep, multi-step research that runs in the background while you get on with something else.</span></dd>
+
+        <dt>Grok (xAI)</dt>
+        <dd>Elon Musk's model, built into X, formerly Twitter. Its edge is the here and now: it can pull what's happening on X and across the web in real time, so it's useful for live events, trends and the current pulse, with a more irreverent, less-filtered tone than the others. Less commonly reached for in everyday business writing.
+          <span class="why">Best for: real-time questions, what's happening now, the social pulse.</span></dd>
+      </dl>
     </section>
 
     <section>
@@ -162,7 +128,7 @@
           <span class="why">Why you care: vague prompt, vague answer. The fix is rarely a better model, it's a clearer brief, the same as briefing a freelancer.</span></dd>
 
         <dt>System prompt (or custom instructions)</dt>
-        <dd>Standing instructions the model reads before every conversation. Your voice rules, your spelling preferences, your banned words. In an AI OS this lives in a file, which means you write it once and never repeat yourself.
+        <dd>Standing instructions the model reads before every conversation. Your voice rules, your spelling preferences, your banned words. Set them once as custom instructions and you never repeat yourself.
           <span class="why">Why you care: this is the difference between sounding like you and sounding like every other AI-written post on LinkedIn.</span></dd>
 
         <dt>Context window</dt>
@@ -178,7 +144,7 @@
           <span class="why">Why you care: never send AI-drafted numbers, names or claims to a client without checking them. The model isn't lying, it's pattern-matching, but the damage is the same.</span></dd>
 
         <dt>Agent</dt>
-        <dd>An AI that doesn't just answer, it acts: reads files, runs steps, checks its own work, carries a task through to a finish. Claude Code working through your folder is an agent. The Prospector Engine is agents in a row.
+        <dd>An AI that doesn't just answer, it acts: reads files, runs steps, checks its own work, carries a task through to a finish. The Prospector Engine, finding and scoring your leads, is agents in a row.
           <span class="why">Why you care: chat is you doing the work with help. Agents are the work happening while you do something else.</span></dd>
 
         <dt>MCP</dt>
@@ -199,91 +165,9 @@
       </dl>
     </section>
 
-    <section>
-      <h2>The builder's words</h2>
-      <dl class="glossary">
-        <dt>Terminal</dt>
-        <dd>A window where you type instructions to your computer as text instead of clicking icons. Full explanation two sections down.
-          <span class="why">Why you care: it's where Claude Code lives, and it's far less frightening than it looks.</span></dd>
+    
 
-        <dt>Claude Code</dt>
-        <dd>Anthropic's AI that runs in the terminal and works directly on the files on your machine. You talk to it in plain English. It reads your folder, writes documents, edits files, and runs the workflows of your OS.
-          <span class="why">Why you care: this is the operator of your AI OS. Most of what we build over the two days runs through it.</span></dd>
-
-        <dt>Markdown</dt>
-        <dd>Plain text with simple symbols for formatting: # for a heading, ** for bold, - for a bullet. Files end in .md. Readable by any computer, any app, any AI, forever.
-          <span class="why">Why you care: your whole OS is written in it. No proprietary format, no app that can shut down and take your files with it.</span></dd>
-
-        <dt>Git</dt>
-        <dd>A program on your computer that tracks changes to a folder over time. Every time you save a snapshot, git remembers exactly what changed, when, and lets you wind back to any earlier version.
-          <span class="why">Why you care: it's version history for your business brain. Break something on Tuesday, restore Monday's version in one line.</span></dd>
-
-        <dt>Repository (repo)</dt>
-        <dd>A folder that git is tracking. Your AI OS folder is one repo.
-          <span class="why">Why you care: when someone says "the repo", they mean "the folder, with its full history attached".</span></dd>
-
-        <dt>GitHub</dt>
-        <dd>A website that holds a copy of your repo in the cloud. Full explanation below.
-          <span class="why">Why you care: it's the off-site backup of the most valuable folder you own.</span></dd>
-
-        <dt>Commit</dt>
-        <dd>A saved snapshot of your folder with a short note attached: "added new pricing", "rewrote voice rules". A commit lives on your machine.
-          <span class="why">Why you care: commits are the save points. Cheap to make, priceless to have.</span></dd>
-
-        <dt>Push and pull</dt>
-        <dd>Push sends your latest commits up to GitHub. Pull brings the latest copy down from GitHub. Full explanation below.
-          <span class="why">Why you care: push at the end of a working session and your work survives a stolen laptop, a dead drive, a spilled coffee.</span></dd>
-
-        <dt>Clone</dt>
-        <dd>Downloading a full copy of a repo, history and all, onto a machine. New laptop, one clone, and your whole OS is back.
-          <span class="why">Why you care: your setup stops being trapped in one computer.</span></dd>
-
-        <dt>Python</dt>
-        <dd>The programming language most AI tooling is written in. You won't write it at the workshop, but you'll see its name in error messages and setup guides.
-          <span class="why">Why you care: only so the word doesn't rattle you. "It's a Python script" means "it's a small program".</span></dd>
-
-        <dt>Streamlit</dt>
-        <dd>A tool that turns a script into a simple web page with buttons, forms and results. Full explanation below.
-          <span class="why">Why you care: it's how an internal tool becomes something your editor or producer can use without ever seeing a terminal.</span></dd>
-
-        <dt>Local vs cloud</dt>
-        <dd>Local means on your machine: your files, your folder, the terminal. Cloud means on someone else's server: GitHub, your CRM, the model itself.
-          <span class="why">Why you care: your OS files are local, which means they're private and yours. The backup lives in the cloud. You want both, deliberately.</span></dd>
-
-        <dt>Deploy</dt>
-        <dd>Putting a tool you've built onto a server so it runs all the time at a web address, instead of only when your laptop is open. The Prospector Engine is deployed.
-          <span class="why">Why you care: "it works on my laptop" becomes "my team can use it from anywhere".</span></dd>
-      </dl>
-    </section>
-
-    <section>
-      <h2>What the terminal actually is</h2>
-      <p>The terminal is the oldest interface on your computer: a plain window where you type an instruction, press enter, and the machine does it. It predates the mouse, the desktop and every icon you've ever clicked. Everything you do by clicking is a polite wrapper around what the terminal does directly.</p>
-      <p>It looks intimidating because films use it as shorthand for hacking. In practice it's a text conversation with your computer. <code>cd Documents</code> means "go to the Documents folder". <code>ls</code> means "show me what's in here". That's the level of it.</p>
-      <p>Here's the part that matters for you: <strong>you no longer need to learn the commands.</strong> Claude Code sits inside the terminal and you talk to it in plain English. "Open my client folder and draft the follow-up email" gets typed by you, and the machinery underneath gets handled. The terminal is the room where the work happens. Claude Code is the colleague in the room. You just have to be willing to walk in.</p>
-      <p>Think of it like manual mode on a camera. Auto mode (apps, buttons, menus) decides things for you and hides the controls. Manual mode shows you everything and does exactly what you say. You learned manual because the control was worth it. Same trade here, except this time you've got an operator standing next to you who already knows the settings.</p>
-    </section>
-
-    <section>
-      <h2>What GitHub does, and why push and pull matter</h2>
-      <p>You already run this discipline with footage. No serious production company keeps the only copy of a shoot on one drive. You back up to a second drive, then off-site or to the cloud, because the footage is the asset and drives fail.</p>
-      <p>Your AI OS deserves the same respect. The folder holding your voice, your pricing, your client records and your workflows will quietly become one of the most valuable folders in your business. Git and GitHub are the backup discipline for it, with one upgrade footage backups never had: <strong>history</strong>.</p>
-      <p>The working rhythm is three moves:</p>
-      <ul class="brand-list">
-        <li><strong>Commit</strong>: save a named snapshot on your machine. "Updated pricing for 2026." Do this whenever you've changed something worth keeping.</li>
-        <li><strong>Push</strong>: send your snapshots up to GitHub, the copy in the cloud. Do this at the end of a working session. From that moment, losing your laptop loses nothing.</li>
-        <li><strong>Pull</strong>: bring the latest copy down from GitHub before you start work, so you're never working on a stale version. It matters most the day you have two machines, or a team member, touching the same folder.</li>
-      </ul>
-      <p>And because every snapshot is kept, you get a time machine for free. The AI rewrote your voice file and made it worse? Wind back to yesterday's version. You want to see how your positioning read six months ago? It's all there, with dates and notes. That's something no Dropbox folder gives you.</p>
-      <p>One honest note: GitHub was built for programmers and the website shows it. You'll only ever use a sliver of it, and Claude Code will do the commits and pushes for you when you ask. Your job is just to know the rhythm: commit when something's worth keeping, push at the end of the day, pull before you start.</p>
-    </section>
-
-    <section>
-      <h2>What Streamlit does</h2>
-      <p>Somewhere in the months after the workshop, you'll build a small tool that works. Maybe it scores inbound leads against your ideal client profile. It runs on your laptop, in your terminal, and it's great, and nobody else in your business can use it, because nobody else is going to open a terminal.</p>
-      <p>Streamlit fixes that. It takes a script and gives it a face: a simple web page with a text box, a button and a results panel. Your producer pastes in the lead's details, clicks the button, gets the score. They never know there's a script behind it, and they don't need to.</p>
-      <p>That's the whole idea. Terminal tools are for you. Streamlit, and tools like it, are how those tools become usable by your team. It's the difference between owning a camera and handing someone a finished edit.</p>
-    </section>
+    
 
     <section>
       <h2>The two tools you'll use on the day</h2>
@@ -320,23 +204,9 @@
       <p>Every term in this guide describes machinery, and machinery is not the point. Two tools used well beat ten used badly. The owners who win with AI over the next few years won't be the ones who know the most jargon. They'll be the ones whose context is the sharpest: who they serve, how they sound, what they charge, and why. The files carry that. The tools just read them.</p>
     </div>
 
-    <section>
-      <h2>Setting up your AI OS: eight things to know before you start</h2>
-      <ul class="brand-list">
-        <li><strong>Plain text wins.</strong> Keep the OS in markdown files, not in a notes app, not in someone's platform. Apps shut down, get acquired, change pricing. A folder of text files works in 2026 and will work in 2036.</li>
-        <li><strong>One folder, one source of truth.</strong> Everything lives in one place: voice, offers, clients, workflows. The moment your context is scattered across six tools, the AI is guessing again.</li>
-        <li><strong>Back it up before you build on it.</strong> Git plus GitHub from day one. It takes ten minutes to set up and you'll ask Claude Code to do it anyway. Building months of business context with no backup is keeping your only rushes on one drive.</li>
-        <li><strong>API keys are bank details.</strong> Never in a shared doc, never in an email, never pasted into a tool you don't trust. If a key leaks, you revoke it and issue a new one, the same day.</li>
-        <li><strong>Know where client data goes.</strong> Before you paste a client's contract or financials into any AI tool, know what that tool does with it. Use business-tier accounts with training turned off. Your clients' confidentiality is your reputation.</li>
-        <li><strong>Start with one workflow that hurts weekly.</strong> Proposals, follow-ups, call summaries: pick the one that costs you the most hours, get it working end to end, then add the next. Ten half-built workflows is the tool circus you came here to escape.</li>
-        <li><strong>Correct the AI in writing, once.</strong> When it gets your voice or your facts wrong, don't just fix the draft. Fix the file it read from. That's the entire trick of an OS that improves: corrections compound, chat messages evaporate.</li>
-        <li><strong>Verify before it leaves the building.</strong> Anything with numbers, names, dates or claims gets a human read before a client sees it. The AI drafts. You sign.</li>
-      </ul>
-    </section>
-
     <footer class="poster-footer">
       <span class="wordmark">Den Lennie</span>
-      <span>VBA AI OS Workshop · London · June 2026</span>
+      <span>VBA AI Workshop · London · June 2026</span>
       <span>denlennie.com</span>
     </footer>
 
