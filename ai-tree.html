@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Is Additive · VBA AI Workshop · Den Lennie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./brand.css">
+  <style>
+    body { background: #F5F4EF; }
+    .stage { max-width: 720px; margin: 0 auto; padding: 3.5rem 1.5rem; }
+    .tr { font-family: 'Ubuntu', system-ui, -apple-system, sans-serif; color: #0C0C0D; font-weight: 300; text-align: center; }
+    .tr-h { font-family: 'Poppins', system-ui, sans-serif; font-weight: 700; color: #0B2141; font-size: 1.9rem; letter-spacing: -0.02em; line-height: 1.1; }
+    .tr-sub { color: #0B2141; opacity: 0.72; font-size: 1rem; margin-top: 0.3rem; }
+    .tr-rule { width: 64px; height: 3px; background: #D9531E; margin: 0.9rem auto 1.6rem; border-radius: 2px; }
+    .tr-cap { font-family: 'Poppins', system-ui, sans-serif; font-weight: 600; font-size: 0.72rem; letter-spacing: 0.13em; text-transform: uppercase; color: #D9531E; }
+    .tr-desc { font-size: 0.92rem; line-height: 1.4; color: #0C0C0D; max-width: 460px; margin: 0.25rem auto 0; }
+    .pills { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin-bottom: 0.6rem; }
+    .pill { font-family: 'Poppins', system-ui, sans-serif; font-weight: 600; font-size: 0.82rem; color: #0B2141; background: #FFFFFF; border: 1.5px solid #D9531E; border-radius: 999px; padding: 0.35rem 0.95rem; }
+    .stem { width: 2px; height: 24px; background: #0B2141; margin: 0 auto; }
+    .trunk-box { background: #0B2141; color: #FFFFFF; font-family: 'Poppins', system-ui, sans-serif; font-weight: 600; font-size: 0.98rem; width: 158px; padding: 0.75rem; margin: 0 auto; border-radius: 3px; border-top: 3px solid #D9531E; }
+    .base-box { background: #0B2141; color: #FFFFFF; border-radius: 3px; padding: 1.1rem 1.3rem; margin: 0 auto; max-width: 520px; border-bottom: 3px solid #D9531E; }
+    .base-title { font-family: 'Poppins', system-ui, sans-serif; font-weight: 600; font-size: 1.1rem; }
+    .base-desc { color: #C7CEDA; font-size: 0.88rem; line-height: 1.4; margin-top: 0.3rem; }
+    .start { display: inline-block; font-family: 'Poppins', system-ui, sans-serif; font-weight: 600; font-size: 0.64rem; letter-spacing: 0.12em; text-transform: uppercase; color: #D9531E; margin-bottom: 0.5rem; }
+    .lbl { margin-bottom: 0.55rem; }
+    .split { display: flex; gap: 0.9rem; margin-top: 1.6rem; text-align: left; }
+    .split > div { flex: 1; padding: 1rem 1.2rem; border-radius: 3px; font-size: 0.92rem; line-height: 1.45; }
+    .now { background: #FFFFFF; border-left: 3px solid #D9531E; }
+    .next { background: #0B2141; color: #F5F4EF; border-left: 3px solid #D9531E; }
+    .split .k { font-family: 'Poppins', system-ui, sans-serif; font-weight: 600; font-size: 0.68rem; letter-spacing: 0.11em; text-transform: uppercase; color: #0B2141; display: block; margin-bottom: 0.35rem; }
+    .next .k { color: #D9531E; }
+    .casetag { display: inline-block; font-family: 'Poppins', system-ui, sans-serif; font-weight: 600; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: #0B2141; background: #D9531E; padding: 0.14rem 0.5rem; border-radius: 2px; margin-top: 0.6rem; }
+    @media (max-width: 560px) { .split { flex-direction: column; } }
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <div class="tr">
+      <div class="tr-h">AI is additive</div>
+      <div class="tr-sub">Build it like a tree. One limb at a time, never all at once.</div>
+      <div class="tr-rule"></div>
+
+      <div class="lbl">
+        <div class="pills">
+          <span class="pill">Prospecting</span>
+          <span class="pill">Proposals</span>
+          <span class="pill">Content</span>
+          <span class="pill">Follow-up</span>
+        </div>
+        <div class="tr-cap">The branches</div>
+        <div class="tr-desc">Your workflows. Add them one at a time, as you need them.</div>
+      </div>
+
+      <div class="stem"></div>
+
+      <div class="lbl">
+        <div class="trunk-box">The trunk</div>
+        <div class="tr-cap" style="margin-top:0.5rem">Your hub</div>
+        <div class="tr-desc">A Project that knows your business, where you run your day.</div>
+      </div>
+
+      <div class="stem"></div>
+
+      <div class="lbl">
+        <div class="base-box">
+          <span class="start">Start here</span>
+          <div class="base-title">The base: Claude, your LLM</div>
+          <div class="base-desc">The ground everything grows from. You set this up in the room.</div>
+        </div>
+      </div>
+
+      <div class="split">
+        <div class="now">
+          <span class="k">Today</span>
+          You build the core that works, and you see what's possible. The base, the trunk, the first branches.
+        </div>
+        <div class="next">
+          <span class="k">The next level</span>
+          An AI that keeps learning as you work. A bigger build, and a real one you can see.
+          <span class="casetag">The AI/OS case study</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
