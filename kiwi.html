@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VBA AI Workshop · London Run-Sheet · 23–24 June 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./brand.css">
+  <style>
+    /* Navy masthead band carrying the VBA wordmark (light logo on dark). */
+    .masthead { background: var(--color-anchor-navy); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .masthead-inner { max-width: 1080px; margin: 0 auto; padding: 1.35rem 2rem; display: flex; align-items: center; }
+    .masthead-logo { height: 42px; width: auto; display: block; }
+
+    .day { margin: 3rem 0 1rem; }
+    .day-head {
+      display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap;
+      border-bottom: 2px solid var(--color-anchor-navy); padding-bottom: 0.6rem; margin-bottom: 1.25rem;
+    }
+    .day-head h2 { margin: 0; }
+    .day-head .day-meta {
+      font-family: var(--font-caption); font-size: var(--type-small);
+      letter-spacing: 0.04em; color: var(--color-ink-black); opacity: 0.7;
+    }
+
+    /* Schedule rows: time | block + note */
+    .row {
+      display: grid; grid-template-columns: 130px 1fr; gap: 0 1.25rem;
+      padding: 0.85rem 0; border-bottom: 1px solid var(--tint-ink-08);
+    }
+    .row:last-child { border-bottom: 0; }
+    .row .t {
+      font-family: var(--font-display); font-weight: 600; font-size: 0.95rem;
+      color: var(--color-anchor-navy); letter-spacing: -0.01em; white-space: nowrap;
+    }
+    .row .b { }
+    .row .b .title { font-weight: 500; color: var(--color-anchor-navy); }
+    .row .b .note { display: block; font-size: var(--type-small); opacity: 0.78; margin-top: 0.2rem; }
+    .row .b .deliver {
+      display: inline-block; font-family: var(--font-caption); font-size: 0.6rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase; padding: 0.08rem 0.4rem; border-radius: 2px;
+      background: var(--tint-orange-10); color: var(--color-burnt-orange);
+      border: 1px solid var(--color-burnt-orange); margin-top: 0.4rem;
+    }
+
+    /* Meals + breaks read softer, with an orange tick */
+    .row.meal, .row.brk { background: var(--tint-orange-10); }
+    .row.meal .t, .row.brk .t { color: var(--color-burnt-orange); }
+    .row.meal, .row.brk { padding-left: 0.75rem; border-radius: 2px; }
+
+    .chip {
+      display: inline-block; font-family: var(--font-caption); font-size: 0.65rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase; padding: 0.1rem 0.45rem; border-radius: 2px;
+      background: var(--color-anchor-navy); color: var(--color-paper); margin-left: 0.5rem; vertical-align: middle;
+    }
+    .chip.tbc { background: var(--color-burnt-orange); }
+    .chip.assume { background: transparent; color: var(--color-burnt-orange); border: 1px solid var(--color-burnt-orange); }
+
+    /* Clickable "show this" links per slot */
+    .showlinks { display: block; margin-top: 0.4rem; }
+    a.showlink { display: inline-block; font-family: var(--font-caption); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--color-burnt-orange); border: 1px solid var(--color-burnt-orange); border-radius: 2px; padding: 0.14rem 0.5rem; margin: 0 0.35rem 0.3rem 0; text-decoration: none; white-space: nowrap; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    a.showlink::before { content: "\25B6  "; }
+    a.showlink:hover { background: var(--color-burnt-orange); color: var(--color-white); }
+
+    /* Facilitator callouts beyond the standard .callout */
+    .callout.preflight { border-left: 3px solid var(--color-burnt-orange); }
+    .callout.close { border-left: 3px solid var(--color-anchor-navy); }
+    .callout h3 {
+      margin: 0 0 0.6rem; font-family: var(--font-display); font-weight: 600;
+      font-size: 1.05rem; color: var(--color-anchor-navy);
+    }
+    .callout ul { margin: 0.4rem 0 0; padding-left: 1.1rem; }
+    .callout li { margin: 0.3rem 0; font-size: 0.95rem; }
+    .callout li b { color: var(--color-anchor-navy); }
+
+    /* Discreet facilitator-only block */
+    .facilitator { margin: 2.5rem 0 1rem; padding: 1.25rem 1.4rem; background: var(--color-anchor-navy);
+      color: var(--color-paper); border-radius: 4px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .facilitator h3 { margin: 0 0 0.5rem; font-family: var(--font-display); font-weight: 600; color: var(--color-paper); }
+    .facilitator p, .facilitator li { font-size: 0.92rem; opacity: 0.92; }
+    .facilitator ul { margin: 0.4rem 0 0.9rem; padding-left: 1.1rem; }
+    .facilitator .care { color: var(--color-burnt-orange); font-weight: 600; }
+    .facilitator .eyebrow-line { font-family: var(--font-caption); font-size: 0.65rem; letter-spacing: 0.14em;
+      text-transform: uppercase; opacity: 0.7; }
+
+    @media (max-width: 720px) {
+      .masthead-inner { padding: 1.1rem 1.25rem; }
+      .masthead-logo { height: 34px; }
+      .row { grid-template-columns: 96px 1fr; gap: 0 0.75rem; }
+    }
+    @media print {
+      body { background: var(--color-white); }
+      .day, .callout, .facilitator { break-inside: avoid; }
+      .row.meal, .row.brk { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="masthead">
+    <div class="masthead-inner">
+      <img class="masthead-logo" src="./VBA_wordmark_grey.png" alt="Video Business Accelerator">
+    </div>
+  </header>
+
+  <main class="page">
+
+    <header class="poster-header">
+      <p class="eyebrow">VBA AI Workshop · London<span class="index">RUN-SHEET</span></p>
+      <h1 class="display">Two days. The plan.</h1>
+      <hr class="orange-rule">
+      <p class="lead">23–24 June 2026, Radisson Blu, Covent Garden. Eleven in the room, mostly returning. Day one is clarity and a fast win: sharpen your focus and your voice, run the Prospector, walk out with real leads by mid-afternoon. Day two is deploy and the close: follow up without chasing, work the leads, then open the UK Elite Boardroom. The two days deliver the page, and they open the room. They leave capable, and they leave hungry.</p>
+    </header>
+
+    <div class="callout">
+      <p style="margin:0">Chips show what's firm and what's not. <span class="chip tbc">TBC</span> not yet confirmed. <span class="chip assume">ASSUMED</span> best guess, change it if it's wrong. <span class="chip">SHOW</span> Den demos it, not a hands-on build, this is where we keep them hungry. The orange tags mark an advertised deliverable landing. Block times inside each session are a suggested carve-up, not gospel. The off-ramp is sacred: closing strong on fewer blocks beats limping through all of them.</p>
+    </div>
+
+    <div class="callout preflight">
+      <h3>Pre-flight, before the 23rd</h3>
+      <ul>
+        <li><b>A Claude account for each attendee</b> (free or paid) for the day-one Project, their hub. No attendee install needed: Claude Code runs on your machine only, for the day-two demo, so the install risk is off the table.</li>
+        <li><b>Prospector access</b> confirmed for all eleven. Rotate the global invite code off its default and give the unlimited member tier, not the capped workshop tier. They keep using it as leads into the Boardroom.</li>
+        <li><b>On-location content tool</b> ready as a Claude Project (photo plus Voice Memo transcript, headlines and ideas out). See <code>workshop/on-location-content-project.md</code>.</li>
+        <li><b>Application capture</b> for the Boardroom: a simple in-room form or list, plus the 1:1 Signal enrolment link for the Scotland window.</li>
+        <li><b>The event Signal group:</b> create it before the day. They opt in during onboarding as the announcements channel, and it's the room-only channel the day-two offer link (<code>docs.denlennie.com/banana.html</code>) goes out on.</li>
+        <li><b>Venue tech:</b> Wi-Fi tested for eleven laptops on live AI, 4G hotspot as backup, power strips on every table, round tables, genius bar staffed (Arek plus one).</li>
+        <li><b>Growth Intelligence Reports</b> read for the seven who completed the audit, so each person's placement (Elite-ready or Ascend) is set before day one.</li>
+      </ul>
+    </div>
+
+    <!-- ===================== DAY ONE ===================== -->
+    <section class="day">
+      <div class="day-head">
+        <h2>Day one</h2>
+        <span class="day-meta">Tuesday 23 June · Clarity, and the fast win</span>
+      </div>
+
+      <div class="row">
+        <span class="t">09:30</span>
+        <span class="b"><span class="title">Arrive, coffee, and onboarding</span><span class="note">Genius bar open, every laptop signs in to the Prospector before we start. Two quick things as they arrive, framed as simple onboarding: everyone joins the event Signal group (the announcements channel for the two days), and everyone does the S.C.A.L.E. Scorecard on their phone (denlennie.com/scorecard), so the day opens with each person knowing their starting stage. The Signal group is also the room-only channel the day-two offer link goes out on, but to them it's just announcements. Frame the Scorecard as a starting point, not a verdict.</span><span class="showlinks"><a class="showlink" href="https://docs.denlennie.com/london-hub.html" target="_blank" rel="noopener">Hub</a><a class="showlink" href="https://docs.denlennie.com/member-introduction-london.html" target="_blank" rel="noopener">Room intro</a><a class="showlink" href="https://denlennie.com/scorecard" target="_blank" rel="noopener">Scorecard</a></span></span>
+      </div>
+      <div class="row">
+        <span class="t">10:00</span>
+        <span class="b"><span class="title">Welcome, the plan, and the SCALE staircase</span><span class="note">Open with the cohort finding, it earns instant rapport: "I've read all your Growth Intelligence Reports, and you're in a remarkably similar position. Almost every one of you runs on word of mouth and referrals, and a good few are leaning hard on one client. Different businesses, same shape, that's the operator ceiling, and we start fixing it today." Put the cohort snapshot on screen as you say it. Then the destination: by tomorrow afternoon you leave with a scored list of real prospects, a way to follow up that never feels like chasing, a daily system on your own machine, and a 90-day plan. Then the spine for the whole two days: show the SCALE staircase graphic, walk the five stages, Operator to Scaler, and the climb between them. Get each person to write honestly in their notebook where they are, the Scorecard read reconciled with the gate-criteria reality check (many self-assess a stage high). Then set the arc: here's where you are, here's how far the climb goes, and everything we build over these two days is to start that journey. By the end the offer is simple, if you want to keep climbing, the Elite Boardroom is how you continue. A shared map, not a public label, coach the sensitive placements one to one. Reassure twice: nothing breaks, everything stays on your machine. You go first to model the go-round.</span><span class="showlinks"><a class="showlink" href="https://docs.denlennie.com/cohort-snapshot.html" target="_blank" rel="noopener">Same boat</a><a class="showlink" href="https://docs.denlennie.com/scale-staircase.html" target="_blank" rel="noopener">Staircase</a></span></span>
+      </div>
+      <div class="row">
+        <span class="t">10:15</span>
+        <span class="b"><span class="title">Go-round: who you are, one thing you want</span><span class="note">60 to 90 seconds each, timer visible. Ties to their reply from the pre-event email. Capture the one thing on screen so the room sees it land.</span></span>
+      </div>
+      <div class="row">
+        <span class="t">10:40</span>
+        <span class="b"><span class="title">The real problem, and the AI landscape</span><span class="note">Two short teaches that set up the day. First the problem: you don't have a lead problem, you have a positioning, identity and systems problem, and AI pointed at the wrong thing just amplifies the vagueness. Quality in, quality out. Less AI, used better. Then the landscape, on the visual: what each tool is actually for. Claude the work engine and where we work, ChatGPT the everyday intern most people live in, Gemini the Google, YouTube and web layer, Manus a deep-research agent, Grok real-time and X. Save the additive build, how this grows into a system, for the afternoon when we go deeper on Claude. Show the AI landscape visual.</span><span class="deliver">AI landscape · quality in, quality out</span><span class="showlinks"><a class="showlink" href="https://docs.denlennie.com/ai-landscape.html" target="_blank" rel="noopener">AI landscape</a><a class="showlink" href="https://docs.denlennie.com/field-guide-london.html" target="_blank" rel="noopener">Field guide</a></span></span>
+      </div>
+      <div class="row">
+        <span class="t">11:00</span>
+        <span class="b"><span class="title">Clarity in: your focus and your voice</span><span class="note">The two inputs that decide whether AI helps or hurts, set both before any tool runs. Focus first: the Stage 1 domino, who exactly you serve, the signals of a good client, the red flags, lifted from the diagnostic each of them did. This is the profile that feeds the Prospector, so it earns its place twice. Then voice: the ten-minute spoken interview on the Set Your Voice page, ChatGPT in voice mode, so everything they make sounds like them and not like AI. Both get saved and pasted in where they're needed. Live working session, genius bar floats.</span><span class="deliver">SCALE positioning · your voice profile</span><span class="showlinks"><a class="showlink" href="https://docs.denlennie.com/voice-builder.html" target="_blank" rel="noopener">Set your voice</a></span></span>
+      </div>
+      <div class="row">
+        <span class="t">11:40</span>
+        <span class="b"><span class="title">Prospector, step one: profile your business</span><span class="note">Demo on your own business first, then they do theirs: paste the website, refine the drafted client profile, upload a client CSV if they have one, confirm and save. The client roster upload is the single strongest move, nudge anyone who brought a list.</span><span class="deliver">Prospecting Engine configured</span><span class="showlinks"><a class="showlink" href="https://prospector.denlennie.com" target="_blank" rel="noopener">Prospector</a></span></span>
+      </div>
+      <div class="row">
+        <span class="t">12:15</span>
+        <span class="b"><span class="title">Prospector, step two: find, then run the pipeline</span><span class="note">Generate the discovery brief, edit if they want, click Find. Then kick off Run Pipeline so enrichment and scoring run through lunch. Stagger the starts across the room to spare the Wi-Fi.</span></span>
+      </div>
+      <div class="row meal">
+        <span class="t">12:45</span>
+        <span class="b"><span class="title">Lunch</span><span class="note">Pipelines running while they eat. Back at 13:45.</span></span>
+      </div>
+      <div class="row">
+        <span class="t">13:45</span>
+        <span class="b"><span class="title">Results review: the fast win</span><span class="note">Sort by tier, open an A-tier prospect, read the score breakdown, the decision-maker, the outreach angle. Each person looks at their own list. Real leads in hand by mid-afternoon on day one, this is the buy-in moment. Show the built-in tracking while you're here: mark a lead good fit or contacted and add a note. That is their lead and outreach tracking, and the learning loop sharpens the next run, so there is no separate tracker to build.</span><span class="deliver">Real leads, not just setup</span><span class="showlinks"><a class="showlink" href="https://prospector.denlennie.com" target="_blank" rel="noopener">Prospector</a></span></span>
+      </div>
+      <div class="row">
+        <span class="t">14:25</span>
+        <span class="b"><span class="title">SceneOps, where the leads go <span class="chip">SHOW</span></span><span class="note">Five minutes on your own instance: the pipeline, the automation, where these leads live and get worked. It's included in membership. Don't set it up in the room, that's part of the 48-hour Boardroom build. Show the machine, then leave it visible and unfinished.</span></span>
+      </div>
+      <div class="row">
+        <span class="t">14:35</span>
+        <span class="b"><span class="title">Offer Architect, one volunteer <span class="chip">SHOW</span></span><span class="note">Take one volunteer's offer from current state to future state on the big screen. The room feels the gap for their own. Frame it straight: this is the Elite tool, we architect it together then noodle and work it over time. They'll have questions, that's the point. Don't run it for everyone, there isn't time and you shouldn't give it away.</span></span>
+      </div>
+      <div class="row">
+        <span class="t">14:55</span>
+        <span class="b"><span class="title">One prompt, three answers</span><span class="note">The discernment teach, hands on. Put the same prompt into ChatGPT, Gemini and Claude, then read the three answers side by side on the screen. They can all be right, and they'll still differ on tone, on detail, and on what sounds like you. This is where hallucination and the wrong tone show up if you follow blindly. The lesson: guide it with what you know, don't follow it. Their voice profile from this morning is how they judge which one is actually theirs.</span><span class="deliver">How to judge AI output</span><span class="showlinks"><a class="showlink" href="https://chatgpt.com" target="_blank" rel="noopener">ChatGPT</a><a class="showlink" href="https://gemini.google.com" target="_blank" rel="noopener">Gemini</a><a class="showlink" href="https://claude.ai" target="_blank" rel="noopener">Claude</a></span></span>
+      </div>
+      <div class="row brk">
+        <span class="t">15:30</span>
+        <span class="b"><span class="title">Break</span></span>
+      </div>
+      <div class="row">
+        <span class="t">15:45</span>
+        <span class="b"><span class="title">Go deeper on Claude, the one to really learn</span><span class="note">Bring in the tree visual here. AI is additive, you build it like a tree: Claude is the base, a Project that knows your business is the trunk and becomes their hub, set one up each. Chat for everyday, Cowork for working alongside it, the branches are the workflows they add one at a time. Then a taste of Code on your screen: serious territory, Boardroom, not a hands-on build today. The tree sets up the seed that follows: you've planted the base and grown the first branches, the full operating system is what it grows into over time. Show what's possible, leave them wanting it.</span><span class="showlinks"><a class="showlink" href="https://claude.ai/referral/-WB9-TeTRQ" target="_blank" rel="noopener">Claude</a><a class="showlink" href="https://docs.denlennie.com/ai-tree.html" target="_blank" rel="noopener">Tree</a></span></span>
+      </div>
+      <div class="row">
+        <span class="t">16:25</span>
+        <span class="b"><span class="title">The seed: the AI/OS case study</span><span class="note">Possibility, not a pitch. Today showed you what's possible, and the next level up is an AI that keeps learning as you work, which takes a bigger build. Show the AI/OS case study, the BalloonTree Flux Capacitor deck, a real member building exactly that inside Elite right now. Frame it straight: this isn't something held back from you, it's proof of where this goes. Then drop it, more on how that happens tomorrow.</span><span class="showlinks"><a class="showlink" href="https://btp-flux-capacitor-deck.netlify.app/" target="_blank" rel="noopener">AI/OS case study</a></span></span>
+      </div>
+      <div class="row">
+        <span class="t">16:35</span>
+        <span class="b"><span class="title">Recap and signed books</span><span class="note">Recap the day's wins, what they built and the real leads in hand. No homework: everything they need is already set up in the room, their Claude Project and their list are ready for tomorrow. Hand out the signed, annotated S.C.A.L.E. Method.</span><span class="deliver">Signed S.C.A.L.E. Method</span></span>
+      </div>
+      <div class="row">
+        <span class="t">16:50</span>
+        <span class="b"><span class="title">Close day one</span><span class="note">Where everyone got to, what to have ready for tomorrow.</span></span>
+      </div>
+      <div class="row meal">
+        <span class="t">evening</span>
+        <span class="b"><span class="title">Informal dinner or drinks <span class="chip tbc">TBC</span></span><span class="note">Optional, relationship time that feeds the close. Venue to confirm.</span></span>
+      </div>
+    </section>
+
+    <!-- ===================== DAY TWO ===================== -->
+    <section class="day">
+      <div class="day-head">
+        <h2>Day two</h2>
+        <span class="day-meta">Wednesday 24 June · Deploy, and the close</span>
+      </div>
+
+      <div class="row">
+        <span class="t">09:30</span>
+        <span class="b"><span class="title">Coffee, settle in</span><span class="note">Genius bar open for any Prospector or Claude account questions from overnight.</span></span>
+      </div>
+      <div class="row">
+        <span class="t">10:00</span>
+        <span class="b"><span class="title">Recap and today's destination</span><span class="note">A follow-up engine, your leads tracked and worked, a content-capture habit, and your 90-day plan.</span></span>
+      </div>
+      <div class="row">
+        <span class="t">10:10</span>
+        <span class="b"><span class="title">Following up without chasing</span><span class="note">The nurture discipline: calm authority, diagnose before you direct, a reflective question beats a call push, never "just checking in", mind the nudge timing. Short teach.</span></span>
+      </div>
+      <div class="row">
+        <span class="t">10:30</span>
+        <span class="b"><span class="title">Nurture Engine, hands-on</span><span class="note">Take a real stalled thread or a first touch to an A-tier prospect: give it context, paste the message, get three reply options, pick and edit, send. Everyone sends at least one real message and makes their LinkedIn connections.</span><span class="showlinks"><a class="showlink" href="https://nurture.denlennie.com/engine" target="_blank" rel="noopener">Nurture engine</a></span></span>
+      </div>
+      <div class="row brk">
+        <span class="t">11:15</span>
+        <span class="b"><span class="title">Break</span></span>
+      </div>
+      <div class="row">
+        <span class="t">11:30</span>
+        <span class="b"><span class="title">Work and track your leads</span><span class="note">The lead tracking is already in the Prospector, so there's nothing to build. Each person works their list: mark good fit, contacted, meeting booked, won, add the notes, and let the learning loop sharpen the next run. Their Claude Project from yesterday is the hub, the one place they run the day from. That is the daily operating system: a central hub, with the leads tracked in the tool that found them.</span><span class="deliver">Daily operating system · LinkedIn outreach tracking</span><span class="showlinks"><a class="showlink" href="https://prospector.denlennie.com" target="_blank" rel="noopener">Prospector</a><a class="showlink" href="https://claude.ai" target="_blank" rel="noopener">Claude hub</a></span></span>
+      </div>
+      <div class="row">
+        <span class="t">12:10</span>
+        <span class="b"><span class="title">A taste of Claude Code <span class="chip">SHOW</span></span><span class="note">On your screen, not theirs. Show one thing built fast, the kind of custom piece that goes further than the off-the-shelf tools. This is the ceiling, and it's Boardroom territory. Keep it short, leave them wanting it.</span></span>
+      </div>
+      <div class="row meal">
+        <span class="t">12:45</span>
+        <span class="b"><span class="title">Lunch</span><span class="note">Back at 13:45.</span></span>
+      </div>
+      <div class="row">
+        <span class="t">13:45</span>
+        <span class="b"><span class="title">Content from the field</span><span class="note">You don't need a content machine, you need to capture the moment. Demo the on-location tool: a photo plus a Voice Memo (Apple transcribes it), drop the image and the transcript in, headlines and content ideas come out. Everyone tries it once in the room. Light and quick.</span><span class="deliver">On-location content workflow</span></span>
+      </div>
+      <div class="row">
+        <span class="t">14:30</span>
+        <span class="b"><span class="title">Build the 90-day plan</span><span class="note">Each person writes theirs: the one domino move for where they are, the weekly Prospector cadence, the follow-up rhythm, the content-capture habit. You circulate. This is the page they take home.</span><span class="deliver">Personalised 90-day plan</span><span class="showlinks"><a class="showlink" href="https://docs.denlennie.com/90-day-plan.html" target="_blank" rel="noopener">90-day plan</a></span></span>
+      </div>
+      <div class="row brk">
+        <span class="t">15:15</span>
+        <span class="b"><span class="title">Break</span></span>
+      </div>
+      <div class="row">
+        <span class="t">15:30</span>
+        <span class="b"><span class="title">The Boardroom, announced</span><span class="note">Outcome language, earned not cheap, see the detail below. The framing is responsive, not pre-planned: overnight a couple of people asked you what happens after this, and it tipped you into reopening the UK Elite Boardroom, first time since 2022. Lay out the two ways in, the room-only terms, the selectivity, share the hidden offer doc, then move to applications.</span><span class="showlinks"><a class="showlink" href="https://docs.denlennie.com/banana.html" target="_blank" rel="noopener">Offer page</a></span></span>
+      </div>
+      <div class="row">
+        <span class="t">16:00</span>
+        <span class="b"><span class="title">Applications and quiet 1:1s</span><span class="note">Take the soft application in the room. Warm ones quietly over the break if a public hand-raise feels heavy. Enrolment and the first charge happen on Signal from the Scotland window just after.</span><span class="showlinks"><a class="showlink" href="https://docs.denlennie.com/banana.html" target="_blank" rel="noopener">Offer page</a></span></span>
+      </div>
+      <div class="row">
+        <span class="t">16:30</span>
+        <span class="b"><span class="title">Final recap and close</span><span class="note">Tick every deliverable they're leaving with, name the Monday-morning first move, leave the door open.</span></span>
+      </div>
+    </section>
+
+    <div class="callout close">
+      <h3>The close, in detail</h3>
+      <p style="margin:0 0 0.6rem">The room is mostly returning members and two from the original Elite group. This is a return to something more valuable, not a first-time pitch. No current full-rate Elite is present, so the room-only rate can be named openly, with "please keep this inside the room". <b>Day one stays subtle</b>: seed progression and support, build the trust, do not reveal the offer. The offer comes on day two. Lead with outcome, more time, less working, the weight off, not the mechanism.</p>
+      <ul>
+        <li><b>The reveal (responsive, not pre-planned):</b> "Overnight a couple of you asked me what happens after this, whether there's a way to keep going. So I've made a call. I'm reopening my UK Elite Boardroom, first time since 2022, and I'm starting with this room."</li>
+        <li><b>What it is:</b> me in your corner every week, one to one on Signal, and I don't just advise, I build. Your offer, your tools, your site, your own AI OS. Everything in Elite. The in-person events aren't part of it for a UK room, they're welcome anytime and get every recording.</li>
+        <li><b>Two ways in:</b> (1) <b>The Elite Boardroom</b>, no onboarding fee (the standard $6,800 waived), $1,295 a month locked for the life of the membership if they commit by Friday, about £975, which is $250 under the standard $1,549, no contract. (2) <b>Ascend</b>, $749 a month, cancel anytime, the group programme, fortnightly with you and alternate weeks with Caleb or Matt, the slower, lower-commitment path for anyone not ready for Elite.</li>
+        <li><b>The ROI line:</b> most members make it back fast, and it's why people stay four and five years paying every month. The return keeps earning its place.</li>
+        <li><b>The why (the long game):</b> waiving the onboarding is a real $6,800 off, over £5,000, before they pay a penny. Frame it as an investment, not a discount. They've already put in time, travel and hotels, and the room only scratches the surface. Working one to one accelerates results. You'll take the hit on the way in because if they're serious you'll help them get what they want. You're not here to fleece anyone up front, you're playing the long game, and the five-year members have doubled and tripled. Simple ROI, theirs and yours.</li>
+        <li><b>Ascend pro-rata:</b> anyone already in Ascend who moves up has this month's payment credited across automatically. They won't pay for both.</li>
+        <li><b>The document:</b> the offer is a separate, hidden page, live at <code>docs.denlennie.com/banana.html</code> (noindex, linked from nowhere) with the join buttons built in (Elite to the ThriveCart cart, Ascend to the denlennie.com/ascend page). Shown only at the day-two reveal, never before. Project it on screen as you talk to it, and drop the link into the event Signal group so it reaches the room and only the room.</li>
+        <li><b>The selectivity:</b> this isn't for everyone in the room, and that's deliberate. I'm choosing who comes in. If you want to be considered, tell me and we'll talk.</li>
+        <li><b>The close:</b> they join straight from the offer page, Elite via the ThriveCart cart and Ascend via the denlennie.com/ascend page. Signal is for questions and the nudge. The two settled weeks in Scotland are the enrolment window, so the soft close is safe, no momentum lost.</li>
+      </ul>
+    </div>
+
+    <div class="callout">
+      <h3>Show versus build: hold the line</h3>
+      <p style="margin:0 0 0.6rem">Enough wins to feel capable, two big surfaces left visible and unfinished. That gap is the close. Don't over-deliver: an overwhelmed room retreats, and a finished room has no reason to join.</p>
+      <ul>
+        <li><b>They build and own</b> (the optimism): their scored Prospector list and its tracking, one Nurture message actually sent, one on-location content capture, their Claude Project hub, their 90-day plan.</li>
+        <li><b>Den shows</b> (the hunger): SceneOps, the machine where leads live and get worked. The Offer Architect, current state to future state, the Elite tool. A taste of Claude Code, what's possible deeper.</li>
+      </ul>
+      <p style="margin:0.6rem 0 0">The offer rebuild, the SceneOps setup, and going deeper are Boardroom work, on purpose. The 48-hour build is where the shown things get finished. That's what makes the Boardroom rate the obvious next step, not a pitch.</p>
+    </div>
+
+    <footer class="poster-footer">
+      <span class="wordmark">Den Lennie.</span>
+      <span>VBA AI Workshop · London · Run-Sheet · 23–24 June 2026</span>
+    </footer>
+
+  </main>
+
+</body>
+</html>
