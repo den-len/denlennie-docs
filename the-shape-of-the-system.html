@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Shape of the System · VBA · Den Lennie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./brand.css">
+  <style>
+    .masthead { background: var(--color-anchor-navy); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .masthead-inner { max-width: 1080px; margin: 0 auto; padding: 1.35rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+    .masthead-logo { height: 42px; width: auto; display: block; }
+    .masthead-tag { font-family: var(--font-caption); font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-paper); opacity: 0.75; }
+
+    .sec { padding: 2.8rem 0; border-bottom: 1px solid var(--tint-ink-08); }
+    .sec:last-of-type { border-bottom: 0; }
+    .sec .eyebrow { display: flex; justify-content: space-between; align-items: baseline; }
+    .sec .eyebrow .n { color: var(--color-burnt-orange); opacity: 0.8; }
+    .sec h2 { margin: 0.4rem 0 0.9rem; max-width: 20ch; }
+    .sec > p { font-size: 1.06rem; line-height: 1.65; max-width: 62ch; }
+
+    .pull { font-family: var(--font-display); font-weight: 600; font-size: 1.25rem; color: var(--color-anchor-navy);
+      border-left: 3px solid var(--color-burnt-orange); padding-left: 1rem; margin: 1.6rem 0 0; max-width: 50ch; }
+
+    /* Trio of labelled blocks */
+    .trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 1.5rem; }
+    .blk { background: var(--color-white); border: 1px solid var(--tint-ink-08); border-radius: 2px; padding: 1.4rem; }
+    .blk .lab { font-family: var(--font-caption); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-burnt-orange); font-weight: 500; }
+    .blk h3 { margin: 0.3rem 0 0.6rem; font-size: 1.08rem; }
+    .blk p { font-size: 0.97rem; line-height: 1.55; margin: 0; }
+
+    /* Two speeds */
+    .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 1.5rem; }
+    .pair .col h3 { margin: 0.2rem 0 0.7rem; }
+    .pair .lives { font-family: var(--font-caption); font-size: 0.85rem; color: var(--color-burnt-orange); margin-top: 0.6rem; }
+
+    /* Daily rhythm flow */
+    .flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 1.5rem; }
+    .step { background: var(--color-white); border: 1px solid var(--tint-ink-08); border-radius: 2px; padding: 1.2rem; position: relative; }
+    .step .lab { font-family: var(--font-caption); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-burnt-orange); }
+    .step h3 { margin: 0.25rem 0 0.5rem; font-size: 1.02rem; }
+    .step p { font-size: 0.93rem; line-height: 1.5; margin: 0; }
+
+    /* Folder tree */
+    .tree { background: var(--color-anchor-navy); color: var(--color-paper); -webkit-print-color-adjust: exact; print-color-adjust: exact;
+      border-radius: 3px; padding: 1.4rem 1.6rem; margin-top: 1.5rem; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 0.84rem; line-height: 1.7; white-space: pre; overflow-x: auto; }
+    .tree .c { color: var(--color-burnt-orange); }
+    .tree .note { opacity: 0.6; }
+
+    .questions { list-style: none; counter-reset: q; padding: 0; margin: 1.4rem 0 0; }
+    .questions li { counter-increment: q; position: relative; padding: 0.9rem 0 0.9rem 3rem; border-top: 1px solid var(--tint-ink-08); font-size: 1.08rem; }
+    .questions li:first-child { border-top: 0; }
+    .questions li::before { content: counter(q); position: absolute; left: 0; top: 0.8rem; font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; color: var(--color-burnt-orange); }
+    .questions .ans { display: block; font-size: 0.92rem; color: var(--color-burnt-orange); margin-top: 0.2rem; }
+
+    .cta-btn { display: inline-block; margin-top: 1.4rem; background: var(--color-burnt-orange); color: var(--color-white);
+      font-family: var(--font-display); font-weight: 600; text-decoration: none; padding: 0.85rem 1.6rem; border-radius: 3px; border-bottom: 0; }
+    .cta-btn:hover { background: var(--color-anchor-navy); color: var(--color-paper); }
+
+    .dark-inset .trio .blk, .dark-inset .step { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.14); }
+    .dark-inset .blk h3, .dark-inset .blk p, .dark-inset .step h3, .dark-inset .step p { color: var(--color-paper); }
+
+    @media (max-width: 760px) {
+      .masthead-inner { padding: 1.1rem 1.25rem; } .masthead-logo { height: 34px; } .masthead-tag { display: none; }
+      .trio, .pair, .flow { grid-template-columns: 1fr; }
+      .sec h2 { max-width: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="masthead">
+    <div class="masthead-inner">
+      <img class="masthead-logo" src="./VBA_wordmark_grey.png" alt="Video Business Accelerator">
+      <span class="masthead-tag">VBA · Den Lennie</span>
+    </div>
+  </header>
+
+  <main class="page">
+
+    <header class="poster-header">
+      <p class="eyebrow">The how<span class="index">THE SHAPE OF THE SYSTEM</span></p>
+      <h1 class="display">The shape of the system.</h1>
+      <hr class="orange-rule">
+      <p class="lead">How to think about your AI operating system before you build one. The architecture, the habits, and the shortest road to the moment it clicks.</p>
+      <p style="font-size:0.95rem; opacity:0.8; margin-top:0.8rem;">Part two. <a href="./your-ai-os.html">Your AI operating system</a> was the what. This is the how.</p>
+    </header>
+
+    <section class="sec">
+      <p class="eyebrow">The frame<span class="n">02</span></p>
+      <h2>A hire, not an install.</h2>
+      <p>The one frame that decides whether this works: you're not setting up software, you're onboarding a colleague.</p>
+      <div class="trio">
+        <div class="blk">
+          <span class="lab">01 · The trap</span>
+          <h3>Treat it like an app</h3>
+          <p>Install it, poke at the settings, expect it to know your business. It can't. A chat window has never met your clients, your prices, or your voice, and it forgets you the moment you close it.</p>
+        </div>
+        <div class="blk">
+          <span class="lab">02 · The frame</span>
+          <h3>Treat it like a hire</h3>
+          <p>A sharp colleague with total amnesia: capable from day one, blank every morning. What would you do for that hire? You'd write everything down and leave it on their desk.</p>
+        </div>
+        <div class="blk">
+          <span class="lab">03 · The system</span>
+          <h3>The folder cures the amnesia</h3>
+          <p>Plain files it reads at the start of every session. Everything you'd tell a great hire in their first week, written down once, read every single day.</p>
+        </div>
+      </div>
+      <p class="pull">If you can write it down, the system can act on it.</p>
+    </section>
+
+    <section class="sec">
+      <p class="eyebrow">The architecture<span class="n">03</span></p>
+      <h2>The anatomy.</h2>
+      <p>A handful of folders is the whole architecture. Plain files, plain English, nothing hidden. You can open and read every one of them.</p>
+      <div class="trio">
+        <div class="blk">
+          <span class="lab">The brain</span>
+          <h3>One operating brief</h3>
+          <p>Who you are, what you sell, your prices, your voice, your priorities. Read at the start of every session.</p>
+        </div>
+        <div class="blk">
+          <span class="lab">The memory</span>
+          <h3>What it keeps</h3>
+          <p>Facts it holds, plus a daily log of what happened. Tomorrow starts where today finished, not from zero.</p>
+        </div>
+        <div class="blk">
+          <span class="lab">The hands</span>
+          <h3>The work it does</h3>
+          <p>Trackers for tasks and pipeline, playbooks for the work you repeat, templates for the documents you send.</p>
+        </div>
+      </div>
+      <div class="tree"><span class="note">your AI OS folder</span>
+ your-business/
+ ├─ CLAUDE.md <span class="c">the brief · read every session</span>
+ ├─ brand/ <span class="c">colours, fonts, voice</span>
+ ├─ memory/ <span class="c">what it keeps between sessions</span>
+ ├─ Operations/
+ │  ├─ Task-Tracker.csv <span class="c">the live task list</span>
+ │  ├─ Logs/ <span class="c">what happened, day by day</span>
+ │  ├─ Playbooks/ <span class="c">how you do things, written once</span>
+ │  └─ Templates/ <span class="c">proposal, brief, invoice</span>
+ ├─ Finance/
+ │  └─ Pipeline-Tracker.csv <span class="c">prospects and money</span>
+ ├─ Clients/ <span class="c">one folder per client</span>
+ ├─ Prospects/ <span class="c">moves to Clients/ when they sign</span>
+ └─ Archive/ <span class="c">superseded, never deleted</span></div>
+    </section>
+
+    <section class="sec">
+      <p class="eyebrow">The architecture<span class="n">04</span></p>
+      <h2>Two speeds of truth.</h2>
+      <p>Every fact in the system moves at one of two speeds. Keep them apart and it stays calm.</p>
+      <div class="pair">
+        <div class="col blk">
+          <span class="lab">Stable · changes rarely</span>
+          <h3>What the business is</h3>
+          <p>What you sell and what it costs. Your values and your strategic filter. Brand: colours, fonts, how you sound. How you like to work.</p>
+          <p class="lives">lives in → CLAUDE.md, brand/</p>
+        </div>
+        <div class="col blk">
+          <span class="lab">Live · changes daily</span>
+          <h3>What's happening now</h3>
+          <p>Which jobs are on and where they're up to. This week's focus and blockers. Who owes you money. What got decided today.</p>
+          <p class="lives">lives in → trackers, Logs/, a current-state note</p>
+        </div>
+      </div>
+      <p class="pull">Separate them and the brief stays true while the day moves.</p>
+    </section>
+
+    <section class="sec">
+      <p class="eyebrow">The foundation<span class="n">05</span></p>
+      <h2>Where it lives.</h2>
+      <p>One decision, made once, before anything is installed. Storage and live work are different jobs, and the failure happens when one tool is asked to do both.</p>
+      <div class="trio">
+        <div class="blk">
+          <span class="lab">01 · Live work</span>
+          <h3>Local, always</h3>
+          <p>The system folder sits on your computer's own disk, in your home folder. Not inside iCloud, Google Drive or Dropbox. And watch the Desktop: many Macs quietly sync Desktop and Documents to iCloud, so "local" isn't always where you think it is.</p>
+        </div>
+        <div class="blk">
+          <span class="lab">02 · Backup</span>
+          <h3>Deliberate, separate</h3>
+          <p>Time Machine to a drive, or a zipped snapshot dropped into your cloud drive. A synced folder is not a backup: a deletion syncs just as faithfully as a save.</p>
+        </div>
+        <div class="blk">
+          <span class="lab">03 · Assets</span>
+          <h3>Cloud, as always</h3>
+          <p>Big files, deliverables, client footage stay in Drive or Dropbox. Storing finished work is exactly the job those tools are built for. Leave them to it.</p>
+        </div>
+      </div>
+      <p class="pull">Live work local. Backup deliberate. Assets in the cloud. Three jobs, three places.</p>
+    </section>
+
+    <div class="dark-inset">
+      <p class="eyebrow" style="color: var(--color-paper)">The habit<span class="index" style="color: var(--color-burnt-orange)">06</span></p>
+      <h2 style="margin-top:0">The rhythm is the engine.</h2>
+      <hr class="orange-rule">
+      <p style="color: var(--color-paper); max-width:62ch;">The architecture only pays off through one daily loop. Day one it knows what you wrote down. Day thirty it knows your clients, your pipeline, and how you like things done.</p>
+      <div class="flow">
+        <div class="step"><span class="lab">Open</span><h3>Start informed</h3><p>It reads the brief, the tracker and yesterday's log before you've finished your coffee.</p></div>
+        <div class="step"><span class="lab">Work</span><h3>Do the day</h3><p>Quotes, briefs, emails, prep. You talk, it produces, you approve.</p></div>
+        <div class="step"><span class="lab">Log</span><h3>Capture as you go</h3><p>Decisions, status changes and new leads get written down the moment they're mentioned.</p></div>
+        <div class="step"><span class="lab">Close</span><h3>End richer</h3><p>The session ends with the system knowing more than it did this morning. That's the whole trick.</p></div>
+      </div>
+      <p style="color: var(--color-paper); opacity:0.85; font-size: var(--type-small); margin-top:1.4rem;">For the first month, start everything in the system, even what feels quicker elsewhere. You're not saving time yet. You're training your replacement for the boring parts.</p>
+    </div>
+
+    <section class="sec">
+      <p class="eyebrow">The habit<span class="n">07</span></p>
+      <h2>Write it down once.</h2>
+      <p>A playbook is a procedure in your own words: how you quote, what goes in your project brief, the questions you ask a new lead, your prices and your rules.</p>
+      <div class="trio">
+        <div class="blk">
+          <span class="lab">01 · The rule</span>
+          <h3>The rule of three</h3>
+          <p>Done something three times? Write it down. That's a playbook now, and you never start it from scratch again.</p>
+        </div>
+        <div class="blk">
+          <span class="lab">02 · The payoff</span>
+          <h3>Procedures, not prompts</h3>
+          <p>"Do a proposal for Sarah" now runs your whole procedure: your structure, your prices, your tone, your checklist. One sentence in, finished document out.</p>
+        </div>
+        <div class="blk">
+          <span class="lab">03 · The start</span>
+          <h3>Three come in the kit</h3>
+          <p>Job prep, proposal, project brief. Rewrite them until they sound like you, then add your own as the rule of three catches them.</p>
+        </div>
+      </div>
+      <p class="pull">This is where the hours come back. Every playbook is a job you'll never explain twice.</p>
+    </section>
+
+    <section class="sec">
+      <p class="eyebrow">The breakthrough<span class="n">08</span></p>
+      <h2>The first hour.</h2>
+      <p>Don't set up everything. The goal of the first sitting is one real piece of work, as fast as possible. Everything else can wait.</p>
+      <div class="trio">
+        <div class="blk">
+          <span class="lab">01 · Begin</span>
+          <h3>Say "let's begin"</h3>
+          <p>The guide interviews you, gently. Your website does half the talking, ten minutes of questions does the rest. You talk, it builds.</p>
+        </div>
+        <div class="blk">
+          <span class="lab">02 · Import</span>
+          <h3>The handover trick</h3>
+          <p>Your existing AI chats already know a surprising amount about your business. The guide shows you how to export that knowledge and fold it in: months of context in one move.</p>
+        </div>
+        <div class="blk">
+          <span class="lab">03 · Win</span>
+          <h3>One real task, today</h3>
+          <p>Before the first sitting ends, it does something real for your business: a quote, a brief, an email in your voice. Feel it work before you invest another minute.</p>
+        </div>
+      </div>
+      <p class="pull">The breakthrough isn't a feature. It's the first output you'd actually send.</p>
+    </section>
+
+    <section class="sec">
+      <p class="eyebrow">The room<span class="n">09</span></p>
+      <h2>To the whiteboard.</h2>
+      <ol class="questions">
+        <li>What do you find yourself re-explaining most often? <span class="ans">that's your brief</span></li>
+        <li>What do you do three or more times a month? <span class="ans">that's your first playbook</span></li>
+        <li>What would you hand over tomorrow, if you trusted it? <span class="ans">that's your first win</span></li>
+      </ol>
+      <p style="margin-top:1.2rem;">Markers out. The best answers get built this week.</p>
+    </section>
+
+    <section class="sec">
+      <p class="eyebrow">Together<span class="n">10</span></p>
+      <h2>Same shape, shared parts.</h2>
+      <p>This is why everyone in the room installs one architecture instead of ten different ones, and it's the quiet reason the room itself is worth more than any single build.</p>
+      <div class="trio">
+        <div class="blk">
+          <span class="lab">Swap playbooks</span>
+          <h3>The parts fit</h3>
+          <p>A pricing playbook written in one business drops into another with the names changed. Same shape, so the parts fit.</p>
+        </div>
+        <div class="blk">
+          <span class="lab">Compare briefs</span>
+          <h3>See why it works</h3>
+          <p>When something works, we can see why, because we're all looking at the same files in the same places.</p>
+        </div>
+        <div class="blk">
+          <span class="lab">Build together</span>
+          <h3>By Friday it's everyone's</h3>
+          <p>Good brains in one room. An idea sketched on the whiteboard today can be in everyone's system by Friday.</p>
+        </div>
+      </div>
+      <p class="pull">Open the folder. Say "let's begin". The guide takes it from there.</p>
+      <p style="margin-top:1.2rem;">We all leave from the same starting point, so everything any one of us figures out becomes something we can hand each other. That room, the people in it and what they share, is the heart of the Boardroom.</p>
+      <a class="cta-btn" href="https://denlennie.com/mentoring">See how to work with me →</a>
+    </section>
+
+    <footer class="poster-footer">
+      <span class="wordmark">Den Lennie</span>
+      <span>VBA · The Shape of the System</span>
+      <span>denlennie.com</span>
+    </footer>
+
+  </main>
+
+</body>
+</html>
