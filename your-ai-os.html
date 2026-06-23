@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your AI Operating System · VBA · Den Lennie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./brand.css">
+  <style>
+    /* Navy masthead band carrying the VBA wordmark (light logo on dark). */
+    .masthead { background: var(--color-anchor-navy); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .masthead-inner { max-width: 1080px; margin: 0 auto; padding: 1.35rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+    .masthead-logo { height: 42px; width: auto; display: block; }
+    .masthead-tag { font-family: var(--font-caption); font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-paper); opacity: 0.75; }
+
+    .sec { padding: 2.6rem 0; border-bottom: 1px solid var(--tint-ink-08); }
+    .sec:last-of-type { border-bottom: 0; }
+    .sec .eyebrow { display: flex; justify-content: space-between; align-items: baseline; }
+    .sec .eyebrow .n { color: var(--color-burnt-orange); opacity: 0.8; }
+    .sec h2 { margin: 0.4rem 0 0.9rem; max-width: 18ch; }
+    .sec p { font-size: 1.06rem; line-height: 1.65; max-width: 60ch; }
+
+    /* The folder path line */
+    .folder { font-family: var(--font-caption); font-size: 0.95rem; background: var(--color-anchor-navy); color: var(--color-paper);
+      -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 0.8rem 1rem; border-radius: 3px; margin-top: 1.4rem; display: inline-block; }
+    .folder .slash { color: var(--color-burnt-orange); }
+
+    /* Two-column task list */
+    .does { columns: 2; column-gap: 2.5rem; max-width: 46rem; margin: 1.2rem 0 0; padding: 0; list-style: none; }
+    .does li { break-inside: avoid; padding: 0.45rem 0 0.45rem 1.4rem; position: relative; font-size: 1.02rem; }
+    .does li::before { content: ""; position: absolute; left: 0; top: 0.95rem; width: 0.5rem; height: 0.5rem; background: var(--color-burnt-orange); border-radius: 50%; }
+
+    /* Numbered habits */
+    .habits { list-style: none; counter-reset: h; padding: 0; margin: 1.2rem 0 0; max-width: 60ch; }
+    .habits li { counter-increment: h; position: relative; padding: 0.7rem 0 0.7rem 3rem; border-top: 1px solid var(--tint-ink-08); }
+    .habits li:first-child { border-top: 0; }
+    .habits li::before { content: counter(h); position: absolute; left: 0; top: 0.6rem; font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; color: var(--color-burnt-orange); }
+
+    .dark-inset .does li, .dark-inset p { color: var(--color-paper); }
+    .dark-inset .does li::before { background: var(--color-burnt-orange); }
+
+    .cta-btn { display: inline-block; margin-top: 1.4rem; background: var(--color-burnt-orange); color: var(--color-white);
+      font-family: var(--font-display); font-weight: 600; text-decoration: none; padding: 0.85rem 1.6rem; border-radius: 3px; border-bottom: 0; }
+    .cta-btn:hover { background: var(--color-anchor-navy); color: var(--color-paper); }
+
+    @media (max-width: 720px) {
+      .masthead-inner { padding: 1.1rem 1.25rem; } .masthead-logo { height: 34px; } .masthead-tag { display: none; }
+      .does { columns: 1; }
+      .sec h2 { max-width: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="masthead">
+    <div class="masthead-inner">
+      <img class="masthead-logo" src="./VBA_wordmark_grey.png" alt="Video Business Accelerator">
+      <span class="masthead-tag">VBA · Den Lennie</span>
+    </div>
+  </header>
+
+  <main class="page">
+
+    <header class="poster-header">
+      <p class="eyebrow">A different way to work<span class="index">YOUR AI OS</span></p>
+      <h1 class="display">An AI that actually knows your business.</h1>
+      <hr class="orange-rule">
+      <p class="lead">Not another chatbot you re-explain yourself to every morning. A working memory for how you run things, that helps you do the work.</p>
+    </header>
+
+    <section class="sec">
+      <p class="eyebrow">The problem<span class="n">01</span></p>
+      <h2>Most AI forgets you the moment you close the tab.</h2>
+      <p>You've probably tried ChatGPT or Claude. They're clever. But every new chat starts cold. You re-explain your business, your clients, your prices, your tone, over and over. It's a brilliant stranger who turns up with amnesia every single day.</p>
+    </section>
+
+    <section class="sec">
+      <p class="eyebrow">The shift<span class="n">02</span></p>
+      <h2>Your AI OS remembers. It knows how you work.</h2>
+      <p>An operating system is the opposite of a blank chat. It holds everything about how you run your business: your priorities, your clients, your pricing, your voice. You stop briefing it, and start working with it.</p>
+    </section>
+
+    <section class="sec">
+      <p class="eyebrow">What it is<span class="n">03</span></p>
+      <h2>It's a folder on your computer. That's it.</h2>
+      <p>No new app to log into. No dashboard to learn. It's a folder that holds your business's knowledge, and an assistant that reads it, works in it, and keeps it up to date. It's yours, it's private, and it lives on your own machine.</p>
+      <span class="folder"><span class="slash">/</span> your-business/ &nbsp; what you do &middot; who you serve &middot; how you sound &middot; what's on</span>
+    </section>
+
+    <section class="sec">
+      <p class="eyebrow">What it does<span class="n">04</span></p>
+      <h2>If you'd do it on the computer, start here.</h2>
+      <ul class="does">
+        <li>Client emails and follow-ups</li>
+        <li>Proposals and quotes</li>
+        <li>Planning your week</li>
+        <li>Prepping for a call</li>
+        <li>Writing the actual deliverables</li>
+        <li>Chasing invoices and admin</li>
+        <li>Tracking jobs and prospects</li>
+        <li>Remembering what you promised</li>
+      </ul>
+    </section>
+
+    <section class="sec">
+      <p class="eyebrow">Who it's for<span class="n">05</span></p>
+      <h2>For people who are great at the work, and buried in the admin.</h2>
+      <p>Solo operators and small teams. Service businesses especially: video companies, consultants, agencies, advisers, studios. If you're the one who turns the lights on and also writes every email, this is for you.</p>
+    </section>
+
+    <section class="sec">
+      <p class="eyebrow">Why it works<span class="n">06</span></p>
+      <h2>It knows your priorities, your values, and how you think.</h2>
+      <p>That's the difference between a tidy notepad and a real partner. Because it understands what you're chasing and what you believe, it puts the right things in front of you at the right time, and everything it writes sounds like you, not like a brochure.</p>
+    </section>
+
+    <section class="sec">
+      <p class="eyebrow">Setting it up<span class="n">07</span></p>
+      <h2>You don't build it. A guide builds it with you.</h2>
+      <p>Open the folder, say "let's begin", and a patient guide walks you through it. It reads your website, learns from your old AI chats and your past invoices and proposals, and asks a few good questions. Small steps. Stop whenever you like. No technical skill needed.</p>
+    </section>
+
+    <section class="sec">
+      <p class="eyebrow">Getting the most from it<span class="n">08</span></p>
+      <h2>Five habits that make it sing.</h2>
+      <ol class="habits">
+        <li><strong>Start everything here.</strong> Make it the first place you go, before the blank page.</li>
+        <li><strong>Feed it your history.</strong> The more it knows, the better it gets.</li>
+        <li><strong>Correct it once.</strong> It remembers, so it won't make the same slip twice.</li>
+        <li><strong>Keep it backed up.</strong> Put the folder in Dropbox, Drive, or iCloud.</li>
+        <li><strong>Let it grow.</strong> It'll suggest the next useful step when you're ready.</li>
+      </ol>
+    </section>
+
+    <div class="dark-inset">
+      <p class="eyebrow" style="color: var(--color-paper)">The honest bit<span class="index" style="color: var(--color-burnt-orange)">09</span></p>
+      <h2 style="margin-top:0">Private, yours, and impossible to break.</h2>
+      <hr class="orange-rule">
+      <ul class="does" style="columns:1; max-width:none;">
+        <li>It stays on your computer. Nothing's uploaded.</li>
+        <li>You can't break anything. It asks before it does anything big.</li>
+        <li>You don't need to be technical. If you can send an email, you can use it.</li>
+        <li>It's your folder, not a subscription you're locked into.</li>
+      </ul>
+    </div>
+
+    <section class="sec">
+      <p class="eyebrow">What changes<span class="n">10</span></p>
+      <h2>You stop starting from scratch.</h2>
+      <p>No more blank pages. No more repeating yourself. The admin gets lighter, the writing sounds like you, and the things that matter stop slipping through the cracks. You get your evenings back.</p>
+    </section>
+
+    <section class="sec">
+      <p class="eyebrow">The next step<span class="n">11</span></p>
+      <h2>Want one of your own?</h2>
+      <p>This is your AI operating system: built with you, in your voice, until it runs your day. If that's what you've been needing, let's build yours.</p>
+      <a class="cta-btn" href="https://denlennie.com/mentoring">See how to work with me →</a>
+    </section>
+
+    <footer class="poster-footer">
+      <span class="wordmark">Den Lennie</span>
+      <span>VBA · Your AI Operating System</span>
+      <span>denlennie.com</span>
+    </footer>
+
+  </main>
+
+</body>
+</html>
