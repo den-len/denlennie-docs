@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your Morning Briefing · VBA AI Workshop · Den Lennie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./brand.css">
+  <style>
+    .q-index { font-family: var(--font-caption); font-size: var(--type-caption); font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-burnt-orange); margin: 0 0 0.4rem; }
+    .block { margin: 2.4rem 0; }
+
+    ol.steps { list-style: none; counter-reset: step; padding: 0; margin: 1.2rem 0; }
+    ol.steps li { counter-increment: step; position: relative; padding: 0.7rem 0 0.7rem 3rem; border-bottom: 1px solid var(--tint-ink-08); line-height: 1.55; }
+    ol.steps li:last-child { border-bottom: 0; }
+    ol.steps li::before { content: counter(step); position: absolute; left: 0; top: 0.7rem; width: 1.9rem; height: 1.9rem; border-radius: 50%; background: var(--color-burnt-orange); color: var(--color-white); font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; display: flex; align-items: center; justify-content: center; }
+    ol.steps b { color: var(--color-anchor-navy); }
+
+    .know { background: var(--color-white); border: 1px solid var(--tint-ink-08); border-left: 3px solid var(--color-burnt-orange); border-radius: 2px; padding: 1.1rem 1.3rem; margin: 1.4rem 0; }
+    .know h3 { margin: 0 0 0.6rem; font-family: var(--font-display); font-weight: 600; font-size: 1rem; color: var(--color-anchor-navy); }
+    .know ul { margin: 0; padding-left: 1.1rem; }
+    .know li { margin: 0.45rem 0; line-height: 1.5; }
+    .know li b { color: var(--color-anchor-navy); }
+    .know.single { background: var(--tint-orange-10); border: 0; border-left: 3px solid var(--color-burnt-orange); }
+
+    .prompt-bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin: 1rem 0 0.6rem; flex-wrap: wrap; }
+    .prompt-bar .label { font-family: var(--font-caption); font-size: var(--type-caption); font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-anchor-navy); }
+    .copybtn { font-family: var(--font-caption); font-size: var(--type-caption); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.55rem 1.1rem; border-radius: 2px; border: 0; cursor: pointer; background: var(--color-burnt-orange); color: var(--color-white); }
+    .copybtn:hover { background: var(--color-anchor-navy); }
+    #prompt { background: var(--color-white); border: 1px solid var(--tint-ink-08); border-left: 3px solid var(--color-burnt-orange); border-radius: 2px; padding: 1.4rem 1.6rem; margin: 0; font-family: var(--font-body); font-weight: 300; font-size: 1rem; line-height: 1.6; color: var(--color-ink-black); white-space: pre-wrap; word-wrap: break-word; }
+    .after { font-size: var(--type-small); opacity: 0.78; margin: 0.7rem 0 0; }
+  </style>
+</head>
+<body>
+  <main class="page">
+
+    <header class="poster-header">
+      <p class="eyebrow">VBA AI Workshop · London<span class="index">YOUR DAILY OS</span></p>
+      <h1 class="display">Your morning briefing.</h1>
+      <hr class="orange-rule">
+      <p class="lead">Connect your Gmail, Calendar and Slack to Claude once, and from tomorrow you just open it and ask for your day: a briefing and a task list pulled straight from your own calendar and inbox. A one-minute setup, then a five-second habit. Not a build, a login.</p>
+    </header>
+
+    <section class="block">
+      <p class="q-index">01 · Connect once</p>
+      <h2>Three connectors, about a minute</h2>
+      <ol class="steps">
+        <li>In Claude, open <b>Cowork</b> and click <b>Customize</b> in the left sidebar, then <b>Connectors</b>. The screen splits into web connectors and desktop connectors. The ones you want, <b>Gmail</b>, <b>Google Calendar</b> and <b>Slack</b>, are web connectors.</li>
+        <li>Click the <b>+</b> icon, then <b>Browse Connectors</b>. Find <b>Gmail</b> near the top, click the <b>+</b> next to it. A Google sign-in window opens: pick your account, review the permissions, click <b>Continue</b>. Gmail now shows as connected. Under a minute.</li>
+        <li>Do the same for <b>Google Calendar</b>, then <b>Slack</b>. Same three moves each time: plus icon, pick the connector, authorise. Once you've done Gmail, you've got the whole pattern.</li>
+      </ol>
+
+      <div class="know">
+        <h3>Good to know</h3>
+        <ul>
+          <li><b>It only sees what you see.</b> Claude mirrors your own login and permissions. It can't reach anything you can't reach yourself.</li>
+          <li><b>Nothing changes without you.</b> Write and delete actions need your approval. Calendar edits, sending email, none of it happens silently. Claude shows you what it's about to do first, so this can read your day without touching it.</li>
+        </ul>
+      </div>
+
+      <div class="know single"><b>One thing to know.</b> The Google connector links one Google account at a time, and Gmail, Calendar and Drive all ride on it. If your business and personal calendars sit on different logins, connect the one that holds your working day. Multiple accounts aren't supported yet, the simple workaround is forwarding from the other account into the connected one.</div>
+    </section>
+
+    <section class="block">
+      <p class="q-index">02 · Ask for your day</p>
+      <h2>The prompt</h2>
+      <p>Once the three are connected, paste this in, or just say it. The first time is a setup; after that it's a five-second habit.</p>
+      <div class="prompt-bar">
+        <span class="label">The prompt</span>
+        <button class="copybtn" id="copybtn" onclick="copyPrompt()">Copy the prompt</button>
+      </div>
+      <pre id="prompt">Give me my briefing for the day ahead.
+
+From my calendar today: a quick summary first (how many meetings, my first and last, any big gaps), then each meeting in order with the time, who's on it, and a one-line note on what it's about or what I should prepare.
+
+From my email: anything that needs a reply today, and anything tied to one of today's meetings.
+
+Then a short, prioritised task list: the three or four things that actually matter today, in order.
+
+Keep it tight and scannable. Don't change anything, just tell me what's on.</pre>
+      <p class="after">After the first run, "What's on today?" is enough. You taught it the shape once, now it just answers.</p>
+    </section>
+
+    <div class="dark-inset">
+      <p class="eyebrow" style="color: var(--color-paper)">Why this matters</p>
+      <hr class="orange-rule">
+      <h2 style="margin-top:0">Not a build. A login.</h2>
+      <p style="margin-bottom:0">Connect three things once, and from tomorrow you just open Claude and ask for your day. That's your operating system, and it took you a minute to switch on.</p>
+    </div>
+
+    <footer class="poster-footer">
+      <span class="wordmark">Den Lennie.</span>
+      <span>VBA AI Workshop · London · Your morning briefing</span>
+    </footer>
+
+  </main>
+
+  <script>
+    function copyPrompt() {
+      var t = document.getElementById('prompt').textContent;
+      var b = document.getElementById('copybtn');
+      navigator.clipboard.writeText(t).then(function(){ b.textContent = 'Copied'; setTimeout(function(){ b.textContent = 'Copy the prompt'; }, 2000); }).catch(function(){ b.textContent = 'Press Ctrl/Cmd C'; });
+    }
+  </script>
+</body>
+</html>
