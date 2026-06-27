@@ -213,6 +213,20 @@
 
     .btn-save:hover { opacity: 0.85; }
 
+    .btn-fresh {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.45);
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 12px;
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 0;
+    }
+
+    .btn-fresh:hover { color: rgba(255,255,255,0.75); }
+
     .save-status {
       font-size: 12px;
       color: rgba(255,255,255,0.45);
@@ -268,7 +282,8 @@
   <!-- INTRO NOTE -->
   <div class="note-box" style="margin-bottom: 0;">
     <p>Complete each section with as much detail as you can. There are no right or wrong answers — the more specific you are, the sharper the output will be.</p>
-    <p>Where you have video testimonials, paste the transcript rather than a link. Links are harder to process through the AI system. Your progress is saved automatically as you type.</p>
+    <p>Where you have video testimonials, paste the transcript rather than a link. Links are harder to process through the AI system.</p>
+    <p>Your answers are saved for this browser session only. They are never sent anywhere and will be cleared automatically when you close this tab. Nothing carries over to any other person.</p>
   </div>
 
   <!-- FORM -->
@@ -612,7 +627,7 @@
 
   <!-- SAVE BAR -->
   <div class="save-bar">
-    <p class="hint">Your answers are saved automatically. When you are done, <strong>download as PDF</strong> and send it to Den on Signal.</p>
+    <p class="hint">Answers saved for this session only — cleared when you close the tab. When done, <strong>download as PDF</strong> and send to Den on Signal. &nbsp;<button class="btn-fresh" id="btn-fresh" onclick="startFresh(); return false;">Start fresh</button></p>
     <div class="btn-group">
       <span class="save-status" id="save-status"></span>
       <button class="btn-save" onclick="savePDF(); return false;">Download as PDF</button>
@@ -640,7 +655,9 @@
       inp.addEventListener('input', scheduleAutosave);
     });
 
-    // Auto-save to localStorage
+    // Session-only storage — clears automatically when the tab is closed.
+    // No data persists between users or devices.
+    var STORE_KEY = 'vba-diagnostic-session';
     var saveTimer;
     var saveStatus = document.getElementById('save-status');
 
@@ -655,7 +672,7 @@
         if (el.name) data[el.name] = el.value;
       });
       try {
-        localStorage.setItem('vba-diagnostic-v1', JSON.stringify(data));
+        sessionStorage.setItem(STORE_KEY, JSON.stringify(data));
         saveStatus.textContent = 'Saved';
         setTimeout(function() { saveStatus.textContent = ''; }, 2000);
       } catch(e) {}
@@ -663,7 +680,7 @@
 
     function loadSaved() {
       try {
-        var raw = localStorage.getItem('vba-diagnostic-v1');
+        var raw = sessionStorage.getItem(STORE_KEY);
         if (!raw) return;
         var data = JSON.parse(raw);
         Object.keys(data).forEach(function(name) {
@@ -672,6 +689,15 @@
         });
         resizeAll();
       } catch(e) {}
+    }
+
+    function startFresh() {
+      if (!confirm('Clear all answers and start again?')) return;
+      try { sessionStorage.removeItem(STORE_KEY); } catch(e) {}
+      document.querySelectorAll('textarea, input').forEach(function(el) {
+        el.value = '';
+        if (el.tagName === 'TEXTAREA') { el.style.height = 'auto'; }
+      });
     }
 
     function savePDF() {
