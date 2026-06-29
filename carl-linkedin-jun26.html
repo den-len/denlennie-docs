@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>LinkedIn Intelligence Report · Carl Homer · VBA Elite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./brand.css">
+  <style>
+    body { background: #F5F4EF; }
+
+    /* ── MASTHEAD ─────────────────────────────────────────────── */
+    .masthead { background: #0B2141; }
+    .masthead-inner {
+      max-width: 900px; margin: 0 auto; padding: 1.25rem 2rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .masthead-logo { height: 36px; width: auto; display: block; }
+    .masthead-label {
+      font-family: 'Poppins', system-ui, sans-serif;
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #F5F4EF; opacity: 0.75;
+    }
+
+    /* ── PRINT BUTTON ─────────────────────────────────────────── */
+    .print-bar {
+      max-width: 900px; margin: 0 auto; padding: 0.85rem 2rem;
+      display: flex; justify-content: flex-end;
+    }
+    .btn-print {
+      font-family: 'Poppins', system-ui, sans-serif;
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; background: none; border: 1px solid rgba(11,33,65,0.25);
+      color: #0B2141; padding: 0.45rem 1rem; cursor: pointer; border-radius: 2px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .btn-print:hover { background: #0B2141; color: #F5F4EF; }
+
+    /* ── PAGE BODY ────────────────────────────────────────────── */
+    .wrap {
+      max-width: 900px; margin: 0 auto; padding: 3rem 2rem 6rem;
+      font-family: 'Ubuntu', system-ui, sans-serif; color: #0C0C0D; font-weight: 300;
+    }
+
+    /* ── HEADER ───────────────────────────────────────────────── */
+    .eyebrow-line {
+      font-family: 'Poppins', system-ui, sans-serif;
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #D9531E; margin: 0 0 0.6rem;
+    }
+    .head {
+      font-family: 'Poppins', system-ui, sans-serif;
+      font-weight: 700; color: #0B2141;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      letter-spacing: -0.025em; line-height: 1.05; margin: 0;
+    }
+    .rule { width: 64px; height: 3px; background: #D9531E; margin: 1.1rem 0 1.6rem; border-radius: 2px; border: none; }
+    .intro { font-size: 1.1rem; line-height: 1.65; max-width: 62ch; margin: 0 0 2rem; }
+
+    /* ── STAT STRIP ───────────────────────────────────────────── */
+    .stat-strip {
+      display: flex; gap: 0; border-top: 1px solid rgba(11,33,65,0.12);
+      border-bottom: 1px solid rgba(11,33,65,0.12); margin: 2rem 0 3rem;
+    }
+    .stat-item {
+      flex: 1; padding: 1.4rem 1.5rem; border-right: 1px solid rgba(11,33,65,0.12);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Poppins', system-ui, sans-serif;
+      font-weight: 700; font-size: 2.4rem; letter-spacing: -0.03em;
+      color: #D9531E; line-height: 1;
+    }
+    .stat-lbl {
+      font-family: 'Poppins', system-ui, sans-serif;
+      font-size: 0.65rem; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #0B2141; opacity: 0.55; margin-top: 0.3rem;
+    }
+
+    /* ── SECTION HEADS ────────────────────────────────────────── */
+    .section-ey {
+      font-family: 'Poppins', system-ui, sans-serif;
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #D9531E; margin: 3.5rem 0 0.5rem;
+    }
+    .section-head {
+      font-family: 'Poppins', system-ui, sans-serif;
+      font-weight: 700; color: #0B2141;
+      font-size: 1.45rem; letter-spacing: -0.02em; margin: 0 0 1.5rem;
+    }
+    p { font-size: 1rem; line-height: 1.65; margin: 0 0 1rem; }
+
+    /* ── DEFINITION ROWS ──────────────────────────────────────── */
+    .rows { margin: 0 0 2rem; }
+    .row {
+      display: flex; gap: 1.5rem; align-items: baseline;
+      padding: 1rem 0; border-top: 1px solid rgba(12,12,13,0.1);
+    }
+    .row:last-child { border-bottom: 1px solid rgba(12,12,13,0.1); }
+    .row-label {
+      font-family: 'Poppins', system-ui, sans-serif; font-weight: 600;
+      color: #0B2141; font-size: 0.97rem; flex: 0 0 13rem; line-height: 1.4;
+    }
+    .row-body { font-size: 0.97rem; line-height: 1.55; flex: 1; }
+
+    /* tags */
+    .tag {
+      display: inline-block; font-family: 'Poppins', system-ui, sans-serif;
+      font-size: 0.6rem; font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase;
+      padding: 0.2rem 0.55rem; border-radius: 2px; vertical-align: middle; margin-left: 0.5rem;
+    }
+    .tag-ally    { background: #d4ead8; color: #1c4a24; }
+    .tag-critic  { background: #fdddd6; color: #7a2310; }
+    .tag-neutral { background: #dde0ef; color: #1d2755; }
+
+    /* ── ENGAGE ROWS ──────────────────────────────────────────── */
+    .engage-section { margin: 0 0 2rem; }
+    .engage-head {
+      font-family: 'Poppins', system-ui, sans-serif;
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+      padding: 0.6rem 0; border-bottom: 2px solid currentColor; margin-bottom: 0;
+    }
+    .engage-head.respond  { color: #D9531E; }
+    .engage-head.like     { color: #0B2141; }
+    .engage-head.leave    { color: rgba(12,12,13,0.35); }
+
+    .engage-row {
+      display: flex; gap: 1.5rem; align-items: baseline;
+      padding: 0.9rem 0; border-bottom: 1px solid rgba(12,12,13,0.1);
+    }
+    .engage-name {
+      font-family: 'Poppins', system-ui, sans-serif; font-weight: 600;
+      color: #0B2141; font-size: 0.97rem; flex: 0 0 13rem;
+    }
+    .engage-why { font-size: 0.97rem; line-height: 1.55; flex: 1; }
+
+    /* ── DARK FEATURE BLOCK ───────────────────────────────────── */
+    .feature {
+      background: #0B2141; border-radius: 4px; border-left: 4px solid #D9531E;
+      padding: 2rem 2.2rem; margin: 2rem 0;
+    }
+    .feature .feat-ey {
+      font-family: 'Poppins', system-ui, sans-serif;
+      font-size: 0.65rem; font-weight: 600; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #D9531E; margin: 0 0 0.75rem;
+    }
+    .feature .feat-head {
+      font-family: 'Poppins', system-ui, sans-serif; font-weight: 700;
+      color: #FFFFFF; font-size: 1.45rem; letter-spacing: -0.02em;
+      line-height: 1.2; margin: 0 0 1rem;
+    }
+    .feature p { color: #F5F4EF; font-size: 0.97rem; line-height: 1.65; opacity: 0.88; }
+    .feature p:last-child { margin-bottom: 0; }
+
+    /* ── QUOTE BLOCK (draft comment) ──────────────────────────── */
+    .quote-block {
+      border-left: 4px solid #D9531E; padding: 1.25rem 1.6rem;
+      margin: 1.5rem 0; background: #FFFFFF;
+    }
+    .quote-block .q-label {
+      font-family: 'Poppins', system-ui, sans-serif;
+      font-size: 0.65rem; font-weight: 600; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #D9531E; margin: 0 0 0.6rem;
+    }
+    .quote-block blockquote {
+      margin: 0; font-style: italic; font-size: 1rem; line-height: 1.7;
+      color: #0C0C0D;
+    }
+
+    /* ── CALLOUT ──────────────────────────────────────────────── */
+    .turn {
+      font-family: 'Poppins', system-ui, sans-serif; font-weight: 600;
+      color: #0B2141; font-size: 1.15rem; line-height: 1.4;
+      border-left: 4px solid #D9531E; padding-left: 1rem;
+      margin: 2rem 0;
+    }
+    .turn span { color: #D9531E; }
+
+    /* ── CONTENT GRID ─────────────────────────────────────────── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin: 1.5rem 0; }
+    .col-card { background: #FFFFFF; border: 1px solid rgba(12,12,13,0.1); border-top: 3px solid #0B2141; padding: 1.5rem; border-radius: 2px; }
+    .col-card .card-ey {
+      font-family: 'Poppins', system-ui, sans-serif;
+      font-size: 0.63rem; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #D9531E; margin: 0 0 0.4rem;
+    }
+    .col-card h4 {
+      font-family: 'Poppins', system-ui, sans-serif; font-weight: 700;
+      color: #0B2141; font-size: 1rem; letter-spacing: -0.01em;
+      margin: 0 0 0.7rem; line-height: 1.3;
+    }
+    .col-card p { font-size: 0.93rem; margin: 0; }
+
+    /* ── POST PREVIEW ─────────────────────────────────────────── */
+    .post-box {
+      background: #FFFFFF; border: 1px solid rgba(12,12,13,0.1);
+      border-radius: 3px; overflow: hidden; margin: 1.5rem 0;
+    }
+    .post-box-head {
+      background: #0B2141; padding: 0.65rem 1.5rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .post-box-head .dot { width: 8px; height: 8px; border-radius: 50%; background: #D9531E; flex-shrink: 0; }
+    .post-box-head span {
+      font-family: 'Poppins', system-ui, sans-serif;
+      font-size: 0.63rem; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #F5F4EF; opacity: 0.65;
+    }
+    .post-box-body { padding: 1.8rem 2rem; }
+    .post-box-body p { margin: 0 0 0.7rem; line-height: 1.75; font-size: 0.97rem; }
+    .post-box-body p:last-child { margin-bottom: 0; }
+    .post-box-foot {
+      padding: 0.65rem 2rem; border-top: 1px solid rgba(12,12,13,0.1);
+      font-family: 'Poppins', system-ui, sans-serif;
+      font-size: 0.6rem; font-weight: 600; letter-spacing: 0.13em;
+      text-transform: uppercase; color: #0C0C0D; opacity: 0.4;
+    }
+
+    /* ── FOOTER ───────────────────────────────────────────────── */
+    .page-foot {
+      border-top: 1px solid rgba(12,12,13,0.1); margin-top: 4rem; padding-top: 1.75rem;
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;
+      font-family: 'Poppins', system-ui, sans-serif;
+      font-size: 0.62rem; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #0B2141; opacity: 0.45;
+    }
+
+    /* ── PRINT ────────────────────────────────────────────────── */
+    @media print {
+      .print-bar { display: none; }
+      .masthead { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .feature   { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .post-box-head { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .tag       { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .col-card  { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .wrap { padding: 2rem 2rem 4rem; }
+      .section-ey { margin-top: 2.5rem; }
+    }
+
+    /* ── MOBILE ───────────────────────────────────────────────── */
+    @media (max-width: 680px) {
+      .wrap { padding: 2rem 1.25rem 4rem; }
+      .masthead-inner { padding: 1rem 1.25rem; }
+      .print-bar { padding: 0.75rem 1.25rem; }
+      .stat-strip { flex-wrap: wrap; }
+      .stat-item { flex: 1 1 40%; border-right: none; border-bottom: 1px solid rgba(11,33,65,0.12); }
+      .row { flex-direction: column; gap: 0.35rem; }
+      .row-label { flex: none; }
+      .engage-row { flex-direction: column; gap: 0.25rem; }
+      .engage-name { flex: none; }
+      .two-col { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MASTHEAD -->
+  <div class="masthead">
+    <div class="masthead-inner">
+      <img class="masthead-logo" src="./VBA_wordmark_grey.png" alt="Video Business Accelerator">
+      <span class="masthead-label">VBA Elite · LinkedIn Intelligence</span>
+    </div>
+  </div>
+
+  <!-- PRINT BUTTON -->
+  <div class="print-bar">
+    <button class="btn-print" onclick="window.print()">↓ Download PDF</button>
+  </div>
+
+  <div class="wrap">
+
+    <!-- HEADER -->
+    <p class="eyebrow-line">Carl Homer · Cambridge TV · 29 June 2026</p>
+    <h1 class="head">What your rushes post revealed — and what to do with it.</h1>
+    <hr class="rule">
+    <p class="intro">Analysis of the 97-comment thread on your "do comms pros want raw footage?" post. Where to engage in the thread, what the debate is actually signalling about buyer psychology, and a ready-to-post piece for your own feed.</p>
+
+    <!-- STAT STRIP -->
+    <div class="stat-strip">
+      <div class="stat-item">
+        <div class="stat-num">97</div>
+        <div class="stat-lbl">Comments</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">50</div>
+        <div class="stat-lbl">Reactions</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">6</div>
+        <div class="stat-lbl">Key voices</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">1</div>
+        <div class="stat-lbl">Move to make</div>
+      </div>
+    </div>
+
+    <!-- 01: WHAT THE POST DID -->
+    <p class="section-ey">01</p>
+    <h2 class="section-head">What the post did</h2>
+
+    <p>The tone was right: open, curious, not defensive. You asked a genuine question and the thread rewarded it. Ninety-seven comments on a professional question is a strong signal that this sits on a live nerve across both sides of the camera.</p>
+    <p>The core argument landed clearly: raw footage has technical complexity clients underestimate, your T&Cs reflect that, and you want to find a sensible middle ground that is actually useful rather than just compliant.</p>
+    <p>What the thread revealed about <em>you</em> to anyone watching: you think practically, you are not precious about ownership, and you are asking questions most production owners avoid. That is a credible signal to exactly the kind of comms professional who commissions thoughtfully.</p>
+
+
+    <!-- 02: COMMENT MAP -->
+    <p class="section-ey">02</p>
+    <h2 class="section-head">The comment landscape</h2>
+    <p>Six named contributors, three distinct positions.</p>
+
+    <div class="rows">
+      <div class="row">
+        <div class="row-label">David Kwant <span class="tag tag-neutral">Neutral</span></div>
+        <div class="row-body">Offer a graded library in an easy-to-use file format, charge prep costs, define usage rights carefully. Distinguish client use from third-party distribution.</div>
+      </div>
+      <div class="row">
+        <div class="row-label">Dom Bush <span class="tag tag-ally">Ally</span></div>
+        <div class="row-body">Never give rushes. Restaurant analogy: you do not walk into the kitchen for the ingredients. Warns this blurs IP and sets a precedent that corrodes authority.</div>
+      </div>
+      <div class="row">
+        <div class="row-label">Matt Donnelly <span class="tag tag-ally">Ally</span></div>
+        <div class="row-body">Clients do not understand the technical reality: 4TB+ storage, professional grading, mixing. The expectation is uninformed, not unreasonable.</div>
+      </div>
+      <div class="row">
+        <div class="row-label">Benjamin D. <span class="tag tag-critic">Critic</span></div>
+        <div class="row-body">Expects all of it as standard when commissioning — media files, project files, custom LUTs. Frames this as conditions factored into the proposal, not a concession.</div>
+      </div>
+      <div class="row">
+        <div class="row-label">Ben Srokosz <span class="tag tag-neutral">Neutral</span></div>
+        <div class="row-body">Redefine "raw footage" practically. Long-term relationships outweigh short-term gatekeeping. Clients resent being re-charged for material they feel they already bought.</div>
+      </div>
+      <div class="row">
+        <div class="row-label">Jamie Coles <span class="tag tag-neutral">Neutral</span></div>
+        <div class="row-body">Middle ground: deliver the finished film plus some offcuts. Not all rushes, not nothing.</div>
+      </div>
+    </div>
+
+
+    <!-- 03: WHERE TO ENGAGE -->
+    <p class="section-ey">03</p>
+    <h2 class="section-head">Where to engage in your own thread</h2>
+    <p>With 97 comments, you do not need to reply to everything. Two or three well-chosen comments keep you present without looking defensive.</p>
+
+    <div class="engage-section">
+      <div class="engage-head respond">Respond — highest value</div>
+      <div class="engage-row">
+        <div class="engage-name">Benjamin D.</div>
+        <div class="engage-why">He has stated the buyer's entitlement position more clearly than anyone else: "I expect all of it." That is the exact mindset driving the debate. Responding here puts you in front of people watching both sides — and positions you as measured, not defensive. The angle: do not argue his expectation. Validate it, then distinguish on where the brief was set.</div>
+      </div>
+    </div>
+
+    <div class="engage-section">
+      <div class="engage-head like">Like only — show presence, no comment needed</div>
+      <div class="engage-row">
+        <div class="engage-name">Dom Bush</div>
+        <div class="engage-why">His restaurant analogy is doing good work. Agreeing publicly with the hardest line in the thread closes off the nuance you opened with.</div>
+      </div>
+      <div class="engage-row">
+        <div class="engage-name">Matt Donnelly</div>
+        <div class="engage-why">Solid technical grounding. A like acknowledges it without making you look like you are recruiting allies against the client side.</div>
+      </div>
+      <div class="engage-row">
+        <div class="engage-name">David Kwant</div>
+        <div class="engage-why">Practical and constructive. Worth a like for the thoughtfulness.</div>
+      </div>
+    </div>
+
+    <div class="engage-section">
+      <div class="engage-head leave">Leave — no upside</div>
+      <div class="engage-row">
+        <div class="engage-name">Ben Srokosz</div>
+        <div class="engage-why">The "clients resent re-charges" line is a trap. Engaging invites a debate about relationship management that pulls you away from the frame you set.</div>
+      </div>
+      <div class="engage-row">
+        <div class="engage-name">Jamie Coles</div>
+        <div class="engage-why">The middle-ground position is fine, but commenting on it implies you are settling for a compromise you did not need to make.</div>
+      </div>
+    </div>
+
+    <div class="quote-block">
+      <p class="q-label">Draft comment — paste this as your reply to Benjamin D.</p>
+      <blockquote>"Benjamin, that's a fair expectation — and it should absolutely be factored in at proposal stage. The breakdown usually happens earlier: when the brief hasn't distinguished between 'I want a finished film' and 'I want a production partnership with ongoing asset access.' Two completely different engagements. When the scope is clear upfront, nobody's surprised at handover."</blockquote>
+    </div>
+
+
+    <!-- 04: THE REAL SIGNAL -->
+    <p class="section-ey">04</p>
+    <h2 class="section-head">What the thread is actually telling you</h2>
+
+    <div class="feature">
+      <p class="feat-ey">The real signal</p>
+      <p class="feat-head">The rushes question is never about the files.</p>
+      <p>The clients who ask for rushes are the ones who were not fully sold on what they commissioned. Either the scope was vague, the value was not established, or the brief drifted and they are hedging by asking for the raw material.</p>
+      <p>A client who believes in the finished film does not ask for the footage any more than a satisfied restaurant customer asks for the ingredients.</p>
+      <p>When a client asks for rushes, the right question is not "what do I owe them legally?" It is: "where did I lose them?"</p>
+    </div>
+
+    <p>This matters specifically for where Cambridge TV is heading. The Research Impact Documentary Partnership positioning — everything from the Offer Architect work at the London workshop — is built on a fundamentally different client relationship. Partners do not ask for the recipe. They hired you for the result.</p>
+    <p>When clients understand they are commissioning a research impact asset against a REF 2029 deliverable, the rushes question rarely comes up. The brief is different. The relationship is different. The question stops being asked.</p>
+
+    <div class="turn">The positioning shift that makes this obsolete. When a client commissions a Research Impact Documentary Partnership — not "a film" — they are buying the outcome. That is not a T&Cs question. It is a <span>category question.</span> You are in the process of building the category.</div>
+
+
+    <!-- 05: CONTENT OPPORTUNITIES -->
+    <p class="section-ey">05</p>
+    <h2 class="section-head">Content this thread gives you</h2>
+    <p>The 97-comment thread is evidence your audience is thinking about this. Two pieces you can write from it — both standalone, neither referencing the original debate directly.</p>
+
+    <div class="two-col">
+      <div class="col-card">
+        <p class="card-ey">LinkedIn post</p>
+        <h4>Why clients ask for the rushes</h4>
+        <p>The contrarian take: the rushes request is not a contract problem. It is a positioning signal. Use your experience to say what the technical arguments missed. Ready to post below.</p>
+      </div>
+      <div class="col-card">
+        <p class="card-ey">Substack or email</p>
+        <h4>What your clients actually own when they commission a film</h4>
+        <p>A longer piece that educates your comms-pro audience: the different commissioning models, what is included in each, and how to ask the right questions before the project starts.</p>
+      </div>
+    </div>
+
+
+    <!-- 06: READY-TO-POST -->
+    <p class="section-ey">06</p>
+    <h2 class="section-head">Ready-to-post: your standalone LinkedIn piece</h2>
+    <p>Written for your own profile, not as a comment on the original thread. Your audience has not seen the debate. Post it 24 to 48 hours after the original thread has run its course.</p>
+
+    <div class="post-box">
+      <div class="post-box-head">
+        <div class="dot"></div>
+        <span>Carl Homer · Cambridge TV · LinkedIn</span>
+      </div>
+      <div class="post-box-body">
+        <p>When a client asks for the raw footage, they're not asking about the files.</p>
+        <p>They're telling you something about the brief.</p>
+        <p>This week I watched 97 people argue about whether production companies should hand over rushes. Half said never. Half said expect everything — project files, LUTs, the lot.</p>
+        <p>Both sides missed the point.</p>
+        <p>The clients who ask for rushes are the ones who weren't fully sold on what they commissioned. Either the scope was vague, the value wasn't established, or the brief drifted and now they're hedging.</p>
+        <p>A client who believes in the film doesn't ask for the footage any more than a satisfied restaurant customer asks for the ingredients.</p>
+        <p>The rushes conversation is almost always a signal, not a request.</p>
+        <p>When it happens, the right question isn't "what do I owe them legally?"</p>
+        <p>It's "where did I lose them?"</p>
+      </div>
+      <div class="post-box-foot">~160 words &nbsp;·&nbsp; No hashtags &nbsp;·&nbsp; No emojis</div>
+    </div>
+
+    <p style="font-size: 0.9rem; opacity: 0.6;">Edit the opening lines if you want it to feel more specific to academic commissioning. The structure holds either way.</p>
+
+
+    <!-- FOOTER -->
+    <div class="page-foot">
+      <span>VBA Elite</span>
+      <span>Carl Homer · Cambridge TV</span>
+      <span>LinkedIn Intelligence · June 2026</span>
+      <span>den@denlennie.com</span>
+    </div>
+
+  </div>
+
+</body>
+</html>
