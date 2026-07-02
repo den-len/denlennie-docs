@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <title>VBA Elite: Message and Offer Diagnostic</title>
+  <title>VBA Elite — Message and Offer Diagnostic</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
@@ -242,14 +242,6 @@
 
     /* ---- PRINT ---- */
     @media print {
-      /* Keep the navy header and section bars in the PDF.
-         Without this, browsers strip backgrounds and the white
-         logo and titles print invisibly on white. */
-      body, .doc-header, .section-title, .section-stripe, .note-box {
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-
       .save-bar  { display: none; }
       .note-box  { margin: 20px 0; }
       .form-body { padding: 0 0 40px; max-width: 100%; }
@@ -289,7 +281,7 @@
 
   <!-- INTRO NOTE -->
   <div class="note-box" style="margin-bottom: 0;">
-    <p>Complete each section with as much detail as you can. There are no right or wrong answers. The more specific you are, the sharper the output will be.</p>
+    <p>Complete each section with as much detail as you can. There are no right or wrong answers — the more specific you are, the sharper the output will be.</p>
     <p>Where you have video testimonials, paste the transcript rather than a link. Links are harder to process through the AI system.</p>
     <p>Your answers are saved for this browser session only. They are never sent anywhere and will be cleared automatically when you close this tab. Nothing carries over to any other person.</p>
   </div>
@@ -341,7 +333,7 @@
           <textarea name="q_size"></textarea>
         </div>
         <div class="question">
-          <label>What stage are they at (start-ups, established, scaling)?</label>
+          <label>What stage are they at — start-ups, established, scaling?</label>
           <textarea name="q_stage" class="short"></textarea>
         </div>
         <div class="question">
@@ -635,10 +627,10 @@
 
   <!-- SAVE BAR -->
   <div class="save-bar">
-    <p class="hint">Answers saved for this session only, cleared when you close the tab. When done, <strong>download as Markdown</strong> and send to Den on Signal. &nbsp;<button class="btn-fresh" id="btn-fresh" onclick="startFresh(); return false;">Start fresh</button></p>
+    <p class="hint">Answers saved for this session only — cleared when you close the tab. When done, <strong>download as PDF</strong> and send to Den on Signal. &nbsp;<button class="btn-fresh" id="btn-fresh" onclick="startFresh(); return false;">Start fresh</button></p>
     <div class="btn-group">
       <span class="save-status" id="save-status"></span>
-      <button class="btn-save" onclick="downloadMarkdown(); return false;">Download as Markdown</button>
+      <button class="btn-save" onclick="savePDF(); return false;">Download as PDF</button>
     </div>
   </div>
 
@@ -663,7 +655,7 @@
       inp.addEventListener('input', scheduleAutosave);
     });
 
-    // Session-only storage, cleared automatically when the tab is closed.
+    // Session-only storage — clears automatically when the tab is closed.
     // No data persists between users or devices.
     var STORE_KEY = 'vba-diagnostic-session';
     var saveTimer;
@@ -708,59 +700,8 @@
       });
     }
 
-    // Build a Markdown document from the current answers.
-    // It walks the form's own sections and questions, so it stays in
-    // sync with the page and drops straight into the diagnostic engine.
-    function buildMarkdown() {
-      var out = [];
-      var h1 = document.querySelector('.doc-title h1');
-      var prepared = document.querySelector('.doc-title .prepared-for');
-
-      out.push('# VBA Elite: ' + (h1 ? h1.textContent.trim() : 'Message and Offer Diagnostic'));
-      out.push('');
-      if (prepared) { out.push('**' + prepared.textContent.trim() + '**'); out.push(''); }
-
-      var d = new Date();
-      var iso = d.getFullYear() + '-' +
-                String(d.getMonth() + 1).padStart(2, '0') + '-' +
-                String(d.getDate()).padStart(2, '0');
-      out.push('**Completed:** ' + iso);
-      out.push('');
-      out.push('---');
-      out.push('');
-
-      document.querySelectorAll('.section').forEach(function(section) {
-        var t = section.querySelector('.section-title');
-        var title = t ? t.textContent.replace(/\s+/g, ' ').trim().replace(/^(\d+)\s+/, '$1. ') : '';
-        out.push('## ' + title);
-        out.push('');
-        section.querySelectorAll('.question').forEach(function(q) {
-          var lab = q.querySelector('label');
-          var field = q.querySelector('textarea, input');
-          out.push('**' + (lab ? lab.textContent.trim() : '') + '**');
-          out.push('');
-          var val = field ? field.value.trim() : '';
-          out.push(val ? val : '_(left blank)_');
-          out.push('');
-        });
-      });
-      return out.join('\n');
-    }
-
-    function downloadMarkdown() {
-      var md = buildMarkdown();
-      var prepared = document.querySelector('.doc-title .prepared-for');
-      var who = prepared ? prepared.textContent.replace(/prepared for/i, '').split(',')[0].trim() : '';
-      var slug = who ? who.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') + '-' : '';
-      var blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
-      var url = URL.createObjectURL(blob);
-      var a = document.createElement('a');
-      a.href = url;
-      a.download = slug + 'message-offer-diagnostic.md';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      setTimeout(function() { URL.revokeObjectURL(url); }, 1000);
+    function savePDF() {
+      window.print();
     }
 
     loadSaved();
