@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <title>VBA Elite: Message and Offer Diagnostic</title>
+  <title>VBA Elite: Message and Offer Diagnostic (Carl Homer)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
@@ -74,6 +74,19 @@
       font-size: 14px;
       color: rgba(255,255,255,0.65);
       margin-top: 12px;
+    }
+
+    .doc-title .prepared-for {
+      display: inline-block;
+      margin-top: 20px;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.02em;
+      color: var(--white);
+      background: var(--orange);
+      padding: 7px 16px;
+      border-radius: 3px;
     }
 
     /* ---- INTRO NOTE ---- */
@@ -245,7 +258,7 @@
       /* Keep the navy header and section bars in the PDF.
          Without this, browsers strip backgrounds and the white
          logo and titles print invisibly on white. */
-      body, .doc-header, .section-title, .section-stripe, .note-box {
+      body, .doc-header, .section-title, .section-stripe, .note-box, .doc-title .prepared-for {
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
       }
@@ -284,6 +297,7 @@
       <span class="label">Elite Onboarding</span>
       <h1>Message and Offer Diagnostic</h1>
       <p class="tagline">For established video production companies ready to refine their positioning.</p>
+      <p class="prepared-for">Prepared for Carl Homer, Cambridge TV</p>
     </div>
   </header>
 
@@ -291,7 +305,7 @@
   <div class="note-box" style="margin-bottom: 0;">
     <p>Complete each section with as much detail as you can. There are no right or wrong answers. The more specific you are, the sharper the output will be.</p>
     <p>Where you have video testimonials, paste the transcript rather than a link. Links are harder to process through the AI system.</p>
-    <p>Your answers are saved for this browser session only. They are never sent anywhere and will be cleared automatically when you close this tab. Nothing carries over to any other person.</p>
+    <p>This is your own copy, Carl. Your answers are held in this browser tab only. They are never sent anywhere and are cleared automatically when you close the tab. Nothing you enter is stored on the site or carried across to anyone else.</p>
   </div>
 
   <!-- FORM -->
@@ -663,9 +677,18 @@
       inp.addEventListener('input', scheduleAutosave);
     });
 
-    // Session-only storage, cleared automatically when the tab is closed.
-    // No data persists between users or devices.
-    var STORE_KEY = 'vba-diagnostic-session';
+    // Session-only storage, unique to this client's document.
+    // sessionStorage lives in one tab and is wiped when that tab closes,
+    // so a fresh visit always starts blank. The key is namespaced to Carl
+    // so no other client's answers can ever load into this form.
+    var STORE_KEY = 'vba-diagnostic-carl-homer';
+
+    // Defensive wipe: never surface data left behind by the shared template
+    // or any earlier version, in either storage bucket.
+    try {
+      sessionStorage.removeItem('vba-diagnostic-session');
+      localStorage.removeItem('vba-diagnostic-session');
+    } catch(e) {}
     var saveTimer;
     var saveStatus = document.getElementById('save-status');
 
