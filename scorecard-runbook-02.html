@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Step 02 · Repoint the quiz · Scorecard Runbook</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./brand.css">
+  <style>
+    .masthead { background: var(--color-anchor-navy); }
+    .masthead-inner { max-width: 1080px; margin: 0 auto; padding: 1.35rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .masthead-logo { height: 40px; width: auto; display: block; }
+    .masthead-where { font-family: var(--font-caption); font-size: var(--type-caption); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-paper); opacity: 0.85; }
+    .backlink { display: inline-block; margin: 0 0 1rem; font-family: var(--font-caption); font-size: var(--type-caption); font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-burnt-orange); text-decoration: none; }
+    .backlink:hover { color: var(--color-anchor-navy); }
+    .meta { display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; background: var(--color-white); border: 1px solid var(--tint-ink-08); border-left: 3px solid var(--color-burnt-orange); border-radius: 2px; padding: 1.1rem 1.4rem; margin: 1.25rem 0 0; font-size: 0.92rem; }
+    .meta b { font-family: var(--font-heading); font-weight: 600; color: var(--color-anchor-navy); }
+    ol.steps > li { margin: 0 0 0.9rem; line-height: 1.55; }
+    .check { list-style: none; padding: 0; margin: 0.75rem 0 0; }
+    .check li { display: flex; gap: 0.7rem; align-items: flex-start; padding: 0.5rem 0; border-bottom: 1px solid var(--tint-ink-08); line-height: 1.5; }
+    .check input { margin-top: 0.3rem; accent-color: var(--color-burnt-orange); width: 1.05rem; height: 1.05rem; flex-shrink: 0; }
+    .warn { background: var(--color-anchor-navy); color: var(--color-paper); border-left: 4px solid var(--color-burnt-orange); border-radius: 3px; padding: 1.3rem 1.5rem; margin: 1.75rem 0 0; }
+    .warn h2 { color: var(--color-white); margin-top: 0; }
+    .warn p, .warn li { color: var(--color-paper); font-size: 0.95rem; line-height: 1.55; }
+    .foot { margin: 2.5rem 0 0; font-family: var(--font-caption); font-size: var(--type-small); color: var(--color-ink-black); opacity: 0.6; }
+    @media (max-width: 720px) { .masthead-inner { padding: 1.1rem 1.25rem; } .masthead-logo { height: 32px; } }
+  </style>
+</head>
+<body>
+
+  <div class="masthead">
+    <div class="masthead-inner">
+      <img class="masthead-logo" src="./VBA_wordmark_grey.png" alt="Video Business Accelerator">
+      <span class="masthead-where">Scorecard Runbook · Step 02 of 06</span>
+    </div>
+  </div>
+
+  <main class="page">
+    <a class="backlink" href="./scorecard-runbook.html">← Back to the runbook hub</a>
+
+    <header class="poster-header">
+      <p class="eyebrow">Scorecard funnel runbook<span class="index">STEP 02</span></p>
+      <h1 class="display">Repoint the quiz.</h1>
+      <hr class="orange-rule">
+      <p class="lead">Switch the assessment quiz's redirects from thescalemethodbook.com to the new on-site result pages, and fix the small inconsistencies around the quiz. This is the step that actually stops the leak.</p>
+    </header>
+
+    <div class="meta">
+      <span><b>System</b> Lovable (denlennie.com project)</span>
+      <span><b>Time</b> About 20 minutes</span>
+      <span><b>You need</b> Step 01 live first + Prompt 7 from the prompt pack</span>
+    </div>
+
+    <section>
+      <h2>Before you start</h2>
+      <ol class="steps">
+        <li>Confirm all five result pages are live by opening them in a normal browser (not the Lovable preview). If any 404s, go back to Step 01.</li>
+        <li>The quiz lives in a single file, <code>public/scale-quiz-embed.html</code>. Three things in it must NOT change: the 15 questions, the name and email capture, and the webhook call that sends the lead into SceneOps. The only thing changing is where finishers get sent.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Steps</h2>
+      <ol class="steps">
+        <li>Paste <strong>Prompt 7</strong> from the prompt pack into the Lovable chat, exactly as written.</li>
+        <li>When it finishes, ask Lovable to show the diff of <code>public/scale-quiz-embed.html</code>, or open the file and check by eye:
+          <ul>
+            <li>The five <code>resultPages</code> URLs now point to <code>/scorecard/operator</code>, <code>/scorecard/juggler</code>, <code>/scorecard/stabiliser</code>, <code>/scorecard/strategist</code>, <code>/scorecard/scaler</code>.</li>
+            <li>The line containing <code>webhook-trigger/e90c5cb1</code> is untouched.</li>
+            <li>The <code>questions = [</code> block is untouched.</li>
+          </ul>
+        </li>
+        <li>Check the three consistency fixes in preview:
+          <ul>
+            <li><code>/scorecard</code>: the "Get the book on Amazon" footnote link under the staircase image is gone, and the caption reads "15 questions. About 3 minutes."</li>
+            <li><code>/results</code>: both assessment CTAs now read "Take the free 3-minute S.C.A.L.E. Assessment".</li>
+            <li><code>/podcast</code> and <code>/mentoring</code>: any assessment duration mention says "3 minutes" (not 5, not 2).</li>
+          </ul>
+        </li>
+        <li>Publish.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Done when</h2>
+      <ul class="check">
+        <li><input type="checkbox"> The <code>resultPages</code> mapping shows only denlennie.com paths; no thescalemethodbook.com URLs anywhere in the file.</li>
+        <li><input type="checkbox"> Webhook line and questions block unchanged.</li>
+        <li><input type="checkbox"> The three consistency fixes are visible on the live site.</li>
+        <li><input type="checkbox"> Smoke test: in a private browser window, complete the quiz at denlennie.com/scorecard with a test name and email, and land on one of the new result pages.</li>
+      </ul>
+    </section>
+
+    <section class="warn">
+      <h2>If something goes wrong</h2>
+      <ul>
+        <li>The quiz breaks (questions do not advance, or submitting hangs): revert the change in Lovable immediately. The old redirect is a leak, not an outage; a broken quiz is an outage. Then message Den.</li>
+        <li>You land on a thescalemethodbook.com page after the quiz: the file was cached or the mapping edit missed a stage. Hard-refresh, retest, and check all five entries in the mapping.</li>
+      </ul>
+    </section>
+
+    <p class="foot">Next: <a href="./scorecard-runbook-03.html">Step 03, QA and launch verification</a> · Prepared 3 July 2026</p>
+  </main>
+
+  <script>
+    document.querySelectorAll('.check input').forEach(function (box, i) {
+      var key = 'runbook02-' + i;
+      box.checked = localStorage.getItem(key) === '1';
+      box.addEventListener('change', function () { localStorage.setItem(key, box.checked ? '1' : '0'); });
+    });
+  </script>
+</body>
+</html>

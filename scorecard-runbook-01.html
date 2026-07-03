@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Step 01 · Build the result pages · Scorecard Runbook</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./brand.css">
+  <style>
+    .masthead { background: var(--color-anchor-navy); }
+    .masthead-inner { max-width: 1080px; margin: 0 auto; padding: 1.35rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .masthead-logo { height: 40px; width: auto; display: block; }
+    .masthead-where { font-family: var(--font-caption); font-size: var(--type-caption); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-paper); opacity: 0.85; }
+    .backlink { display: inline-block; margin: 0 0 1rem; font-family: var(--font-caption); font-size: var(--type-caption); font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-burnt-orange); text-decoration: none; }
+    .backlink:hover { color: var(--color-anchor-navy); }
+    .meta { display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; background: var(--color-white); border: 1px solid var(--tint-ink-08); border-left: 3px solid var(--color-burnt-orange); border-radius: 2px; padding: 1.1rem 1.4rem; margin: 1.25rem 0 0; font-size: 0.92rem; }
+    .meta b { font-family: var(--font-heading); font-weight: 600; color: var(--color-anchor-navy); }
+    ol.steps > li { margin: 0 0 0.9rem; line-height: 1.55; }
+    .check { list-style: none; padding: 0; margin: 0.75rem 0 0; }
+    .check li { display: flex; gap: 0.7rem; align-items: flex-start; padding: 0.5rem 0; border-bottom: 1px solid var(--tint-ink-08); line-height: 1.5; }
+    .check input { margin-top: 0.3rem; accent-color: var(--color-burnt-orange); width: 1.05rem; height: 1.05rem; flex-shrink: 0; }
+    .warn { background: var(--color-anchor-navy); color: var(--color-paper); border-left: 4px solid var(--color-burnt-orange); border-radius: 3px; padding: 1.3rem 1.5rem; margin: 1.75rem 0 0; }
+    .warn h2 { color: var(--color-white); margin-top: 0; }
+    .warn p, .warn li { color: var(--color-paper); font-size: 0.95rem; line-height: 1.55; }
+    .foot { margin: 2.5rem 0 0; font-family: var(--font-caption); font-size: var(--type-small); color: var(--color-ink-black); opacity: 0.6; }
+    @media (max-width: 720px) { .masthead-inner { padding: 1.1rem 1.25rem; } .masthead-logo { height: 32px; } }
+  </style>
+</head>
+<body>
+
+  <div class="masthead">
+    <div class="masthead-inner">
+      <img class="masthead-logo" src="./VBA_wordmark_grey.png" alt="Video Business Accelerator">
+      <span class="masthead-where">Scorecard Runbook · Step 01 of 06</span>
+    </div>
+  </div>
+
+  <main class="page">
+    <a class="backlink" href="./scorecard-runbook.html">← Back to the runbook hub</a>
+
+    <header class="poster-header">
+      <p class="eyebrow">Scorecard funnel runbook<span class="index">STEP 01</span></p>
+      <h1 class="display">Build the five result pages.</h1>
+      <hr class="orange-rule">
+      <p class="lead">Create the five S.C.A.L.E. Assessment result pages on denlennie.com using the prepared prompts. You are pasting prompts and checking output, not writing copy or designing.</p>
+    </header>
+
+    <div class="meta">
+      <span><b>System</b> Lovable (denlennie.com project)</span>
+      <span><b>Time</b> 60–90 minutes</span>
+      <span><b>You need</b> Editor access + the prompt pack from Den ("scorecard-results-lovable-prompts")</span>
+    </div>
+
+    <section>
+      <h2>Before you start</h2>
+      <ol class="steps">
+        <li>Open the Lovable project and confirm the site preview loads.</li>
+        <li>Open the prompt pack. You will use Prompts 1 through 6 in this step. Prompt 7 belongs to Step 02, do not paste it yet.</li>
+        <li>Lovable publishes when you tell it to. Build and check everything in preview first.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Steps</h2>
+      <ol class="steps">
+        <li>Paste <strong>Prompt 1</strong> (the shared template) into the Lovable chat, exactly as written. Wait for the build.</li>
+        <li>In the preview, open each of the five new routes: <code>/scorecard/operator</code>, <code>/scorecard/juggler</code>, <code>/scorecard/stabiliser</code>, <code>/scorecard/strategist</code>, <code>/scorecard/scaler</code>. Each should show the template with the site's normal header and footer. Placeholder content is fine at this point.</li>
+        <li>Paste <strong>Prompt 2</strong> (Operator copy). When it finishes, read the preview page against the prompt word for word. Lovable sometimes "improves" copy. If a single word differs, reply: "The copy I gave you is final. Restore it exactly, including punctuation."</li>
+        <li>Repeat for <strong>Prompts 3, 4, 5 and 6</strong> (Juggler, Stabiliser, Strategist, Scaler). One prompt at a time, check each before the next.</li>
+        <li>Click every button on every page in preview and confirm the destination:
+          <ul>
+            <li>Operator, Juggler, Stabiliser: primary → <code>/growth-strategy-session</code>, ghost → <code>/free-chapter</code>, quiet link → <code>/book</code></li>
+            <li>Strategist: primary → <code>/growth-strategy-session</code>, ghost → <code>/elite-consultation</code>, quiet link → <code>/book</code></li>
+            <li>Scaler: primary → <code>/elite-consultation</code>, ghost → <code>/growth-strategy-session</code></li>
+          </ul>
+        </li>
+        <li>Check brand basics on one page (they share the template, so one is enough): navy hero, orange only on the stage word, the staircase highlight, the pull-quote rule and the primary button; Poppins headings; no em dashes anywhere.</li>
+        <li>Check mobile view in Lovable's responsive preview: single column, staircase graphic above the headline.</li>
+        <li>View the page source of one result page and confirm it contains <code>&lt;meta name="robots" content="noindex"&gt;</code>.</li>
+        <li>Publish.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Done when</h2>
+      <ul class="check">
+        <li><input type="checkbox"> All five routes load on the live site (not just preview).</li>
+        <li><input type="checkbox"> Copy on all five pages matches the prompt pack word for word.</li>
+        <li><input type="checkbox"> All buttons land on the correct live pages.</li>
+        <li><input type="checkbox"> Noindex tag present.</li>
+        <li><input type="checkbox"> Nothing else changed: homepage, /scorecard and /growth-strategy-session still look normal.</li>
+      </ul>
+    </section>
+
+    <section class="warn">
+      <h2>If something goes wrong</h2>
+      <ul>
+        <li>Lovable drifts or breaks another page: tell it to revert the last change (it keeps history), then re-run the single prompt that failed. Never ask it to "fix everything".</li>
+        <li>A prompt produces a wrong-looking page after two attempts: stop, screenshot it, send to Den on Signal with the prompt number.</li>
+      </ul>
+    </section>
+
+    <p class="foot">Next: <a href="./scorecard-runbook-02.html">Step 02, repoint the quiz</a> · Prepared 3 July 2026</p>
+  </main>
+
+  <script>
+    document.querySelectorAll('.check input').forEach(function (box, i) {
+      var key = 'runbook01-' + i;
+      box.checked = localStorage.getItem(key) === '1';
+      box.addEventListener('change', function () { localStorage.setItem(key, box.checked ? '1' : '0'); });
+    });
+  </script>
+</body>
+</html>

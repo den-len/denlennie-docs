@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Step 03 · QA and launch verification · Scorecard Runbook</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./brand.css">
+  <style>
+    .masthead { background: var(--color-anchor-navy); }
+    .masthead-inner { max-width: 1080px; margin: 0 auto; padding: 1.35rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .masthead-logo { height: 40px; width: auto; display: block; }
+    .masthead-where { font-family: var(--font-caption); font-size: var(--type-caption); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-paper); opacity: 0.85; }
+    .backlink { display: inline-block; margin: 0 0 1rem; font-family: var(--font-caption); font-size: var(--type-caption); font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-burnt-orange); text-decoration: none; }
+    .backlink:hover { color: var(--color-anchor-navy); }
+    .meta { display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; background: var(--color-white); border: 1px solid var(--tint-ink-08); border-left: 3px solid var(--color-burnt-orange); border-radius: 2px; padding: 1.1rem 1.4rem; margin: 1.25rem 0 0; font-size: 0.92rem; }
+    .meta b { font-family: var(--font-heading); font-weight: 600; color: var(--color-anchor-navy); }
+    ol.steps > li { margin: 0 0 0.9rem; line-height: 1.55; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: 0.95rem; }
+    th { font-family: var(--font-heading); font-weight: 600; text-align: left; color: var(--color-anchor-navy); border-bottom: 2px solid var(--color-anchor-navy); padding: 0.5rem 0.75rem 0.5rem 0; }
+    td { border-bottom: 1px solid var(--tint-ink-08); padding: 0.55rem 0.75rem 0.55rem 0; vertical-align: top; }
+    .check { list-style: none; padding: 0; margin: 0.75rem 0 0; }
+    .check li { display: flex; gap: 0.7rem; align-items: flex-start; padding: 0.5rem 0; border-bottom: 1px solid var(--tint-ink-08); line-height: 1.5; }
+    .check input { margin-top: 0.3rem; accent-color: var(--color-burnt-orange); width: 1.05rem; height: 1.05rem; flex-shrink: 0; }
+    .warn { background: var(--color-anchor-navy); color: var(--color-paper); border-left: 4px solid var(--color-burnt-orange); border-radius: 3px; padding: 1.3rem 1.5rem; margin: 1.75rem 0 0; }
+    .warn h2 { color: var(--color-white); margin-top: 0; }
+    .warn p, .warn li { color: var(--color-paper); font-size: 0.95rem; line-height: 1.55; }
+    .foot { margin: 2.5rem 0 0; font-family: var(--font-caption); font-size: var(--type-small); color: var(--color-ink-black); opacity: 0.6; }
+    @media (max-width: 720px) { .masthead-inner { padding: 1.1rem 1.25rem; } .masthead-logo { height: 32px; } }
+  </style>
+</head>
+<body>
+
+  <div class="masthead">
+    <div class="masthead-inner">
+      <img class="masthead-logo" src="./VBA_wordmark_grey.png" alt="Video Business Accelerator">
+      <span class="masthead-where">Scorecard Runbook · Step 03 of 06</span>
+    </div>
+  </div>
+
+  <main class="page">
+    <a class="backlink" href="./scorecard-runbook.html">← Back to the runbook hub</a>
+
+    <header class="poster-header">
+      <p class="eyebrow">Scorecard funnel runbook<span class="index">STEP 03</span></p>
+      <h1 class="display">Prove the whole journey works.</h1>
+      <hr class="orange-rule">
+      <p class="lead">Quiz to correct result page to correct next step, end to end, and the lead capture still landing in SceneOps. Nothing ships on trust.</p>
+    </header>
+
+    <div class="meta">
+      <span><b>System</b> A normal web browser + SceneOps (Contacts)</span>
+      <span><b>Time</b> About 30 minutes</span>
+      <span><b>You need</b> Steps 01 and 02 completed and published</span>
+    </div>
+
+    <section>
+      <h2>How the quiz decides your stage</h2>
+      <p>Every answer in the quiz is tagged to one of the five stages, and the answers are written in stage order: the first answer to each question is the Operator answer, the last is the Scaler answer. Picking the same position on every question forces that stage's result. That is how you test all five outcomes.</p>
+    </section>
+
+    <section>
+      <h2>Steps</h2>
+      <ol class="steps">
+        <li><strong>Test all five outcomes.</strong> In a private browser window, take the quiz five times at denlennie.com/scorecard, using the name "QA Test" and findable test emails:
+          <table>
+            <tr><th>Answers picked</th><th>Should land on</th><th>Test email</th></tr>
+            <tr><td>All first answers</td><td><code>/scorecard/operator</code></td><td>qa-scale-operator@denlennie.com</td></tr>
+            <tr><td>All second answers</td><td><code>/scorecard/juggler</code></td><td>qa-scale-juggler@denlennie.com</td></tr>
+            <tr><td>All third answers</td><td><code>/scorecard/stabiliser</code></td><td>qa-scale-stabiliser@denlennie.com</td></tr>
+            <tr><td>All fourth answers</td><td><code>/scorecard/strategist</code></td><td>qa-scale-strategist@denlennie.com</td></tr>
+            <tr><td>All last answers</td><td><code>/scorecard/scaler</code></td><td>qa-scale-scaler@denlennie.com</td></tr>
+          </table>
+        </li>
+        <li><strong>Check the lead capture.</strong> In SceneOps, search Contacts for "QA Test". All five test contacts should be there. If they carry a tag or source from the quiz webhook, write down what it is; Step 06 needs it.</li>
+        <li><strong>Delete the five test contacts</strong> so they never enter a nurture sequence or pollute reporting.</li>
+        <li><strong>Click every button on every result page</strong> on the live site and confirm the destination loads: <code>/growth-strategy-session</code> (all five pages), <code>/free-chapter</code> (Operator, Juggler, Stabiliser), <code>/elite-consultation</code> (Strategist, Scaler), <code>/book</code> (quiet links).</li>
+        <li><strong>Old links, for reference.</strong> Open <code>thescalemethodbook.com/results-page-juggler</code> directly. Until Step 04 runs it will still show the old page. That is expected; do not panic and do not fix it here.</li>
+        <li><strong>Mobile pass.</strong> Take the quiz once on a phone and confirm the result page reads properly: single column, buttons full width, nothing overlapping.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Done when</h2>
+      <ul class="check">
+        <li><input type="checkbox"> Five stages, five correct landings.</li>
+        <li><input type="checkbox"> Five test contacts appeared in SceneOps, then were deleted.</li>
+        <li><input type="checkbox"> The webhook tag/source is written down for Step 06.</li>
+        <li><input type="checkbox"> Every button on all five pages resolves to a live page.</li>
+        <li><input type="checkbox"> Mobile result page looks right.</li>
+      </ul>
+    </section>
+
+    <section class="warn">
+      <h2>If something goes wrong</h2>
+      <ul>
+        <li>Wrong stage lands on wrong page: the <code>resultPages</code> mapping has a mismatched key. Back to Step 02.</li>
+        <li>Contacts do not appear in SceneOps: STOP. The webhook may have been disturbed. Revert the quiz file change in Lovable (this restores the leak but protects lead capture) and message Den immediately. Lead capture outranks everything else in this project.</li>
+      </ul>
+    </section>
+
+    <p class="foot">Next: <a href="./scorecard-runbook-04.html">Step 04, redirect the legacy pages</a> · Prepared 3 July 2026</p>
+  </main>
+
+  <script>
+    document.querySelectorAll('.check input').forEach(function (box, i) {
+      var key = 'runbook03-' + i;
+      box.checked = localStorage.getItem(key) === '1';
+      box.addEventListener('change', function () { localStorage.setItem(key, box.checked ? '1' : '0'); });
+    });
+  </script>
+</body>
+</html>

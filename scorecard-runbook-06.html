@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Step 06 · Post-launch monitoring · Scorecard Runbook</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./brand.css">
+  <style>
+    .masthead { background: var(--color-anchor-navy); }
+    .masthead-inner { max-width: 1080px; margin: 0 auto; padding: 1.35rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .masthead-logo { height: 40px; width: auto; display: block; }
+    .masthead-where { font-family: var(--font-caption); font-size: var(--type-caption); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-paper); opacity: 0.85; }
+    .backlink { display: inline-block; margin: 0 0 1rem; font-family: var(--font-caption); font-size: var(--type-caption); font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-burnt-orange); text-decoration: none; }
+    .backlink:hover { color: var(--color-anchor-navy); }
+    .meta { display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; background: var(--color-white); border: 1px solid var(--tint-ink-08); border-left: 3px solid var(--color-burnt-orange); border-radius: 2px; padding: 1.1rem 1.4rem; margin: 1.25rem 0 0; font-size: 0.92rem; }
+    .meta b { font-family: var(--font-heading); font-weight: 600; color: var(--color-anchor-navy); }
+    ol.steps > li { margin: 0 0 0.9rem; line-height: 1.55; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: 0.95rem; }
+    th { font-family: var(--font-heading); font-weight: 600; text-align: left; color: var(--color-anchor-navy); border-bottom: 2px solid var(--color-anchor-navy); padding: 0.5rem 0.75rem 0.5rem 0; }
+    td { border-bottom: 1px solid var(--tint-ink-08); padding: 0.7rem 0.75rem 0.7rem 0; vertical-align: top; min-height: 2rem; }
+    .warn { background: var(--color-anchor-navy); color: var(--color-paper); border-left: 4px solid var(--color-burnt-orange); border-radius: 3px; padding: 1.3rem 1.5rem; margin: 1.75rem 0 0; }
+    .warn h2 { color: var(--color-white); margin-top: 0; }
+    .warn p, .warn li { color: var(--color-paper); font-size: 0.95rem; line-height: 1.55; }
+    .foot { margin: 2.5rem 0 0; font-family: var(--font-caption); font-size: var(--type-small); color: var(--color-ink-black); opacity: 0.6; }
+    @media (max-width: 720px) { .masthead-inner { padding: 1.1rem 1.25rem; } .masthead-logo { height: 32px; } }
+  </style>
+</head>
+<body>
+
+  <div class="masthead">
+    <div class="masthead-inner">
+      <img class="masthead-logo" src="./VBA_wordmark_grey.png" alt="Video Business Accelerator">
+      <span class="masthead-where">Scorecard Runbook · Step 06 of 06</span>
+    </div>
+  </div>
+
+  <main class="page">
+    <a class="backlink" href="./scorecard-runbook.html">← Back to the runbook hub</a>
+
+    <header class="poster-header">
+      <p class="eyebrow">Scorecard funnel runbook<span class="index">STEP 06</span></p>
+      <h1 class="display">Watch it for two weeks.</h1>
+      <hr class="orange-rule">
+      <p class="lead">Ten minutes, twice a week, four checks total. Confirm the repatriated funnel keeps working in the wild and give Den early signal on whether result-page visitors click through to the Growth Strategy Session.</p>
+    </header>
+
+    <div class="meta">
+      <span><b>System</b> A web browser + SceneOps</span>
+      <span><b>Time</b> 10 minutes, twice a week, for two weeks</span>
+      <span><b>You need</b> Steps 01–05 completed · the webhook tag/source noted in Step 03</span>
+    </div>
+
+    <section>
+      <h2>Each check</h2>
+      <ol class="steps">
+        <li><strong>Quiz alive:</strong> in a private window, start the quiz at denlennie.com/scorecard, answer three questions, abandon. It should advance smoothly with no errors.</li>
+        <li><strong>Redirect alive:</strong> open <code>thescalemethodbook.com/results-page-juggler</code> and confirm it lands on <code>denlennie.com/scorecard/juggler</code>.</li>
+        <li><strong>Leads arriving:</strong> in SceneOps Contacts, filter for contacts created via the quiz webhook since the last check (use the tag/source noted in Step 03). Record the count.</li>
+        <li><strong>Clicks moving forward:</strong> if site analytics are available, note visits to the five <code>/scorecard/*</code> pages and to <code>/growth-strategy-session</code> for the period. If not available, skip; do not install anything.</li>
+        <li>Log the check in the table below (print this page, or keep the log wherever Den prefers).</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Log</h2>
+      <table>
+        <tr><th>Date</th><th>Quiz OK</th><th>Redirect OK</th><th>New quiz leads</th><th>Notes</th></tr>
+        <tr><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr>
+      </table>
+    </section>
+
+    <section class="warn">
+      <h2>Escalate to Den immediately if</h2>
+      <ul>
+        <li>The quiz errors or fails to advance.</li>
+        <li>A whole check period passes with zero quiz leads when previous periods had some.</li>
+        <li>Any old thescalemethodbook.com URL stops redirecting.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>After two clean weeks</h2>
+      <p>Send Den the completed log plus one sentence: leads per week before vs after, if the numbers exist. Then this runbook is closed and the hub stays up as the record.</p>
+    </section>
+
+    <p class="foot"><a href="./scorecard-runbook.html">Back to the runbook hub</a> · Prepared 3 July 2026</p>
+  </main>
+
+</body>
+</html>
