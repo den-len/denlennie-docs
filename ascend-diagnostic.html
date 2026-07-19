@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>VBA Ascend: Message and Offer Diagnostic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy:   #0B2141;
+      --orange: #D9531E;
+      --paper:  #F5F4EF;
+      --ink:    #0C0C0D;
+      --white:  #FFFFFF;
+      --grey:   #CCCCCC;
+      --mid:    #6B7280;
+      --font-heading: 'Poppins', system-ui, sans-serif;
+      --font-body:    'Ubuntu',  system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 15px;
+      color: var(--ink);
+      background: var(--white);
+      line-height: 1.65;
+    }
+
+    /* ---- HEADER ---- */
+    .doc-header {
+      background: var(--navy);
+      padding: 36px 48px 44px;
+    }
+
+    .wordmark {
+      margin-bottom: 28px;
+    }
+
+    .wordmark img {
+      height: 32px;
+      width: auto;
+      display: block;
+    }
+
+    .doc-title h1 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: clamp(22px, 4vw, 32px);
+      color: var(--white);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .doc-title .label {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .doc-title .tagline {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 14px;
+      color: rgba(255,255,255,0.65);
+      margin-top: 12px;
+    }
+
+    .doc-title .prepared-for {
+      display: inline-block;
+      margin-top: 20px;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.02em;
+      color: var(--white);
+      background: var(--orange);
+      padding: 7px 16px;
+      border-radius: 3px;
+    }
+
+    /* ---- CAVEAT BOX (Ascend boundary note) ---- */
+    .caveat-box {
+      border-left: 4px solid var(--orange);
+      background: #FBEDE5;
+      padding: 18px 22px;
+      margin: 28px 48px 0;
+      font-size: 13.5px;
+      font-weight: 300;
+      color: #3A2A22;
+      line-height: 1.7;
+    }
+
+    .caveat-box .caveat-label {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 10.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .caveat-box p + p { margin-top: 8px; }
+
+    /* ---- INTRO NOTE ---- */
+    .note-box {
+      border-left: 4px solid var(--orange);
+      background: var(--paper);
+      padding: 16px 20px;
+      margin: 20px 48px 0;
+      font-size: 13.5px;
+      font-weight: 300;
+      color: #444;
+      line-height: 1.7;
+    }
+
+    .note-box p + p { margin-top: 8px; }
+
+    /* ---- FORM BODY ---- */
+    .form-body {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 8px 48px 120px;
+    }
+
+    /* ---- SECTION ---- */
+    .section { margin-top: 40px; }
+
+    .section-header {
+      display: flex;
+      align-items: stretch;
+      margin-bottom: 24px;
+    }
+
+    .section-stripe {
+      width: 5px;
+      background: var(--orange);
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      background: var(--navy);
+      color: var(--white);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 10.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 11px 18px;
+      flex: 1;
+    }
+
+    /* ---- QUESTION ---- */
+    .question {
+      margin-bottom: 24px;
+    }
+
+    .question label {
+      display: block;
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 14px;
+      color: var(--navy);
+      margin-bottom: 8px;
+      line-height: 1.45;
+    }
+
+    .question textarea,
+    .question input[type="text"],
+    .question input[type="url"] {
+      width: 100%;
+      border: none;
+      border-bottom: 1.5px solid var(--grey);
+      background: transparent;
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 14px;
+      color: var(--ink);
+      padding: 8px 4px;
+      outline: none;
+      resize: none;
+      overflow: hidden;
+      line-height: 1.65;
+      transition: border-color 0.18s;
+      display: block;
+    }
+
+    .question textarea { min-height: 52px; }
+    .question textarea.short { min-height: 34px; }
+    .question textarea.tall { min-height: 96px; }
+
+    .question textarea:focus,
+    .question input:focus {
+      border-bottom-color: var(--orange);
+    }
+
+    ::placeholder { color: var(--grey); font-style: italic; }
+
+    /* ---- STICKY SAVE BAR ---- */
+    .save-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--navy);
+      padding: 14px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 100;
+      box-shadow: 0 -4px 20px rgba(11,33,65,0.2);
+    }
+
+    .save-bar .hint {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+    }
+
+    .save-bar .hint strong {
+      color: rgba(255,255,255,0.85);
+      font-weight: 500;
+    }
+
+    .btn-save {
+      background: var(--orange);
+      color: var(--white);
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: none;
+      padding: 12px 28px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .btn-save:hover { opacity: 0.85; }
+
+    .btn-fresh {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.45);
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 12px;
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 0;
+    }
+
+    .btn-fresh:hover { color: rgba(255,255,255,0.75); }
+
+    .save-status {
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+      margin-left: 16px;
+      white-space: nowrap;
+    }
+
+    .btn-group {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    /* ---- PRINT ---- */
+    @media print {
+      /* Keep the navy header and section bars in the PDF.
+         Without this, browsers strip backgrounds and the white
+         logo and titles print invisibly on white. */
+      body, .doc-header, .section-title, .section-stripe, .note-box, .caveat-box, .doc-title .prepared-for {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .save-bar   { display: none; }
+      .note-box   { margin: 20px 0; }
+      .caveat-box { margin: 20px 0; }
+      .form-body  { padding: 0 0 40px; max-width: 100%; }
+      .doc-header { padding: 24px 0 32px; }
+
+      body { font-size: 12px; }
+
+      .question label { font-size: 12px; }
+
+      .question textarea,
+      .question input {
+        border: none;
+        border-bottom: 0.75pt solid #999;
+        padding: 4px 0;
+        min-height: 0;
+        font-size: 12px;
+      }
+
+      .section { page-break-inside: avoid; margin-top: 28px; }
+      .section-title { font-size: 9px; padding: 8px 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="doc-header">
+    <div class="wordmark">
+      <img src="./VBA_wordmark_white.png" alt="VBA">
+    </div>
+    <div class="doc-title">
+      <span class="label">Ascend Onboarding</span>
+      <h1>Message and Offer Diagnostic</h1>
+      <p class="tagline">For video production owners building the structure to grow beyond freelancing.</p>
+    </div>
+  </header>
+
+  <!-- CAVEAT: one-time deep dive -->
+  <div class="caveat-box">
+    <span class="caveat-label">One-time deep dive</span>
+    <p>What you get back from this is a single, in-depth diagnostic: a strategic summary and a 90-day roadmap to set your direction as you start in Ascend. It is a one-time onboarding deep dive, not an ongoing service.</p>
+    <p>Ascend is a self-directed pathway with group coaching. From here, your job is to execute using the training modules, the group calls, and the community. One-to-one strategic support is reserved for Elite members.</p>
+  </div>
+
+  <!-- INTRO NOTE -->
+  <div class="note-box" style="margin-bottom: 0;">
+    <p>Complete each section with as much detail as you can. There are no right or wrong answers. The more specific you are, the sharper the output will be.</p>
+    <p>Where you have video testimonials, paste the transcript rather than a link. Links are harder to process through the AI system.</p>
+    <p>Your answers are saved for this browser session only. They are never sent anywhere and will be cleared automatically when you close this tab. Nothing carries over to any other person.</p>
+  </div>
+
+  <!-- FORM -->
+  <div class="form-body">
+    <form id="diagnostic" autocomplete="off">
+
+      <!-- 01 Current Foundation -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-stripe"></div>
+          <div class="section-title">01 &nbsp; Current Foundation</div>
+        </div>
+        <div class="question">
+          <label>Link to your current website</label>
+          <input type="url" name="q_website" placeholder="https://…">
+        </div>
+        <div class="question">
+          <label>Your 2–3 best showreels, case studies, or example projects</label>
+          <textarea name="q_showreels" class="tall" placeholder="Links, descriptions, or both…"></textarea>
+        </div>
+        <div class="question">
+          <label>Links to competitor or peer production companies you admire</label>
+          <textarea name="q_competitors" placeholder="Names or links…"></textarea>
+        </div>
+        <div class="question">
+          <label>Any brand guidelines, visual preferences, or styles you follow</label>
+          <textarea name="q_brand_guidelines" placeholder="Describe or link to them…"></textarea>
+        </div>
+      </div>
+
+      <!-- 02 Target Market Clarity -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-stripe"></div>
+          <div class="section-title">02 &nbsp; Target Market Clarity</div>
+        </div>
+        <div class="question">
+          <label>Who is your ideal client (beyond "anyone who needs video")?</label>
+          <textarea name="q_ideal_client" class="tall"></textarea>
+        </div>
+        <div class="question">
+          <label>Which industries or sectors are you targeting first? (e.g. schools, corporates, non-profits, healthcare)</label>
+          <textarea name="q_sectors"></textarea>
+        </div>
+        <div class="question">
+          <label>What size or type of businesses or organisations are they?</label>
+          <textarea name="q_size"></textarea>
+        </div>
+        <div class="question">
+          <label>What stage are they at (start-ups, established, scaling)?</label>
+          <textarea name="q_stage" class="short"></textarea>
+        </div>
+        <div class="question">
+          <label>What values, priorities, or challenges do they have?</label>
+          <textarea name="q_values" class="tall"></textarea>
+        </div>
+        <div class="question">
+          <label>The exact problems your target clients face that you solve with video</label>
+          <textarea name="q_problems" class="tall"></textarea>
+        </div>
+        <div class="question">
+          <label>How are they currently solving this problem before working with you?</label>
+          <textarea name="q_before"></textarea>
+        </div>
+        <div class="question">
+          <label>Why would they choose you over another video company?</label>
+          <textarea name="q_why_you" class="tall"></textarea>
+        </div>
+      </div>
+
+      <!-- 03 Strategic Positioning -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-stripe"></div>
+          <div class="section-title">03 &nbsp; Strategic Positioning</div>
+        </div>
+        <div class="question">
+          <label>What is your unique process, method, or creative approach?</label>
+          <textarea name="q_process" class="tall"></textarea>
+        </div>
+        <div class="question">
+          <label>What is the main transformation your videos deliver for clients (business outcomes, not just great visuals)?</label>
+          <textarea name="q_transformation" class="tall"></textarea>
+        </div>
+        <div class="question">
+          <label>What makes you different from other video companies (experience, niche, style, results)?</label>
+          <textarea name="q_differentiator" class="tall"></textarea>
+        </div>
+        <div class="question">
+          <label>What do you not do (to clarify your positioning)?</label>
+          <textarea name="q_not_do"></textarea>
+        </div>
+      </div>
+
+      <!-- 04 Social Proof -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-stripe"></div>
+          <div class="section-title">04 &nbsp; Social Proof</div>
+        </div>
+        <div class="question">
+          <label>Your 3–5 strongest client projects or case studies (with outcomes if possible)</label>
+          <textarea name="q_case_studies" class="tall"></textarea>
+        </div>
+        <div class="question">
+          <label>Industry recognition, awards, or partnerships</label>
+          <textarea name="q_awards"></textarea>
+        </div>
+        <div class="question">
+          <label>Your strongest credentials (years in business, clients served, budgets or projects delivered)</label>
+          <textarea name="q_credentials"></textarea>
+        </div>
+        <div class="question">
+          <label>Any notable clients or industries you have worked with that add credibility</label>
+          <textarea name="q_notable_clients"></textarea>
+        </div>
+      </div>
+
+      <!-- 05 Offer Architecture -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-stripe"></div>
+          <div class="section-title">05 &nbsp; Offer Architecture</div>
+        </div>
+        <div class="question">
+          <label>Primary service offers (e.g. brand videos, training content, campaign videos, retainers)</label>
+          <textarea name="q_primary_offers" class="tall"></textarea>
+        </div>
+        <div class="question">
+          <label>What clients actually get (deliverables, formats, level of service)</label>
+          <textarea name="q_deliverables" class="tall"></textarea>
+        </div>
+        <div class="question">
+          <label>What makes your offer unique</label>
+          <textarea name="q_offer_unique"></textarea>
+        </div>
+        <div class="question">
+          <label>Secondary services or entry-level offers (if any)</label>
+          <textarea name="q_secondary_offers"></textarea>
+        </div>
+        <div class="question">
+          <label>What is the best first step for prospects (book a call, request a quote, download a guide, etc.)?</label>
+          <textarea name="q_first_step"></textarea>
+        </div>
+        <div class="question">
+          <label>Any guarantees, packages, or risk-reducing terms you provide</label>
+          <textarea name="q_guarantees"></textarea>
+        </div>
+      </div>
+
+      <!-- 06 Conversion Goals -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-stripe"></div>
+          <div class="section-title">06 &nbsp; Conversion Goals</div>
+        </div>
+        <div class="question">
+          <label>What is the number one action you want visitors to take on your site?</label>
+          <textarea name="q_cta" class="short"></textarea>
+        </div>
+        <div class="question">
+          <label>How do you currently qualify prospects before working with them?</label>
+          <textarea name="q_qualify"></textarea>
+        </div>
+        <div class="question">
+          <label>What objections do potential clients typically have?</label>
+          <textarea name="q_objections" class="tall"></textarea>
+        </div>
+        <div class="question">
+          <label>What does your typical sales process look like?</label>
+          <textarea name="q_sales_process" class="tall"></textarea>
+        </div>
+      </div>
+
+      <!-- 07 Content and Authority -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-stripe"></div>
+          <div class="section-title">07 &nbsp; Content and Authority</div>
+        </div>
+        <div class="question">
+          <label>Which projects best represent your work and should be showcased first?</label>
+          <textarea name="q_showcase"></textarea>
+        </div>
+        <div class="question">
+          <label>Client testimonials or quotes that show business results (paste text rather than links where you can)</label>
+          <textarea name="q_testimonials" class="tall"></textarea>
+        </div>
+        <div class="question">
+          <label>Case studies with before/after impact (e.g. how video improved sales, engagement, or awareness)</label>
+          <textarea name="q_before_after" class="tall"></textarea>
+        </div>
+        <div class="question">
+          <label>Media appearances, press, or notable features</label>
+          <textarea name="q_media"></textarea>
+        </div>
+        <div class="question">
+          <label>Writing, thought leadership, or blog content (if relevant)</label>
+          <textarea name="q_writing"></textarea>
+        </div>
+        <div class="question">
+          <label>Behind-the-scenes or methodology content that explains your approach</label>
+          <textarea name="q_methodology"></textarea>
+        </div>
+        <div class="question">
+          <label>Any content clients specifically loved (audits, strategy sessions, unique deliverables)</label>
+          <textarea name="q_loved_content"></textarea>
+        </div>
+      </div>
+
+      <!-- 08 Technical and Design -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-stripe"></div>
+          <div class="section-title">08 &nbsp; Technical and Design</div>
+        </div>
+        <div class="question">
+          <label>Websites you admire (inside or outside your industry)</label>
+          <textarea name="q_admired_sites"></textarea>
+        </div>
+        <div class="question">
+          <label>Visual or design styles that appeal to your target market</label>
+          <textarea name="q_visual_style"></textarea>
+        </div>
+        <div class="question">
+          <label>Brand colours, fonts, or visual elements you want to use</label>
+          <textarea name="q_brand_colours"></textarea>
+        </div>
+        <div class="question">
+          <label>How is your current website performing (traffic, enquiries, conversion, if known)?</label>
+          <textarea name="q_site_performance"></textarea>
+        </div>
+        <div class="question">
+          <label>Where do prospects currently get confused or drop off?</label>
+          <textarea name="q_drop_off"></textarea>
+        </div>
+        <div class="question">
+          <label>Do most visitors come via mobile or desktop?</label>
+          <textarea name="q_device" class="short"></textarea>
+        </div>
+        <div class="question">
+          <label>Any technical requirements (platforms, integrations, booking systems)?</label>
+          <textarea name="q_tech"></textarea>
+        </div>
+      </div>
+
+      <!-- 09 Market Positioning -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-stripe"></div>
+          <div class="section-title">09 &nbsp; Market Positioning</div>
+        </div>
+        <div class="question">
+          <label>When your ideal client visits your site, what should they think within 10 seconds?</label>
+          <textarea name="q_ten_seconds"></textarea>
+        </div>
+        <div class="question">
+          <label>What core emotional reaction do you want them to have?</label>
+          <textarea name="q_emotion"></textarea>
+        </div>
+        <div class="question">
+          <label>How do you want to be perceived differently from other production companies?</label>
+          <textarea name="q_perception" class="tall"></textarea>
+        </div>
+        <div class="question">
+          <label>What makes someone ready for your premium services versus entry-level work?</label>
+          <textarea name="q_premium_ready"></textarea>
+        </div>
+      </div>
+
+      <!-- 10 Value Communication -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-stripe"></div>
+          <div class="section-title">10 &nbsp; Value Communication</div>
+        </div>
+        <div class="question">
+          <label>What is the biggest mistake your target market makes when it comes to video?</label>
+          <textarea name="q_mistake" class="tall"></textarea>
+        </div>
+        <div class="question">
+          <label>What should they be doing instead?</label>
+          <textarea name="q_instead" class="tall"></textarea>
+        </div>
+        <div class="question">
+          <label>Why is this mistake dangerous or costly?</label>
+          <textarea name="q_costly"></textarea>
+        </div>
+        <div class="question">
+          <label>What is your proven method or process for solving it?</label>
+          <textarea name="q_method" class="tall"></textarea>
+        </div>
+        <div class="question">
+          <label>What results can clients expect, and in what timeframe?</label>
+          <textarea name="q_results" class="tall"></textarea>
+        </div>
+      </div>
+
+      <!-- 11 Conversion Strategy -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-stripe"></div>
+          <div class="section-title">11 &nbsp; Conversion Strategy</div>
+        </div>
+        <div class="question">
+          <label>Should prospects book a call directly or complete an enquiry form first?</label>
+          <textarea name="q_conversion_path" class="short"></textarea>
+        </div>
+        <div class="question">
+          <label>What questions help you qualify serious, high-value prospects?</label>
+          <textarea name="q_qualify_questions" class="tall"></textarea>
+        </div>
+        <div class="question">
+          <label>What typically convinces someone to move forward with you?</label>
+          <textarea name="q_convincer" class="tall"></textarea>
+        </div>
+      </div>
+
+      <!-- 12 Proof and Authority -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-stripe"></div>
+          <div class="section-title">12 &nbsp; Proof and Authority</div>
+        </div>
+        <div class="question">
+          <label>Which client project best represents your ideal outcome?</label>
+          <textarea name="q_best_project" class="tall"></textarea>
+        </div>
+        <div class="question">
+          <label>What credentials or proof matter most to your target clients?</label>
+          <textarea name="q_proof"></textarea>
+        </div>
+        <div class="question">
+          <label>What do your current clients say about you that resonates with new prospects? (paste verbatim if you have it)</label>
+          <textarea name="q_client_voice" class="tall"></textarea>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- SAVE BAR -->
+  <div class="save-bar">
+    <p class="hint">Answers saved for this session only, cleared when you close the tab. When done, <strong>download as Markdown</strong> and send it back to your Ascend coach. &nbsp;<button class="btn-fresh" id="btn-fresh" onclick="startFresh(); return false;">Start fresh</button></p>
+    <div class="btn-group">
+      <span class="save-status" id="save-status"></span>
+      <button class="btn-save" onclick="downloadMarkdown(); return false;">Download as Markdown</button>
+    </div>
+  </div>
+
+  <script>
+    // Auto-resize all textareas as content grows
+    function resizeAll() {
+      document.querySelectorAll('textarea').forEach(function(ta) {
+        ta.style.height = 'auto';
+        ta.style.height = ta.scrollHeight + 'px';
+      });
+    }
+
+    document.querySelectorAll('textarea').forEach(function(ta) {
+      ta.addEventListener('input', function() {
+        this.style.height = 'auto';
+        this.style.height = this.scrollHeight + 'px';
+        scheduleAutosave();
+      });
+    });
+
+    document.querySelectorAll('input').forEach(function(inp) {
+      inp.addEventListener('input', scheduleAutosave);
+    });
+
+    // Session-only storage, cleared automatically when the tab is closed.
+    // No data persists between users or devices.
+    var STORE_KEY = 'vba-ascend-diagnostic-session';
+    var saveTimer;
+    var saveStatus = document.getElementById('save-status');
+
+    function scheduleAutosave() {
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(autosave, 800);
+    }
+
+    function autosave() {
+      var data = {};
+      document.querySelectorAll('textarea, input').forEach(function(el) {
+        if (el.name) data[el.name] = el.value;
+      });
+      try {
+        sessionStorage.setItem(STORE_KEY, JSON.stringify(data));
+        saveStatus.textContent = 'Saved';
+        setTimeout(function() { saveStatus.textContent = ''; }, 2000);
+      } catch(e) {}
+    }
+
+    function loadSaved() {
+      try {
+        var raw = sessionStorage.getItem(STORE_KEY);
+        if (!raw) return;
+        var data = JSON.parse(raw);
+        Object.keys(data).forEach(function(name) {
+          var el = document.querySelector('[name="' + name + '"]');
+          if (el) el.value = data[name];
+        });
+        resizeAll();
+      } catch(e) {}
+    }
+
+    function startFresh() {
+      if (!confirm('Clear all answers and start again?')) return;
+      try { sessionStorage.removeItem(STORE_KEY); } catch(e) {}
+      document.querySelectorAll('textarea, input').forEach(function(el) {
+        el.value = '';
+        if (el.tagName === 'TEXTAREA') { el.style.height = 'auto'; }
+      });
+    }
+
+    // Build a Markdown document from the current answers.
+    // It walks the form's own sections and questions, so it stays in
+    // sync with the page and drops straight into the diagnostic engine.
+    function buildMarkdown() {
+      var out = [];
+      var h1 = document.querySelector('.doc-title h1');
+      var prepared = document.querySelector('.doc-title .prepared-for');
+
+      out.push('# VBA Ascend: ' + (h1 ? h1.textContent.trim() : 'Message and Offer Diagnostic'));
+      out.push('');
+      if (prepared) { out.push('**' + prepared.textContent.trim() + '**'); out.push(''); }
+
+      var d = new Date();
+      var iso = d.getFullYear() + '-' +
+                String(d.getMonth() + 1).padStart(2, '0') + '-' +
+                String(d.getDate()).padStart(2, '0');
+      out.push('**Completed:** ' + iso);
+      out.push('');
+      out.push('---');
+      out.push('');
+
+      document.querySelectorAll('.section').forEach(function(section) {
+        var t = section.querySelector('.section-title');
+        var title = t ? t.textContent.replace(/\s+/g, ' ').trim().replace(/^(\d+)\s+/, '$1. ') : '';
+        out.push('## ' + title);
+        out.push('');
+        section.querySelectorAll('.question').forEach(function(q) {
+          var lab = q.querySelector('label');
+          var field = q.querySelector('textarea, input');
+          out.push('**' + (lab ? lab.textContent.trim() : '') + '**');
+          out.push('');
+          var val = field ? field.value.trim() : '';
+          out.push(val ? val : '_(left blank)_');
+          out.push('');
+        });
+      });
+      return out.join('\n');
+    }
+
+    function downloadMarkdown() {
+      var md = buildMarkdown();
+      var prepared = document.querySelector('.doc-title .prepared-for');
+      var who = prepared ? prepared.textContent.replace(/prepared for/i, '').split(',')[0].trim() : '';
+      var slug = who ? who.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') + '-' : '';
+      var blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = slug + 'ascend-message-offer-diagnostic.md';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(function() { URL.revokeObjectURL(url); }, 1000);
+    }
+
+    loadSaved();
+  </script>
+
+</body>
+</html>
