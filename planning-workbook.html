@@ -755,6 +755,38 @@ table.brand-table tr:last-child td { border-bottom: 0; }
     table.chain td.obj-cell { background: #FBFAF7; }
     table.chain td.obj-cell input { font-weight: 400; }
 
+    /* ---------- pillar legend ----------
+       Lives on the chain sheet itself, not on the explainer page before it.
+       Column 06 asks a member to name the pillar, and because stage maps to
+       pillar one to one, that is really asking which stage the objective
+       belongs to. Showing both together turns a memory test into a lookup:
+       a Stage 2 member can see at a glance that A, L and E sit above them. */
+    .pillar-key {
+      display: grid; grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 0.4rem; margin: 0 0 0.75rem;
+    }
+    .pk-item {
+      background: var(--color-white); border: 1px solid var(--tint-ink-08);
+      border-left: 3px solid var(--color-anchor-navy); border-radius: 2px;
+      padding: 0.45rem 0.6rem; line-height: 1.25;
+    }
+    .pk-item b {
+      font-family: var(--font-display); font-weight: 700; font-size: 0.9rem;
+      color: var(--color-burnt-orange); margin-right: 0.3rem;
+    }
+    .pk-item .pk-name {
+      font-family: var(--font-display); font-weight: 600; font-size: 0.78rem;
+      color: var(--color-anchor-navy);
+    }
+    .pk-item .pk-stage {
+      display: block; font-size: 0.68rem; opacity: 0.7; margin-top: 0.15rem;
+    }
+    .pk-rule {
+      font-size: var(--type-small); margin: 0 0 0.9rem;
+      padding-left: 0.7rem; border-left: 3px solid var(--color-burnt-orange);
+    }
+    @media (max-width: 820px) { .pillar-key { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
     .chain-flow {
       display: flex; gap: 0.4rem; align-items: stretch; flex-wrap: wrap;
       margin: 1.25rem 0 1.5rem;
@@ -867,6 +899,13 @@ table.brand-table tr:last-child td { border-bottom: 0; }
       .trunk, .flow-step, .derived { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       .flow-step { break-inside: avoid; }
       .formula .slot { border-bottom-color: var(--color-burnt-orange); }
+      /* The mobile fallbacks must not fire on paper. Print media queries
+         resolve against the page box, and an A4 portrait content width is
+         about 680px, which is under the 820px breakpoint, so every "stack it
+         on a phone" rule was applying to the printed document. The legend was
+         rendering two-up and eating three rows of the landscape sheet. */
+      .pillar-key { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+
       /* Flat, not stepped, on paper: the staircase offsets waste vertical
          space and the cards need every millimetre of width to fit five up. */
       .step-pick .step-card, .step-pick:nth-child(n) .step-card { margin-top: 0; }
@@ -1292,7 +1331,15 @@ table.brand-table tr:last-child td { border-bottom: 0; }
     <!-- ===================== THE CHAIN TABLE (LANDSCAPE) ===================== -->
     <section class="land page-break">
       <h2>Your chain</h2>
-      <p class="field-hint">Work across, not down. If a row runs out of steam by column four, it wasn't a strategic issue. <strong>On the day, do three rows.</strong> Three worked properly beats twenty half-done, and the rest is Part three.</p>
+      <p class="field-hint">Work across, not down. If a row runs out of steam by column four, it wasn't a strategic issue. <strong>Today, do three rows.</strong> Three worked properly beats twenty half-done. Finish the rest this week while it's warm.</p>
+      <div class="pillar-key">
+        <span class="pk-item"><b>S</b><span class="pk-name">Survival</span><span class="pk-stage">Stage 1 · Operator</span></span>
+        <span class="pk-item"><b>C</b><span class="pk-name">Control</span><span class="pk-stage">Stage 2 · Juggler</span></span>
+        <span class="pk-item"><b>A</b><span class="pk-name">Alignment</span><span class="pk-stage">Stage 3 · Stabiliser</span></span>
+        <span class="pk-item"><b>L</b><span class="pk-name">Leverage</span><span class="pk-stage">Stage 4 · Strategist</span></span>
+        <span class="pk-item"><b>E</b><span class="pk-name">Expansion</span><span class="pk-stage">Stage 5 · Scaler</span></span>
+      </div>
+      <p class="pk-rule"><strong>Column 06 is the pillar that objective serves.</strong> If it lands above the stage you ticked earlier, it isn't this year's work. Park it, and note the gate criterion that unlocks it.</p>
       <table class="chain">
         <thead>
           <tr>
@@ -1301,7 +1348,7 @@ table.brand-table tr:last-child td { border-bottom: 0; }
             <th class="c-how"><span class="th-step">03</span>How do we... (outcome)</th>
             <th class="c-given"><span class="th-step">04</span>Given that... (obstacle)</th>
             <th class="c-obj"><span class="th-step">05</span>Strategic objective ("We have...")</th>
-            <th class="c-pillar"><span class="th-step">06</span>Pillar</th>
+            <th class="c-pillar"><span class="th-step">06</span>Pillar it serves</th>
             <th class="c-when"><span class="th-step">07</span>When</th>
           </tr>
         </thead>
@@ -1311,6 +1358,13 @@ table.brand-table tr:last-child td { border-bottom: 0; }
 
     <section class="land page-break">
       <h2>Your chain, continued</h2>
+      <div class="pillar-key">
+        <span class="pk-item"><b>S</b><span class="pk-name">Survival</span><span class="pk-stage">Stage 1 · Operator</span></span>
+        <span class="pk-item"><b>C</b><span class="pk-name">Control</span><span class="pk-stage">Stage 2 · Juggler</span></span>
+        <span class="pk-item"><b>A</b><span class="pk-name">Alignment</span><span class="pk-stage">Stage 3 · Stabiliser</span></span>
+        <span class="pk-item"><b>L</b><span class="pk-name">Leverage</span><span class="pk-stage">Stage 4 · Strategist</span></span>
+        <span class="pk-item"><b>E</b><span class="pk-name">Expansion</span><span class="pk-stage">Stage 5 · Scaler</span></span>
+      </div>
       <table class="chain">
         <thead>
           <tr>
@@ -1319,7 +1373,7 @@ table.brand-table tr:last-child td { border-bottom: 0; }
             <th class="c-how"><span class="th-step">03</span>How do we... (outcome)</th>
             <th class="c-given"><span class="th-step">04</span>Given that... (obstacle)</th>
             <th class="c-obj"><span class="th-step">05</span>Strategic objective ("We have...")</th>
-            <th class="c-pillar"><span class="th-step">06</span>Pillar</th>
+            <th class="c-pillar"><span class="th-step">06</span>Pillar it serves</th>
             <th class="c-when"><span class="th-step">07</span>When</th>
           </tr>
         </thead>
@@ -1425,8 +1479,11 @@ table.brand-table tr:last-child td { border-bottom: 0; }
     // kills the rest of this script and silently takes the autosave, the
     // stage reveal and the monthly maths with it. Ask how I know.
     (function buildRows() {
-      // The chain: two landscape sheets. 13 rows is what fits an A4 landscape
-      // sheet under the heading; 14 spills a single orphan row onto page three.
+      // The chain: two landscape sheets, 10 rows each. That is the ceiling
+      // once the pillar legend sits above the table (11 spills, tested).
+      // Sheet one is the binding constraint because it also carries the hint
+      // and the parking-lot rule. Always confirm by rendering: print row
+      // height is in em against a 10.5pt body, so DOM measurements read short.
       function chainRows(tbody, offset, count) {
         if (!tbody) return;
         for (var i = 1; i <= count; i++) {
@@ -1443,8 +1500,8 @@ table.brand-table tr:last-child td { border-bottom: 0; }
             '</tr>');
         }
       }
-      chainRows(document.getElementById('chainBody'), 0, 13);
-      chainRows(document.getElementById('chainBody2'), 13, 13);
+      chainRows(document.getElementById('chainBody'), 0, 10);
+      chainRows(document.getElementById('chainBody2'), 10, 10);
 
       var tops = document.getElementById('topsBody');
       for (var j = 1; tops && j <= 15; j++) {
