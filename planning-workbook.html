@@ -436,6 +436,17 @@ table.brand-table tr:last-child td { border-bottom: 0; }
       letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.85;
     }
     .savebar .save-state strong { color: var(--color-paper); font-weight: 500; }
+    .savebar .save-state { display: flex; align-items: center; gap: 0.85rem; flex-wrap: wrap; }
+    .savebar .save-msg { text-transform: none; letter-spacing: 0.02em; }
+    .sess-select {
+      font-family: var(--font-caption); font-size: var(--type-caption); font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      background: transparent; color: var(--color-paper);
+      border: 1px solid rgba(245,244,239,0.4); border-radius: 2px;
+      padding: 0.45rem 0.6rem; max-width: 15rem; cursor: pointer;
+    }
+    /* the picker only appears once there is more than one document to pick */
+    .sess-select option { color: var(--color-ink-black); }
     .savebar .save-actions { display: flex; gap: 0.6rem; }
     .btn {
       font-family: var(--font-caption); font-size: var(--type-caption); font-weight: 500;
@@ -919,8 +930,12 @@ table.brand-table tr:last-child td { border-bottom: 0; }
 <body class="no-stage">
 
   <div class="savebar no-print">
-    <span class="save-state">Your answers save to this browser as you type. <strong id="saveStamp">Not saved yet.</strong></span>
+    <span class="save-state">
+      <select id="sessionPicker" class="sess-select" aria-label="Which planning document"></select>
+      <span class="save-msg">Saves to this browser only, never sent anywhere. <strong id="saveStamp">Not saved yet.</strong></span>
+    </span>
     <span class="save-actions">
+      <button class="btn" onclick="newSession()">New document</button>
       <button class="btn btn-primary" onclick="window.print()">Save to PDF</button>
       <button class="btn" onclick="clearAll()">Clear</button>
     </span>
@@ -1564,48 +1579,200 @@ table.brand-table tr:last-child td { border-bottom: 0; }
       });
     }
 
-    // ---- Auto-save to this browser. No server, nothing leaves the machine.
-    var KEY = 'vba-planning-workbook-v2';
+    /* ====================================================================
+       SESSION STORE
+       --------------------------------------------------------------------
+       Every plan is a separate document inside this browser. Two people on
+       two machines were always isolated (localStorage is scoped to origin
+       and to the browser profile, and this page transmits nothing), but a
+       single flat key meant one person doing their annual plan in July and
+       their quarterly review in October silently overwrote the first. The
+       workbook invites exactly that reuse, so it needed fixing.
+
+       Session ids are random and generated on the device. They are not
+       derived from an IP address, an email, a fingerprint or anything else
+       about the person: a static page cannot read an IP without calling
+       out to a third party, which would mean leaking the visit to someone
+       else's server, and office networks share one IP anyway, so it would
+       collide precisely where isolation matters most.
+
+       Layout, all under one namespace so other VBA documents never touch it:
+         vba:planning-workbook:index    [{id,label,created,updated}, ...]
+         vba:planning-workbook:current  the id in use
+         vba:planning-workbook:s:<id>   that session's answers
+       ==================================================================== */
+    var DOC_ID     = 'planning-workbook';
+    var NS         = 'vba:' + DOC_ID + ':';
+    var LEGACY_KEY = 'vba-planning-workbook-v2';   // pre-20 Jul 2026 flat key
+
+    // Private browsing can throw on write. Degrade to a working but
+    // non-persistent page rather than a dead one.
+    var HAS_STORE = (function () {
+      try {
+        localStorage.setItem(NS + '__probe', '1');
+        localStorage.removeItem(NS + '__probe');
+        return true;
+      } catch (e) { return false; }
+    })();
+
+    function newId() {
+      try {
+        if (window.crypto && crypto.randomUUID) return crypto.randomUUID().slice(0, 8);
+        if (window.crypto && crypto.getRandomValues) {
+          var a = new Uint8Array(4); crypto.getRandomValues(a);
+          return Array.from(a, function (b) { return b.toString(16).padStart(2, '0'); }).join('');
+        }
+      } catch (e) { /* fall through */ }
+      return Math.random().toString(36).slice(2, 10);
+    }
+
+    function readJSON(k, fb) {
+      try { var v = localStorage.getItem(k); return v ? JSON.parse(v) : fb; } catch (e) { return fb; }
+    }
+    function writeJSON(k, v) {
+      try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch (e) { return false; }
+    }
+
+    function getIndex()     { return readJSON(NS + 'index', []); }
+    function setIndex(ix)   { writeJSON(NS + 'index', ix); }
+    function dataKey(id)    { return NS + 's:' + id; }
+    function currentId()    { try { return localStorage.getItem(NS + 'current'); } catch (e) { return null; } }
+    function setCurrentId(id) { try { localStorage.setItem(NS + 'current', id); } catch (e) {} }
+
+    // Anyone who typed into the old flat key keeps their work. The legacy
+    // key is deliberately left in place as a backup rather than deleted.
+    function migrateLegacy() {
+      if (!HAS_STORE || getIndex().length) return;
+      var old = null;
+      try { old = localStorage.getItem(LEGACY_KEY); } catch (e) {}
+      if (!old) return;
+      var id = newId();
+      try { localStorage.setItem(dataKey(id), old); } catch (e) { return; }
+      setIndex([{ id: id, label: '', created: Date.now(), updated: Date.now(), recovered: true }]);
+      setCurrentId(id);
+    }
+
+    function ensureSession() {
+      var ix = getIndex(), id = currentId();
+      if (id && ix.some(function (s) { return s.id === id; })) return id;
+      if (ix.length) { setCurrentId(ix[ix.length - 1].id); return ix[ix.length - 1].id; }
+      id = newId();
+      setIndex([{ id: id, label: '', created: Date.now(), updated: Date.now() }]);
+      setCurrentId(id);
+      return id;
+    }
+
+    function sessionLabel(s) {
+      if (s.label) return s.label + (s.recovered ? ' (recovered)' : '');
+      var d = new Date(s.created);
+      var when = isNaN(d) ? 'Untitled' : d.toLocaleDateString('en-AU',
+        { day: 'numeric', month: 'short', year: 'numeric' });
+      return when + (s.recovered ? ' (recovered)' : '');
+    }
+
+    function renderPicker() {
+      var sel = document.getElementById('sessionPicker');
+      if (!sel) return;
+      var ix = getIndex(), cur = currentId();
+      sel.innerHTML = '';
+      ix.slice().reverse().forEach(function (s) {
+        var o = document.createElement('option');
+        o.value = s.id;
+        o.textContent = sessionLabel(s);
+        if (s.id === cur) o.selected = true;
+        sel.appendChild(o);
+      });
+      sel.style.display = ix.length > 1 ? '' : 'none';
+    }
 
     function loadAll() {
-      var saved;
-      try { saved = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { saved = {}; }
+      migrateLegacy();
+      var id = ensureSession();
+      var saved = readJSON(dataKey(id), {});
       document.querySelectorAll('[data-save]').forEach(function (el) {
-        if (!(el.id in saved)) return;
+        if (!(el.id in saved)) {
+          if (el.type === 'checkbox' || el.type === 'radio') { el.checked = false; } else { el.value = ''; }
+          return;
+        }
         if (el.type === 'checkbox' || el.type === 'radio') { el.checked = saved[el.id]; }
         else { el.value = saved[el.id]; }
       });
-      if (localStorage.getItem(KEY)) { stamp('Saved'); }
+      renderPicker();
       applyStage();
       recalc();
+      if (!HAS_STORE) {
+        stampRaw('Private browsing: nothing will be saved. Use Save to PDF before you close this tab.');
+      } else {
+        stamp(Object.keys(saved).length ? 'Saved' : '');
+      }
     }
 
     function saveAll() {
-      var data = {};
+      if (!HAS_STORE) return;
+      var id = ensureSession(), data = {};
       document.querySelectorAll('[data-save]').forEach(function (el) {
         data[el.id] = (el.type === 'checkbox' || el.type === 'radio') ? el.checked : el.value;
       });
-      localStorage.setItem(KEY, JSON.stringify(data));
+      writeJSON(dataKey(id), data);
+
+      // Name the session after the planning horizon they typed, so the
+      // picker reads "Q3 2026" rather than a meaningless date.
+      var ix = getIndex();
+      for (var i = 0; i < ix.length; i++) {
+        if (ix[i].id !== id) continue;
+        var h = (document.getElementById('f_horizon') || {}).value || '';
+        var label = h.trim().slice(0, 32);
+        if (label !== ix[i].label) { ix[i].label = label; renderPicker(); }
+        ix[i].updated = Date.now();
+        setIndex(ix);
+        break;
+      }
       stamp('Saved');
     }
 
-    function stamp(word) {
+    function newSession() {
+      if (!HAS_STORE) { alert('This browser will not let the page save anything, so a new document cannot be started. Check private browsing.'); return; }
+      if (!confirm('Start a new, blank planning document?\n\nWhat you have already typed is kept and stays available in the list next to this button.')) return;
+      var ix = getIndex(), id = newId();
+      ix.push({ id: id, label: '', created: Date.now(), updated: Date.now() });
+      setIndex(ix);
+      setCurrentId(id);
+      loadAll();
+      stamp('New document started');
+    }
+
+    function switchSession(id) {
+      if (!id || id === currentId()) return;
+      setCurrentId(id);
+      loadAll();
+    }
+
+    function stampRaw(text) {
       var s = document.getElementById('saveStamp');
-      if (s) { s.textContent = word + ' to this browser.'; }
+      if (s) { s.textContent = text; }
+    }
+    function stamp(word) {
+      if (!word) { stampRaw('Not saved yet.'); return; }
+      stampRaw(word === 'Saved' ? 'Saved to this browser.' : word + '.');
     }
 
     function clearAll() {
-      if (!confirm('Clear everything you have typed in this workbook? This cannot be undone.')) return;
-      localStorage.removeItem(KEY);
+      if (!confirm('Clear everything typed in THIS document?\n\nOther documents in the list are not affected. This cannot be undone.')) return;
+      var id = ensureSession();
+      try { localStorage.removeItem(dataKey(id)); } catch (e) {}
       document.querySelectorAll('[data-save]').forEach(function (el) {
         if (el.type === 'checkbox' || el.type === 'radio') { el.checked = false; } else { el.value = ''; }
       });
       applyStage();
+      recalc();
       stamp('Cleared');
     }
 
     document.addEventListener('input', function () { recalc(); saveAll(); });
-    document.addEventListener('change', function () { applyStage(); recalc(); saveAll(); });
+    document.addEventListener('change', function (e) {
+      if (e.target && e.target.id === 'sessionPicker') { switchSession(e.target.value); return; }
+      applyStage(); recalc(); saveAll();
+    });
     window.addEventListener('DOMContentLoaded', loadAll);
   </script>
 
