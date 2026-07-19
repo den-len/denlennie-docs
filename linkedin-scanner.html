@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How to scan any LinkedIn post, map the comment dynamics, draft strategic responses, and mine content ideas — using AI. VBA Elite members only.">
+  <meta name="robots" content="noindex, nofollow">
+  <title>LinkedIn Post Scanner · Den Lennie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./brand.css">
+  <style>
+    /* ── Masthead ── */
+    .masthead {
+      background: var(--color-anchor-navy);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .masthead-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 1.35rem 2rem;
+      display: flex;
+      align-items: center;
+    }
+    .masthead-logo { height: 42px; width: auto; display: block; }
+    @media (max-width: 720px) {
+      .masthead-inner { padding: 1.1rem 1.25rem; }
+      .masthead-logo { height: 34px; }
+    }
+
+    /* ── Prompt blocks: dark inset with copy button ── */
+    .prompt-block {
+      background: var(--color-ink-black);
+      color: var(--color-paper);
+      border-radius: 2px;
+      padding: 1.5rem 1.5rem 1.25rem;
+      margin: 1.25rem 0 2rem;
+    }
+    .prompt-block .prompt-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin: 0 0 0.85rem;
+    }
+    .prompt-block .prompt-label {
+      font-family: var(--font-caption);
+      font-size: var(--type-caption);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-burnt-orange);
+      font-weight: 500;
+    }
+    .prompt-block pre {
+      font-family: 'Ubuntu', monospace;
+      font-size: var(--type-small);
+      line-height: 1.55;
+      white-space: pre-wrap;
+      margin: 0;
+      color: var(--color-paper);
+    }
+    .prompt-block .placeholder {
+      color: var(--color-burnt-orange);
+      font-weight: 500;
+    }
+    .copy-btn {
+      font-family: var(--font-caption);
+      font-size: var(--type-caption);
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.85rem;
+      border-radius: 2px;
+      border: 1px solid var(--color-paper);
+      background: transparent;
+      color: var(--color-paper);
+      cursor: pointer;
+      flex: 0 0 auto;
+    }
+    .copy-btn:hover { background: var(--color-paper); color: var(--color-ink-black); }
+
+    /* ── Module cards ── */
+    .module {
+      margin: 3rem 0;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--tint-ink-08);
+    }
+    .module:first-of-type { border-top: 0; padding-top: 0; }
+
+    .module-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: var(--color-anchor-navy);
+      color: var(--color-paper);
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.85rem;
+      border-radius: 50%;
+      margin-right: 0.75rem;
+      vertical-align: middle;
+    }
+
+    /* ── Tips list ── */
+    .tip-row {
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--tint-ink-08);
+      font-size: var(--type-small);
+      line-height: 1.55;
+    }
+    .tip-row:last-child { border-bottom: 0; }
+    .tip-row strong { display: block; font-size: var(--type-body); margin-bottom: 0.2rem; }
+
+    /* ── Voice template card ── */
+    .voice-card {
+      background: var(--color-anchor-navy);
+      color: var(--color-paper);
+      padding: 2.5rem 2.5rem 2rem;
+      border-radius: 2px;
+      margin: 3rem 0;
+    }
+    .voice-card h2 { color: var(--color-paper); margin-top: 0; }
+    .voice-card .note {
+      font-size: var(--type-small);
+      opacity: 0.7;
+      margin: 0 0 1.25rem;
+    }
+    .voice-card .prompt-block {
+      background: rgba(245,244,239,0.08);
+      border: 1px solid rgba(245,244,239,0.15);
+    }
+
+    /* ── Exclusive badge ── */
+    .badge-elite {
+      display: inline-block;
+      font-family: var(--font-caption);
+      font-size: var(--type-caption);
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-burnt-orange);
+      border: 1px solid var(--tint-orange-10);
+      background: var(--tint-orange-10);
+      padding: 0.25rem 0.7rem;
+      border-radius: 2px;
+    }
+
+    /* ── When-to-use matrix ── */
+    .matrix {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1.5rem 0 2.5rem;
+    }
+    .matrix-cell {
+      background: var(--color-white);
+      border: 1px solid var(--tint-ink-08);
+      padding: 1.25rem 1.5rem;
+      border-radius: 2px;
+    }
+    .matrix-cell h3 { margin-top: 0; font-size: 0.95rem; }
+    .matrix-cell p { margin: 0; font-size: var(--type-small); }
+    @media (max-width: 720px) { .matrix { grid-template-columns: 1fr; } }
+
+    /* ── Print ── */
+    @media print {
+      .copy-btn { display: none; }
+      .prompt-block { background: var(--color-paper); color: var(--color-ink-black); border: 1px solid var(--tint-ink-08); }
+      .prompt-block pre, .prompt-block .prompt-label { color: var(--color-ink-black); }
+      .voice-card { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .module { page-break-inside: avoid; }
+    }
+
+    @media (max-width: 720px) {
+      .voice-card { padding: 1.75rem 1.5rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="masthead">
+    <div class="masthead-inner">
+      <img class="masthead-logo" src="./VBA_wordmark_grey.png" alt="Video Business Accelerator">
+    </div>
+  </header>
+
+  <main class="page">
+
+    <header class="poster-header">
+      <p class="eyebrow">VBA Elite · Playbook<span class="index">LinkedIn</span></p>
+      <h1 class="display">The LinkedIn Post Scanner.</h1>
+      <hr class="orange-rule">
+      <p class="lead">A five-module system for scanning any LinkedIn post, mapping the comment dynamics, drafting strategic responses, and turning other people's conversations into positioning opportunities for your business.</p>
+      <span class="badge-elite">Elite Members Only</span>
+    </header>
+
+    <!-- ── CONTEXT ── -->
+    <section>
+      <h2>Why this exists</h2>
+      <p>Most business owners scroll LinkedIn passively. They read a post, maybe leave a "great post!" comment, and move on. That's a waste of the most valuable free research tool you have.</p>
+      <p>Every high-engagement LinkedIn post is a <strong>live focus group</strong>. The comments tell you what your buyers fear, what they value, who they trust, and what they wish someone would say. This scanner teaches you to read those signals — and act on them — in about fifteen minutes.</p>
+
+      <div class="callout">
+        <p style="margin:0"><strong>How it works.</strong> Copy the prompt you need into Claude, ChatGPT, or any AI tool. Paste in the LinkedIn post content (or screenshot it). The AI does the heavy lifting. You make the decisions.</p>
+      </div>
+
+      <h2>When to use each module</h2>
+      <div class="matrix">
+        <div class="matrix-cell">
+          <h3>Scan &amp; Extract</h3>
+          <p>Use first, every time. Gives you the raw material the other modules build on.</p>
+        </div>
+        <div class="matrix-cell">
+          <h3>Comment Analysis</h3>
+          <p>When you want to comment on a high-engagement post and need to know exactly who to engage with and what to say.</p>
+        </div>
+        <div class="matrix-cell">
+          <h3>Content Spotter</h3>
+          <p>When you're stuck for content ideas. Other people's threads are full of angles your audience needs to hear.</p>
+        </div>
+        <div class="matrix-cell">
+          <h3>Client Intel</h3>
+          <p>When a post touches your client's niche. Extract buyer insights and send them something useful this week.</p>
+        </div>
+      </div>
+      <p>Module 5 — the Response Post Drafter — is for when a thread sparks something you want to say on your own profile, as a standalone post your audience hasn't seen.</p>
+    </section>
+
+    <!-- ── MODULE 1 ── -->
+    <div class="module">
+      <span class="pillar-tag">Module One</span>
+      <h2><span class="module-number">1</span>Scan &amp; Extract</h2>
+      <p>Start here. This pulls out the post content, maps the full comment landscape, and categorises every commenter by sentiment — allies, critics, mob, and neutral voices.</p>
+
+      <div class="prompt-block">
+        <div class="prompt-head">
+          <span class="prompt-label">Prompt — Copy &amp; Paste</span>
+          <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+        </div>
+        <pre>I'm going to share a LinkedIn post with you. I need you to extract:
+
+1. WHO posted it and their headline/role
+2. The FULL text of the post
+3. The TONE of the post (satirical, angry, educational, vulnerable, controversial, etc.)
+4. ALL comments — each commenter's name, their title, and the full text of what they said
+5. Engagement metrics (reactions, comments, reposts)
+6. The CORE ARGUMENT the post is making
+
+Then categorise every commenter into one of these groups:
+- ALLIES: People who agree with the post
+- CRITICS: People pushing back with substance
+- MOB: People piling on emotionally without adding anything new
+- NEUTRAL: People adding a different angle or asking questions
+
+<span class="placeholder">[PASTE POST URL OR CONTENT HERE]</span></pre>
+      </div>
+    </div>
+
+    <!-- ── MODULE 2 ── -->
+    <div class="module">
+      <span class="pillar-tag">Module Two</span>
+      <h2><span class="module-number">2</span>Strategic Comment Analysis</h2>
+      <p>Once you've scanned the post, this tells you exactly who to engage with, who to leave alone, and drafts responses in your voice. The goal isn't to win an argument. It's to put your face in front of the right people.</p>
+
+      <div class="prompt-block">
+        <div class="prompt-head">
+          <span class="prompt-label">Prompt — Copy &amp; Paste</span>
+          <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+        </div>
+        <pre>Based on the post scan above, I want to comment on this post strategically. My goal is NOT to win an argument. My goal is:
+
+- To put my face in front of new people
+- To position myself as a credible, measured voice in a charged conversation
+- To attract the 1-2% who resonate with my perspective
+- To create visibility (vanity metrics matter — high-engagement posts attract curiosity)
+
+My profile:
+- Name: <span class="placeholder">[YOUR NAME]</span>
+- What I do: <span class="placeholder">[ONE LINE — e.g., "I help video production owners scale past $300k"]</span>
+- Experience: <span class="placeholder">[e.g., "30 years in industry, 14 years coaching, 178 clients"]</span>
+- Brand archetype / tone: <span class="placeholder">[e.g., "Ruler Sage — direct, factual, authoritative but not aggressive"]</span>
+
+Based on this, tell me:
+
+1. RESPOND TO (high value) — which commenters should I engage with and why? What angle should I take with each?
+2. LIKE ONLY — which comments should I just like to show presence without over-engaging?
+3. LEAVE COMPLETELY — which comments have zero upside or high risk of backlash?
+4. MY CALL — any borderline ones where the risk/reward is close?
+
+For each "RESPOND TO" commenter, draft a response in my voice.
+
+Golden rules:
+- Do NOT pitch my services. Let my tone and profile do that work.
+- Do NOT argue with anyone. If someone is hostile, neutralise with something like "Completely understand why you feel that way."
+- Do NOT defend my profession or industry. Validate the legitimate criticism, then draw a distinction through standards, not defensiveness.
+- Match the energy of the original post. If it's funny, be funny. If it's serious, be serious. Don't be the person who explains why the joke isn't technically accurate.</pre>
+      </div>
+    </div>
+
+    <!-- ── MODULE 3 ── -->
+    <div class="module">
+      <span class="pillar-tag">Module Three</span>
+      <h2><span class="module-number">3</span>Content Opportunity Spotter</h2>
+      <p>Every high-engagement thread contains at least two or three pieces of content you could create for your own audience. This module finds them — the angle, the format, the opening line.</p>
+
+      <div class="prompt-block">
+        <div class="prompt-head">
+          <span class="prompt-label">Prompt — Copy &amp; Paste</span>
+          <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+        </div>
+        <pre>Based on this LinkedIn post and the comment thread, identify content opportunities I could create for my own audience. For each opportunity, give me:
+
+1. THE ANGLE — what's the core idea?
+2. THE FORMAT — LinkedIn post, Substack/newsletter article, email to my list, or video topic?
+3. THE HOOK — the opening line or headline
+4. WHY IT WORKS — what makes this timely or relevant?
+
+My audience is: <span class="placeholder">[DESCRIBE YOUR AUDIENCE — e.g., "video production business owners doing $150k-$500k who want to scale"]</span>
+
+Look for:
+- Patterns in the comments that reveal common fears, frustrations, or misconceptions
+- A contrarian angle I can take that positions me as the clear-thinking voice
+- Something the original post got right that I can expand on with my own experience
+- Something the original post got wrong that I can respectfully reframe
+- An insight from a commenter that deserves its own post
+
+Don't just summarise the thread. Find the content that my audience needs to hear that this conversation revealed.</pre>
+      </div>
+    </div>
+
+    <!-- ── MODULE 4 ── -->
+    <div class="module">
+      <span class="pillar-tag">Module Four</span>
+      <h2><span class="module-number">4</span>Client Intelligence Scan</h2>
+      <p>Use this when a post touches one of your clients' niches. It extracts buyer insights, positioning gaps, and competitor signals — and drafts a message you can send to your client this week.</p>
+
+      <div class="prompt-block">
+        <div class="prompt-head">
+          <span class="prompt-label">Prompt — Copy &amp; Paste</span>
+          <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+        </div>
+        <pre>I have a client who works in <span class="placeholder">[CLIENT'S NICHE — e.g., "school video production"]</span>. I want to extract insights from this LinkedIn post and comment thread that are specifically useful for their business.
+
+Give me:
+
+1. BUYER INSIGHTS — what does this thread reveal about how buyers in this niche think, choose, and evaluate providers?
+2. POSITIONING GAPS — what are providers in this space NOT doing that buyers clearly want?
+3. COMPETITOR INTELLIGENCE — who is being recommended or referenced, and what are they doing well?
+4. CONTENT IDEAS — what could my client post on LinkedIn to position themselves against what's being discussed here?
+5. ONE-LINE TAKEAWAY — the single most important thing my client should know from this thread
+
+Then draft a message I can send to my client sharing these insights. Keep it practical, not theoretical. They need to be able to act on it this week.</pre>
+      </div>
+    </div>
+
+    <!-- ── MODULE 5 ── -->
+    <div class="module">
+      <span class="pillar-tag">Module Five</span>
+      <h2><span class="module-number">5</span>Response Post Drafter</h2>
+      <p>When a thread sparks something worth saying on your own profile. This writes a standalone LinkedIn post your audience will see cold — no reference to the original thread.</p>
+
+      <div class="prompt-block">
+        <div class="prompt-head">
+          <span class="prompt-label">Prompt — Copy &amp; Paste</span>
+          <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+        </div>
+        <pre>I want to write a LinkedIn post that responds to the themes in this thread — but as a standalone post on MY profile, not a comment. My audience hasn't seen the original post.
+
+My voice:
+- <span class="placeholder">[DESCRIBE YOUR WRITING STYLE — e.g., "Short punchy sentences. No fluff. Declarative. Backs claims with specific numbers. Confident without trying to prove anything."]</span>
+- <span class="placeholder">[YOUR ARCHETYPE — e.g., "Ruler Sage — I set the standard, I don't defend against criticism"]</span>
+
+Rules:
+- Don't reference the original post directly. My post should stand on its own.
+- Open with a hook that stops the scroll — a surprising observation, a pattern, or a contrarian take.
+- Keep paragraphs to 1-2 sentences max.
+- End with a line that invites reflection, not engagement bait ("thoughts?" or "agree?" are banned).
+- No hashtags unless I specifically ask for them.
+- No emojis unless I specifically ask for them.
+- Aim for 150-300 words. Tight, not padded.
+
+The core theme I want to address: <span class="placeholder">[DESCRIBE THE ANGLE — e.g., "The real threat to freelancers isn't AI, it's that they never learned to market their business"]</span></pre>
+      </div>
+    </div>
+
+    <!-- ── RULES OF ENGAGEMENT ── -->
+    <section style="margin-top:3rem; padding-top:2.5rem; border-top:1px solid var(--tint-ink-08);">
+      <h2>Rules of engagement</h2>
+      <p>These apply every time you comment on someone else's post. Burn them in.</p>
+
+      <div class="tip-row">
+        <strong>Paste the actual content if the URL doesn't work.</strong>
+        LinkedIn blocks most AI tools from fetching directly. Screenshot the post and comments, or copy/paste the text.
+      </div>
+      <div class="tip-row">
+        <strong>Fill in your Voice Template once and save it.</strong>
+        Keep a text file with your name, headline, experience stats, voice description, and archetype. Paste it into every prompt so the AI matches your tone from the start.
+      </div>
+      <div class="tip-row">
+        <strong>Two to three comments per post. No more.</strong>
+        Enough to stay visible in the algorithm. Not so much you look like you're camping in someone else's comments.
+      </div>
+      <div class="tip-row">
+        <strong>Like your allies' comments. Don't reply to them.</strong>
+        Replying to people who agree with you creates an echo chamber. The mob notices.
+      </div>
+      <div class="tip-row">
+        <strong>Never argue with the mob.</strong>
+        If someone is hostile, neutralise or ignore. Silence is a power move. Debating elevates them and drags you into their frame.
+      </div>
+      <div class="tip-row">
+        <strong>The real ROI is profile clicks.</strong>
+        The goal of every comment is to make someone curious enough to click through to your profile. Make sure your profile does the selling — your comment shouldn't have to.
+      </div>
+    </section>
+
+    <!-- ── VOICE TEMPLATE ── -->
+    <div class="voice-card">
+      <h2>Your Voice Template</h2>
+      <p class="note">Fill this in once. Save it. Paste it into every prompt above so the AI sounds like you from the start.</p>
+      <div class="prompt-block">
+        <div class="prompt-head">
+          <span class="prompt-label">Template — Copy &amp; Paste</span>
+          <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+        </div>
+        <pre>MY PROFILE:
+- Name:
+- What I do:
+- Experience (years, clients, results):
+- Brand archetype:
+- Writing style:
+- What I never do in comments (e.g., pitch, use emojis, argue):
+- LinkedIn headline:</pre>
+      </div>
+    </div>
+
+    <footer class="poster-footer">
+      <span class="wordmark">Den Lennie</span>
+      <span>Video Business Accelerator · Elite</span>
+    </footer>
+
+  </main>
+
+<script>
+function copyPrompt(btn) {
+  const block = btn.closest('.prompt-block');
+  const pre = block.querySelector('pre');
+  const text = pre.innerText;
+  navigator.clipboard.writeText(text).then(function() {
+    btn.textContent = 'Copied';
+    setTimeout(function() { btn.textContent = 'Copy'; }, 1500);
+  });
+}
+</script>
+</body>
+</html>
