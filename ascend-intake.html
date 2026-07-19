@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>VBA Ascend: Onboarding Diagnostic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy:   #0B2141;
+      --orange: #D9531E;
+      --paper:  #F5F4EF;
+      --ink:    #0C0C0D;
+      --white:  #FFFFFF;
+      --grey:   #CCCCCC;
+      --mid:    #6B7280;
+      --font-heading: 'Poppins', system-ui, sans-serif;
+      --font-body:    'Ubuntu',  system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 15px;
+      color: var(--ink);
+      background: var(--white);
+      line-height: 1.65;
+    }
+
+    /* ---- HEADER ---- */
+    .doc-header {
+      background: var(--navy);
+      padding: 36px 48px 44px;
+    }
+
+    .wordmark {
+      margin-bottom: 28px;
+    }
+
+    .wordmark img {
+      height: 32px;
+      width: auto;
+      display: block;
+    }
+
+    .doc-title h1 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: clamp(22px, 4vw, 32px);
+      color: var(--white);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .doc-title .label {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .doc-title .tagline {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 14px;
+      color: rgba(255,255,255,0.65);
+      margin-top: 12px;
+    }
+
+    .doc-title .prepared-for {
+      display: inline-block;
+      margin-top: 20px;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.02em;
+      color: var(--white);
+      background: var(--orange);
+      padding: 7px 16px;
+      border-radius: 3px;
+    }
+
+    /* ---- CAVEAT BOX (Ascend boundary note) ---- */
+    .caveat-box {
+      border-left: 4px solid var(--orange);
+      background: #FBEDE5;
+      padding: 18px 22px;
+      margin: 28px 48px 0;
+      font-size: 13.5px;
+      font-weight: 300;
+      color: #3A2A22;
+      line-height: 1.7;
+    }
+
+    .caveat-box .caveat-label {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 10.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .caveat-box p + p { margin-top: 8px; }
+
+    /* ---- INTRO NOTE ---- */
+    .note-box {
+      border-left: 4px solid var(--orange);
+      background: var(--paper);
+      padding: 16px 20px;
+      margin: 20px 48px 0;
+      font-size: 13.5px;
+      font-weight: 300;
+      color: #444;
+      line-height: 1.7;
+    }
+
+    .note-box p + p { margin-top: 8px; }
+
+    /* ---- FORM BODY ---- */
+    .form-body {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 8px 48px 120px;
+    }
+
+    /* ---- SECTION ---- */
+    .section { margin-top: 40px; }
+
+    .section-header {
+      display: flex;
+      align-items: stretch;
+      margin-bottom: 24px;
+    }
+
+    .section-stripe {
+      width: 5px;
+      background: var(--orange);
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      background: var(--navy);
+      color: var(--white);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 10.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 11px 18px;
+      flex: 1;
+    }
+
+    /* ---- QUESTION ---- */
+    .question {
+      margin-bottom: 24px;
+    }
+
+    .question label {
+      display: block;
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 14px;
+      color: var(--navy);
+      margin-bottom: 8px;
+      line-height: 1.45;
+    }
+
+    .question textarea,
+    .question input[type="text"],
+    .question input[type="email"],
+    .question input[type="url"],
+    .question select {
+      width: 100%;
+      border: none;
+      border-bottom: 1.5px solid var(--grey);
+      background: transparent;
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 14px;
+      color: var(--ink);
+      padding: 8px 4px;
+      outline: none;
+      resize: none;
+      overflow: hidden;
+      line-height: 1.65;
+      transition: border-color 0.18s;
+      display: block;
+    }
+
+    .question select:focus { border-bottom-color: var(--orange); }
+
+    .section-note {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 13px;
+      color: var(--mid);
+      margin: -8px 0 20px;
+      line-height: 1.6;
+    }
+
+    .question textarea { min-height: 52px; }
+    .question textarea.short { min-height: 34px; }
+    .question textarea.tall { min-height: 96px; }
+
+    .question textarea:focus,
+    .question input:focus {
+      border-bottom-color: var(--orange);
+    }
+
+    ::placeholder { color: var(--grey); font-style: italic; }
+
+    /* ---- STICKY SAVE BAR ---- */
+    .save-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--navy);
+      padding: 14px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 100;
+      box-shadow: 0 -4px 20px rgba(11,33,65,0.2);
+    }
+
+    .save-bar .hint {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+    }
+
+    .save-bar .hint strong {
+      color: rgba(255,255,255,0.85);
+      font-weight: 500;
+    }
+
+    .btn-save {
+      background: var(--orange);
+      color: var(--white);
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: none;
+      padding: 12px 28px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .btn-save:hover { opacity: 0.85; }
+
+    .btn-fresh {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.45);
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 12px;
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 0;
+    }
+
+    .btn-fresh:hover { color: rgba(255,255,255,0.75); }
+
+    .save-status {
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+      margin-left: 16px;
+      white-space: nowrap;
+    }
+
+    .btn-group {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    /* ---- PRINT ---- */
+    @media print {
+      /* Keep the navy header and section bars in the PDF.
+         Without this, browsers strip backgrounds and the white
+         logo and titles print invisibly on white. */
+      body, .doc-header, .section-title, .section-stripe, .note-box, .caveat-box, .doc-title .prepared-for {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .save-bar   { display: none; }
+      .note-box   { margin: 20px 0; }
+      .caveat-box { margin: 20px 0; }
+      .form-body  { padding: 0 0 40px; max-width: 100%; }
+      .doc-header { padding: 24px 0 32px; }
+
+      body { font-size: 12px; }
+
+      .question label { font-size: 12px; }
+
+      .question textarea,
+      .question input {
+        border: none;
+        border-bottom: 0.75pt solid #999;
+        padding: 4px 0;
+        min-height: 0;
+        font-size: 12px;
+      }
+
+      .section { page-break-inside: avoid; margin-top: 28px; }
+      .section-title { font-size: 9px; padding: 8px 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="doc-header">
+    <div class="wordmark">
+      <img src="./VBA_wordmark_white.png" alt="VBA">
+    </div>
+    <div class="doc-title">
+      <span class="label">Ascend Onboarding</span>
+      <h1>Onboarding Diagnostic</h1>
+      <p class="tagline">Your first step in Ascend. About twenty minutes. It sets your direction so you're not guessing what to work on first.</p>
+    </div>
+  </header>
+
+  <!-- CAVEAT: one-time deep dive -->
+  <div class="caveat-box">
+    <span class="caveat-label">One-time deep dive</span>
+    <p>What you get back from this is a single, in-depth diagnostic: a strategic summary and a 90-day roadmap to set your direction as you start in Ascend. It is a one-time onboarding deep dive, not an ongoing service.</p>
+    <p>Ascend is a self-directed pathway with group coaching. From here, your job is to execute using the training modules, the group calls, and the community. One-to-one strategic support is reserved for Elite members.</p>
+  </div>
+
+  <!-- INTRO NOTE -->
+  <div class="note-box" style="margin-bottom: 0;">
+    <p>Complete each section with as much detail as you can. There are no right or wrong answers. The more specific you are, the sharper the output will be.</p>
+    <p>Where you have video testimonials, paste the transcript rather than a link. Links are harder to process through the AI system.</p>
+    <p>Your answers are saved for this browser session only. They are never sent anywhere and will be cleared automatically when you close this tab. Nothing carries over to any other person.</p>
+  </div>
+
+  <!-- FORM -->
+  <div class="form-body">
+    <form id="diagnostic" autocomplete="off">
+
+      <!-- 01 The basics -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-stripe"></div>
+          <div class="section-title">01 &nbsp; The basics</div>
+        </div>
+        <div class="question">
+          <label>Your name</label>
+          <input type="text" name="q_name">
+        </div>
+        <div class="question">
+          <label>Your email</label>
+          <input type="email" name="q_email" placeholder="so your coach can match this to you">
+        </div>
+        <div class="question">
+          <label>Company name</label>
+          <input type="text" name="q_company">
+        </div>
+        <div class="question">
+          <label>Website</label>
+          <input type="url" name="q_website" placeholder="https://…">
+        </div>
+        <div class="question">
+          <label>How long have you been running the business?</label>
+          <select name="q_years">
+            <option value="" disabled selected>Choose one</option>
+            <option>Under 1 year</option>
+            <option>1&ndash;3 years</option>
+            <option>3&ndash;5 years</option>
+            <option>5&ndash;10 years</option>
+            <option>10+ years</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- 02 The numbers -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-stripe"></div>
+          <div class="section-title">02 &nbsp; The numbers</div>
+        </div>
+        <p class="section-note">Round figures are fine.</p>
+        <div class="question">
+          <label>Revenue over the last 12 months</label>
+          <select name="q_revenue">
+            <option value="" disabled selected>Choose one</option>
+            <option>Under $100k</option>
+            <option>$100k&ndash;$250k</option>
+            <option>$250k&ndash;$500k</option>
+            <option>$500k&ndash;$1M</option>
+            <option>$1M+</option>
+          </select>
+        </div>
+        <div class="question">
+          <label>Roughly what's left after direct costs (your rough gross margin, as a percentage or a number)</label>
+          <input type="text" name="q_margin">
+        </div>
+        <div class="question">
+          <label>Roughly how many days a year do you spend actually in production (shooting or editing)?</label>
+          <input type="text" name="q_prod_days">
+        </div>
+        <div class="question">
+          <label>Your biggest single client as a share of revenue (e.g. "one client is about 40%")</label>
+          <input type="text" name="q_biggest_client">
+        </div>
+      </div>
+
+      <!-- 03 How the business runs today -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-stripe"></div>
+          <div class="section-title">03 &nbsp; How the business runs today</div>
+        </div>
+        <p class="section-note">This is the most important section. We stage you on how the business behaves, not on the revenue figure. Be honest.</p>
+        <div class="question">
+          <label>Who does what? Be honest about how much of the shooting, editing, quoting and invoicing is still you.</label>
+          <textarea name="q_who_does_what" class="tall"></textarea>
+        </div>
+        <div class="question">
+          <label>Do you have any team or freelancers you use regularly? Who, and for what?</label>
+          <textarea name="q_team"></textarea>
+        </div>
+        <div class="question">
+          <label>If you stopped working for two weeks, what would happen to the business?</label>
+          <textarea name="q_if_stopped"></textarea>
+        </div>
+        <div class="question">
+          <label>What's the thing that eats most of your week right now?</label>
+          <textarea name="q_eats_week"></textarea>
+        </div>
+      </div>
+
+      <!-- 04 Clients and niche -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-stripe"></div>
+          <div class="section-title">04 &nbsp; Clients and niche</div>
+        </div>
+        <div class="question">
+          <label>Who is your ideal client, beyond "anyone who needs video"?</label>
+          <textarea name="q_ideal_client"></textarea>
+        </div>
+        <div class="question">
+          <label>Do you have a defined niche and a core offer, or are you taking most work that comes in?</label>
+          <textarea name="q_niche_offer"></textarea>
+        </div>
+        <div class="question">
+          <label>Which type of work is most profitable for you, and which drains you?</label>
+          <textarea name="q_profitable_draining"></textarea>
+        </div>
+      </div>
+
+      <!-- 05 Marketing and sales, as they are now -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-stripe"></div>
+          <div class="section-title">05 &nbsp; Marketing and sales, as they are now</div>
+        </div>
+        <div class="question">
+          <label>Where do your leads actually come from today?</label>
+          <textarea name="q_leads_from"></textarea>
+        </div>
+        <div class="question">
+          <label>What's working, and what's stopped working?</label>
+          <textarea name="q_working_stopped"></textarea>
+        </div>
+        <div class="question">
+          <label>What does your pipeline look like right now? (Nothing in it, a few conversations, plenty but not closing, etc.)</label>
+          <textarea name="q_pipeline"></textarea>
+        </div>
+        <div class="question">
+          <label>When you quote, what tends to happen? (Win, lose, ghosted, negotiated down.)</label>
+          <textarea name="q_when_you_quote"></textarea>
+        </div>
+      </div>
+
+      <!-- 06 The goal -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-stripe"></div>
+          <div class="section-title">06 &nbsp; The goal</div>
+        </div>
+        <div class="question">
+          <label>What would "working" look like in 90 days? Be specific.</label>
+          <textarea name="q_ninety_day" class="tall"></textarea>
+        </div>
+        <div class="question">
+          <label>What's the single biggest frustration in the business right now?</label>
+          <textarea name="q_frustration"></textarea>
+        </div>
+        <div class="question">
+          <label>If you could hand one part of the business to someone else tomorrow, what would it be?</label>
+          <textarea name="q_hand_off"></textarea>
+        </div>
+      </div>
+
+      <!-- 07 Proof (optional) -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-stripe"></div>
+          <div class="section-title">07 &nbsp; Proof (optional but useful)</div>
+        </div>
+        <div class="question">
+          <label>Paste one or two client testimonials or results, verbatim if you have them</label>
+          <textarea name="q_testimonials" class="tall"></textarea>
+        </div>
+        <div class="question">
+          <label>Your strongest credentials (years in business, notable clients, budgets or projects delivered)</label>
+          <textarea name="q_credentials"></textarea>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- SAVE BAR -->
+  <div class="save-bar">
+    <p class="hint">Answers saved for this session only, cleared when you close the tab. When done, <strong>download as Markdown</strong> and send it back to your Ascend coach. &nbsp;<button class="btn-fresh" id="btn-fresh" onclick="startFresh(); return false;">Start fresh</button></p>
+    <div class="btn-group">
+      <span class="save-status" id="save-status"></span>
+      <button class="btn-save" onclick="downloadMarkdown(); return false;">Download as Markdown</button>
+    </div>
+  </div>
+
+  <script>
+    // Auto-resize all textareas as content grows
+    function resizeAll() {
+      document.querySelectorAll('textarea').forEach(function(ta) {
+        ta.style.height = 'auto';
+        ta.style.height = ta.scrollHeight + 'px';
+      });
+    }
+
+    document.querySelectorAll('textarea').forEach(function(ta) {
+      ta.addEventListener('input', function() {
+        this.style.height = 'auto';
+        this.style.height = this.scrollHeight + 'px';
+        scheduleAutosave();
+      });
+    });
+
+    document.querySelectorAll('input').forEach(function(inp) {
+      inp.addEventListener('input', scheduleAutosave);
+    });
+
+    document.querySelectorAll('select').forEach(function(sel) {
+      sel.addEventListener('change', scheduleAutosave);
+    });
+
+    // Session-only storage, cleared automatically when the tab is closed.
+    // No data persists between users or devices.
+    var STORE_KEY = 'vba-ascend-intake-session';
+    var saveTimer;
+    var saveStatus = document.getElementById('save-status');
+
+    function scheduleAutosave() {
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(autosave, 800);
+    }
+
+    function autosave() {
+      var data = {};
+      document.querySelectorAll('textarea, input, select').forEach(function(el) {
+        if (el.name) data[el.name] = el.value;
+      });
+      try {
+        sessionStorage.setItem(STORE_KEY, JSON.stringify(data));
+        saveStatus.textContent = 'Saved';
+        setTimeout(function() { saveStatus.textContent = ''; }, 2000);
+      } catch(e) {}
+    }
+
+    function loadSaved() {
+      try {
+        var raw = sessionStorage.getItem(STORE_KEY);
+        if (!raw) return;
+        var data = JSON.parse(raw);
+        Object.keys(data).forEach(function(name) {
+          var el = document.querySelector('[name="' + name + '"]');
+          if (el) el.value = data[name];
+        });
+        resizeAll();
+      } catch(e) {}
+    }
+
+    function startFresh() {
+      if (!confirm('Clear all answers and start again?')) return;
+      try { sessionStorage.removeItem(STORE_KEY); } catch(e) {}
+      document.querySelectorAll('textarea, input, select').forEach(function(el) {
+        el.value = '';
+        if (el.tagName === 'TEXTAREA') { el.style.height = 'auto'; }
+      });
+    }
+
+    // Build a Markdown document from the current answers.
+    // It walks the form's own sections and questions, so it stays in
+    // sync with the page and drops straight into the diagnostic engine.
+    function buildMarkdown() {
+      var out = [];
+      var h1 = document.querySelector('.doc-title h1');
+      var prepared = document.querySelector('.doc-title .prepared-for');
+
+      out.push('# VBA Ascend: ' + (h1 ? h1.textContent.trim() : 'Message and Offer Diagnostic'));
+      out.push('');
+      if (prepared) { out.push('**' + prepared.textContent.trim() + '**'); out.push(''); }
+
+      var d = new Date();
+      var iso = d.getFullYear() + '-' +
+                String(d.getMonth() + 1).padStart(2, '0') + '-' +
+                String(d.getDate()).padStart(2, '0');
+      out.push('**Completed:** ' + iso);
+      out.push('');
+      out.push('---');
+      out.push('');
+
+      document.querySelectorAll('.section').forEach(function(section) {
+        var t = section.querySelector('.section-title');
+        var title = t ? t.textContent.replace(/\s+/g, ' ').trim().replace(/^(\d+)\s+/, '$1. ') : '';
+        out.push('## ' + title);
+        out.push('');
+        section.querySelectorAll('.question').forEach(function(q) {
+          var lab = q.querySelector('label');
+          var field = q.querySelector('textarea, input, select');
+          out.push('**' + (lab ? lab.textContent.trim() : '') + '**');
+          out.push('');
+          var val = field ? field.value.trim() : '';
+          out.push(val ? val : '_(left blank)_');
+          out.push('');
+        });
+      });
+      return out.join('\n');
+    }
+
+    function downloadMarkdown() {
+      var md = buildMarkdown();
+      var prepared = document.querySelector('.doc-title .prepared-for');
+      var who = prepared ? prepared.textContent.replace(/prepared for/i, '').split(',')[0].trim() : '';
+      var slug = who ? who.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') + '-' : '';
+      var blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = slug + 'ascend-onboarding-diagnostic.md';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(function() { URL.revokeObjectURL(url); }, 1000);
+    }
+
+    loadSaved();
+  </script>
+
+</body>
+</html>
