@@ -1,0 +1,1556 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Strategic Planning Workbook · Den Lennie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- brand/brand.css, inlined by workshop/build-standalone.py on 20 July 2026.
+       Do not edit here. Edit brand/brand.css and re-run the script. -->
+  <style>
+/*
+ * brand.css: Den Lennie · the single source of brand styling.
+ * ------------------------------------------------------------
+ * Source of truth: Brand Guidelines, Version 2.0, 2026.
+ * Entity: F-Stop Academy Australia Pty Ltd.
+ *
+ * Every HTML document built in this OS pulls its look from this file.
+ * Update the variables in :root below, and every quote, proposal, slide
+ * and handout updates with it.
+ *
+ * IMPORTANT FOR FONTS:
+ * Setting a font name in CSS does not load the font. Each HTML file must
+ * also pull the fonts in with a <link> tag inside the <head>, like this:
+ *
+ *   <link rel="preconnect" href="https://fonts.googleapis.com">
+ *   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ *   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+ *
+ * Use <link> not @import. @import fails silently in PDF rendering and the
+ * document quietly falls back to the wrong font.
+ */
+
+:root {
+
+  /* === COLOURS ===
+     The 2026 system: two darks, one accent, room to breathe.
+     Working ratio is roughly 70% dark, 20% paper or white, 10% orange.
+     The old cyan, magenta and yellow are retired. */
+
+  --color-anchor-navy:   #0B2141;  /* Anchors the brand. The primary surface.        */
+  --color-ink-black:     #0C0C0D;  /* Where the brand feels modern and a bit sharper. */
+  --color-burnt-orange:  #D9531E;  /* Accent only. A scalpel, never a paint roller.  */
+  --color-paper:         #F5F4EF;  /* Carries the quiet. The default page colour.    */
+  --color-white:         #FFFFFF;
+
+  /* Aliases so generic class names still work */
+  --color-primary:    var(--color-anchor-navy);
+  --color-secondary:  var(--color-ink-black);
+  --color-accent:     var(--color-burnt-orange);
+  --color-background: var(--color-paper);
+  --color-text:       var(--color-ink-black);
+
+  /* Light working tints. Use sparingly, never as a primary surface. */
+  --tint-navy-08:    rgba(11, 33, 65, 0.08);
+  --tint-ink-08:     rgba(12, 12, 13, 0.08);
+  --tint-orange-10:  rgba(217, 83, 30, 0.10);
+
+  /* === FONTS ===
+     Poppins for display and headings. Ubuntu for body and detail.
+     A web-safe fallback is included after each, in case the Google
+     Fonts <link> fails to load. */
+
+  --font-display: 'Poppins', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --font-heading: 'Poppins', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --font-body:    'Ubuntu',  system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --font-caption: 'Ubuntu',  system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+
+  /* === SPACING AND RHYTHM === */
+  --line-height: 1.6;
+  --space-unit:  16px;
+
+  /* === TYPE SCALE ===
+     Fluid sizes that breathe with the viewport. */
+  --type-display: clamp(2.6rem, 6vw, 5rem);
+  --type-h1:      clamp(1.9rem, 3.4vw, 2.8rem);
+  --type-h2:      clamp(1.3rem, 2vw, 1.6rem);
+  --type-h3:      1.05rem;
+  --type-body:    1.0625rem;
+  --type-small:   0.875rem;
+  --type-caption: 0.75rem;
+}
+
+/* ---------------------------------------------------------------
+   BASE
+   --------------------------------------------------------------- */
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-paper);
+  color: var(--color-ink-black);
+  font-family: var(--font-body);
+  font-weight: 300;                 /* Ubuntu Light */
+  font-size: var(--type-body);
+  line-height: var(--line-height);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---------------------------------------------------------------
+   TYPOGRAPHY
+   --------------------------------------------------------------- */
+
+.display, h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--color-anchor-navy);
+  margin: 0 0 1rem;
+}
+
+.display {
+  font-weight: 700;                 /* Poppins Bold */
+  font-size: var(--type-display);
+  letter-spacing: -0.035em;         /* -3.5% tracking, per 2026 guidelines */
+  line-height: 1.05;
+}
+
+h1 {
+  font-weight: 600;                 /* Poppins SemiBold */
+  font-size: var(--type-h1);
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+
+h2 {
+  font-weight: 600;
+  font-size: var(--type-h2);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-top: 2.5rem;
+}
+
+h3 {
+  font-weight: 600;
+  font-size: var(--type-h3);
+  letter-spacing: -0.01em;
+  margin-top: 1.5rem;
+}
+
+p { margin: 0 0 1rem; }
+
+strong {
+  font-weight: 500;
+  color: var(--color-anchor-navy);
+}
+
+a {
+  color: var(--color-burnt-orange);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-burnt-orange);
+  padding-bottom: 1px;
+}
+a:hover {
+  color: var(--color-ink-black);
+  border-bottom-color: var(--color-ink-black);
+}
+
+/* ---------------------------------------------------------------
+   EDITORIAL POSTER PRIMITIVES
+   The 2026 layout system: eyebrow row, big headline,
+   one short orange rule, heavy negative space.
+   --------------------------------------------------------------- */
+
+.eyebrow {
+  font-family: var(--font-caption);
+  font-weight: 400;
+  font-size: var(--type-caption);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-anchor-navy);
+  margin: 0 0 1.5rem;
+}
+
+.eyebrow .index {
+  color: var(--color-burnt-orange);
+  margin-left: 0.75rem;
+}
+
+.orange-rule {
+  width: 96px;
+  height: 3px;
+  background: var(--color-burnt-orange);
+  border: 0;
+  margin: 1.5rem 0 2rem;
+}
+
+.caption {
+  font-family: var(--font-caption);
+  font-weight: 400;
+  font-size: var(--type-caption);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-ink-black);
+  opacity: 0.7;
+}
+
+.lead {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: var(--color-ink-black);
+  max-width: 60ch;
+  margin: 0 0 2.5rem;
+}
+
+/* ---------------------------------------------------------------
+   LAYOUT CONTAINERS
+   --------------------------------------------------------------- */
+
+.page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 4rem 2rem 6rem;
+}
+
+.poster-header {
+  padding: 1rem 0 3rem;
+  border-bottom: 1px solid var(--tint-ink-08);
+  margin-bottom: 3.5rem;
+}
+
+.poster-footer {
+  margin-top: 5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--tint-ink-08);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-family: var(--font-caption);
+  font-size: var(--type-caption);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-ink-black);
+  opacity: 0.7;
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: -0.025em;
+  color: var(--color-anchor-navy);
+  text-transform: none;
+}
+
+/* ---------------------------------------------------------------
+   CARDS AND BLOCKS
+   --------------------------------------------------------------- */
+
+.card {
+  background: var(--color-white);
+  border: 1px solid var(--tint-ink-08);
+  padding: 2rem;
+  margin: 0 0 1.5rem;
+  border-radius: 2px;
+}
+
+.card .card-eyebrow {
+  font-family: var(--font-caption);
+  font-size: var(--type-caption);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-burnt-orange);
+  margin: 0 0 0.5rem;
+  font-weight: 500;
+}
+
+.card h2 { margin-top: 0; }
+
+.dark-inset {
+  background: var(--color-anchor-navy);
+  color: var(--color-paper);
+  padding: 3rem 2.5rem;
+  margin: 3rem 0;
+  border-radius: 2px;
+}
+
+.dark-inset .display,
+.dark-inset h1,
+.dark-inset h2,
+.dark-inset h3,
+.dark-inset strong {
+  color: var(--color-paper);
+}
+
+.dark-inset .orange-rule { background: var(--color-burnt-orange); }
+
+/* Must-have vs nice-to-have label chips */
+.tier {
+  margin: 1.5rem 0 1rem;
+}
+
+.tier-label {
+  display: inline-block;
+  font-family: var(--font-caption);
+  font-size: var(--type-caption);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.75rem;
+  margin: 0 0 0.75rem;
+}
+
+.tier-must {
+  background: var(--color-anchor-navy);
+  color: var(--color-paper);
+}
+
+.tier-nice {
+  background: var(--color-paper);
+  color: var(--color-anchor-navy);
+  border: 1px solid var(--color-anchor-navy);
+}
+
+/* ---------------------------------------------------------------
+   LISTS
+   --------------------------------------------------------------- */
+
+ul.brand-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+}
+
+ul.brand-list li {
+  padding: 0.6rem 0 0.6rem 1.75rem;
+  border-bottom: 1px solid var(--tint-ink-08);
+  position: relative;
+}
+
+ul.brand-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.05rem;
+  width: 12px;
+  height: 1px;
+  background: var(--color-burnt-orange);
+}
+
+ul.brand-list li:last-child { border-bottom: 0; }
+
+/* Generic body list, lightly styled */
+ul.body-list, ol.body-list {
+  margin: 0 0 1.5rem 1.25rem;
+  padding: 0;
+}
+
+ul.body-list li, ol.body-list li {
+  margin: 0.4rem 0;
+}
+
+/* ---------------------------------------------------------------
+   TABLES
+   --------------------------------------------------------------- */
+
+table.brand-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0 2.5rem;
+  font-size: var(--type-small);
+}
+
+table.brand-table th {
+  text-align: left;
+  font-family: var(--font-caption);
+  font-weight: 500;
+  font-size: var(--type-caption);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-anchor-navy);
+  padding: 0.75rem 1rem;
+  border-bottom: 2px solid var(--color-anchor-navy);
+}
+
+table.brand-table td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--tint-ink-08);
+  vertical-align: top;
+}
+
+table.brand-table tr:last-child td { border-bottom: 0; }
+
+/* Callout you can drop into any document for a single key point. */
+.callout {
+  background: var(--color-white);
+  border-left: 3px solid var(--color-burnt-orange);
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+}
+
+/* ---------------------------------------------------------------
+   PRINT
+   --------------------------------------------------------------- */
+
+@media print {
+  body { background: var(--color-white); }
+  .page { padding: 1.5rem; }
+  .card, .dark-inset { box-shadow: none; }
+  a { color: var(--color-ink-black); border-bottom: none; }
+  .poster-footer { break-inside: avoid; }
+}
+
+/* ---------------------------------------------------------------
+   MOBILE
+   --------------------------------------------------------------- */
+
+@media (max-width: 720px) {
+  .page { padding: 2.5rem 1.25rem 4rem; }
+  .poster-footer { flex-direction: column; align-items: flex-start; }
+  .dark-inset { padding: 2rem 1.5rem; }
+  .card { padding: 1.5rem; }
+}
+  </style>
+<style>
+    /* Workbook primitives, built on the brand variables. Local to this
+       document so the shared stylesheet stays untouched.
+
+       Two jobs, one file: type into it and save to PDF, or print it blank
+       and fill it in with a pen. Every writing field carries ruled lines
+       that typed text sits on, so both modes look deliberate. */
+
+    /* ---------- save bar ---------- */
+    .savebar {
+      position: sticky; top: 0; z-index: 10;
+      background: var(--color-anchor-navy); color: var(--color-paper);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 0.75rem; padding: 0.85rem 1.5rem;
+    }
+    .savebar .save-state {
+      font-family: var(--font-caption); font-size: var(--type-caption);
+      letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.85;
+    }
+    .savebar .save-state strong { color: var(--color-paper); font-weight: 500; }
+    .savebar .save-actions { display: flex; gap: 0.6rem; }
+    .btn {
+      font-family: var(--font-caption); font-size: var(--type-caption); font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase; padding: 0.55rem 1rem;
+      border-radius: 2px; border: 1px solid var(--color-paper);
+      background: transparent; color: var(--color-paper); cursor: pointer;
+    }
+    .btn:hover { background: var(--color-paper); color: var(--color-anchor-navy); }
+    .btn-primary { background: var(--color-burnt-orange); border-color: var(--color-burnt-orange); color: var(--color-white); }
+    .btn-primary:hover { background: var(--color-white); color: var(--color-burnt-orange); }
+
+    /* ---------- fields ---------- */
+    .field { margin: 1.25rem 0; }
+    .field-label {
+      display: block; font-family: var(--font-caption); font-size: var(--type-caption);
+      font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--color-anchor-navy); margin: 0 0 0.5rem;
+    }
+    .field-hint { font-size: var(--type-small); opacity: 0.75; margin: 0 0 0.5rem; }
+    .field-input, .field-area {
+      width: 100%; font-family: var(--font-body); font-weight: 300; font-size: var(--type-body);
+      color: var(--color-ink-black); background: var(--color-white);
+      border: 1px solid var(--tint-ink-08); border-radius: 2px;
+      padding: 0.7rem 0.85rem; line-height: 1.5;
+    }
+    .field-input:focus, .field-area:focus {
+      outline: none; border-color: var(--color-burnt-orange);
+      box-shadow: 0 0 0 2px var(--tint-orange-10);
+    }
+    .field-area { min-height: 5.5rem; resize: vertical; }
+    .field-area.tall { min-height: 9rem; }
+    .field-area.xtall { min-height: 15rem; }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 1.5rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem 1.5rem; }
+    @media (max-width: 720px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+
+    /* ---------- staircase picker ---------- */
+    /* align-items must stay at start: the step offsets are margin-top on the
+       cards, and bottom-aligning the labels cancels them out exactly. */
+    /* minmax(0,1fr) not 1fr: plain 1fr floors at min-content, so the long
+       words in the cards push the fifth column off the printed page. */
+    .stairs { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.75rem; margin: 1.5rem 0 0.5rem; align-items: start; }
+    .step-pick { display: block; cursor: pointer; }
+    .step-pick input { position: absolute; opacity: 0; pointer-events: none; }
+    /* The card and its parts are spans so they can nest inside the <label>.
+       They must be blocks or the step offsets and the tickbox collapse. */
+    .step-card {
+      display: block;
+      background: var(--color-white); border: 1px solid var(--tint-ink-08);
+      border-top: 3px solid var(--tint-navy-08); border-radius: 2px;
+      padding: 1rem 1rem 1.15rem;
+    }
+    .step-pick:nth-child(1) .step-card { margin-top: 88px; }
+    .step-pick:nth-child(2) .step-card { margin-top: 66px; }
+    .step-pick:nth-child(3) .step-card { margin-top: 44px; }
+    .step-pick:nth-child(4) .step-card { margin-top: 22px; }
+    .step-pick:nth-child(5) .step-card { margin-top: 0; }
+    .step-pick input:checked + .step-card {
+      border-color: var(--color-burnt-orange); border-top-color: var(--color-burnt-orange);
+      box-shadow: 0 0 0 2px var(--tint-orange-10);
+    }
+    .step-card .num { display: inline-block; font-family: var(--font-caption); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.16em; opacity: 0.45; }
+    .step-card .pillar { display: inline-block; margin-left: 0.5rem; font-family: var(--font-caption); font-size: 0.62rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-burnt-orange); }
+    .step-card .name { display: block; font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; color: var(--color-anchor-navy); margin: 0.6rem 0 0.4rem; }
+    .step-card .desc { display: block; font-size: 0.8rem; line-height: 1.4; opacity: 0.82; margin: 0.5rem 0 0; }
+    .step-card .tickbox {
+      display: block;
+      margin-top: 0.9rem; width: 18px; height: 18px; border: 1.5px solid var(--color-anchor-navy);
+      border-radius: 3px; background: var(--color-white); position: relative;
+    }
+    .step-pick input:checked + .step-card .tickbox { background: var(--color-burnt-orange); border-color: var(--color-burnt-orange); }
+    .step-pick input:checked + .step-card .tickbox::after {
+      content: ""; position: absolute; left: 5px; top: 1px; width: 5px; height: 10px;
+      border: solid var(--color-white); border-width: 0 2px 2px 0; transform: rotate(45deg);
+    }
+    @media (max-width: 820px) {
+      .stairs { grid-template-columns: 1fr; }
+      .step-pick .step-card, .step-pick:nth-child(n) .step-card { margin-top: 0; }
+    }
+
+    /* ---------- gate blocks ---------- */
+    .gate { display: none; }
+    .gate.show { display: block; }
+    body.no-stage .gate { display: block; }
+
+    .gate-head {
+      display: flex; align-items: baseline; gap: 0.85rem; flex-wrap: wrap;
+      margin: 2.5rem 0 0.25rem; padding-top: 1.25rem; border-top: 1px solid var(--tint-ink-08);
+    }
+    .gate-head .g-stage { font-family: var(--font-display); font-weight: 600; font-size: 1.3rem; color: var(--color-anchor-navy); }
+    .gate-head .g-pillar {
+      font-family: var(--font-caption); font-size: var(--type-caption); font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-burnt-orange);
+    }
+
+    /* ---------- checklists ---------- */
+    .check-row {
+      display: flex; align-items: flex-start; gap: 0.85rem;
+      padding: 0.6rem 0; border-bottom: 1px solid var(--tint-ink-08);
+    }
+    .check-row:last-child { border-bottom: 0; }
+    .check-row input[type="checkbox"] {
+      appearance: none; -webkit-appearance: none; flex: 0 0 auto;
+      width: 20px; height: 20px; margin-top: 0.15rem;
+      border: 1.5px solid var(--color-anchor-navy); border-radius: 3px;
+      background: var(--color-white); cursor: pointer; position: relative;
+    }
+    .check-row input[type="checkbox"]:checked { background: var(--color-burnt-orange); border-color: var(--color-burnt-orange); }
+    .check-row input[type="checkbox"]:checked::after {
+      content: ""; position: absolute; left: 6px; top: 2px; width: 5px; height: 10px;
+      border: solid var(--color-white); border-width: 0 2px 2px 0; transform: rotate(45deg);
+    }
+    .check-row label { cursor: pointer; }
+    .check-row .check-note { display: block; font-size: var(--type-small); opacity: 0.7; }
+
+    /* ---------- score rows ---------- */
+    .score-row {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 0.65rem 0; border-bottom: 1px solid var(--tint-ink-08);
+    }
+    .score-row:last-child { border-bottom: 0; }
+    .score-row .s-text { flex: 1; font-size: 0.95rem; line-height: 1.4; }
+    .score-row .s-text b { font-family: var(--font-display); font-weight: 600; color: var(--color-anchor-navy); display: block; font-size: 0.9rem; }
+    .score-row .s-text span { opacity: 0.8; font-size: 0.85rem; }
+    .score-input {
+      flex: 0 0 auto; width: 68px; text-align: center;
+      font-family: var(--font-display); font-weight: 600; font-size: 1rem;
+      color: var(--color-anchor-navy); background: var(--color-white);
+      border: 1px solid var(--tint-ink-08); border-radius: 2px; padding: 0.5rem 0.3rem;
+    }
+    .score-input:focus { outline: none; border-color: var(--color-burnt-orange); box-shadow: 0 0 0 2px var(--tint-orange-10); }
+    .score-suffix { flex: 0 0 auto; font-family: var(--font-caption); font-size: var(--type-caption); opacity: 0.6; letter-spacing: 0.1em; }
+
+    /* ---------- quadrant ---------- */
+    .quad { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; margin: 1.5rem 0; }
+    .quad-box { background: var(--color-white); border: 1px solid var(--tint-ink-08); border-radius: 2px; padding: 1.25rem 1.5rem; }
+    .quad-box h3 { margin-top: 0; }
+    @media (max-width: 720px) { .quad { grid-template-columns: 1fr; } }
+
+    /* ---------- tables members write into ---------- */
+    table.work-table { width: 100%; border-collapse: collapse; margin: 1.25rem 0 2rem; }
+    table.work-table th {
+      text-align: left; font-family: var(--font-caption); font-weight: 500; font-size: var(--type-caption);
+      letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-paper);
+      background: var(--color-anchor-navy); padding: 0.7rem 0.9rem;
+    }
+    table.work-table th .th-note { text-transform: none; letter-spacing: 0; opacity: 0.7; font-weight: 400; }
+    table.work-table td { border: 1px solid var(--tint-ink-08); padding: 0; background: var(--color-white); }
+    table.work-table input {
+      width: 100%; border: 0; background: transparent; padding: 0.7rem 0.9rem;
+      font-family: var(--font-body); font-weight: 300; font-size: 0.95rem; color: var(--color-ink-black);
+    }
+    table.work-table input:focus { outline: none; background: var(--tint-orange-10); }
+    .col-narrow { width: 15%; }
+
+    /* ---------- org chart example ---------- */
+    .org { display: flex; gap: 1rem; flex-wrap: wrap; margin: 1.25rem 0 1.5rem; }
+    .org-col { flex: 1 1 150px; }
+    .org-head {
+      background: var(--color-anchor-navy); color: var(--color-paper);
+      font-family: var(--font-display); font-weight: 600; font-size: 0.85rem;
+      padding: 0.6rem 0.75rem; border-radius: 2px 2px 0 0; text-align: center;
+    }
+    .org-col ul { list-style: none; margin: 0; padding: 0; }
+    .org-col li {
+      background: var(--color-white); border: 1px solid var(--tint-ink-08); border-top: 0;
+      padding: 0.55rem 0.75rem; font-size: 0.82rem; text-align: center;
+    }
+
+    .stage-note {
+      font-size: var(--type-small); opacity: 0.75; margin: 0.75rem 0 0;
+      font-style: italic;
+    }
+
+    /* ---------- part dividers ----------
+       The session is 60 to 90 minutes and the workbook is longer than that.
+       These have to be unmissable, on screen and on paper, or a member starts
+       at page one on Tuesday and never reaches the number. */
+    .part-divider {
+      background: var(--color-anchor-navy); color: var(--color-paper);
+      padding: 3rem 2.5rem; margin: 3.5rem 0 2.5rem; border-radius: 2px;
+    }
+    .pd-kicker {
+      font-family: var(--font-caption); font-size: var(--type-caption); font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--color-burnt-orange); margin: 0 0 1rem;
+    }
+    .pd-title {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: clamp(2rem, 4vw, 3rem); line-height: 1.05; letter-spacing: -0.03em;
+      color: var(--color-paper); margin: 0;
+    }
+    .pd-lede { font-size: 1.05rem; line-height: 1.5; max-width: 58ch; margin: 0 0 1.25rem; opacity: 0.85; }
+    .pd-time {
+      display: inline-block; font-family: var(--font-caption); font-size: var(--type-caption);
+      font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--color-anchor-navy); background: var(--color-burnt-orange);
+      padding: 0.5rem 0.9rem; border-radius: 2px; margin: 0;
+    }
+
+    /* ---------- how this works, on the cover ---------- */
+    .how { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 2rem 0 0; }
+    .how-card {
+      background: var(--color-white); border: 1px solid var(--tint-ink-08);
+      border-top: 3px solid var(--color-anchor-navy); border-radius: 2px; padding: 1.1rem 1.2rem;
+    }
+    .how-card.live { border-top-color: var(--color-burnt-orange); }
+    .how-card .h-when {
+      font-family: var(--font-caption); font-size: var(--type-caption); font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-burnt-orange);
+    }
+    .how-card .h-what {
+      font-family: var(--font-display); font-weight: 600; font-size: 1rem;
+      color: var(--color-anchor-navy); margin: 0.4rem 0 0.3rem;
+    }
+    .how-card .h-desc { font-size: var(--type-small); line-height: 1.4; opacity: 0.8; margin: 0; }
+    @media (max-width: 720px) { .how { grid-template-columns: 1fr; } }
+
+    /* ---------- the wealth tree ---------- */
+    .tree {
+      display: grid; grid-template-columns: 1fr auto 1fr; gap: 0.5rem 1.5rem;
+      align-items: center; margin: 1.5rem 0;
+    }
+    .tree-col { display: flex; flex-direction: column; gap: 0.5rem; }
+    .tree-col.right { align-items: flex-start; }
+    .tree-col.left { align-items: flex-end; text-align: right; }
+    .branch {
+      font-family: var(--font-display); font-weight: 600; font-size: 0.95rem;
+      color: var(--color-anchor-navy); padding: 0.3rem 0.7rem;
+      border-bottom: 1px solid var(--tint-orange-10);
+    }
+    .trunk {
+      background: var(--color-anchor-navy); color: var(--color-paper);
+      font-family: var(--font-display); font-weight: 700; font-size: 1.3rem;
+      letter-spacing: 0.2em; padding: 3.5rem 1.1rem; border-radius: 3px;
+      writing-mode: vertical-rl; text-orientation: upright;
+    }
+    @media (max-width: 720px) {
+      .tree { grid-template-columns: 1fr; }
+      .tree-col.left { align-items: flex-start; text-align: left; }
+      .trunk { writing-mode: horizontal-tb; padding: 1rem; text-align: center; }
+    }
+
+    /* ---------- the number and the trade ----------
+       minmax(0,1fr), never bare 1fr: a bare 1fr column floors at min-content,
+       so a long unbroken hint overflows the printed page. Same bug the
+       staircase had. Applies to every multi-column grid in this file. */
+    .trade-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 1.5rem; }
+    @media (max-width: 720px) { .trade-grid { grid-template-columns: 1fr; } }
+
+    .derived {
+      background: var(--color-white); border: 1px solid var(--tint-ink-08);
+      border-left: 3px solid var(--color-burnt-orange); border-radius: 2px;
+      padding: 0.9rem 1.1rem; margin: 0.5rem 0 0;
+    }
+    .derived .d-label {
+      font-family: var(--font-caption); font-size: var(--type-caption);
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-anchor-navy);
+      font-weight: 500;
+    }
+    .derived .d-value {
+      font-family: var(--font-display); font-weight: 700; font-size: 1.35rem;
+      color: var(--color-burnt-orange); margin-top: 0.2rem;
+    }
+    .derived .d-note { font-size: var(--type-small); opacity: 0.7; margin-top: 0.2rem; }
+
+    /* ---------- the purpose formula ---------- */
+    .formula {
+      background: var(--color-white); border: 1px solid var(--tint-ink-08);
+      border-radius: 2px; padding: 1.5rem; margin: 1.25rem 0;
+      font-family: var(--font-display); font-weight: 600; font-size: 1.1rem;
+      color: var(--color-anchor-navy); line-height: 2.4;
+    }
+    .formula .slot {
+      display: inline-block; min-width: 12ch; border: 0;
+      border-bottom: 2px solid var(--color-burnt-orange);
+      background: transparent; font-family: var(--font-body); font-weight: 300;
+      font-size: 1rem; color: var(--color-ink-black); padding: 0.1rem 0.4rem;
+      text-align: center;
+    }
+    .formula .slot:focus { outline: none; background: var(--tint-orange-10); }
+    .formula .slot.wide { min-width: 20ch; }
+
+    /* ---------- the chain (landscape) ---------- */
+    table.chain { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; }
+    table.chain th {
+      text-align: left; font-family: var(--font-caption); font-weight: 500;
+      font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--color-paper); background: var(--color-anchor-navy);
+      padding: 0.55rem 0.5rem; vertical-align: bottom;
+    }
+    table.chain th .th-step {
+      display: block; color: var(--color-burnt-orange); font-weight: 700;
+      font-size: 0.6rem; margin-bottom: 0.15rem;
+    }
+    table.chain td { border: 1px solid var(--tint-ink-08); padding: 0; background: var(--color-white); }
+    table.chain input {
+      width: 100%; border: 0; background: transparent; padding: 0.5rem;
+      font-family: var(--font-body); font-weight: 300; font-size: 0.8rem;
+      color: var(--color-ink-black);
+    }
+    table.chain input:focus { outline: none; background: var(--tint-orange-10); }
+    table.chain .c-what   { width: 15%; }
+    table.chain .c-lesson { width: 15%; }
+    table.chain .c-how    { width: 17%; }
+    table.chain .c-given  { width: 17%; }
+    table.chain .c-obj    { width: 21%; }
+    /* wide enough for the S C A L E prompt to print without clipping */
+    table.chain .c-pillar { width: 9%; }
+    table.chain .c-when   { width: 6%; }
+    table.chain .c-pillar input {
+      text-align: center; letter-spacing: 0.08em; font-size: 0.72rem;
+    }
+    table.chain .c-pillar input::placeholder { opacity: 0.45; }
+    /* the objective column is the payload, so it reads as the payload */
+    table.chain td.obj-cell { background: #FBFAF7; }
+    table.chain td.obj-cell input { font-weight: 400; }
+
+    .chain-flow {
+      display: flex; gap: 0.4rem; align-items: stretch; flex-wrap: wrap;
+      margin: 1.25rem 0 1.5rem;
+    }
+    .flow-step {
+      flex: 1 1 0; min-width: 110px; background: var(--color-white);
+      border: 1px solid var(--tint-ink-08); border-top: 3px solid var(--color-anchor-navy);
+      border-radius: 2px; padding: 0.8rem 0.7rem;
+    }
+    .flow-step:last-child { border-top-color: var(--color-burnt-orange); }
+    .flow-step .f-num {
+      font-family: var(--font-caption); font-size: 0.6rem; letter-spacing: 0.14em;
+      color: var(--color-burnt-orange); font-weight: 500;
+    }
+    .flow-step .f-name {
+      font-family: var(--font-display); font-weight: 600; font-size: 0.85rem;
+      color: var(--color-anchor-navy); margin: 0.35rem 0 0.25rem;
+    }
+    .flow-step .f-desc { font-size: 0.72rem; line-height: 1.35; opacity: 0.8; }
+
+    /* ---------- the audit table ---------- */
+    table.audit { width: 100%; border-collapse: collapse; margin: 1.25rem 0 1rem; }
+    table.audit th {
+      text-align: left; font-family: var(--font-caption); font-weight: 500;
+      font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--color-paper); background: var(--color-anchor-navy); padding: 0.6rem 0.5rem;
+    }
+    table.audit th.hot { background: var(--color-burnt-orange); }
+    table.audit td { border: 1px solid var(--tint-ink-08); padding: 0; background: var(--color-white); }
+    table.audit td.hot-cell { background: var(--tint-orange-10); }
+    table.audit input {
+      width: 100%; border: 0; background: transparent; padding: 0.5rem;
+      font-family: var(--font-body); font-weight: 300; font-size: 0.85rem;
+      color: var(--color-ink-black);
+    }
+    table.audit input:focus { outline: none; background: var(--tint-orange-10); }
+    table.audit .example td {
+      background: var(--color-paper); font-family: var(--font-body);
+      font-size: 0.8rem; padding: 0.45rem 0.5rem; opacity: 0.85; font-style: italic;
+    }
+    table.audit .example td.win { color: var(--color-burnt-orange); font-weight: 500; font-style: normal; }
+
+    /* ---------- print ----------
+       Fields lose their boxes and gain ruled lines at 2em, with print
+       line-height locked to 2 so typed text lands on the rule. A blank
+       printout reads as a proper ruled workbook. */
+    @media print {
+      /* A4 with real margins: members are mostly AU and UK, and fixing the
+         sheet here stops the page width drifting with browser defaults. */
+      @page { size: A4 portrait; margin: 14mm 15mm; }
+      /* The chain is seven columns and will not read on portrait, so its
+         pages turn sideways. Verified in Chrome: named pages do flip the
+         MediaBox per page rather than rotating the whole document. */
+      @page landscape { size: A4 landscape; margin: 12mm 14mm; }
+      .land { page: landscape; }
+      .savebar, .no-print { display: none; }
+      /* html as well as body: brand.css paints both paper, and leaving html
+         set bleeds a beige block past the last section on the final sheet. */
+      html, body { background: var(--color-white); }
+      body { font-size: 10.5pt; }
+      .page { padding: 0; max-width: none; }
+
+      /* Keep the avoid rules on units that actually fit a page. A whole
+         section never does, and a writing field that splits loses its ruled
+         lines: Chrome won't paint an element background across a page break,
+         so half the field prints blank. Keep each field whole instead.
+         Tables are left to flow, and thead repeats on each page. */
+      .field, .quad-box, .card, .dark-inset, .check-row, .score-row, .org-col { break-inside: avoid; }
+      h1, h2, h3, .gate-head { break-after: avoid; }
+      .page-break { break-before: page; }
+
+      .field-input {
+        border: 0; border-bottom: 1px solid rgba(12,12,13,0.35);
+        border-radius: 0; padding: 0.15rem 0; background: transparent;
+      }
+      .field-area {
+        border: 0; border-radius: 0; padding: 0; background: transparent;
+        line-height: 2em;
+        background-image: repeating-linear-gradient(
+          to bottom, transparent, transparent calc(2em - 1px),
+          rgba(12,12,13,0.32) calc(2em - 1px), rgba(12,12,13,0.32) 2em
+        );
+        background-size: 100% 2em;
+        -webkit-print-color-adjust: exact; print-color-adjust: exact;
+      }
+      /* Sized for typing, not handwriting. The session is virtual, so the
+         PDF is a reference and a record rather than the thing people write
+         on, and generous pen-space just made the document look enormous in
+         an inbox. A textarea scrolls on screen; these are the print floor. */
+      .field-area { min-height: 7em; }
+      .field-area.tall  { min-height: 10em; }
+      .field-area.xtall { min-height: 15em; }
+
+      .check-row input[type="checkbox"],
+      .step-card .tickbox,
+      table.work-table th,
+      .org-head,
+      .dark-inset {
+        -webkit-print-color-adjust: exact; print-color-adjust: exact;
+      }
+      /* The 8% screen border is too pale to write against on paper. */
+      table.work-table input { border-bottom: 0; }
+      table.work-table td { height: 2.6em; border-color: rgba(12,12,13,0.35); }
+      table.chain td { height: 2.5em; border-color: rgba(12,12,13,0.35); }
+      table.chain th, table.chain td.obj-cell { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      table.audit td { height: 2.2em; border-color: rgba(12,12,13,0.35); }
+      table.audit th, table.audit th.hot, table.audit td.hot-cell, table.audit .example td {
+        -webkit-print-color-adjust: exact; print-color-adjust: exact;
+      }
+      .trunk, .flow-step, .derived { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .flow-step { break-inside: avoid; }
+      .formula .slot { border-bottom-color: var(--color-burnt-orange); }
+      /* Flat, not stepped, on paper: the staircase offsets waste vertical
+         space and the cards need every millimetre of width to fit five up. */
+      .step-pick .step-card, .step-pick:nth-child(n) .step-card { margin-top: 0; }
+      .stairs { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.4rem; }
+      .step-card { padding: 0.7rem 0.6rem 0.8rem; }
+      .step-card .desc { font-size: 0.72rem; }
+      .step-card .name { font-size: 0.95rem; }
+    }
+  </style>
+</head>
+<body class="no-stage">
+
+  <div class="savebar no-print">
+    <span class="save-state">Your answers save to this browser as you type. <strong id="saveStamp">Not saved yet.</strong></span>
+    <span class="save-actions">
+      <button class="btn btn-primary" onclick="window.print()">Save to PDF</button>
+      <button class="btn" onclick="clearAll()">Clear</button>
+    </span>
+  </div>
+
+  <main class="page">
+
+    <header class="poster-header">
+      <p class="eyebrow">VBA · Strategic Planning<span class="index">STEP 03</span></p>
+      <h1 class="display">Organise your intentions.</h1>
+      <hr class="orange-rule">
+      <p class="lead">This is not business planning. Business planning is a document you write once and file. This is the work of deciding what you are actually for, what you are aiming at, and what you will do about it in the next ninety days. Do it properly and it changes how you make every decision for the next twelve months.</p>
+
+      <div class="grid-3">
+        <div class="field">
+          <label class="field-label" for="f_name">Your name</label>
+          <input class="field-input" id="f_name" data-save type="text">
+        </div>
+        <div class="field">
+          <label class="field-label" for="f_business">Business</label>
+          <input class="field-input" id="f_business" data-save type="text">
+        </div>
+        <div class="field">
+          <label class="field-label" for="f_date">Date</label>
+          <input class="field-input" id="f_date" data-save type="text" placeholder="21 July 2026">
+        </div>
+      </div>
+      <div class="field" style="margin-bottom:0">
+        <label class="field-label" for="f_horizon">Planning horizon</label>
+        <p class="field-hint">First time through, this is your annual plan and you look back across twelve months. If you have done this before, it is your quarterly plan and you look back across the last quarter only.</p>
+        <input class="field-input" id="f_horizon" data-save type="text" placeholder="Annual, or Q3 2026">
+      </div>
+    </header>
+
+    <section>
+      <h2>Before you start</h2>
+      <p>Some of this will feel unusual. You might not have been asked these questions before, and the first few pages have nothing to do with marketing, sales or shoots. Sit with that. This process has been run across hundreds of video business owners and the discomfort is part of it.</p>
+      <p>There is an old line worth keeping in mind today: life is pain, suffering is optional. Most of what makes running a business feel like suffering is not the work. It is the absence of a plan, which turns every decision into a fresh negotiation with yourself. Structure will set you free. That is the whole argument for the next ninety minutes.</p>
+
+      <div class="callout">
+        <p style="margin:0"><strong>One rule for today.</strong> Don't judge, just write. In the early exercises you are collecting raw material, not editing it. The editing comes later, and it comes fast. If you stop to assess every item as it lands, you will write six things instead of sixty and your plan will be built on the wrong six.</p>
+      </div>
+
+      <h3>What we're doing, in order</h3>
+      <ul class="brand-list">
+        <li><strong>Where you are.</strong> Your stage, your gate criteria, your systems, your energy. Scores, not essays.</li>
+        <li><strong>Your number.</strong> Revenue, EBIT, and what you're willing to trade for them.</li>
+        <li><strong>Your values.</strong> The ones you actually operate by.</li>
+        <li><strong>Looking back.</strong> What you achieved, and what it taught you.</li>
+        <li><strong>The chain.</strong> Turning that into objectives with dates on them.</li>
+        <li><strong>Your quarterly TOPs.</strong> The three to five things that matter for the next ninety days.</li>
+      </ul>
+      <p class="stage-note">You won't finish everything today, and you're not meant to. Get your number, three rows of the chain worked properly, and three TOPs you believe. Finish the rest this week while it's warm.</p>
+    </section>
+    <!-- ===================== S.C.A.L.E. STAIRCASE ===================== -->
+    <section class="page-break">
+      <h2 style="margin-top:0.5rem">Find your stage before you plan anything</h2>
+      <p>Every video business hits the same wall, and which wall you're at decides what your plan should contain. Plans fail most often not because the goals were wrong but because they were the right goals for a stage the owner hadn't reached yet. Systems built on chaos collapse. Simplify first, systemise second.</p>
+      <p>Read all five. Tick the one that describes your business as it actually runs today, not the one you're nearly at.</p>
+
+      <div class="stairs">
+        <label class="step-pick">
+          <input type="radio" name="stage" value="1" id="stage1" data-save>
+          <span class="step-card">
+            <span class="num">01</span>
+            <span class="pillar">Survival</span>
+            <span class="name">Operator</span>
+            <span class="desc">You are the business. If you stop, everything stops. Effort is the growth strategy.</span>
+            <span class="tickbox"></span>
+          </span>
+        </label>
+        <label class="step-pick">
+          <input type="radio" name="stage" value="2" id="stage2" data-save>
+          <span class="step-card">
+            <span class="num">02</span>
+            <span class="pillar">Control</span>
+            <span class="name">Juggler</span>
+            <span class="desc">Revenue's growing and so is complexity. Everything still routes through you for approval.</span>
+            <span class="tickbox"></span>
+          </span>
+        </label>
+        <label class="step-pick">
+          <input type="radio" name="stage" value="3" id="stage3" data-save>
+          <span class="step-card">
+            <span class="num">03</span>
+            <span class="pillar">Alignment</span>
+            <span class="name">Stabiliser</span>
+            <span class="desc">Systems exist and revenue's predictable, but you're the highest-paid project manager you employ.</span>
+            <span class="tickbox"></span>
+          </span>
+        </label>
+        <label class="step-pick">
+          <input type="radio" name="stage" value="4" id="stage4" data-save>
+          <span class="step-card">
+            <span class="num">04</span>
+            <span class="pillar">Leverage</span>
+            <span class="name">Strategist</span>
+            <span class="desc">You're leading, not doing. The business still depends on you to steer it.</span>
+            <span class="tickbox"></span>
+          </span>
+        </label>
+        <label class="step-pick">
+          <input type="radio" name="stage" value="5" id="stage5" data-save>
+          <span class="step-card">
+            <span class="num">05</span>
+            <span class="pillar">Expansion</span>
+            <span class="name">Scaler</span>
+            <span class="desc">Growth no longer costs you proportional time. The question becomes what not to do.</span>
+            <span class="tickbox"></span>
+          </span>
+        </label>
+      </div>
+
+      <div class="callout no-print">
+        <p style="margin:0"><strong>Be honest, then be honest again.</strong> Most owners place themselves one stage higher than they are. The gate criteria below are the reality check. If the gates for the stage you picked aren't ticked, you're working at the stage below and your plan should say so. Tick a stage above to see its gates.</p>
+      </div>
+    </section>
+
+    <!-- ===================== GATE CRITERIA ===================== -->
+    <section>
+      <h2>Your gate criteria</h2>
+      <p>These are the things that must be true before the next stage is worth attempting. Tick what's genuinely done. What's left unticked is where your annual priorities come from, so this page does most of the work in the next hour.</p>
+
+      <!-- Stage 1 -->
+      <div class="gate" data-gate="1">
+        <div class="gate-head"><span class="g-stage">Stage 1 · Operator</span><span class="g-pillar">Active pillar: Survival</span></div>
+        <p class="field-hint">The move forward isn't speed, it's focus. One clear offer, one defined type of client, one repeatable way work comes in.</p>
+        <div class="check-row"><input type="checkbox" id="g1a" data-save><label for="g1a">Niche defined<span class="check-note">One specific market, documented in writing.</span></label></div>
+        <div class="check-row"><input type="checkbox" id="g1b" data-save><label for="g1b">Signature offer built<span class="check-note">One clear packaged offer with a price floor.</span></label></div>
+        <div class="check-row"><input type="checkbox" id="g1c" data-save><label for="g1c">Minimum project fee set and enforced<span class="check-note">No exceptions. The exception is the problem.</span></label></div>
+        <div class="check-row"><input type="checkbox" id="g1d" data-save><label for="g1d">One weekly sales activity running consistently<span class="check-note">Consistently, not reactively.</span></label></div>
+        <div class="check-row"><input type="checkbox" id="g1e" data-save><label for="g1e">Revenue and margin audit completed<span class="check-note">You know which clients and projects are actually profitable.</span></label></div>
+        <div class="field" style="margin-top:1.25rem">
+          <label class="field-label" for="d1">Your domino move</label>
+          <p class="field-hint">Define the niche and set the minimum. Everything else at this stage is noise until those two are locked. Write what that means for you, specifically.</p>
+          <textarea class="field-area" id="d1" data-save></textarea>
+        </div>
+      </div>
+
+      <!-- Stage 2 -->
+      <div class="gate" data-gate="2">
+        <div class="gate-head"><span class="g-stage">Stage 2 · Juggler</span><span class="g-pillar">Active pillar: Control</span></div>
+        <p class="field-hint">The constraint isn't process, it's decision authority. Your team waits for you because you haven't defined what they own.</p>
+        <div class="check-row"><input type="checkbox" id="g2a" data-save><label for="g2a">At least two case studies created<span class="check-note">Outcome-focused, client-approved. Not a showreel.</span></label></div>
+        <div class="check-row"><input type="checkbox" id="g2b" data-save><label for="g2b">Pricing structure documented<span class="check-note">Day rates, project minimums, package options.</span></label></div>
+        <div class="check-row"><input type="checkbox" id="g2c" data-save><label for="g2c">Delivery process documented<span class="check-note">Brief to final delivery, step by step, written down rather than in your head.</span></label></div>
+        <div class="check-row"><input type="checkbox" id="g2d" data-save><label for="g2d">One freelancer or team member operating without your oversight on a job</label></div>
+        <div class="check-row"><input type="checkbox" id="g2e" data-save><label for="g2e">Dream 50 relationship list built and in the CRM<span class="check-note">Active clients and aspirational clients, named.</span></label></div>
+        <div class="check-row"><input type="checkbox" id="g2f" data-save><label for="g2f">One recurring client or retainer established</label></div>
+        <div class="field" style="margin-top:1.25rem">
+          <label class="field-label" for="d2">Your domino move</label>
+          <p class="field-hint">Write the delivery process down and create one case study. Those two shift you from reactive to repeatable and give you something to show prospects. What does that mean for you?</p>
+          <textarea class="field-area" id="d2" data-save></textarea>
+        </div>
+      </div>
+
+      <!-- Stage 3 -->
+      <div class="gate" data-gate="3">
+        <div class="gate-head"><span class="g-stage">Stage 3 · Stabiliser</span><span class="g-pillar">Active pillar: Alignment</span></div>
+        <p class="field-hint">You're still the glue. The business works because you hold it together, and that makes growth fragile.</p>
+        <div class="check-row"><input type="checkbox" id="g3a" data-save><label for="g3a">Editing fully delegated<span class="check-note">You're not the editor on any regular project.</span></label></div>
+        <div class="check-row"><input type="checkbox" id="g3b" data-save><label for="g3b">Buy-back rate calculated and applied<span class="check-note">Anything delegatable below your effective hourly rate is delegated.</span></label></div>
+        <div class="check-row"><input type="checkbox" id="g3c" data-save><label for="g3c">Admin automated<span class="check-note">Proposals, onboarding and project updates running through CRM workflows.</span></label></div>
+        <div class="check-row"><input type="checkbox" id="g3d" data-save><label for="g3d">Authority positioning active<span class="check-note">LinkedIn profile conversion-optimised, content or outreach running weekly.</span></label></div>
+        <div class="check-row"><input type="checkbox" id="g3e" data-save><label for="g3e">Partner positioning achieved<span class="check-note">At least one client treats you as a strategic adviser rather than a supplier.</span></label></div>
+        <div class="check-row"><input type="checkbox" id="g3f" data-save><label for="g3f">Founder time audit completed<span class="check-note">60% or more of your week on CEO-level activity: sales, relationships, positioning.</span></label></div>
+        <div class="field" style="margin-top:1.25rem">
+          <label class="field-label" for="d3">Your domino move</label>
+          <p class="field-hint">Get off the editing. That single move frees the time to do everything else at this stage. Until it happens there's no slack to build anything. What's your first step towards it?</p>
+          <textarea class="field-area" id="d3" data-save></textarea>
+        </div>
+      </div>
+
+      <!-- Stage 4 -->
+      <div class="gate" data-gate="4">
+        <div class="gate-head"><span class="g-stage">Stage 4 · Strategist</span><span class="g-pillar">Active pillar: Leverage</span></div>
+        <p class="field-hint">Leadership is the constraint now. Not systems, not team, not demand. The risk is optimising when you should be redesigning.</p>
+        <div class="check-row"><input type="checkbox" id="g4a" data-save><label for="g4a">Price floors raised<span class="check-note">Minimum project value meaningfully higher than Stage 3 levels.</span></label></div>
+        <div class="check-row"><input type="checkbox" id="g4b" data-save><label for="g4b">Leadership rhythm established<span class="check-note">Weekly team meeting, clear KPIs, team owns day-to-day.</span></label></div>
+        <div class="check-row"><input type="checkbox" id="g4c" data-save><label for="g4c">At least one team member operating autonomously with full project ownership</label></div>
+        <div class="check-row"><input type="checkbox" id="g4d" data-save><label for="g4d">Founder out of all delivery<span class="check-note">You're not shooting or editing on any project.</span></label></div>
+        <div class="check-row"><input type="checkbox" id="g4e" data-save><label for="g4e">Revenue predictable 90 days out<span class="check-note">Pipeline visible, not reactive.</span></label></div>
+        <div class="check-row"><input type="checkbox" id="g4f" data-save><label for="g4f">Business can operate for one month without your daily involvement</label></div>
+        <div class="field" style="margin-top:1.25rem">
+          <label class="field-label" for="d4">Your domino move</label>
+          <p class="field-hint">Raise the price floor and set up a weekly leadership rhythm. Together they force the shift from manager to leader. What's the number, and when's the meeting?</p>
+          <textarea class="field-area" id="d4" data-save></textarea>
+        </div>
+      </div>
+
+      <!-- Stage 5 -->
+      <div class="gate" data-gate="5">
+        <div class="gate-head"><span class="g-stage">Stage 5 · Scaler</span><span class="g-pillar">Active pillar: Expansion</span></div>
+        <p class="field-hint">No gate here. This stage is calibration. Scale isn't the challenge, focus is, and every new opportunity carries an opportunity cost.</p>
+        <div class="check-row"><input type="checkbox" id="g5a" data-save><label for="g5a">Leadership depth: the team can lead without you involved</label></div>
+        <div class="check-row"><input type="checkbox" id="g5b" data-save><label for="g5b">Strategic clarity: clear criteria for what to pursue and what to decline</label></div>
+        <div class="check-row"><input type="checkbox" id="g5c" data-save><label for="g5c">Optionality without dilution: new opportunities add margin, not just volume</label></div>
+        <div class="check-row"><input type="checkbox" id="g5d" data-save><label for="g5d">Exit or succession planning underway, if relevant</label></div>
+        <div class="field" style="margin-top:1.25rem">
+          <label class="field-label" for="d5">The Stage 5 question</label>
+          <p class="field-hint">What should I not do next? That's the constraint at this stage. Not what to add, what to protect. Answer it here.</p>
+          <textarea class="field-area" id="d5" data-save></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SEVEN SYSTEMS ===================== -->
+    <section class="page-break">
+      <h2>The seven systems</h2>
+      <p>Your stage tells you which pillar to work on. This tells you which system is weakest underneath it. Score each out of ten, honestly. The lowest score is usually the thing holding your gate shut.</p>
+
+      <div class="score-row"><span class="s-text"><b>Marketing</b><span>Predictable demand pipeline. Common failure: relying on referrals and word of mouth.</span></span><input class="score-input" id="s_marketing" data-save type="text" inputmode="numeric"><span class="score-suffix">/ 10</span></div>
+      <div class="score-row"><span class="s-text"><b>Sales</b><span>Converting leads with clarity. Common failure: pitching rather than diagnosing.</span></span><input class="score-input" id="s_sales" data-save type="text" inputmode="numeric"><span class="score-suffix">/ 10</span></div>
+      <div class="score-row"><span class="s-text"><b>Delivery</b><span>Consistent excellence without chaos. Common failure: everything depends on the founder.</span></span><input class="score-input" id="s_delivery" data-save type="text" inputmode="numeric"><span class="score-suffix">/ 10</span></div>
+      <div class="score-row"><span class="s-text"><b>Finance</b><span>Data-driven decisions. Common failure: tracking revenue, not margin or daily rate.</span></span><input class="score-input" id="s_finance" data-save type="text" inputmode="numeric"><span class="score-suffix">/ 10</span></div>
+      <div class="score-row"><span class="s-text"><b>Team</b><span>From operator to orchestrator. Common failure: delegating without documenting.</span></span><input class="score-input" id="s_team" data-save type="text" inputmode="numeric"><span class="score-suffix">/ 10</span></div>
+      <div class="score-row"><span class="s-text"><b>Technology</b><span>Automate, integrate, elevate. Common failure: tech clutter, tools that don't connect.</span></span><input class="score-input" id="s_tech" data-save type="text" inputmode="numeric"><span class="score-suffix">/ 10</span></div>
+      <div class="score-row"><span class="s-text"><b>Mindset</b><span>The operating system for growth. Common failure: operator identity, not CEO identity.</span></span><input class="score-input" id="s_mindset" data-save type="text" inputmode="numeric"><span class="score-suffix">/ 10</span></div>
+
+      <div class="field" style="margin-top:1.5rem">
+        <label class="field-label" for="f_weakest">Your weakest system, and what it's costing you</label>
+        <textarea class="field-area" id="f_weakest" data-save></textarea>
+      </div>
+    </section>
+
+    <!-- ===================== THE YOU QUADRANT ===================== -->
+    <section>
+      <h2>The you quadrant</h2>
+      <p>The Mindset system deserves its own page, because every other system runs on top of it. Score each line out of ten. Nobody else reads this page unless you decide they do.</p>
+
+      <div class="quad">
+        <div class="quad-box">
+          <h3>You · Energy</h3>
+          <div class="score-row"><span class="s-text">Purpose, mission and values are clear to me</span><input class="score-input" id="q_a1" data-save type="text" inputmode="numeric"><span class="score-suffix">/ 10</span></div>
+          <div class="score-row"><span class="s-text">Clear goals and time management</span><input class="score-input" id="q_a2" data-save type="text" inputmode="numeric"><span class="score-suffix">/ 10</span></div>
+          <div class="score-row"><span class="s-text">Self-awareness, and a picture of my future self</span><input class="score-input" id="q_a3" data-save type="text" inputmode="numeric"><span class="score-suffix">/ 10</span></div>
+          <div class="score-row"><span class="s-text">Self-discipline and self-control</span><input class="score-input" id="q_a4" data-save type="text" inputmode="numeric"><span class="score-suffix">/ 10</span></div>
+          <div class="score-row"><span class="s-text">Health and fitness</span><input class="score-input" id="q_a5" data-save type="text" inputmode="numeric"><span class="score-suffix">/ 10</span></div>
+          <div class="score-row"><span class="s-text">Time spent thinking rather than reacting</span><input class="score-input" id="q_a6" data-save type="text" inputmode="numeric"><span class="score-suffix">/ 10</span></div>
+        </div>
+        <div class="quad-box">
+          <h3>Process · Executing</h3>
+          <div class="score-row"><span class="s-text">I know my number one priority for long-term outcomes</span><input class="score-input" id="q_b1" data-save type="text" inputmode="numeric"><span class="score-suffix">/ 10</span></div>
+          <div class="score-row"><span class="s-text">I remove stimuli that don't support it</span><input class="score-input" id="q_b2" data-save type="text" inputmode="numeric"><span class="score-suffix">/ 10</span></div>
+          <div class="score-row"><span class="s-text">I say no to requests that don't support it</span><input class="score-input" id="q_b3" data-save type="text" inputmode="numeric"><span class="score-suffix">/ 10</span></div>
+          <div class="score-row"><span class="s-text">I have a system for execution, not just intent</span><input class="score-input" id="q_b4" data-save type="text" inputmode="numeric"><span class="score-suffix">/ 10</span></div>
+          <div class="score-row"><span class="s-text">I focus on the top tier of outcomes</span><input class="score-input" id="q_b5" data-save type="text" inputmode="numeric"><span class="score-suffix">/ 10</span></div>
+        </div>
+        <div class="quad-box">
+          <h3>Outcomes · Results</h3>
+          <div class="score-row"><span class="s-text">Intensely focussed and deliberate actions</span><input class="score-input" id="q_c1" data-save type="text" inputmode="numeric"><span class="score-suffix">/ 10</span></div>
+          <div class="score-row"><span class="s-text">Consistently completing goals</span><input class="score-input" id="q_c2" data-save type="text" inputmode="numeric"><span class="score-suffix">/ 10</span></div>
+          <div class="score-row"><span class="s-text">Making progress and getting results</span><input class="score-input" id="q_c3" data-save type="text" inputmode="numeric"><span class="score-suffix">/ 10</span></div>
+        </div>
+        <div class="quad-box">
+          <h3>Measure · Progress</h3>
+          <div class="score-row"><span class="s-text">I track results against benchmarks</span><input class="score-input" id="q_d1" data-save type="text" inputmode="numeric"><span class="score-suffix">/ 10</span></div>
+          <div class="score-row"><span class="s-text">I review what does and doesn't work</span><input class="score-input" id="q_d2" data-save type="text" inputmode="numeric"><span class="score-suffix">/ 10</span></div>
+          <div class="score-row"><span class="s-text">I adjust energy and focus based on what I see</span><input class="score-input" id="q_d3" data-save type="text" inputmode="numeric"><span class="score-suffix">/ 10</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== THE NUMBER AND THE TRADE ===================== -->
+    <section class="page-break">
+      <h2>Your number, and what you'll trade for it</h2>
+      <p>Two figures, then the question almost nobody asks themselves before committing to a year of their life. You cannot hit a target you cannot see, so start with the target.</p>
+
+      <div class="trade-grid">
+        <div class="field">
+          <label class="field-label" for="f_revenue">Your number</label>
+          <p class="field-hint">Revenue, twelve months out. One figure, not a range.</p>
+          <input class="field-input" id="f_revenue" data-save type="text" inputmode="numeric" placeholder="e.g. 650,000">
+          <div class="derived">
+            <span class="d-label">That's a monthly revenue target of</span>
+            <div class="d-value" id="d_revenue"></div>
+            <div class="d-note" id="d_rev_note">A year is an abstraction. A month is a decision you make on Monday.</div>
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label" for="f_ebit">Your EBIT</label>
+          <p class="field-hint">Earnings before interest and tax. Profit. The more important of the two, and the one most owners can't answer.</p>
+          <input class="field-input" id="f_ebit" data-save type="text" inputmode="numeric" placeholder="e.g. 220,000">
+          <div class="derived">
+            <span class="d-label">That's a monthly profit target of</span>
+            <div class="d-value" id="d_ebit"></div>
+            <div class="d-note" id="d_margin">Margin appears here once both numbers are in.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="f_trade">What are you willing to trade in exchange?</label>
+        <p class="field-hint">Time with family? Health? Lifestyle? Energy? The bigger the number, the bigger the trade. Name it now, because you'll pay it either way.</p>
+        <textarea class="field-area" id="f_trade" data-save></textarea>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="f_wont_trade">What are you not willing to trade, at any number?</label>
+        <p class="field-hint">The line. Write it down while you're calm, because the moment you'll need it is the moment a big project is dangling in front of you.</p>
+        <textarea class="field-area" id="f_wont_trade" data-save></textarea>
+      </div>
+
+      <div class="dark-inset">
+        <p class="eyebrow" style="color: var(--color-paper)">The whole game, in one line</p>
+        <hr class="orange-rule">
+        <h2 style="margin-top:0">Unless you leverage, more money just means more of you.</h2>
+        <p>External support, team, contractors. Without one of those, a bigger number means more time spent doing the work yourself, and there's a hard limit on that. You'll hit a ceiling, or you'll burn out, and most people manage both.</p>
+        <p style="margin-bottom:0">This is the Operator's trap, and it's why the staircase exists. Effort is a growth strategy right up until it isn't. If your number needs more hours than you have, the number isn't the problem and neither are you. The structure is.</p>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="f_leverage">Who or what could do this instead of you?</label>
+        <p class="field-hint">Against your number, name the leverage. If the honest answer is "no one, it has to be me", write that down and go back to your stage. That answer is the diagnosis.</p>
+        <textarea class="field-area" id="f_leverage" data-save></textarea>
+      </div>
+    </section>
+
+    <!-- ===================== VALUES ===================== -->
+    <section>
+      <h2>Values: what you'll hire and fire on</h2>
+      <p>Worth doing even if you're a one-person business, because at some point you'll bring someone in, and a defined set of values makes that selection obvious rather than agonising. Once you have a team, build the final set with them so they're connected to it.</p>
+      <p>Push past integrity, honesty and quality. Everyone writes those and nobody operates by them. For each value you write down, think of a moment in the last year where holding to it cost you money or comfort. If you can't find one, it isn't a value yet, it's a preference.</p>
+
+      <div class="field">
+        <label class="field-label" for="f_values">Four to six values, each with the moment it cost you something</label>
+        <textarea class="field-area xtall" id="f_values" data-save></textarea>
+      </div>
+    </section>
+
+    <!-- ===================== STEP 1 ===================== -->
+    <section class="page-break">
+      <h2 style="margin-top:0.5rem">Step one: look back</h2>
+      <p>Before you decide what's next, you need the raw material of what's happened. Write everything you think of in each area. Don't judge, just write. Most people find the list gets longer as they go, and things they'd forgotten surface halfway down. That's the exercise working.</p>
+
+      <div class="field">
+        <label class="field-label" for="f_accomplishments">Accomplishments</label>
+        <p class="field-hint">What you've achieved, so you can see it properly. Owners are chronically bad at this and it skews every judgement that follows. Be generous with yourself here.</p>
+        <textarea class="field-area xtall" id="f_accomplishments" data-save></textarea>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="f_lessons">Lessons learned</label>
+        <p class="field-hint">What you've learned, or found out you need to learn. The good, the bad and the moments the penny dropped.</p>
+        <textarea class="field-area xtall" id="f_lessons" data-save></textarea>
+      </div>
+    </section>
+    <!-- ===================== STEP 2: THE CHAIN ===================== -->
+    <section class="page-break">
+      <h2>Step two: the chain</h2>
+      <p>This is the part that makes the difference, and it's the part most planning misses. What you've just written is raw material. It isn't a plan and it never becomes one by being read again. It becomes a plan by travelling.</p>
+      <p>Every item that matters moves left to right across the same row, and it changes shape as it goes. A thing that happened becomes a thing you learned, becomes a question, becomes an obstacle named out loud, becomes an objective, becomes a date. One row. Nothing gets stranded on a page you never turn back to.</p>
+
+      <div class="chain-flow">
+        <div class="flow-step">
+          <span class="f-num">01</span>
+          <div class="f-name">Accomplishment</div>
+          <p class="f-desc">What happened. Good or bad, it's evidence.</p>
+        </div>
+        <div class="flow-step">
+          <span class="f-num">02</span>
+          <div class="f-name">Lesson learned</div>
+          <p class="f-desc">What it taught you. This is where most people stop.</p>
+        </div>
+        <div class="flow-step">
+          <span class="f-num">03</span>
+          <div class="f-name">How do we...</div>
+          <p class="f-desc">The outcome you want, phrased as a question.</p>
+        </div>
+        <div class="flow-step">
+          <span class="f-num">04</span>
+          <div class="f-name">Given that...</div>
+          <p class="f-desc">The obstacle, named. Don't solve it yet.</p>
+        </div>
+        <div class="flow-step">
+          <span class="f-num">05</span>
+          <div class="f-name">Objective</div>
+          <p class="f-desc">Written as though it's already true.</p>
+        </div>
+        <div class="flow-step">
+          <span class="f-num">06</span>
+          <div class="f-name">Pillar and date</div>
+          <p class="f-desc">Which pillar it serves, and when it's done.</p>
+        </div>
+      </div>
+
+      <div class="callout">
+        <p style="margin:0"><strong>Not every row starts at the left.</strong> Some strategic issues don't come from an accomplishment at all, they come from a gate criterion you couldn't tick or a system you scored 3 out of 10. Those rows start at column three. That's fine. The columns are a shape, not a queue.</p>
+      </div>
+
+      <h3>The pillar column, and why it's there</h3>
+      <p>Column six is the one that isn't in the old version, and it's the one that stops this becoming a wish list. Every objective gets tagged with the pillar it serves: <strong>S</strong>urvival, <strong>C</strong>ontrol, <strong>A</strong>lignment, <strong>L</strong>everage or <strong>E</strong>xpansion.</p>
+      <p>Then the honest bit. If an objective belongs to a pillar above your stage, it doesn't go in this year's plan. It goes in the parking lot at the end. Not because it's a bad idea, but because it's the right idea at the wrong time, and doing it now costs you the thing you actually needed to do. The instinct to jump is usually right about the direction and wrong about the timing.</p>
+      <p class="stage-note">A worked row: "Landed the Emerald Grain job" (accomplishment) → "Agriculture pays better and briefs cleaner than events" (lesson) → "How do we get more agriculture clients" (how do we) → "Given that we have no case study and no list" (given that) → "We have two agriculture case studies published and a named list of 50 agriculture prospects in the CRM" (objective) → "C, end of Q3" (pillar and date).</p>
+
+      <div class="card">
+        <p class="card-eyebrow">Column five, where plans live or die</p>
+        <h2 style="margin-top:0">A complaint can't be ticked, measured or delegated.</h2>
+        <ul class="body-list">
+          <li><strong>The problem:</strong> not enough website enquiries.</li>
+          <li><strong>The outcome:</strong> want more leads. <em>Still useless. That's a feeling, not a target.</em></li>
+          <li><strong>The objective:</strong> "We have a fully functional strategy session funnel that is automated, delivering five qualified leads per week."</li>
+        </ul>
+        <p style="margin-bottom:0">Present tense, as though it's already true. That isn't a trick. Writing it as done forces you to describe the finished thing, and the finished thing is what you work backwards from. Every objective in column five starts with <strong>"We have"</strong>.</p>
+      </div>
+    </section>
+
+    <!-- ===================== THE CHAIN TABLE (LANDSCAPE) ===================== -->
+    <section class="land page-break">
+      <h2>Your chain</h2>
+      <p class="field-hint">Work across, not down. If a row runs out of steam by column four, it wasn't a strategic issue. <strong>On the day, do three rows.</strong> Three worked properly beats twenty half-done, and the rest is Part three.</p>
+      <table class="chain">
+        <thead>
+          <tr>
+            <th class="c-what"><span class="th-step">01</span>Accomplishment</th>
+            <th class="c-lesson"><span class="th-step">02</span>Lesson learned</th>
+            <th class="c-how"><span class="th-step">03</span>How do we... (outcome)</th>
+            <th class="c-given"><span class="th-step">04</span>Given that... (obstacle)</th>
+            <th class="c-obj"><span class="th-step">05</span>Strategic objective ("We have...")</th>
+            <th class="c-pillar"><span class="th-step">06</span>Pillar</th>
+            <th class="c-when"><span class="th-step">07</span>When</th>
+          </tr>
+        </thead>
+        <tbody id="chainBody"></tbody>
+      </table>
+    </section>
+
+    <section class="land page-break">
+      <h2>Your chain, continued</h2>
+      <table class="chain">
+        <thead>
+          <tr>
+            <th class="c-what"><span class="th-step">01</span>Accomplishment</th>
+            <th class="c-lesson"><span class="th-step">02</span>Lesson learned</th>
+            <th class="c-how"><span class="th-step">03</span>How do we... (outcome)</th>
+            <th class="c-given"><span class="th-step">04</span>Given that... (obstacle)</th>
+            <th class="c-obj"><span class="th-step">05</span>Strategic objective ("We have...")</th>
+            <th class="c-pillar"><span class="th-step">06</span>Pillar</th>
+            <th class="c-when"><span class="th-step">07</span>When</th>
+          </tr>
+        </thead>
+        <tbody id="chainBody2"></tbody>
+      </table>
+    </section>
+
+    <!-- ===================== STEP 4 ===================== -->
+    <section class="page-break">
+      <h2>Step four: quarterly TOPs</h2>
+      <p>TOPs are your Tactical Operating Priorities. Pull three to five from the annual list, per person or per area, and then ignore the annual plan completely for the next ninety days. That's the discipline that makes this work. The annual list exists so you're not choosing blind. It doesn't exist to be looked at daily.</p>
+      <p>Be realistic. If your annual priority is 100 leads a month and you're at 40, your quarterly TOP is 50 a month, not 100. Bite-sized and measurable, reviewed every quarter.</p>
+
+      <table class="work-table">
+        <thead>
+          <tr>
+            <th>Quarterly TOP</th>
+            <th class="col-narrow">Who</th>
+            <th class="col-narrow">When</th>
+          </tr>
+        </thead>
+        <tbody id="topsBody"></tbody>
+      </table>
+
+      <div class="field">
+        <label class="field-label" for="f_quarter_theme">If this quarter had one theme, what is it?</label>
+        <p class="field-hint">One line. It should sound like your domino move from earlier, because it usually is.</p>
+        <input class="field-input" id="f_quarter_theme" data-save type="text">
+      </div>
+
+      <h3>The parking lot</h3>
+      <p>Every objective you tagged with a pillar above your stage goes here. This page is not a bin. It's the reason the rest of the plan is achievable, and next year most of this becomes the plan.</p>
+      <div class="field">
+        <label class="field-label" for="f_parking">Parked, and what has to be true before it comes back</label>
+        <p class="field-hint">For each one, write the gate criterion that unlocks it. "Hire a second editor, parked until editing is delegated and the buy-back rate is holding." That's not a no. That's a not yet with a condition on it, which is the only kind of not yet that ever turns into a yes.</p>
+        <textarea class="field-area tall" id="f_parking" data-save></textarea>
+      </div>
+    </section>
+    <!-- ===================== THE WEEKLY RHYTHM ===================== -->
+    <section class="page-break">
+      <h2>The rhythm in the room</h2>
+      <p>The last piece isn't on your calendar, it's in the community, and it's the cheapest accountability you will ever get.</p>
+
+      <div class="grid-2">
+        <div class="card">
+          <p class="card-eyebrow">Sunday</p>
+          <h2 style="margin-top:0">Post your weekly goals</h2>
+          <p>Set your intentions for the week ahead. Three strategic goals, posted in Skool where the room can see them.</p>
+          <p style="margin-bottom:0">The discipline is in the word <em>strategic</em>. Your weekly goals are a subset of your quarterly TOPs, not a to-do list of busy tasks. If it isn't traceable back to a TOP, it doesn't go in the post.</p>
+        </div>
+        <div class="card">
+          <p class="card-eyebrow">Friday</p>
+          <h2 style="margin-top:0">Post your weekly wins</h2>
+          <p>Celebrate yours and other people's. There are always wins, including in the weeks that felt like a write-off, and especially in those.</p>
+          <p style="margin-bottom:0">This isn't a morale exercise. Owners are chronically bad at noticing progress, and a year of unnoticed progress is how people talk themselves out of a business that's actually working.</p>
+        </div>
+      </div>
+
+      <div class="dark-inset">
+        <p class="eyebrow" style="color: var(--color-paper)">Why it works</p>
+        <hr class="orange-rule">
+        <h2 style="margin-top:0">If you post, you get support.</h2>
+        <p>A plan nobody knows about is a wish. Post it and the room does three things to it: someone tells you the thing you're avoiding, someone offers the shortcut they already paid for, and someone asks you on Friday whether you did it.</p>
+        <p style="margin-bottom:0">That last one is worth more than any of the paperwork in this workbook.</p>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="f_commit">What you'll commit to the room this week</label>
+        <p class="field-hint">One thing, with a day on it. Then go and post it.</p>
+        <textarea class="field-area" id="f_commit" data-save></textarea>
+      </div>
+
+      <p class="stage-note">The standards that make the room worth posting in are in the VBA Code of Conduct, which every member signs up to: extreme ownership, ego at the door, monthly financial review, and the standing permission to be called out on a story you're telling yourself. If you post a plan you don't believe, someone will say so. That's the feature.</p>
+    </section>
+
+    <!-- ===================== CLOSE ===================== -->
+    <div class="dark-inset page-break">
+      <p class="eyebrow" style="color: var(--color-paper)">Before you log off</p>
+      <hr class="orange-rule">
+      <h2 style="margin-top:0">Three things.</h2>
+      <ul class="brand-list">
+        <li>Your <strong>number</strong>, with the EBIT behind it and the trade named honestly</li>
+        <li><strong>Three rows of the chain</strong>, worked all the way across to a pillar and a date</li>
+        <li><strong>Three quarterly TOPs</strong>, each with a who and a when</li>
+      </ul>
+      <p style="margin-top:1.5rem">Three. Not the whole workbook. If you log off with a number you've stress-tested and three priorities you believe, the session did its job.</p>
+      <p><strong>Then finish it this week, while it's still warm.</strong> The rest of the chain, and the objectives that came out of it. Give it an hour before the weekend and you'll have a year's plan instead of a good afternoon.</p>
+      <p>Then post your TOPs where the room can see them. A plan nobody knows about is a wish.</p>
+      <p style="margin-top:1.25rem"><strong>And when it starts to feel heavy, which it will:</strong> this is simple, this is easy, this is fun. Say it out loud. Den has it on a label on his monitor next to a second one that reads "is this a priority right now?". Both earn their space.</p>
+    </div>
+
+    <footer class="poster-footer">
+      <span class="wordmark">Den Lennie.</span>
+      <span>VBA · Strategic Planning Workbook · v2.1 · 2026</span>
+    </footer>
+
+  </main>
+
+  <script>
+    // ---- Build the repeating table rows -----------------------------------
+    // Guard every lookup. Sections get cut from this workbook as the session
+    // format changes, and a hard reference to a deleted tbody throws, which
+    // kills the rest of this script and silently takes the autosave, the
+    // stage reveal and the monthly maths with it. Ask how I know.
+    (function buildRows() {
+      // The chain: two landscape sheets. 13 rows is what fits an A4 landscape
+      // sheet under the heading; 14 spills a single orphan row onto page three.
+      function chainRows(tbody, offset, count) {
+        if (!tbody) return;
+        for (var i = 1; i <= count; i++) {
+          var n = offset + i;
+          tbody.insertAdjacentHTML('beforeend',
+            '<tr>' +
+            '<td><input type="text" id="ch_what' + n + '" data-save></td>' +
+            '<td><input type="text" id="ch_lesson' + n + '" data-save></td>' +
+            '<td><input type="text" id="ch_how' + n + '" data-save></td>' +
+            '<td><input type="text" id="ch_given' + n + '" data-save></td>' +
+            '<td class="obj-cell"><input type="text" id="ch_obj' + n + '" data-save></td>' +
+            '<td><input type="text" id="ch_pillar' + n + '" data-save placeholder="S C A L E"></td>' +
+            '<td><input type="text" id="ch_when' + n + '" data-save></td>' +
+            '</tr>');
+        }
+      }
+      chainRows(document.getElementById('chainBody'), 0, 13);
+      chainRows(document.getElementById('chainBody2'), 13, 13);
+
+      var tops = document.getElementById('topsBody');
+      for (var j = 1; tops && j <= 15; j++) {
+        tops.insertAdjacentHTML('beforeend',
+          '<tr>' +
+          '<td><input type="text" id="top_t' + j + '" data-save></td>' +
+          '<td><input type="text" id="top_w' + j + '" data-save></td>' +
+          '<td><input type="text" id="top_d' + j + '" data-save></td>' +
+          '</tr>');
+      }
+    })();
+
+    // ---- Derive the monthly targets from the annual ones ------------------
+    // A year is an abstraction; a month is a decision. Tolerant of the way
+    // people actually type money: 650,000 / $650k / 650000.
+    function parseMoney(raw) {
+      if (!raw) return NaN;
+      var s = String(raw).trim().toLowerCase().replace(/[^0-9km.]/g, '');
+      var mult = 1;
+      if (/k$/.test(s)) { mult = 1e3; s = s.slice(0, -1); }
+      else if (/m$/.test(s)) { mult = 1e6; s = s.slice(0, -1); }
+      var n = parseFloat(s);
+      return isNaN(n) ? NaN : n * mult;
+    }
+
+    function money(n) {
+      return n.toLocaleString('en-AU', { maximumFractionDigits: 0 });
+    }
+
+    function recalc() {
+      var rev = parseMoney(document.getElementById('f_revenue').value);
+      var ebit = parseMoney(document.getElementById('f_ebit').value);
+      var dRev = document.getElementById('d_revenue');
+      var dEbit = document.getElementById('d_ebit');
+      var dMargin = document.getElementById('d_margin');
+      if (!dRev) return;
+
+      // Blank rather than a dash placeholder: the brand rule bans em dashes,
+      // and a member sees this glyph on the page.
+      dRev.textContent = isNaN(rev) ? '' : money(rev / 12) + ' a month';
+      dEbit.textContent = isNaN(ebit) ? '' : money(ebit / 12) + ' a month';
+
+      if (!isNaN(rev) && !isNaN(ebit) && rev > 0) {
+        var pct = (ebit / rev) * 100;
+        dMargin.textContent = 'That is a ' + pct.toFixed(1) + '% margin. Under 15% and the number is working you, not the other way round.';
+      } else {
+        dMargin.textContent = 'Margin appears here once both numbers are in.';
+      }
+    }
+
+    // ---- Stage selection reveals that stage's gate ------------------------
+    // Nothing selected: every gate shows, so a blank printout is usable with
+    // a pen. Once a stage is picked, only that gate shows, which matches the
+    // coaching rule that nothing above your stage gets surfaced.
+    function applyStage() {
+      var picked = document.querySelector('input[name="stage"]:checked');
+      document.body.classList.toggle('no-stage', !picked);
+      document.querySelectorAll('.gate').forEach(function (g) {
+        g.classList.toggle('show', !!picked && g.dataset.gate === picked.value);
+      });
+    }
+
+    // ---- Auto-save to this browser. No server, nothing leaves the machine.
+    var KEY = 'vba-planning-workbook-v2';
+
+    function loadAll() {
+      var saved;
+      try { saved = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { saved = {}; }
+      document.querySelectorAll('[data-save]').forEach(function (el) {
+        if (!(el.id in saved)) return;
+        if (el.type === 'checkbox' || el.type === 'radio') { el.checked = saved[el.id]; }
+        else { el.value = saved[el.id]; }
+      });
+      if (localStorage.getItem(KEY)) { stamp('Saved'); }
+      applyStage();
+      recalc();
+    }
+
+    function saveAll() {
+      var data = {};
+      document.querySelectorAll('[data-save]').forEach(function (el) {
+        data[el.id] = (el.type === 'checkbox' || el.type === 'radio') ? el.checked : el.value;
+      });
+      localStorage.setItem(KEY, JSON.stringify(data));
+      stamp('Saved');
+    }
+
+    function stamp(word) {
+      var s = document.getElementById('saveStamp');
+      if (s) { s.textContent = word + ' to this browser.'; }
+    }
+
+    function clearAll() {
+      if (!confirm('Clear everything you have typed in this workbook? This cannot be undone.')) return;
+      localStorage.removeItem(KEY);
+      document.querySelectorAll('[data-save]').forEach(function (el) {
+        if (el.type === 'checkbox' || el.type === 'radio') { el.checked = false; } else { el.value = ''; }
+      });
+      applyStage();
+      stamp('Cleared');
+    }
+
+    document.addEventListener('input', function () { recalc(); saveAll(); });
+    document.addEventListener('change', function () { applyStage(); recalc(); saveAll(); });
+    window.addEventListener('DOMContentLoaded', loadAll);
+  </script>
+
+</body>
+</html>
