@@ -1555,7 +1555,12 @@ table.brand-table tr:last-child td { border-bottom: 0; }
 
     <footer class="poster-footer">
       <span class="wordmark">Den Lennie.</span>
-      <span>VBA · Strategic Planning Workbook · v2.1 · 2026</span>
+      <!-- The build date is stamped in by workshop/build-standalone.py. It is
+           here so a version can be identified out loud: "scroll to the bottom,
+           what date does it say". Browsers cache this page for ten minutes, so
+           a member can be looking at yesterday's copy and neither of you would
+           otherwise know. -->
+      <span>VBA · Strategic Planning Workbook · v3.1 · <span id="buildStamp">20 July 2026</span></span>
     </footer>
 
   </main>
@@ -1899,7 +1904,13 @@ table.brand-table tr:last-child td { border-bottom: 0; }
       if (e.target && e.target.id === 'sessionPicker') { switchSession(e.target.value); return; }
       applyStage(); recalc(); saveAll();
     });
-    window.addEventListener('DOMContentLoaded', loadAll);
+    window.addEventListener('DOMContentLoaded', function () {
+      loadAll();
+      // The vault copy is opened directly during editing and never goes
+      // through the build script, so the token would show literally.
+      var b = document.getElementById('buildStamp');
+      if (b && b.textContent.indexOf('{{') === 0) { b.textContent = 'working copy'; }
+    });
   </script>
 
 </body>
