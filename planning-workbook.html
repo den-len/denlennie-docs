@@ -476,9 +476,24 @@ table.brand-table tr:last-child td { border-bottom: 0; }
       outline: none; border-color: var(--color-burnt-orange);
       box-shadow: 0 0 0 2px var(--tint-orange-10);
     }
-    .field-area { min-height: 5.5rem; resize: vertical; }
+    .field-area { min-height: 5.5rem; resize: vertical; overflow: hidden; }
     .field-area.tall { min-height: 9rem; }
     .field-area.xtall { min-height: 15rem; }
+
+    /* ---------- print mirrors ----------
+       A textarea is a fixed viewport onto its content: it scrolls on screen
+       and clips on paper, so anything past the visible box vanished from the
+       PDF. A single-line <input> is worse, it cannot wrap at all.
+
+       Every field therefore keeps a plain <div> twin holding the same text.
+       The twin is hidden on screen and printed instead of the field, but only
+       when the field has something in it. Empty fields still print as ruled
+       boxes, so a blank workbook is still usable with a pen.
+
+       Kept in sync continuously rather than on a beforeprint hook: headless
+       Chrome does not reliably fire that event, and the PDF export runs
+       headless. */
+    .pm { display: none; }
 
     .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 1.5rem; }
     .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem 1.5rem; }
@@ -596,11 +611,15 @@ table.brand-table tr:last-child td { border-bottom: 0; }
     }
     table.work-table th .th-note { text-transform: none; letter-spacing: 0; opacity: 0.7; font-weight: 400; }
     table.work-table td { border: 1px solid var(--tint-ink-08); padding: 0; background: var(--color-white); }
-    table.work-table input {
+    table.work-table input, table.work-table textarea {
       width: 100%; border: 0; background: transparent; padding: 0.7rem 0.9rem;
       font-family: var(--font-body); font-weight: 300; font-size: 0.95rem; color: var(--color-ink-black);
     }
-    table.work-table input:focus { outline: none; background: var(--tint-orange-10); }
+    table.work-table textarea {
+      display: block; resize: none; overflow: hidden; min-height: 2.9rem; line-height: 1.4;
+    }
+    table.work-table input:focus, table.work-table textarea:focus { outline: none; background: var(--tint-orange-10); }
+    table.work-table td { vertical-align: top; }
     .col-narrow { width: 15%; }
 
     /* ---------- org chart example ---------- */
@@ -744,12 +763,17 @@ table.brand-table tr:last-child td { border-bottom: 0; }
       font-size: 0.6rem; margin-bottom: 0.15rem;
     }
     table.chain td { border: 1px solid var(--tint-ink-08); padding: 0; background: var(--color-white); }
-    table.chain input {
+    table.chain input, table.chain textarea {
       width: 100%; border: 0; background: transparent; padding: 0.5rem;
       font-family: var(--font-body); font-weight: 300; font-size: 0.8rem;
       color: var(--color-ink-black);
     }
-    table.chain input:focus { outline: none; background: var(--tint-orange-10); }
+    table.chain textarea {
+      display: block; resize: none; overflow: hidden;
+      min-height: 2.4rem; line-height: 1.35;
+    }
+    table.chain input:focus, table.chain textarea:focus { outline: none; background: var(--tint-orange-10); }
+    table.chain td { vertical-align: top; }
     table.chain .c-what   { width: 15%; }
     table.chain .c-lesson { width: 15%; }
     table.chain .c-how    { width: 17%; }
@@ -891,6 +915,28 @@ table.brand-table tr:last-child td { border-bottom: 0; }
       .field-area.tall  { min-height: 10em; }
       .field-area.xtall { min-height: 15em; }
 
+      /* A field with content prints as its text twin, which wraps and
+         paginates like normal prose. A field left empty prints as itself, so
+         the ruled lines survive for anyone working on paper. */
+      .has-content { display: none !important; }
+      .has-content + .pm {
+        display: block;
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
+        font-family: var(--font-body); font-weight: 300;
+        color: var(--color-ink-black);
+        line-height: 1.5;
+        padding: 0.1rem 0 0.35rem;
+        border-bottom: 1px solid rgba(12,12,13,0.28);
+      }
+      /* inside tables the cell already draws the border, and the text should
+         sit tight to the cell rather than carry its own rule */
+      table.chain .has-content + .pm,
+      table.work-table .has-content + .pm {
+        border-bottom: 0; padding: 0.45rem 0.5rem; line-height: 1.3;
+      }
+      table.work-table .has-content + .pm { padding: 0.6rem 0.9rem; }
+
       .check-row input[type="checkbox"],
       .step-card .tickbox,
       table.work-table th,
@@ -902,6 +948,10 @@ table.brand-table tr:last-child td { border-bottom: 0; }
       table.work-table input { border-bottom: 0; }
       table.work-table td { height: 2.6em; border-color: rgba(12,12,13,0.35); }
       table.chain td { height: 2.5em; border-color: rgba(12,12,13,0.35); }
+      /* rem is the root font size and ignores the 10.5pt print body, so the
+         screen min-heights inflate every empty row on paper. Re-state in em. */
+      table.chain textarea { min-height: 2.1em; padding: 0.35em 0.4em; }
+      table.work-table textarea { min-height: 2.2em; padding: 0.5em 0.7em; }
       table.chain th, table.chain td.obj-cell { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       table.audit td { height: 2.2em; border-color: rgba(12,12,13,0.35); }
       table.audit th, table.audit th.hot, table.audit td.hot-cell, table.audit .example td {
@@ -1494,8 +1544,9 @@ table.brand-table tr:last-child td { border-bottom: 0; }
     // kills the rest of this script and silently takes the autosave, the
     // stage reveal and the monthly maths with it. Ask how I know.
     (function buildRows() {
-      // The chain: two landscape sheets, 10 rows each. That is the ceiling
-      // once the pillar legend sits above the table (11 spills, tested).
+      // The chain: two landscape sheets, 8 rows each. Dropped from 10 when
+      // the cells became wrapping textareas, which are taller than the old
+      // single-line inputs. Confirm by rendering after any change here.
       // Sheet one is the binding constraint because it also carries the hint
       // and the parking-lot rule. Always confirm by rendering: print row
       // height is in em against a 10.5pt body, so DOM measurements read short.
@@ -1504,30 +1555,75 @@ table.brand-table tr:last-child td { border-bottom: 0; }
         for (var i = 1; i <= count; i++) {
           var n = offset + i;
           tbody.insertAdjacentHTML('beforeend',
+            // textareas, not inputs: an input cannot wrap, so anything longer
+            // than the column was invisible on screen and clipped in the PDF.
+            // Same ids, and .value behaves identically, so saved work loads back.
             '<tr>' +
-            '<td><input type="text" id="ch_what' + n + '" data-save></td>' +
-            '<td><input type="text" id="ch_lesson' + n + '" data-save></td>' +
-            '<td><input type="text" id="ch_how' + n + '" data-save></td>' +
-            '<td><input type="text" id="ch_given' + n + '" data-save></td>' +
-            '<td class="obj-cell"><input type="text" id="ch_obj' + n + '" data-save></td>' +
+            '<td><textarea rows="1" id="ch_what' + n + '" data-save></textarea></td>' +
+            '<td><textarea rows="1" id="ch_lesson' + n + '" data-save></textarea></td>' +
+            '<td><textarea rows="1" id="ch_how' + n + '" data-save></textarea></td>' +
+            '<td><textarea rows="1" id="ch_given' + n + '" data-save></textarea></td>' +
+            '<td class="obj-cell"><textarea rows="1" id="ch_obj' + n + '" data-save></textarea></td>' +
             '<td><input type="text" id="ch_pillar' + n + '" data-save placeholder="S C A L E"></td>' +
             '<td><input type="text" id="ch_when' + n + '" data-save></td>' +
             '</tr>');
         }
       }
-      chainRows(document.getElementById('chainBody'), 0, 10);
-      chainRows(document.getElementById('chainBody2'), 10, 10);
+      chainRows(document.getElementById('chainBody'), 0, 8);
+      chainRows(document.getElementById('chainBody2'), 8, 8);
 
       var tops = document.getElementById('topsBody');
       for (var j = 1; tops && j <= 15; j++) {
         tops.insertAdjacentHTML('beforeend',
           '<tr>' +
-          '<td><input type="text" id="top_t' + j + '" data-save></td>' +
+          '<td><textarea rows="1" id="top_t' + j + '" data-save></textarea></td>' +
           '<td><input type="text" id="top_w' + j + '" data-save></td>' +
           '<td><input type="text" id="top_d' + j + '" data-save></td>' +
           '</tr>');
       }
     })();
+
+    /* ---- Fields that grow, and twins that print ---------------------------
+       Two problems, one pass. Textareas scroll rather than grow, so long
+       answers were hidden on screen; and both textareas and inputs clip when
+       printed, so those answers never reached the PDF. Every field now
+       expands to fit what is in it, and carries a plain <div> twin that is
+       what actually prints. */
+    function isTextField(el) {
+      return el.tagName === 'TEXTAREA' ||
+             (el.tagName === 'INPUT' && (el.type === 'text' || el.type === ''));
+    }
+
+    function mirrorFor(el) {
+      var m = el.nextElementSibling;
+      if (!m || !m.classList || !m.classList.contains('pm')) {
+        m = document.createElement('div');
+        m.className = 'pm';
+        m.setAttribute('aria-hidden', 'true');
+        el.parentNode.insertBefore(m, el.nextSibling);
+      }
+      return m;
+    }
+
+    function autoGrow(el) {
+      if (el.tagName !== 'TEXTAREA') return;
+      el.style.height = 'auto';                       // shrink first, or it only ever grows
+      el.style.height = (el.scrollHeight + 2) + 'px';
+    }
+
+    function refreshField(el) {
+      if (!isTextField(el)) return;
+      autoGrow(el);
+      var v = el.value || '';
+      mirrorFor(el).textContent = v;
+      // drives the print swap: filled fields print their twin, empty ones
+      // print themselves so the ruled lines survive on a blank handout
+      el.classList.toggle('has-content', v.trim() !== '');
+    }
+
+    function refreshAllFields() {
+      document.querySelectorAll('[data-save]').forEach(refreshField);
+    }
 
     // ---- Derive the monthly targets from the annual ones ------------------
     // A year is an abstraction; a month is a decision. Tolerant of the way
@@ -1700,6 +1796,7 @@ table.brand-table tr:last-child td { border-bottom: 0; }
       renderPicker();
       applyStage();
       recalc();
+      refreshAllFields();
       if (!HAS_STORE) {
         stampRaw('Private browsing: nothing will be saved. Use Save to PDF before you close this tab.');
       } else {
@@ -1765,10 +1862,14 @@ table.brand-table tr:last-child td { border-bottom: 0; }
       });
       applyStage();
       recalc();
+      refreshAllFields();
       stamp('Cleared');
     }
 
-    document.addEventListener('input', function () { recalc(); saveAll(); });
+    document.addEventListener('input', function (e) {
+      if (e.target && e.target.matches('[data-save]')) refreshField(e.target);
+      recalc(); saveAll();
+    });
     document.addEventListener('change', function (e) {
       if (e.target && e.target.id === 'sessionPicker') { switchSession(e.target.value); return; }
       applyStage(); recalc(); saveAll();
