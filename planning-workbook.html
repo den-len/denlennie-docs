@@ -769,8 +769,30 @@ table.brand-table tr:last-child td { border-bottom: 0; }
       color: var(--color-ink-black);
     }
     table.chain textarea {
-      display: block; resize: none; overflow: hidden;
-      min-height: 2.4rem; line-height: 1.35;
+      display: block; overflow: hidden;
+      min-height: 2.4rem; line-height: 1.4;
+      /* grows on its own, and can still be dragged taller by hand */
+      resize: vertical;
+    }
+
+    /* ---------- the chain, on screen ----------
+       Seven columns of sentences inside the normal page column leaves about
+       200px per cell, which wraps correctly but reads badly. On screen the
+       chain breaks out to the full window; print is untouched and stays the
+       A4 landscape table. */
+    @media screen {
+      .land {
+        width: calc(100vw - 3rem);
+        max-width: calc(100vw - 3rem);
+        margin-left: calc(50% - 50vw + 1.5rem);
+        margin-right: calc(50% - 50vw + 1.5rem);
+      }
+      table.chain { table-layout: fixed; }
+      table.chain textarea, table.chain input { font-size: 0.9rem; }
+      table.chain th { font-size: 0.66rem; }
+    }
+    @media screen and (max-width: 900px) {
+      .land { width: auto; max-width: none; margin-left: 0; margin-right: 0; }
     }
     table.chain input:focus, table.chain textarea:focus { outline: none; background: var(--tint-orange-10); }
     table.chain td { vertical-align: top; }
@@ -778,10 +800,11 @@ table.brand-table tr:last-child td { border-bottom: 0; }
     table.chain .c-lesson { width: 15%; }
     table.chain .c-how    { width: 17%; }
     table.chain .c-given  { width: 17%; }
-    table.chain .c-obj    { width: 21%; }
-    /* wide enough for the S C A L E prompt to print without clipping */
-    table.chain .c-pillar { width: 9%; }
-    table.chain .c-when   { width: 6%; }
+    table.chain .c-obj    { width: 22%; }
+    /* pillar holds a single letter; "when" holds things like
+       "Monthly, first Tuesday", so the widths are not what you first guess */
+    table.chain .c-pillar { width: 5%; }
+    table.chain .c-when   { width: 9%; }
     table.chain .c-pillar input {
       text-align: center; letter-spacing: 0.08em; font-size: 0.72rem;
     }
@@ -1413,7 +1436,7 @@ table.brand-table tr:last-child td { border-bottom: 0; }
             <th class="c-how"><span class="th-step">03</span>How do we... (outcome)</th>
             <th class="c-given"><span class="th-step">04</span>Given that... (obstacle)</th>
             <th class="c-obj"><span class="th-step">05</span>Strategic objective ("We have...")</th>
-            <th class="c-pillar"><span class="th-step">06</span>Pillar it serves</th>
+            <th class="c-pillar"><span class="th-step">06</span>Pillar</th>
             <th class="c-when"><span class="th-step">07</span>When</th>
           </tr>
         </thead>
@@ -1438,7 +1461,7 @@ table.brand-table tr:last-child td { border-bottom: 0; }
             <th class="c-how"><span class="th-step">03</span>How do we... (outcome)</th>
             <th class="c-given"><span class="th-step">04</span>Given that... (obstacle)</th>
             <th class="c-obj"><span class="th-step">05</span>Strategic objective ("We have...")</th>
-            <th class="c-pillar"><span class="th-step">06</span>Pillar it serves</th>
+            <th class="c-pillar"><span class="th-step">06</span>Pillar</th>
             <th class="c-when"><span class="th-step">07</span>When</th>
           </tr>
         </thead>
@@ -1565,7 +1588,9 @@ table.brand-table tr:last-child td { border-bottom: 0; }
             '<td><textarea rows="1" id="ch_given' + n + '" data-save></textarea></td>' +
             '<td class="obj-cell"><textarea rows="1" id="ch_obj' + n + '" data-save></textarea></td>' +
             '<td><input type="text" id="ch_pillar' + n + '" data-save placeholder="S C A L E"></td>' +
-            '<td><input type="text" id="ch_when' + n + '" data-save></td>' +
+            // "when" was an input on the assumption of "Q4". Members write
+            // "Monthly", "End of Q3", "Follow-up in Nov". It has to wrap too.
+            '<td><textarea rows="1" id="ch_when' + n + '" data-save></textarea></td>' +
             '</tr>');
         }
       }
