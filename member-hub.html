@@ -1,0 +1,692 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VBA Member Hub</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="/VBA_mark_white.svg">
+  <link rel="stylesheet" href="/brand.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--color-paper);
+      color: var(--color-ink-black);
+      font-family: var(--font-body);
+      font-weight: 300;
+      min-height: 100vh;
+    }
+
+    /* ── MASTHEAD ── */
+    .masthead {
+      background: var(--color-anchor-navy);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .masthead-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.1rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .masthead-logo { height: 28px; width: auto; display: block; }
+
+    .masthead-right {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .tier-pill {
+      font-family: var(--font-caption);
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.28rem 0.7rem;
+      border-radius: 2px;
+    }
+
+    .tier-pill.elite  { background: var(--color-burnt-orange); color: #fff; }
+    .tier-pill.ascend { background: rgba(255,255,255,0.08); color: rgba(245,244,239,0.7); border: 1px solid rgba(255,255,255,0.14); }
+
+    .btn-logout {
+      font-family: var(--font-caption);
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: transparent;
+      color: rgba(245,244,239,0.35);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 2px;
+      padding: 0.28rem 0.7rem;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .btn-logout:hover { color: var(--color-paper); border-color: rgba(255,255,255,0.28); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--color-anchor-navy);
+      padding: 3.5rem 2.5rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: -20%; right: -4%;
+      width: 320px; height: 320px;
+      background: url('/VBA_mark_white.svg') center/contain no-repeat;
+      opacity: 0.04;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .hero .eyebrow {
+      font-family: var(--font-caption);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(245,244,239,0.4);
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+      font-weight: 700;
+      color: var(--color-white);
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      margin: 0 0 1.25rem;
+    }
+
+    .hero h1 em { font-style: normal; color: var(--color-burnt-orange); }
+
+    .hero-rule {
+      width: 64px; height: 3px;
+      background: var(--color-burnt-orange);
+      border: none; margin-bottom: 1.25rem;
+    }
+
+    .hero p {
+      font-size: 0.95rem;
+      color: rgba(245,244,239,0.55);
+      max-width: 520px;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* ── PAGE BODY ── */
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3.5rem 2.5rem 6rem;
+    }
+
+    /* ── SECTION HEADER ── */
+    .section-header { margin-bottom: 2rem; }
+
+    .section-eyebrow {
+      font-family: var(--font-caption);
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-burnt-orange);
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--color-anchor-navy);
+      letter-spacing: -0.015em;
+      margin-bottom: 0.35rem;
+    }
+
+    .section-desc {
+      font-size: 0.85rem;
+      color: rgba(12,12,13,0.5);
+      line-height: 1.65;
+      max-width: 560px;
+    }
+
+    .section-divider {
+      border: none;
+      border-top: 1px solid rgba(11,33,65,0.1);
+      margin: 3.5rem 0;
+    }
+
+    /* ── TOOL GRID ── */
+    .tool-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.75rem;
+    }
+
+    .tool-card {
+      background: var(--color-white);
+      border: 1px solid rgba(11,33,65,0.1);
+      border-radius: 2px;
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+    }
+
+    .tool-card:hover {
+      border-color: rgba(11,33,65,0.2);
+      box-shadow: 0 4px 16px rgba(11,33,65,0.07);
+      transform: translateY(-1px);
+    }
+
+    .tool-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--color-burnt-orange);
+    }
+
+    .tool-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .tool-icon {
+      width: 40px; height: 40px;
+      border-radius: 2px;
+      background: rgba(217,83,30,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .tool-icon svg {
+      width: 20px; height: 20px;
+      stroke: var(--color-burnt-orange);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .tool-badge {
+      font-family: var(--font-caption);
+      font-size: 0.58rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.22rem 0.55rem;
+      border-radius: 2px;
+      flex-shrink: 0;
+      background: rgba(11,33,65,0.06);
+      color: rgba(11,33,65,0.5);
+      border: 1px solid rgba(11,33,65,0.1);
+    }
+
+    .tool-name {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-anchor-navy);
+      letter-spacing: -0.01em;
+      margin-bottom: 0.5rem;
+    }
+
+    .tool-desc {
+      font-size: 0.83rem;
+      color: rgba(12,12,13,0.55);
+      line-height: 1.65;
+      flex: 1;
+      margin-bottom: 1.25rem;
+    }
+
+    .tool-limit {
+      font-size: 0.75rem;
+      color: rgba(12,12,13,0.5);
+      background: rgba(217,83,30,0.06);
+      border: 1px solid rgba(217,83,30,0.15);
+      border-left: 2px solid var(--color-burnt-orange);
+      border-radius: 0 2px 2px 0;
+      padding: 0.4rem 0.7rem;
+      margin-bottom: 1rem;
+      display: none;
+    }
+
+    .tool-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: auto;
+    }
+
+    .tool-status {
+      font-family: var(--font-caption);
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(12,12,13,0.3);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .tool-status.live { color: #2e7d57; }
+
+    .tool-status.live::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #2e7d57;
+      display: inline-block;
+    }
+
+    .btn-access {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: var(--color-burnt-orange);
+      color: var(--color-white);
+      border: none;
+      border-radius: 2px;
+      padding: 0.55rem 1.1rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.15s;
+      white-space: nowrap;
+    }
+
+    .btn-access:hover { opacity: 0.85; border: none; }
+
+    .btn-access.disabled {
+      background: rgba(11,33,65,0.1);
+      color: rgba(11,33,65,0.3);
+      cursor: default;
+      pointer-events: none;
+    }
+
+    /* ── RATES PLACEHOLDER ── */
+    .rates-band {
+      background: var(--color-white);
+      border: 1px solid rgba(11,33,65,0.1);
+      border-left: 3px solid var(--color-burnt-orange);
+      border-radius: 2px;
+      padding: 2rem 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .rates-icon {
+      width: 48px; height: 48px;
+      background: rgba(217,83,30,0.1);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .rates-icon svg {
+      width: 22px; height: 22px;
+      stroke: var(--color-burnt-orange);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .rates-band h3 {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-anchor-navy);
+      letter-spacing: -0.01em;
+      margin-bottom: 0.3rem;
+    }
+
+    .rates-band p {
+      font-size: 0.83rem;
+      color: rgba(12,12,13,0.5);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ── HELP BAND ── */
+    .help-band {
+      margin-top: 3.5rem;
+      background: var(--color-anchor-navy);
+      border-top: 2px solid var(--color-burnt-orange);
+      border-radius: 2px;
+      padding: 2rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .help-band h3 {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--color-white);
+      letter-spacing: -0.01em;
+      margin-bottom: 0.3rem;
+    }
+
+    .help-band p {
+      font-size: 0.83rem;
+      color: rgba(245,244,239,0.55);
+      line-height: 1.6;
+      margin: 0;
+      max-width: 500px;
+    }
+
+    .btn-outline {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-paper);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 2px;
+      padding: 0.65rem 1.4rem;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: border-color 0.15s, color 0.15s;
+      flex-shrink: 0;
+    }
+
+    .btn-outline:hover { border-color: var(--color-burnt-orange); color: var(--color-burnt-orange); }
+
+    /* ── FOOTER ── */
+    .site-footer { background: var(--color-anchor-navy); border-top: 1px solid rgba(255,255,255,0.07); }
+
+    .site-footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.5rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .site-footer img { height: 20px; opacity: 0.45; }
+
+    .site-footer p {
+      font-family: var(--font-caption);
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(245,244,239,0.25);
+      margin: 0;
+    }
+
+    @media (max-width: 700px) {
+      .masthead-inner { padding: 1rem 1.25rem; }
+      .hero { padding: 2.5rem 1.25rem 2rem; }
+      .hero::after { display: none; }
+      .page { padding: 2.5rem 1.25rem 4rem; }
+      .tool-grid { grid-template-columns: 1fr; }
+      .help-band { padding: 1.5rem; }
+      .site-footer-inner { padding: 1.25rem; }
+      .rates-band { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── MASTHEAD ── -->
+<header class="masthead">
+  <div class="masthead-inner">
+    <img src="/VBA_wordmark_grey.svg" alt="VBA" class="masthead-logo">
+    <div class="masthead-right"></div>
+  </div>
+</header>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">Member Hub</span>
+    <h1>Your tool stack.<br><em>One place.</em></h1>
+    <hr class="hero-rule">
+    <p>Every VBA tool, organised by what it does. Use what's relevant to your stage.</p>
+  </div>
+</div>
+
+<!-- ── MAIN ── -->
+<div class="page">
+
+  <!-- PROSPECTING + SALES -->
+  <div class="section-header">
+    <span class="section-eyebrow">Prospecting &amp; Sales</span>
+    <p class="section-title">Find the right clients. Stay good in the conversation.</p>
+    <p class="section-desc">The two tools that work together. Prospector finds the leads. The Response Engine keeps them moving.</p>
+  </div>
+
+  <div class="tool-grid">
+
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-icon">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <span class="tool-badge">Elite + Ascend</span>
+      </div>
+      <p class="tool-name">Prospector Engine</p>
+      <p class="tool-desc">Feed in your business and ideal client profile. The engine finds matching companies, identifies the decision-makers, scores each lead into A/B/C/D tiers, and exports an outreach-ready list with a personalised angle per contact.</p>
+      <p class="tool-limit" id="prospectorLimit">Ascend: capped monthly searches. Upgrade to Elite for unlimited.</p>
+      <div class="tool-footer">
+        <span class="tool-status live">Live</span>
+        <a href="https://prospector.denlennie.com" target="_blank" class="btn-access">Open tool</a>
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <span class="tool-badge">Elite + Ascend</span>
+      </div>
+      <p class="tool-name">LinkedIn Response Engine</p>
+      <p class="tool-desc">The Prospector opens conversations. This tool keeps you good in them. Paste in the prospect's message and context. The engine returns three reply options in your voice that turn dead ends into open loops, without automating LinkedIn itself.</p>
+      <div class="tool-footer">
+        <span class="tool-status live">Live</span>
+        <a href="https://nurture.denlennie.com/engine" target="_blank" class="btn-access">Open tool</a>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- BUSINESS DIAGNOSTICS -->
+  <div class="section-header">
+    <span class="section-eyebrow">Business Diagnostics</span>
+    <p class="section-title">Find what's actually holding you back.</p>
+    <p class="section-desc">Most video businesses don't have a lead problem. They have a constraint problem. This tool finds it.</p>
+  </div>
+
+  <div class="tool-grid">
+
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <span class="tool-badge">Elite + Ascend</span>
+      </div>
+      <p class="tool-name">Constraint Tool</p>
+      <p class="tool-desc">A structured diagnostic that surfaces the single constraint stopping your business from growing. Answer a series of questions about your business, and the tool identifies the real bottleneck, not the symptom you've been trying to fix.</p>
+      <div class="tool-footer">
+        <span class="tool-status live">Live</span>
+        <a href="https://denlennie.com/constraint-tool" target="_blank" class="btn-access">Open tool</a>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- STRATEGY + PLANNING -->
+  <div class="section-header">
+    <span class="section-eyebrow">Strategy &amp; Planning</span>
+    <p class="section-title">Plan the year, not just the week.</p>
+    <p class="section-desc">The workbook you use in the planning session, always here to come back to. Locate your stage, set your number, and turn what happened last year into a plan with dates on it.</p>
+  </div>
+
+  <div class="tool-grid">
+
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 2h6a1 1 0 0 1 1 1v1h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2V3a1 1 0 0 1 1-1z"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg>
+        </div>
+        <span class="tool-badge">Elite + Ascend</span>
+      </div>
+      <p class="tool-name">Strategic Planning Workbook</p>
+      <p class="tool-desc">The whole planning session in one page. Locate your stage on the S.C.A.L.E. staircase, work your gate criteria, set your BHAG and your twelve-month number, then build the chain that turns accomplishments into dated priorities. Your answers save to your own browser, and Save to PDF gives you a copy to keep.</p>
+      <div class="tool-footer">
+        <span class="tool-status live">Live</span>
+        <a href="https://docs.denlennie.com/planning-workbook.html" target="_blank" class="btn-access">Open workbook</a>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- SEO + VISIBILITY -->
+  <div class="section-header">
+    <span class="section-eyebrow">SEO &amp; Online Visibility</span>
+    <p class="section-title">Own your corner of the internet.</p>
+    <p class="section-desc">Three tools that build your search presence without agency fees. All available to both tiers.</p>
+  </div>
+
+  <div class="tool-grid">
+
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-icon">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <span class="tool-badge">Elite + Ascend</span>
+      </div>
+      <p class="tool-name">Service Pages Builder</p>
+      <p class="tool-desc">Generates service pages structured to convert visitors and to rank in search. Built for video production companies, so the language is right without translation.</p>
+      <div class="tool-footer">
+        <span class="tool-status live">Live</span>
+        <a href="https://denlennie.com/seo-builder" target="_blank" class="btn-access">Open tool</a>
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </div>
+        <span class="tool-badge">Elite + Ascend</span>
+      </div>
+      <p class="tool-name">Blog Cluster Builder</p>
+      <p class="tool-desc">Builds topic clusters: a hub page plus supporting articles that hold together as authority content and a long-term SEO asset. Turns one idea into a body of work that compounds.</p>
+      <div class="tool-footer">
+        <span class="tool-status live">Live</span>
+        <a href="https://denlennie.com/seo-cluster" target="_blank" class="btn-access">Open tool</a>
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-icon">
+          <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <span class="tool-badge">Elite + Ascend</span>
+      </div>
+      <p class="tool-name">Schema Markup Builder</p>
+      <p class="tool-desc">Generates the structured data that helps search engines understand your pages and increases the chance of rich results. The thing most agencies skip that quietly makes everything else work better.</p>
+      <div class="tool-footer">
+        <span class="tool-status live">Live</span>
+        <a href="https://denlennie.com/schema-builder" target="_blank" class="btn-access">Open tool</a>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- RATES PLACEHOLDER -->
+  <div class="section-header">
+    <span class="section-eyebrow">Rates Guidance</span>
+    <p class="section-title">Market rates, coming soon.</p>
+  </div>
+
+  <div class="rates-band">
+    <div class="rates-icon">
+      <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+    </div>
+    <div>
+      <h3>Rates reference coming soon</h3>
+      <p>A market rates guide for VBA members is in development and will appear here. Day rates, project minimums, and market benchmarks by market and niche.</p>
+    </div>
+  </div>
+
+  <!-- HELP BAND -->
+  <div class="help-band">
+    <div>
+      <h3>Not sure which tool to start with?</h3>
+      <p>If your pipeline is thin, start with the Prospector. If you're already in conversations that aren't converting, start with the LinkedIn Response Engine. If neither is the issue, run the Constraint Tool first.</p>
+    </div>
+    <a href="mailto:support@denlennie.com" class="btn-outline">Ask a question</a>
+  </div>
+
+</div>
+
+<!-- ── FOOTER ── -->
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <img src="/VBA_wordmark_grey.svg" alt="VBA">
+    <p>F-Stop Academy Australia Pty Ltd &nbsp;·&nbsp; denlennie.com</p>
+  </div>
+</footer>
+
+</body>
+</html>
