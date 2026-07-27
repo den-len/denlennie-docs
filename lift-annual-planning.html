@@ -1,0 +1,659 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Team Planning Day Workbook · Lift Video Production</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- brand/brand.css inlined so this file travels as a single document.
+       Source of truth: brand/brand.css. Edit there, not here. -->
+  <style>
+:root {
+  --color-anchor-navy:   #0B2141;
+  --color-ink-black:     #0C0C0D;
+  --color-burnt-orange:  #D9531E;
+  --color-paper:         #F5F4EF;
+  --color-white:         #FFFFFF;
+  --color-primary:    var(--color-anchor-navy);
+  --color-secondary:  var(--color-ink-black);
+  --color-accent:     var(--color-burnt-orange);
+  --color-background: var(--color-paper);
+  --color-text:       var(--color-ink-black);
+  --tint-navy-08:    rgba(11, 33, 65, 0.08);
+  --tint-ink-08:     rgba(12, 12, 13, 0.08);
+  --tint-orange-10:  rgba(217, 83, 30, 0.10);
+  --font-display: 'Poppins', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --font-heading: 'Poppins', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --font-body:    'Ubuntu',  system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --font-caption: 'Ubuntu',  system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --line-height: 1.6;
+  --type-display: clamp(2.6rem, 6vw, 5rem);
+  --type-h1:      clamp(1.9rem, 3.4vw, 2.8rem);
+  --type-h2:      clamp(1.3rem, 2vw, 1.6rem);
+  --type-h3:      1.05rem;
+  --type-body:    1.0625rem;
+  --type-small:   0.875rem;
+  --type-caption: 0.75rem;
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  background: var(--color-paper);
+  color: var(--color-ink-black);
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: var(--type-body);
+  line-height: var(--line-height);
+  -webkit-font-smoothing: antialiased;
+}
+.display, h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--color-anchor-navy);
+  margin: 0 0 1rem;
+}
+.display {
+  font-weight: 700;
+  font-size: var(--type-display);
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+h1 { font-weight: 600; font-size: var(--type-h1); letter-spacing: -0.025em; line-height: 1.1; }
+h2 { font-weight: 600; font-size: var(--type-h2); letter-spacing: -0.02em; line-height: 1.2; margin-top: 2.5rem; }
+h3 { font-weight: 600; font-size: var(--type-h3); letter-spacing: -0.01em; margin-top: 1.5rem; }
+p { margin: 0 0 1rem; }
+strong { font-weight: 500; color: var(--color-anchor-navy); }
+.eyebrow {
+  font-family: var(--font-caption);
+  font-weight: 400;
+  font-size: var(--type-caption);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-anchor-navy);
+  margin: 0 0 1.5rem;
+}
+.eyebrow .index { color: var(--color-burnt-orange); margin-left: 0.75rem; }
+.orange-rule { width: 96px; height: 3px; background: var(--color-burnt-orange); border: 0; margin: 1.5rem 0 2rem; }
+.caption, .field-hint {
+  font-family: var(--font-caption);
+  font-weight: 400;
+  font-size: var(--type-caption);
+  letter-spacing: 0.04em;
+  color: var(--color-ink-black);
+  opacity: 0.7;
+}
+.lead { font-size: 1.2rem; line-height: 1.5; max-width: 60ch; margin: 0 0 2.5rem; }
+.page { max-width: 880px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+.poster-footer {
+  margin-top: 4rem; padding-top: 2rem;
+  border-top: 1px solid var(--tint-ink-08);
+  display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 1rem;
+  font-family: var(--font-caption); font-size: var(--type-caption);
+  letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.7;
+}
+.card {
+  background: var(--color-white);
+  border: 1px solid var(--tint-ink-08);
+  padding: 2rem; margin: 0 0 1.5rem; border-radius: 2px;
+}
+.card .card-eyebrow {
+  font-family: var(--font-caption); font-size: var(--type-caption);
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--color-burnt-orange); margin: 0 0 0.5rem; font-weight: 500;
+}
+.card h2 { margin-top: 0; }
+.dark-inset {
+  background: var(--color-anchor-navy);
+  color: var(--color-paper);
+  padding: 3rem 2.5rem; margin: 3rem 0; border-radius: 2px;
+}
+.dark-inset .display, .dark-inset h1, .dark-inset h2, .dark-inset h3, .dark-inset strong { color: var(--color-paper); }
+.dark-inset .orange-rule { background: var(--color-burnt-orange); }
+.dark-inset .eyebrow { color: var(--color-paper); opacity: 0.85; }
+.callout {
+  background: var(--color-white);
+  border-left: 3px solid var(--color-burnt-orange);
+  padding: 1.25rem 1.5rem; margin: 1.5rem 0;
+}
+table.brand-table {
+  width: 100%; border-collapse: collapse;
+  margin: 1.5rem 0 2.5rem; font-size: var(--type-small);
+}
+table.brand-table th {
+  text-align: left;
+  font-family: var(--font-caption); font-weight: 500; font-size: var(--type-caption);
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--color-anchor-navy);
+  padding: 0.75rem 0.75rem;
+  border-bottom: 2px solid var(--color-anchor-navy);
+}
+table.brand-table td {
+  padding: 0.85rem 0.75rem;
+  border-bottom: 1px solid var(--tint-ink-08);
+  vertical-align: top;
+}
+
+/* ---------- workbook write-in primitives ---------- */
+.field { margin: 1.5rem 0 2rem; }
+.field-label {
+  font-family: var(--font-caption); font-weight: 500; font-size: var(--type-caption);
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--color-anchor-navy); margin: 0 0 0.35rem;
+}
+.field-hint { display: block; margin: 0 0 0.75rem; }
+.write-line {
+  border-bottom: 1px solid rgba(12,12,13,0.30);
+  height: 2.3rem;
+}
+.write-cell { height: 4.6rem; }
+.big-box {
+  border: 1px solid rgba(12,12,13,0.30);
+  background: var(--color-white);
+  height: 5.5rem; border-radius: 2px;
+}
+.number-box {
+  display: inline-block;
+  border: 1px solid rgba(12,12,13,0.30);
+  background: var(--color-white);
+  min-width: 240px; height: 3.4rem;
+  border-radius: 2px; vertical-align: middle;
+}
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.session-time {
+  font-family: var(--font-display); font-weight: 600;
+  color: var(--color-burnt-orange); font-size: 0.95rem;
+  letter-spacing: 0.02em;
+}
+.top-card {
+  background: var(--color-white);
+  border: 1px solid var(--tint-ink-08);
+  border-top: 3px solid var(--color-burnt-orange);
+  padding: 1.5rem; margin: 0 0 1.5rem; border-radius: 2px;
+}
+.top-card .top-num {
+  font-family: var(--font-display); font-weight: 700;
+  color: var(--color-burnt-orange); font-size: 1.3rem; margin: 0 0 0.75rem;
+}
+.owner-date { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; margin-top: 1rem; }
+.tickbox {
+  display: inline-block; width: 14px; height: 14px;
+  border: 1.5px solid var(--color-anchor-navy);
+  border-radius: 2px; margin-right: 0.6rem; vertical-align: -1px;
+}
+.check-row { padding: 0.5rem 0; border-bottom: 1px solid var(--tint-ink-08); }
+
+/* ---------- fillable web fields ---------- */
+input.write-line, textarea.big-box, input.number-box, textarea.cell-input, input.cell-line {
+  font-family: var(--font-body); font-weight: 400; font-size: 1rem;
+  color: var(--color-ink-black); background: transparent;
+  outline: none; width: 100%; box-sizing: border-box;
+}
+input.write-line { display: block; border: 0; border-bottom: 1px solid rgba(12,12,13,0.30); border-radius: 0; padding: 0 2px; }
+input.write-line:focus, input.cell-line:focus { border-bottom-color: var(--color-burnt-orange); }
+.dark-inset input.write-line { color: var(--color-paper); }
+textarea.big-box { display: block; resize: vertical; padding: 0.6rem 0.75rem; font-weight: 300; }
+textarea.big-box:focus, input.number-box:focus, textarea.cell-input:focus { border-color: var(--color-burnt-orange); }
+input.number-box { border: 1px solid rgba(12,12,13,0.30); background: var(--color-white); padding: 0 0.75rem; font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; color: var(--color-anchor-navy); }
+textarea.cell-input { border: 1px dashed rgba(12,12,13,0.18); border-radius: 2px; background: var(--color-white); min-height: 4.4rem; height: 100%; resize: vertical; padding: 0.5rem; font-weight: 300; }
+input.cell-line { border: 0; border-bottom: 1px solid rgba(12,12,13,0.20); border-radius: 0; height: 2rem; }
+.privacy-bar { background: var(--color-white); border: 1px solid var(--tint-ink-08); border-left: 3px solid var(--color-burnt-orange); padding: 1.25rem 1.5rem; margin: 2rem 0 0; border-radius: 2px; }
+.privacy-bar p { margin: 0 0 0.75rem; }
+.bar-btn { font-family: var(--font-caption); font-size: var(--type-caption); font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; padding: 0.6rem 1rem; border-radius: 2px; cursor: pointer; margin-right: 0.75rem; }
+.bar-btn-primary { background: var(--color-anchor-navy); color: var(--color-paper); border: 1px solid var(--color-anchor-navy); }
+.bar-btn-secondary { background: transparent; color: var(--color-anchor-navy); border: 1px solid var(--color-anchor-navy); }
+
+/* ---------- print ---------- */
+@media print {
+  @page { size: A4 portrait; margin: 14mm 15mm; }
+  html, body { background: var(--color-white); }
+  .page { padding: 0; max-width: none; }
+  .page-break { break-before: page; }
+  .card, .top-card, .callout, .dark-inset, .field { break-inside: avoid; }
+  .write-line { border-bottom-color: rgba(12,12,13,0.45); height: 2.1rem; }
+  .big-box, .number-box { border-color: rgba(12,12,13,0.45); }
+  .cover { min-height: 250mm; }
+  table.brand-table th { padding: 0.6rem 0.75rem; }
+  table.brand-table td { padding: 0.65rem 0.75rem; }
+  table.agenda { font-size: 0.8rem; }
+  table.agenda td { padding: 0.45rem 0.6rem; }
+  table.agenda .session-time { font-size: 0.85rem; }
+  .write-cell { height: 4.1rem; }
+  .card { padding: 1.5rem; }
+  .dark-inset { padding: 2rem; }
+  .no-print { display: none; }
+  input.write-line, input.cell-line { border-bottom-color: rgba(12,12,13,0.45); }
+  textarea.cell-input { border: 0; }
+}
+@media (max-width: 720px) {
+  .page { padding: 2rem 1.25rem 3.5rem; }
+  .two-col, .owner-date { grid-template-columns: 1fr; }
+  .dark-inset { padding: 2rem 1.5rem; }
+}
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ============ COVER ============ -->
+  <section class="dark-inset cover" style="margin-top:0; padding: 4rem 3rem;">
+    <p class="eyebrow">Lift Video Production <span class="index">Team Planning Day</span></p>
+    <p class="display">One day.<br>One page.<br>One team.</p>
+    <hr class="orange-rule">
+    <p class="lead" style="color: var(--color-paper); margin-bottom: 3rem;">By the end of today we will have built, together: the values we hire and fire on, the number we're aiming at, and the three or four things we'll get done this quarter. Not a document. A plan we all own.</p>
+    <div class="two-col" style="max-width: 480px;">
+      <div class="field" style="margin:0;">
+        <p class="field-label" style="color: var(--color-paper);">Name</p>
+        <input type="text" class="write-line" style="border-bottom-color: rgba(245,244,239,0.5);">
+      </div>
+      <div class="field" style="margin:0;">
+        <p class="field-label" style="color: var(--color-paper);">Date</p>
+        <input type="text" class="write-line" style="border-bottom-color: rgba(245,244,239,0.5);">
+      </div>
+    </div>
+  </section>
+
+  <div class="privacy-bar no-print">
+    <p><strong>Private to you.</strong> Anything you type on this page saves to this device only, in this browser. It is not uploaded anywhere and nobody else can read it, including the rest of the team. To keep a permanent copy, print the page or save it as a PDF before clearing.</p>
+    <button type="button" class="bar-btn bar-btn-primary" onclick="window.print()">Print or save as PDF</button>
+    <button type="button" class="bar-btn bar-btn-secondary" id="clear-notes">Clear my answers</button>
+  </div>
+
+  <!-- ============ HOW TODAY RUNS ============ -->
+  <section class="page-break">
+    <p class="eyebrow">How today runs <span class="index">01</span></p>
+    <h1>The shape of the day</h1>
+    <hr class="orange-rule">
+    <table class="brand-table agenda">
+      <tr><th style="width:90px;">Time</th><th style="width:200px;">Session</th><th>What happens</th></tr>
+      <tr><td class="session-time">8:45</td><td><strong>Arrive</strong></td><td>Coffee. No agenda talk yet.</td></tr>
+      <tr><td class="session-time">9:00</td><td><strong>The story of last year</strong></td><td>Grant tells the story of the last twelve months. The wins, the hard patches, what the numbers did.</td></tr>
+      <tr><td class="session-time">9:30</td><td><strong>Where we're headed</strong></td><td>The three-year picture. Grant sketches it; today the team fills in the drawing.</td></tr>
+      <tr><td class="session-time">10:00</td><td><strong>Look back as a team</strong></td><td>Your pre-work goes on the wall. Accomplishments and lessons, then the patterns.</td></tr>
+      <tr><td class="session-time">11:00</td><td><strong>Break</strong></td><td>Fifteen minutes.</td></tr>
+      <tr><td class="session-time">11:15</td><td><strong>Values</strong></td><td>What we hire and fire on. Written by this room, in this room's words.</td></tr>
+      <tr><td class="session-time">12:15</td><td><strong>The number</strong></td><td>The financial target for the year, built together and broken down to monthly.</td></tr>
+      <tr><td class="session-time">13:00</td><td><strong>Lunch</strong></td><td>A real break, away from the wall. An hour and a quarter.</td></tr>
+      <tr><td class="session-time">14:15</td><td><strong>The chain</strong></td><td>Lessons become outcomes, obstacles become actions. The engine of the day, on fresh heads.</td></tr>
+      <tr><td class="session-time">15:15</td><td><strong>TOPs and commitments</strong></td><td>The three or four things that matter most in the next 90 days. Owners and dates.</td></tr>
+      <tr><td class="session-time">16:00</td><td><strong>Photograph the wall</strong></td><td>Pack down.</td></tr>
+      <tr><td class="session-time">16:15</td><td><strong>Drinks to close</strong></td><td>First round on the business. This is part of the day, not the reward for it.</td></tr>
+    </table>
+    <div class="callout">
+      <p style="margin:0;"><strong>One rule for today.</strong> Don't judge, just write. In the early sessions we're collecting raw material, not editing it. The editing comes later, and it comes fast. Say the thing. Write the thing. Sort it out on the wall.</p>
+    </div>
+  </section>
+
+  <!-- ============ PRE-WORK ============ -->
+  <section class="page-break">
+    <p class="eyebrow">Before the day <span class="index">02</span></p>
+    <h1>Your pre-work</h1>
+    <hr class="orange-rule">
+    <p class="lead">Fill this page in before the day and bring it with you. It takes twenty minutes. It's the raw material for the two most important sessions, so blank pages cost the whole room.</p>
+
+    <div class="field">
+      <p class="field-label">Three things we accomplished last year that I'm proud of</p>
+      <span class="field-hint">Projects, clients, saves, moments. Specific beats grand.</span>
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+    </div>
+
+    <div class="field">
+      <p class="field-label">Three lessons the year taught us</p>
+      <span class="field-hint">Things that went sideways count double. What would we do differently?</span>
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+    </div>
+
+    <div class="field">
+      <p class="field-label">One moment I thought: this is why I work here</p>
+      <textarea class="big-box"></textarea>
+    </div>
+
+    <div class="field">
+      <p class="field-label">One moment I thought: we should never do that again</p>
+      <textarea class="big-box"></textarea>
+    </div>
+  </section>
+
+  <!-- ============ SESSIONS 1 & 2 NOTES ============ -->
+  <section class="page-break">
+    <p class="eyebrow">Sessions one and two <span class="index">03</span></p>
+    <h1>Last year, and where we're headed</h1>
+    <hr class="orange-rule">
+    <p>Grant holds the floor for these two sessions. Your job is to listen for what lands. You'll use these notes all day.</p>
+
+    <div class="field">
+      <p class="field-label">From the story of last year: what stood out</p>
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+    </div>
+
+    <div class="field">
+      <p class="field-label">From the three-year picture: what I'm most up for</p>
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+    </div>
+
+    <div class="field">
+      <p class="field-label">One question I want answered today</p>
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+    </div>
+  </section>
+
+  <!-- ============ LOOK BACK ============ -->
+  <section class="page-break">
+    <p class="eyebrow">Session three <span class="index">04</span></p>
+    <h1>Look back as a team</h1>
+    <hr class="orange-rule">
+    <p>Everyone's pre-work goes on the wall: accomplishments in one zone, lessons in the other. Two minutes each to talk yours through, no debate yet. Then we cluster: what comes up more than once?</p>
+
+    <div class="field">
+      <p class="field-label">Our achievements last year</p>
+      <span class="field-hint">The combined list from the wall, once everyone has shared. Capture them all; they're proof of what this team can do.</span>
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+    </div>
+
+    <div class="field">
+      <p class="field-label">Lessons learned</p>
+      <span class="field-hint">What the year taught us, in the room's words. Raw material for the chain this afternoon.</span>
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+    </div>
+
+    <div class="field">
+      <p class="field-label">The patterns on the wall: what we're actually good at</p>
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+    </div>
+
+    <div class="field">
+      <p class="field-label">The patterns on the wall: what keeps tripping us</p>
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+    </div>
+
+    <div class="callout">
+      <p style="margin:0;">Keep every note. The clusters on this wall are the raw material for the chain this afternoon.</p>
+    </div>
+  </section>
+
+  <!-- ============ VALUES ============ -->
+  <section class="page-break">
+    <p class="eyebrow">Session four <span class="index">05</span></p>
+    <h1>Values: what we hire and fire on</h1>
+    <hr class="orange-rule">
+    <p>We start from the moments, not from a list of nice words. Each person shares their "this is why I work here" moment and their "never again" moment. Then we ask: what value was being honoured in the proud ones, and violated in the never-agains?</p>
+    <p>Push past integrity, honesty and quality. Everyone writes those and nobody operates by them. "We don't ship anything we wouldn't show the client's CEO" beats "Excellence" every time.</p>
+
+    <div class="field">
+      <p class="field-label">Candidate values from the room</p>
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+    </div>
+
+    <div class="card">
+      <p class="card-eyebrow">The test</p>
+      <p style="margin-bottom: 0.5rem;">Every candidate value has to pass both questions. If either answer is no, it's a preference, not a value. Cut it.</p>
+      <div class="check-row"><span class="tickbox"></span>Would we hire someone because of this?</div>
+      <div class="check-row" style="border-bottom: 0;"><span class="tickbox"></span>Would we part ways with a good performer who kept breaking it?</div>
+    </div>
+
+    <div class="field">
+      <p class="field-label">Our values: the final four to six</p>
+      <span class="field-hint">In this room's words. These go on the one page.</span>
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+    </div>
+  </section>
+
+  <!-- ============ THE NUMBER ============ -->
+  <section class="page-break">
+    <p class="eyebrow">Session five <span class="index">06</span></p>
+    <h1>The number</h1>
+    <hr class="orange-rule">
+    <p>We build the financial target for the coming year together, starting from what we know: last year's revenue, the shape of the client base, what's already contracted or likely. The question in the room: what's a number that would make us proud, and is believable from this room?</p>
+
+    <div class="two-col" style="margin: 2.5rem 0;">
+      <div class="field" style="margin:0;">
+        <p class="field-label">The annual number</p>
+        <input type="text" class="number-box" style="width:100%;">
+      </div>
+      <div class="field" style="margin:0;">
+        <p class="field-label">The monthly number</p>
+        <input type="text" class="number-box" style="width:100%;">
+      </div>
+    </div>
+
+    <div class="callout">
+      <p style="margin:0;"><strong>Why monthly matters.</strong> The monthly number is the annual number divided by twelve. An annual number is abstract. A monthly number is a decision you make each Monday.</p>
+    </div>
+
+    <div class="field">
+      <p class="field-label">What has to be true for us to hit the monthly number</p>
+      <span class="field-hint">More ongoing partnerships, faster turnaround, fewer one-offs, something else. These feed straight into the chain.</span>
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+    </div>
+  </section>
+
+  <!-- ============ THE CHAIN ============ -->
+  <section class="page-break">
+    <p class="eyebrow">Session six <span class="index">07</span></p>
+    <h1>The chain</h1>
+    <hr class="orange-rule">
+    <p>This is the engine of the day. We take the strongest clusters from the look-back and the "what has to be true" list, and work each one left to right across a row. A complaint can't be ticked, measured or delegated. An action with a date can.</p>
+
+    <table class="brand-table">
+      <tr>
+        <th style="width:26%;">Accomplishment or lesson</th>
+        <th style="width:26%;">How do we... <span style="text-transform:none; letter-spacing:0;">(the outcome we want)</span></th>
+        <th style="width:24%;">Given that... <span style="text-transform:none; letter-spacing:0;">(the obstacle)</span></th>
+        <th style="width:24%;">So we will... <span style="text-transform:none; letter-spacing:0;">(the action)</span></th>
+      </tr>
+      <tr style="background: var(--tint-orange-10);">
+        <td>Our best clients keep coming back project after project</td>
+        <td>How do we turn repeat projects into recurring revenue</td>
+        <td>We've never formally offered ongoing partnerships to clients who already trust us</td>
+        <td>Pitch our partnership model to our three warmest accounts, with a date on it</td>
+      </tr>
+      <tr><td class="write-cell"><textarea class="cell-input"></textarea></td><td class="write-cell"><textarea class="cell-input"></textarea></td><td class="write-cell"><textarea class="cell-input"></textarea></td><td class="write-cell"><textarea class="cell-input"></textarea></td></tr>
+      <tr><td class="write-cell"><textarea class="cell-input"></textarea></td><td class="write-cell"><textarea class="cell-input"></textarea></td><td class="write-cell"><textarea class="cell-input"></textarea></td><td class="write-cell"><textarea class="cell-input"></textarea></td></tr>
+      <tr><td class="write-cell"><textarea class="cell-input"></textarea></td><td class="write-cell"><textarea class="cell-input"></textarea></td><td class="write-cell"><textarea class="cell-input"></textarea></td><td class="write-cell"><textarea class="cell-input"></textarea></td></tr>
+      <tr><td class="write-cell"><textarea class="cell-input"></textarea></td><td class="write-cell"><textarea class="cell-input"></textarea></td><td class="write-cell"><textarea class="cell-input"></textarea></td><td class="write-cell"><textarea class="cell-input"></textarea></td></tr>
+      <tr><td class="write-cell"><textarea class="cell-input"></textarea></td><td class="write-cell"><textarea class="cell-input"></textarea></td><td class="write-cell"><textarea class="cell-input"></textarea></td><td class="write-cell"><textarea class="cell-input"></textarea></td></tr>
+      <tr><td class="write-cell"><textarea class="cell-input"></textarea></td><td class="write-cell"><textarea class="cell-input"></textarea></td><td class="write-cell"><textarea class="cell-input"></textarea></td><td class="write-cell"><textarea class="cell-input"></textarea></td></tr>
+    </table>
+
+    <div class="field">
+      <p class="field-label">Parking lot</p>
+      <span class="field-hint">Good ideas that aren't this quarter's work. Parked without apology, not forgotten.</span>
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+    </div>
+  </section>
+
+  <!-- ============ TOPs ============ -->
+  <section class="page-break">
+    <p class="eyebrow">Session seven <span class="index">08</span></p>
+    <h1>Quarterly TOPs</h1>
+    <hr class="orange-rule">
+    <p>From the chain, the room votes for the three or four actions that matter most in the next 90 days. Three dots each. Every TOP gets written as already done, in the present tense, with one owner and one date. "We have three partnership proposals in front of warm clients by 30 September" is a TOP. "Do more marketing" is not.</p>
+
+    <div class="top-card">
+      <p class="top-num">TOP 1</p>
+      <div class="field" style="margin: 0 0 0.5rem;">
+        <p class="field-label">Written as done</p>
+        <input type="text" class="write-line">
+        <input type="text" class="write-line">
+      </div>
+      <div class="owner-date">
+        <div><p class="field-label">Owner</p><input type="text" class="write-line"></div>
+        <div><p class="field-label">Date</p><input type="text" class="write-line"></div>
+      </div>
+    </div>
+
+    <div class="top-card">
+      <p class="top-num">TOP 2</p>
+      <div class="field" style="margin: 0 0 0.5rem;">
+        <p class="field-label">Written as done</p>
+        <input type="text" class="write-line">
+        <input type="text" class="write-line">
+      </div>
+      <div class="owner-date">
+        <div><p class="field-label">Owner</p><input type="text" class="write-line"></div>
+        <div><p class="field-label">Date</p><input type="text" class="write-line"></div>
+      </div>
+    </div>
+
+    <div class="top-card">
+      <p class="top-num">TOP 3</p>
+      <div class="field" style="margin: 0 0 0.5rem;">
+        <p class="field-label">Written as done</p>
+        <input type="text" class="write-line">
+        <input type="text" class="write-line">
+      </div>
+      <div class="owner-date">
+        <div><p class="field-label">Owner</p><input type="text" class="write-line"></div>
+        <div><p class="field-label">Date</p><input type="text" class="write-line"></div>
+      </div>
+    </div>
+
+    <div class="top-card">
+      <p class="top-num">TOP 4</p>
+      <div class="field" style="margin: 0 0 0.5rem;">
+        <p class="field-label">Written as done</p>
+        <input type="text" class="write-line">
+        <input type="text" class="write-line">
+      </div>
+      <div class="owner-date">
+        <div><p class="field-label">Owner</p><input type="text" class="write-line"></div>
+        <div><p class="field-label">Date</p><input type="text" class="write-line"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COMMITMENT & RHYTHM ============ -->
+  <section class="page-break">
+    <p class="eyebrow">Closing the room <span class="index">09</span></p>
+    <h1>My commitment</h1>
+    <hr class="orange-rule">
+    <p>Before we leave the room, each person finishes this sentence out loud. One sentence. Yours goes here first.</p>
+
+    <div class="field">
+      <p class="field-label">What I'm taking ownership of this quarter is...</p>
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+    </div>
+
+    <div class="dark-inset">
+      <p class="eyebrow">The rhythm <span class="index">how the plan stays alive</span></p>
+      <h2 style="margin-top:0;">A plan that isn't visible by Friday is already dying</h2>
+      <hr class="orange-rule">
+      <table class="brand-table" style="margin-bottom:0;">
+        <tr>
+          <th style="color: var(--color-paper); border-bottom-color: var(--color-burnt-orange);">When</th>
+          <th style="color: var(--color-paper); border-bottom-color: var(--color-burnt-orange);">What</th>
+        </tr>
+        <tr><td style="color: var(--color-paper);"><strong style="color: var(--color-paper);">Monday</strong></td><td style="color: var(--color-paper);">Weekly goals posted. Three things, drawn from the TOPs, not a to-do list of busy tasks.</td></tr>
+        <tr><td style="color: var(--color-paper);"><strong style="color: var(--color-paper);">Friday</strong></td><td style="color: var(--color-paper);">Weekly wins shared. There are always wins, even in hard weeks.</td></tr>
+        <tr><td style="color: var(--color-paper);"><strong style="color: var(--color-paper);">Monthly</strong></td><td style="color: var(--color-paper);">TOPs reviewed as a team. On track, off track, what changes.</td></tr>
+        <tr><td style="color: var(--color-paper); border-bottom:0;"><strong style="color: var(--color-paper);">Twelve months</strong></td><td style="color: var(--color-paper); border-bottom:0;">We do this day again.</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ THE ONE PAGE ============ -->
+  <section class="page-break">
+    <p class="eyebrow">The output <span class="index">10</span></p>
+    <h1>The one page</h1>
+    <hr class="orange-rule">
+    <p>Everything today produced, on a single page. If it doesn't fit here, the day produced a document, not a plan. This goes to everyone within the week, and the TOPs go wherever the team looks daily.</p>
+
+    <div class="card">
+      <p class="card-eyebrow">Our values</p>
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+      <input type="text" class="write-line">
+    </div>
+
+    <div class="card">
+      <p class="card-eyebrow">Our number</p>
+      <div class="two-col">
+        <div><p class="field-label">Annual</p><input type="text" class="write-line"></div>
+        <div><p class="field-label">Monthly</p><input type="text" class="write-line"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="card-eyebrow">Our TOPs this quarter</p>
+      <table class="brand-table" style="margin: 0.5rem 0 0;">
+        <tr><th>Written as done</th><th style="width:22%;">Owner</th><th style="width:18%;">Date</th></tr>
+        <tr><td class="write-cell" style="height:3rem;"><textarea class="cell-input" style="min-height:2.4rem;"></textarea></td><td><input type="text" class="cell-line"></td><td><input type="text" class="cell-line"></td></tr>
+        <tr><td class="write-cell" style="height:3rem;"><textarea class="cell-input" style="min-height:2.4rem;"></textarea></td><td><input type="text" class="cell-line"></td><td><input type="text" class="cell-line"></td></tr>
+        <tr><td class="write-cell" style="height:3rem;"><textarea class="cell-input" style="min-height:2.4rem;"></textarea></td><td><input type="text" class="cell-line"></td><td><input type="text" class="cell-line"></td></tr>
+        <tr><td class="write-cell" style="height:3rem;"><textarea class="cell-input" style="min-height:2.4rem;"></textarea></td><td><input type="text" class="cell-line"></td><td><input type="text" class="cell-line"></td></tr>
+      </table>
+    </div>
+  </section>
+
+  <footer class="poster-footer">
+    <span class="wordmark" style="font-family: var(--font-display); font-weight:600; letter-spacing:-0.025em; color: var(--color-anchor-navy); text-transform:none; font-size:1.1rem;">Lift Video Production</span>
+    <span>Team Planning Day · built on the VBA planning method</span>
+    <span>denlennie.com</span>
+  </footer>
+
+</div>
+<script>
+(function () {
+  var fields = document.querySelectorAll('input, textarea');
+  var ns = 'lift-annual-planning-';
+  fields.forEach(function (f, i) {
+    var key = ns + i;
+    var saved = localStorage.getItem(key);
+    if (saved !== null) { f.value = saved; }
+    f.addEventListener('input', function () { localStorage.setItem(key, f.value); });
+  });
+  var clear = document.getElementById('clear-notes');
+  if (clear) {
+    clear.addEventListener('click', function () {
+      if (!confirm('Clear all your answers from this device? This cannot be undone.')) { return; }
+      fields.forEach(function (f, i) { localStorage.removeItem(ns + i); f.value = ''; });
+    });
+  }
+})();
+</script>
+</body>
+</html>
