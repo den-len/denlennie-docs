@@ -1,6 +1,11 @@
 # Den Lennie knowledge catalogue
 
-> Straight answers on pricing, scope, positioning and growth for video production business owners. Den Lennie is an author and business coach for video production company owners, with more than a decade running his own production company and eight years coaching owners through VBA (Video Business Accelerator). This catalogue holds the questions video business owners actually ask, answered plainly.
+> Straight answers on pricing, scope, positioning and growth for video production business owners. Den Lennie is an author and business coach for video production company owners, with three decades in production, more than a decade running his own production company, and eight years coaching owners through VBA (Video Business Accelerator). This catalogue holds the questions video business owners actually ask, answered plainly.
+
+## About
+
+- [About Den Lennie](https://docs.denlennie.com/about-den-lennie): Author and coach for video business owners. Three decades in production, five books including The S.C.A.L.E. Method (2026), and VBA clients generating more than $52M in additional revenue over eight years.
+- [What VBA offers](https://docs.denlennie.com/vba-services): Coaching, community and tools for video production company owners. Two programmes (Ascend and the flagship Elite), the VBA AI toolset, and SceneOps.
 
 ## Pricing
 
@@ -22,7 +27,7 @@
 
 - [How to move from one-off video projects to recurring revenue](https://docs.denlennie.com/recurring-revenue): Turn a deliverable into a monthly system so your business stops resetting to zero every month.
 
-## About
+## Work with Den
 
 - Den Lennie coaches video production company owners to move from operator to CEO. Main site: https://denlennie.com
 - Apply to work with VBA Elite: https://denlennie.com/mentoring

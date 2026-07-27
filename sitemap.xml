@@ -2,7 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://docs.denlennie.com/catalog</loc>
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-07-27</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.denlennie.com/about-den-lennie</loc>
+    <lastmod>2026-07-27</lastmod>
+  </url>
+  <url>
+    <loc>https://docs.denlennie.com/vba-services</loc>
+    <lastmod>2026-07-27</lastmod>
   </url>
   <url>
     <loc>https://docs.denlennie.com/pricing-guide</loc>
