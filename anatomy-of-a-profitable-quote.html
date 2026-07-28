@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Anatomy of a Profitable Quote · Den Lennie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- brand/brand.css inlined so this file travels as a single document.
+       Source of truth: brand/brand.css. Edit there, not here. -->
+  <style>
+:root {
+  --color-anchor-navy:   #0B2141;
+  --color-ink-black:     #0C0C0D;
+  --color-burnt-orange:  #D9531E;
+  --color-paper:         #F5F4EF;
+  --color-white:         #FFFFFF;
+  --tint-navy-08:    rgba(11, 33, 65, 0.08);
+  --tint-ink-08:     rgba(12, 12, 13, 0.08);
+  --tint-orange-10:  rgba(217, 83, 30, 0.10);
+  --font-display: 'Poppins', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --font-body:    'Ubuntu',  system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --font-caption: 'Ubuntu',  system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --line-height: 1.6;
+  --type-display: clamp(2.6rem, 6vw, 5rem);
+  --type-h1:      clamp(1.9rem, 3.4vw, 2.8rem);
+  --type-h2:      clamp(1.3rem, 2vw, 1.6rem);
+  --type-h3:      1.05rem;
+  --type-body:    1.0625rem;
+  --type-small:   0.875rem;
+  --type-caption: 0.75rem;
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  background: var(--color-paper);
+  color: var(--color-ink-black);
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: var(--type-body);
+  line-height: var(--line-height);
+  -webkit-font-smoothing: antialiased;
+}
+.display, h1, h2, h3, h4 { font-family: var(--font-display); color: var(--color-anchor-navy); margin: 0 0 1rem; }
+.display { font-weight: 700; font-size: var(--type-display); letter-spacing: -0.035em; line-height: 1.05; }
+h1 { font-weight: 600; font-size: var(--type-h1); letter-spacing: -0.025em; line-height: 1.1; }
+h2 { font-weight: 600; font-size: var(--type-h2); letter-spacing: -0.02em; line-height: 1.2; margin-top: 2.5rem; }
+h3 { font-weight: 600; font-size: var(--type-h3); letter-spacing: -0.01em; margin-top: 1.5rem; }
+p { margin: 0 0 1rem; }
+strong { font-weight: 500; color: var(--color-anchor-navy); }
+.eyebrow {
+  font-family: var(--font-caption); font-weight: 400; font-size: var(--type-caption);
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-anchor-navy); margin: 0 0 1.5rem;
+}
+.eyebrow .index { color: var(--color-burnt-orange); margin-left: 0.75rem; }
+.orange-rule { width: 96px; height: 3px; background: var(--color-burnt-orange); border: 0; margin: 1.5rem 0 2rem; }
+.lead { font-size: 1.2rem; line-height: 1.5; max-width: 60ch; margin: 0 0 2.5rem; }
+.caption { font-family: var(--font-caption); font-size: var(--type-caption); letter-spacing: 0.04em; opacity: 0.7; }
+.page { max-width: 880px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+.poster-footer {
+  margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--tint-ink-08);
+  display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 1rem;
+  font-family: var(--font-caption); font-size: var(--type-caption);
+  letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.7;
+}
+.card { background: var(--color-white); border: 1px solid var(--tint-ink-08); padding: 2rem; margin: 0 0 1.5rem; border-radius: 2px; }
+.card .card-eyebrow {
+  font-family: var(--font-caption); font-size: var(--type-caption); letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--color-burnt-orange); margin: 0 0 0.5rem; font-weight: 500;
+}
+.card h2 { margin-top: 0; }
+.dark-inset { background: var(--color-anchor-navy); color: var(--color-paper); padding: 3rem 2.5rem; margin: 3rem 0; border-radius: 2px; }
+.dark-inset .display, .dark-inset h1, .dark-inset h2, .dark-inset h3, .dark-inset strong { color: var(--color-paper); }
+.dark-inset .orange-rule { background: var(--color-burnt-orange); }
+.dark-inset .eyebrow { color: var(--color-paper); opacity: 0.85; }
+.callout { background: var(--color-white); border-left: 3px solid var(--color-burnt-orange); padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+ul.brand-list { list-style: none; padding: 0; margin: 0 0 1.5rem; }
+ul.brand-list li { padding: 0.6rem 0 0.6rem 1.75rem; border-bottom: 1px solid var(--tint-ink-08); position: relative; }
+ul.brand-list li::before { content: ""; position: absolute; left: 0; top: 1.05rem; width: 12px; height: 1px; background: var(--color-burnt-orange); }
+ul.brand-list li:last-child { border-bottom: 0; }
+table.brand-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0 2.5rem; font-size: var(--type-small); }
+table.brand-table th {
+  text-align: left; font-family: var(--font-caption); font-weight: 500; font-size: var(--type-caption);
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-anchor-navy);
+  padding: 0.7rem 0.75rem; border-bottom: 2px solid var(--color-anchor-navy);
+}
+table.brand-table td { padding: 0.7rem 0.75rem; border-bottom: 1px solid var(--tint-ink-08); vertical-align: top; }
+table.brand-table td.num, table.brand-table th.num { text-align: right; font-variant-numeric: tabular-nums; }
+table.brand-table tr.subtotal td { font-weight: 500; color: var(--color-anchor-navy); background: var(--tint-orange-10); }
+table.brand-table tr.grand td { font-weight: 500; color: var(--color-anchor-navy); border-top: 2px solid var(--color-anchor-navy); border-bottom: 0; font-size: 1rem; }
+@media print {
+  @page { size: A4 portrait; margin: 14mm 15mm; }
+  html, body { background: var(--color-white); }
+  .page { padding: 0; max-width: none; }
+  .page-break { break-before: page; }
+  .card, .callout, .dark-inset { break-inside: avoid; }
+  table.brand-table tr { break-inside: avoid; }
+  .cover { min-height: 250mm; }
+}
+@media (max-width: 720px) {
+  .page { padding: 2rem 1.25rem 3.5rem; }
+  .dark-inset { padding: 2rem 1.5rem; }
+}
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ============ COVER ============ -->
+  <section class="dark-inset cover" style="margin-top:0; padding: 4rem 3rem;">
+    <p class="eyebrow">Video Business Accelerator <span class="index">Pricing Best Practice</span></p>
+    <p class="display">The anatomy of a profitable quote.</p>
+    <hr class="orange-rule">
+    <p class="lead" style="color: var(--color-paper); margin-bottom: 0;">Four sections, in order: pre-production, production, post-production, and the production company fee. Every quote you send should have all four. Most video businesses are missing at least one, and it's usually worth about 15% of the job.</p>
+  </section>
+
+  <!-- ============ THE PRINCIPLE ============ -->
+  <section class="page-break">
+    <p class="eyebrow">The principle <span class="index">01</span></p>
+    <h1>A quote is a budget, not a guess</h1>
+    <hr class="orange-rule">
+    <p class="lead">The single most common profitability leak in a video business isn't the day rate. It's the structure of the quote. Work that took real hours never makes it onto the page, so the client never pays for it, so the business absorbs it.</p>
+    <p>The fix is structural, and you only have to make it once. Build every quote from four sections, in this order:</p>
+    <ul class="brand-list">
+      <li><strong>Pre-production.</strong> Scoped labour with day rates: the thinking and planning work.</li>
+      <li><strong>Production.</strong> The obvious fees: people per day, equipment, and the hard costs of the shoot.</li>
+      <li><strong>Post-production.</strong> Edit days, grade, music, sound, versions.</li>
+      <li><strong>The production company fee.</strong> A percentage at the bottom covering everything that can't be cleanly itemised, plus your margin.</li>
+    </ul>
+    <div class="callout">
+      <p style="margin:0;"><strong>The rule that sorts every cost:</strong> if it's a person working scoped hours or days, it's a line item in one of the first three sections. If it's the connective tissue around the job (insurance, kit you own, booking, coordination, overheads), it lives in the fee. Never let one masquerade as the other.</p>
+    </div>
+  </section>
+
+  <!-- ============ PRE-PRODUCTION ============ -->
+  <section class="page-break">
+    <p class="eyebrow">Section one <span class="index">02</span></p>
+    <h1>Pre-production</h1>
+    <hr class="orange-rule">
+    <p>This is where most of the money gets left behind. Pre-production is real, scoped labour, and it belongs on the quote with day rates against names, exactly like shoot days do.</p>
+    <h3>What it includes</h3>
+    <ul class="brand-list">
+      <li>Producer days: scoping, planning, coordination and client management before anyone lifts a camera</li>
+      <li>Director prep days: creative development, treatment, shot planning</li>
+      <li>Concept development and scripting</li>
+      <li>Storyboarding</li>
+      <li>Pre-interviews with talent or subject-matter experts</li>
+      <li>Casting</li>
+      <li>Location recces</li>
+      <li>Scheduling, call sheets and shooting schedules</li>
+    </ul>
+    <div class="callout">
+      <p style="margin:0;"><strong>The test:</strong> if you can name the person and count their hours, it's pre-production and it gets a line. "We'll sort that in week one" isn't a price. Week one is where quotes go to die.</p>
+    </div>
+  </section>
+
+  <!-- ============ PRODUCTION ============ -->
+  <section>
+    <p class="eyebrow">Section two <span class="index">03</span></p>
+    <h1>Production</h1>
+    <hr class="orange-rule">
+    <p>The section most people already get right, because the costs are obvious: fees per person and equipment, per shoot day.</p>
+    <h3>What it includes</h3>
+    <ul class="brand-list">
+      <li>Crew day rates: director, DP, camera assistant, 1st AD, sound recordist</li>
+      <li>Styling, production design, hair and make-up</li>
+      <li>Talent and models</li>
+      <li>Behind-the-scenes crew (stills and video), if the job carries it</li>
+      <li>Equipment packages: camera, lighting, grip</li>
+      <li>Locations and permits</li>
+      <li>Transport and travel</li>
+      <li>Catering</li>
+      <li>Production insurance specific to the job</li>
+      <li>Props and consumables</li>
+    </ul>
+    <div class="callout">
+      <p style="margin:0;"><strong>Expenses are line items too.</strong> Anything you buy in for the job (crew, kit hire, travel) goes on the quote at its charged rate, not silently absorbed inside a bundle. Pass-through costs with no visible line are margin you're donating.</p>
+    </div>
+  </section>
+
+  <!-- ============ POST ============ -->
+  <section>
+    <p class="eyebrow">Section three <span class="index">04</span></p>
+    <h1>Post-production</h1>
+    <hr class="orange-rule">
+    <p>Price the finish line properly. Post is where scope creeps, so the quote names each stage and what it includes.</p>
+    <h3>What it includes</h3>
+    <ul class="brand-list">
+      <li>Offline edit, priced in days</li>
+      <li>Online and conform</li>
+      <li>Grade</li>
+      <li>Music licensing</li>
+      <li>Sound design and mix</li>
+      <li>Voiceover and dubs</li>
+      <li>Captions and delivery versions (cutdowns, formats, languages)</li>
+      <li>A named number of revision rounds, so round four is a variation, not a favour</li>
+    </ul>
+  </section>
+
+  <!-- ============ THE FEE ============ -->
+  <section class="page-break">
+    <p class="eyebrow">Section four <span class="index">05</span></p>
+    <h1>The production company fee</h1>
+    <hr class="orange-rule">
+    <p>The line most video businesses are missing entirely. It isn't a markup. It prices the work and overheads that were always there and never made it onto the invoice. Solo operators absorb all of it personally.</p>
+    <h3>The producing work and the value</h3>
+    <ul class="brand-list">
+      <li>Experience and supplier network getting a better deal on crew and kit</li>
+      <li>The hours spent scoping, researching and building the quote itself</li>
+      <li>Calling and booking crew</li>
+      <li>Production management and coordination across the whole job</li>
+      <li>Legal and insurance paperwork, licences and releases</li>
+      <li>Basic kit that isn't itemised: tripod, matte box, sound, on-set monitoring</li>
+    </ul>
+    <h3>The overhead of running a production company</h3>
+    <ul class="brand-list">
+      <li>Power, phone, internet</li>
+      <li>Admin staff and support</li>
+      <li>Bank, card and currency charges, processing accounts, invoicing</li>
+      <li>Maintenance and depreciation on gear owned and used on every shoot</li>
+    </ul>
+    <div class="dark-inset">
+      <p class="eyebrow">The numbers</p>
+      <h2 style="margin-top:0;">15 to 30 per cent. Never start below 15.</h2>
+      <hr class="orange-rule">
+      <p>A tiny fee looks optional and invites the objection. Introduce at 15%, move toward 20% as your default. A deliberate relationship rate of 12% is the floor, framed openly as held lower for an anchor client.</p>
+      <p><strong>Contingency is a separate lever:</strong> 10% of the production element, as its own line, before the fee.</p>
+      <p style="margin:0;"><strong>Base of calculation:</strong> the fee is a percentage of the production cost (subtotal plus contingency), not a number pulled from the air.</p>
+    </div>
+    <h3>The client-ready explanation</h3>
+    <div class="callout">
+      <p style="margin:0;">"The production fee is a percentage on top of the line items. The line items are the hard costs of the shoot days. The fee covers everything around them that makes the job run: booking and managing crew, coordination, call sheets, licensing, insurance and legal admin, the time spent scoping and quoting, plus the overheads of running a production company and the basic kit we don't itemise. Industry standard is 15 to 30 per cent."</p>
+    </div>
+    <p>Clients accept this, because they carry the same costs in their own businesses. The pushback you're bracing for almost never comes.</p>
+  </section>
+
+  <!-- ============ WORKED EXAMPLE ============ -->
+  <section class="page-break">
+    <p class="eyebrow">The worked example <span class="index">06</span></p>
+    <h1>A real budget: the Zeiss promo</h1>
+    <hr class="orange-rule">
+    <p class="lead">This is a real quote from a real job: a promo Den produced for Zeiss in the UK. Costs are in pounds sterling. Three shoot days (two internal, one exterior location), full crew, BTS package. Every section is visible, the contingency is its own line, and the fee sits at the bottom at a deliberate 12% relationship rate.</p>
+
+    <h3>Pre-production and creative</h3>
+    <table class="brand-table">
+      <tr><th>Role</th><th class="num">Day rate</th><th class="num">Days</th><th class="num">Amount</th></tr>
+      <tr><td>Producer</td><td class="num">650</td><td class="num">6</td><td class="num">3,900</td></tr>
+      <tr><td>Director (prep)</td><td class="num">650</td><td class="num">3</td><td class="num">1,950</td></tr>
+      <tr><td>Storyboard</td><td class="num">200</td><td class="num">&nbsp;</td><td class="num">150</td></tr>
+      <tr class="subtotal"><td colspan="3">Pre-production subtotal</td><td class="num">6,000</td></tr>
+    </table>
+
+    <h3>Production (two-day internal shoot plus one exterior location day)</h3>
+    <table class="brand-table">
+      <tr><th>Item</th><th class="num">2-day internal</th><th class="num">1-day location</th></tr>
+      <tr><td>Director</td><td class="num">2,500</td><td class="num">1,250</td></tr>
+      <tr><td>DP</td><td class="num">2,500</td><td class="num">1,250</td></tr>
+      <tr><td>Model</td><td class="num">500</td><td class="num">250</td></tr>
+      <tr><td>Camera assistant</td><td class="num">500</td><td class="num">&nbsp;</td></tr>
+      <tr><td>Stylist / production design</td><td class="num">700</td><td class="num">&nbsp;</td></tr>
+      <tr><td>Hair and make-up</td><td class="num">750</td><td class="num">&nbsp;</td></tr>
+      <tr><td>BTS stills and video</td><td class="num">1,300</td><td class="num">650</td></tr>
+      <tr><td>Transport and travel</td><td class="num">400</td><td class="num">500</td></tr>
+      <tr><td>BTS camera package</td><td class="num">700</td><td class="num">&nbsp;</td></tr>
+      <tr><td>Locations</td><td class="num">3,000</td><td class="num">&nbsp;</td></tr>
+      <tr><td>1st AD</td><td class="num">500</td><td class="num">&nbsp;</td></tr>
+      <tr><td>Catering</td><td class="num">800</td><td class="num">&nbsp;</td></tr>
+      <tr><td>Insurance</td><td class="num">800</td><td class="num">&nbsp;</td></tr>
+      <tr><td>Lighting</td><td class="num">1,200</td><td class="num">&nbsp;</td></tr>
+      <tr><td>Grip</td><td class="num">600</td><td class="num">&nbsp;</td></tr>
+      <tr><td>Props</td><td class="num">800</td><td class="num">&nbsp;</td></tr>
+      <tr class="subtotal"><td>Production subtotal</td><td class="num">17,550</td><td class="num">3,900</td></tr>
+      <tr class="subtotal"><td colspan="2">Production total</td><td class="num">21,450</td></tr>
+    </table>
+
+    <h3>Post-production</h3>
+    <table class="brand-table">
+      <tr><th>Item</th><th class="num">Rate</th><th class="num">Days</th><th class="num">Amount</th></tr>
+      <tr><td>Offline edit</td><td class="num">650</td><td class="num">3</td><td class="num">1,950</td></tr>
+      <tr><td>Online</td><td class="num">200</td><td class="num">4</td><td class="num">800</td></tr>
+      <tr><td>Music and sound mix</td><td class="num">&nbsp;</td><td class="num">&nbsp;</td><td class="num">1,800</td></tr>
+      <tr><td>Grade</td><td class="num">&nbsp;</td><td class="num">&nbsp;</td><td class="num">1,600</td></tr>
+      <tr><td>BTS edit (offline)</td><td class="num">650</td><td class="num">1</td><td class="num">650</td></tr>
+      <tr><td>BTS grade</td><td class="num">&nbsp;</td><td class="num">&nbsp;</td><td class="num">600</td></tr>
+      <tr><td>BTS music and sound mix</td><td class="num">&nbsp;</td><td class="num">&nbsp;</td><td class="num">600</td></tr>
+      <tr class="subtotal"><td colspan="3">Post-production subtotal</td><td class="num">8,000</td></tr>
+    </table>
+
+    <h3>The ladder to the total</h3>
+    <table class="brand-table">
+      <tr><td>Pre-production</td><td class="num">6,000</td></tr>
+      <tr><td>Production</td><td class="num">21,450</td></tr>
+      <tr><td>Post-production</td><td class="num">8,000</td></tr>
+      <tr class="subtotal"><td>Subtotal</td><td class="num">35,450</td></tr>
+      <tr><td>Contingency (10%)</td><td class="num">3,545</td></tr>
+      <tr class="subtotal"><td>Production cost</td><td class="num">40,995</td></tr>
+      <tr><td>Production company fee (12%, relationship rate)</td><td class="num">4,919.40</td></tr>
+      <tr class="grand"><td>Total (GBP)</td><td class="num">£45,914.40</td></tr>
+    </table>
+    <p class="caption">Note the mechanics: contingency is 10% of the subtotal, and the fee calculates on the production cost (subtotal plus contingency). Nothing is hidden, nothing is bundled, and the client signed it.</p>
+  </section>
+
+  <!-- ============ COMMON MISTAKES ============ -->
+  <section class="page-break">
+    <p class="eyebrow">The leaks <span class="index">07</span></p>
+    <h1>Five ways quotes lose 15%</h1>
+    <hr class="orange-rule">
+    <ul class="brand-list">
+      <li><strong>Pre-production charged as an "admin" percentage.</strong> One small percentage line covering both the planning labour and the company overheads. Result: the labour is free and the margin line doesn't exist. This is the most common leak we see.</li>
+      <li><strong>No production company fee at all.</strong> The overheads still exist; they just come out of your shoot and edit margins.</li>
+      <li><strong>Unpriced week one.</strong> The timeline says "ideation, key messaging, planning, pre-interviews" and the pricing table says nothing about any of it.</li>
+      <li><strong>Pass-through expenses with no markup.</strong> Crew and kit bought in for the job, invisible inside a bundled price.</li>
+      <li><strong>One bundled line for everything.</strong> A single number can work for some buyers, but only if the internal build-up behind it carries all four sections. A bundle without a build-up is a guess.</li>
+    </ul>
+    <div class="callout">
+      <p style="margin:0;"><strong>The word "admin" invites the objection.</strong> Clients resent paying for admin. Nobody blinks at a production fee at the foot of a budget; it's how the industry has priced work for decades.</p>
+    </div>
+  </section>
+
+  <!-- ============ THE QUICK WIN ============ -->
+  <section>
+    <p class="eyebrow">The quick win <span class="index">08</span></p>
+    <h1>Do this once, this week</h1>
+    <hr class="orange-rule">
+    <ul class="brand-list">
+      <li>Pull your last three quotes. Check each against the four sections. Mark what's missing.</li>
+      <li>Rebuild your quote template: pre-production as scoped lines, production and post itemised, contingency as its own line, production company fee at the bottom.</li>
+      <li>New clients get the new structure immediately. No conversation needed; it's simply how you quote.</li>
+      <li>Existing clients get it on their next quote, framed as formalising the producing role you already carry, not as a price rise. State it calmly, no apology. Applies to new work, never retroactively.</li>
+    </ul>
+    <div class="callout">
+      <p style="margin:0;"><strong>What it's worth:</strong> on a typical quote missing the fee line, restructuring recovers around 15% per job. On $250K of annual project revenue, that's roughly $37,500 a year for one template change.</p>
+    </div>
+    <div class="card">
+      <p class="card-eyebrow">Proof, not theory</p>
+      <p style="margin:0;">This was the first thing Andrew Fowler at Lux Films in London implemented when he joined the VBA. That one change added six figures to his annual profit, and it's part of how he repaid his first year's investment within the first month.</p>
+    </div>
+  </section>
+
+  <footer class="poster-footer">
+    <span style="font-family: var(--font-display); font-weight:600; letter-spacing:-0.025em; color: var(--color-anchor-navy); text-transform:none; font-size:1.1rem;">Den Lennie</span>
+    <span>From A Filmmaker's Guide to Budgets and Quotes</span>
+    <span>denlennie.com</span>
+  </footer>
+
+</div>
+</body>
+</html>
