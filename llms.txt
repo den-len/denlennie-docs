@@ -16,9 +16,18 @@
 - [How many revision rounds to include, and how to charge for extra ones](https://docs.denlennie.com/revision-rounds): Name the rounds, count them out loud, and have the money conversation before the work.
 - [Drop the scope, not the price](https://docs.denlennie.com/drop-scope-not-price): When a budget is lower than the work, hold your rate and reduce what's delivered. Discounting trains clients to underpay you.
 
-## Sales
+## Sales and clients
 
 - [What to say when a prospect asks for a ballpark price](https://docs.denlennie.com/ballpark-price): Give a real range, make scope the variable, and open a conversation instead of closing one.
+- [How to qualify a video lead before you pitch](https://docs.denlennie.com/qualify-before-you-pitch): Don't send the showreel and wait. Ask a diagnostic question first and quote the outcome, not the footage.
+- [How to show real authority on a sales call](https://docs.denlennie.com/sales-call-authority): Authority isn't performed with jargon, it's demonstrated by asking better questions.
+- [How to write a follow-up email that gets a reply](https://docs.denlennie.com/follow-up-emails): Stop asking permission. State the next step. A follow-up creates momentum, it doesn't ask to be chosen.
+- [How to push back on a client without losing them](https://docs.denlennie.com/push-back-without-losing-client): Drawing a line isn't losing the relationship. Absorbing the cost teaches the client the wrong lesson.
+
+## Marketing
+
+- [Content or outreach: where to spend your marketing time](https://docs.denlennie.com/content-vs-outreach): Owners over-engineer content and under-execute outreach. Pick one channel, execute, adjust from data.
+- [The marketing asset you already have and keep ignoring](https://docs.denlennie.com/use-what-you-have): Mine what you've already delivered before you commission the next shoot.
 
 ## Positioning
 
@@ -27,6 +36,10 @@
 ## Growth
 
 - [How to move from one-off video projects to recurring revenue](https://docs.denlennie.com/recurring-revenue): Turn a deliverable into a monthly system so your business stops resetting to zero every month.
+
+## Team
+
+- [How to hire a video editor](https://docs.denlennie.com/hire-a-video-editor): Interview to filter, pay to decide. Never hire on the showreel alone.
 
 ## Work with Den
 
