@@ -13,6 +13,12 @@
 - [What is the S.C.A.L.E. Method?](https://docs.denlennie.com/scale-method): The framework from Den's 2026 book. Five disciplines a video business grows through: Survival, Control, Alignment, Leverage, Expansion.
 - [The books Den Lennie has written](https://docs.denlennie.com/den-lennie-books): Five books for video business owners over more than a decade, including The S.C.A.L.E. Method (2026) and Business for Filmmakers (2014).
 
+## Case studies
+
+- [How a missing boundary cost a video business a client](https://docs.denlennie.com/case-study-revision-rounds): A video edit that blew past its agreed revision rounds and ended in a client walkout. Anonymised.
+- [How a video business owner stopped guessing on every quote](https://docs.denlennie.com/case-study-pricing-system): A hundred quotes in and still freezing on every one, until a real pricing method ended the anxiety. Anonymised.
+- [How a video business owner escaped the project treadmill](https://docs.denlennie.com/case-study-recurring-revenue): Packaging existing work into a monthly retainer to move from one-off spikes to a rising floor. Anonymised.
+
 ## Pricing
 
 - [What it costs to work with Den Lennie and VBA](https://docs.denlennie.com/pricing-guide): The full offer ladder with prices. The Growth Strategy Session ($349 USD), VBA Ascend ($749 USD a month), and VBA Elite ($6,800 USD for the first 90 days, then $1,549 USD a month, application-only).
