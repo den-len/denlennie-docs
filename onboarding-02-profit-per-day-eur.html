@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Profit Per Day · Jan-Christoph · VBA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* brand.css inlined so this file renders standalone, anywhere. Source of truth: brand/brand.css */
+/*
+ * brand.css: Den Lennie · the single source of brand styling.
+ * ------------------------------------------------------------
+ * Source of truth: Brand Guidelines, Version 2.0, 2026.
+ * Entity: F-Stop Academy Australia Pty Ltd.
+ *
+ * Every HTML document built in this OS pulls its look from this file.
+ * Update the variables in :root below, and every quote, proposal, slide
+ * and handout updates with it.
+ *
+ * IMPORTANT FOR FONTS:
+ * Setting a font name in CSS does not load the font. Each HTML file must
+ * also pull the fonts in with a <link> tag inside the <head>, like this:
+ *
+ *   <link rel="preconnect" href="https://fonts.googleapis.com">
+ *   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ *   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+ *
+ * Use <link> not @import. @import fails silently in PDF rendering and the
+ * document quietly falls back to the wrong font.
+ */
+
+:root {
+
+  /* === COLOURS ===
+     The 2026 system: two darks, one accent, room to breathe.
+     Working ratio is roughly 70% dark, 20% paper or white, 10% orange.
+     The old cyan, magenta and yellow are retired. */
+
+  --color-anchor-navy:   #0B2141;  /* Anchors the brand. The primary surface.        */
+  --color-ink-black:     #0C0C0D;  /* Where the brand feels modern and a bit sharper. */
+  --color-burnt-orange:  #D9531E;  /* Accent only. A scalpel, never a paint roller.  */
+  --color-paper:         #F5F4EF;  /* Carries the quiet. The default page colour.    */
+  --color-white:         #FFFFFF;
+
+  /* Aliases so generic class names still work */
+  --color-primary:    var(--color-anchor-navy);
+  --color-secondary:  var(--color-ink-black);
+  --color-accent:     var(--color-burnt-orange);
+  --color-background: var(--color-paper);
+  --color-text:       var(--color-ink-black);
+
+  /* Light working tints. Use sparingly, never as a primary surface. */
+  --tint-navy-08:    rgba(11, 33, 65, 0.08);
+  --tint-ink-08:     rgba(12, 12, 13, 0.08);
+  --tint-orange-10:  rgba(217, 83, 30, 0.10);
+
+  /* === FONTS ===
+     Poppins for display and headings. Ubuntu for body and detail.
+     A web-safe fallback is included after each, in case the Google
+     Fonts <link> fails to load. */
+
+  --font-display: 'Poppins', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --font-heading: 'Poppins', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --font-body:    'Ubuntu',  system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --font-caption: 'Ubuntu',  system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+
+  /* === SPACING AND RHYTHM === */
+  --line-height: 1.6;
+  --space-unit:  16px;
+
+  /* === TYPE SCALE ===
+     Fluid sizes that breathe with the viewport. */
+  --type-display: clamp(2.6rem, 6vw, 5rem);
+  --type-h1:      clamp(1.9rem, 3.4vw, 2.8rem);
+  --type-h2:      clamp(1.3rem, 2vw, 1.6rem);
+  --type-h3:      1.05rem;
+  --type-body:    1.0625rem;
+  --type-small:   0.875rem;
+  --type-caption: 0.75rem;
+}
+
+/* ---------------------------------------------------------------
+   BASE
+   --------------------------------------------------------------- */
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-paper);
+  color: var(--color-ink-black);
+  font-family: var(--font-body);
+  font-weight: 300;                 /* Ubuntu Light */
+  font-size: var(--type-body);
+  line-height: var(--line-height);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---------------------------------------------------------------
+   TYPOGRAPHY
+   --------------------------------------------------------------- */
+
+.display, h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--color-anchor-navy);
+  margin: 0 0 1rem;
+}
+
+.display {
+  font-weight: 700;                 /* Poppins Bold */
+  font-size: var(--type-display);
+  letter-spacing: -0.035em;         /* -3.5% tracking, per 2026 guidelines */
+  line-height: 1.05;
+}
+
+h1 {
+  font-weight: 600;                 /* Poppins SemiBold */
+  font-size: var(--type-h1);
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+
+h2 {
+  font-weight: 600;
+  font-size: var(--type-h2);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-top: 2.5rem;
+}
+
+h3 {
+  font-weight: 600;
+  font-size: var(--type-h3);
+  letter-spacing: -0.01em;
+  margin-top: 1.5rem;
+}
+
+p { margin: 0 0 1rem; }
+
+strong {
+  font-weight: 500;
+  color: var(--color-anchor-navy);
+}
+
+a {
+  color: var(--color-burnt-orange);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-burnt-orange);
+  padding-bottom: 1px;
+}
+a:hover {
+  color: var(--color-ink-black);
+  border-bottom-color: var(--color-ink-black);
+}
+
+/* ---------------------------------------------------------------
+   EDITORIAL POSTER PRIMITIVES
+   The 2026 layout system: eyebrow row, big headline,
+   one short orange rule, heavy negative space.
+   --------------------------------------------------------------- */
+
+.eyebrow {
+  font-family: var(--font-caption);
+  font-weight: 400;
+  font-size: var(--type-caption);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-anchor-navy);
+  margin: 0 0 1.5rem;
+}
+
+.eyebrow .index {
+  color: var(--color-burnt-orange);
+  margin-left: 0.75rem;
+}
+
+.orange-rule {
+  width: 96px;
+  height: 3px;
+  background: var(--color-burnt-orange);
+  border: 0;
+  margin: 1.5rem 0 2rem;
+}
+
+.caption {
+  font-family: var(--font-caption);
+  font-weight: 400;
+  font-size: var(--type-caption);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-ink-black);
+  opacity: 0.7;
+}
+
+.lead {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: var(--color-ink-black);
+  max-width: 60ch;
+  margin: 0 0 2.5rem;
+}
+
+/* ---------------------------------------------------------------
+   LAYOUT CONTAINERS
+   --------------------------------------------------------------- */
+
+.page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 4rem 2rem 6rem;
+}
+
+.poster-header {
+  padding: 1rem 0 3rem;
+  border-bottom: 1px solid var(--tint-ink-08);
+  margin-bottom: 3.5rem;
+}
+
+.poster-footer {
+  margin-top: 5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--tint-ink-08);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-family: var(--font-caption);
+  font-size: var(--type-caption);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-ink-black);
+  opacity: 0.7;
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: -0.025em;
+  color: var(--color-anchor-navy);
+  text-transform: none;
+}
+
+/* ---------------------------------------------------------------
+   CARDS AND BLOCKS
+   --------------------------------------------------------------- */
+
+.card {
+  background: var(--color-white);
+  border: 1px solid var(--tint-ink-08);
+  padding: 2rem;
+  margin: 0 0 1.5rem;
+  border-radius: 2px;
+}
+
+.card .card-eyebrow {
+  font-family: var(--font-caption);
+  font-size: var(--type-caption);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-burnt-orange);
+  margin: 0 0 0.5rem;
+  font-weight: 500;
+}
+
+.card h2 { margin-top: 0; }
+
+.dark-inset {
+  background: var(--color-anchor-navy);
+  color: var(--color-paper);
+  padding: 3rem 2.5rem;
+  margin: 3rem 0;
+  border-radius: 2px;
+}
+
+.dark-inset .display,
+.dark-inset h1,
+.dark-inset h2,
+.dark-inset h3,
+.dark-inset strong {
+  color: var(--color-paper);
+}
+
+.dark-inset .orange-rule { background: var(--color-burnt-orange); }
+
+/* Must-have vs nice-to-have label chips */
+.tier {
+  margin: 1.5rem 0 1rem;
+}
+
+.tier-label {
+  display: inline-block;
+  font-family: var(--font-caption);
+  font-size: var(--type-caption);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.75rem;
+  margin: 0 0 0.75rem;
+}
+
+.tier-must {
+  background: var(--color-anchor-navy);
+  color: var(--color-paper);
+}
+
+.tier-nice {
+  background: var(--color-paper);
+  color: var(--color-anchor-navy);
+  border: 1px solid var(--color-anchor-navy);
+}
+
+/* ---------------------------------------------------------------
+   LISTS
+   --------------------------------------------------------------- */
+
+ul.brand-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+}
+
+ul.brand-list li {
+  padding: 0.6rem 0 0.6rem 1.75rem;
+  border-bottom: 1px solid var(--tint-ink-08);
+  position: relative;
+}
+
+ul.brand-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.05rem;
+  width: 12px;
+  height: 1px;
+  background: var(--color-burnt-orange);
+}
+
+ul.brand-list li:last-child { border-bottom: 0; }
+
+/* Generic body list, lightly styled */
+ul.body-list, ol.body-list {
+  margin: 0 0 1.5rem 1.25rem;
+  padding: 0;
+}
+
+ul.body-list li, ol.body-list li {
+  margin: 0.4rem 0;
+}
+
+/* ---------------------------------------------------------------
+   TABLES
+   --------------------------------------------------------------- */
+
+table.brand-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0 2.5rem;
+  font-size: var(--type-small);
+}
+
+table.brand-table th {
+  text-align: left;
+  font-family: var(--font-caption);
+  font-weight: 500;
+  font-size: var(--type-caption);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-anchor-navy);
+  padding: 0.75rem 1rem;
+  border-bottom: 2px solid var(--color-anchor-navy);
+}
+
+table.brand-table td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--tint-ink-08);
+  vertical-align: top;
+}
+
+table.brand-table tr:last-child td { border-bottom: 0; }
+
+/* Callout you can drop into any document for a single key point. */
+.callout {
+  background: var(--color-white);
+  border-left: 3px solid var(--color-burnt-orange);
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+}
+
+/* ---------------------------------------------------------------
+   PRINT
+   --------------------------------------------------------------- */
+
+@media print {
+  body { background: var(--color-white); }
+  .page { padding: 1.5rem; }
+  .card, .dark-inset { box-shadow: none; }
+  a { color: var(--color-ink-black); border-bottom: none; }
+  .poster-footer { break-inside: avoid; }
+}
+
+/* ---------------------------------------------------------------
+   MOBILE
+   --------------------------------------------------------------- */
+
+@media (max-width: 720px) {
+  .page { padding: 2.5rem 1.25rem 4rem; }
+  .poster-footer { flex-direction: column; align-items: flex-start; }
+  .dark-inset { padding: 2rem 1.5rem; }
+  .card { padding: 1.5rem; }
+}
+
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+  .page { max-width: 1200px; }
+  .grid-settings { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  @media (max-width: 820px) { .grid-settings { grid-template-columns: 1fr; } }
+
+  .field { display: flex; justify-content: space-between; align-items: center;
+           padding: 0.4rem 0; border-bottom: 1px solid var(--tint-ink-08); gap: 1rem; }
+  .field:last-child { border-bottom: 0; }
+  .field label { font-family: var(--font-body); font-size: var(--type-small); color: var(--color-ink-black); }
+  input[type="number"], input[type="text"] {
+    font-family: var(--font-body); font-size: var(--type-small); color: var(--color-ink-black);
+    border: 1px solid var(--tint-ink-08); border-radius: 2px; padding: 0.4rem 0.55rem;
+    background: var(--color-white); width: 100%;
+  }
+  input[type="number"] { text-align: right; max-width: 130px; }
+  input:focus { outline: 2px solid var(--color-burnt-orange); outline-offset: -1px; }
+
+  table.jobs, table.rank { width: 100%; border-collapse: collapse; font-size: var(--type-small); }
+  table.jobs th, table.rank th {
+    font-family: var(--font-caption); font-weight: 500; font-size: var(--type-caption);
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-anchor-navy);
+    text-align: left; padding: 0.55rem 0.5rem; border-bottom: 2px solid var(--color-anchor-navy);
+  }
+  table.jobs td, table.rank td { padding: 0.35rem 0.5rem; border-bottom: 1px solid var(--tint-ink-08); }
+  table.jobs td input { width: 100%; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  td.profit { font-weight: 500; color: var(--color-anchor-navy); }
+
+  .btn {
+    font-family: var(--font-caption); font-weight: 500; font-size: var(--type-caption);
+    letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer;
+    border: 1px solid var(--color-anchor-navy); background: var(--color-anchor-navy);
+    color: var(--color-paper); padding: 0.6rem 1.1rem; border-radius: 2px;
+  }
+  .btn.ghost { background: transparent; color: var(--color-anchor-navy); }
+  .btn-row { display: flex; gap: 0.75rem; flex-wrap: wrap; margin: 1rem 0 0; }
+  .x { cursor: pointer; color: var(--color-ink-black); opacity: 0.4; font-weight: 700; border: 0; background: none; }
+  .x:hover { opacity: 1; color: var(--color-burnt-orange); }
+
+  /* revenue-is-not-profit waterfall */
+  .waterfall { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; align-items: stretch; }
+  @media (max-width: 720px) { .waterfall { grid-template-columns: 1fr 1fr; } }
+  .wf { padding: 0.5rem 1.25rem; position: relative; }
+  .wf + .wf { border-left: 1px solid rgba(245,244,239,0.18); }
+  .wf .op { position: absolute; left: -0.5rem; top: 1.4rem; color: var(--color-burnt-orange);
+            font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; }
+  .wf .lab { font-family: var(--font-caption); font-size: var(--type-caption); letter-spacing: 0.12em;
+             text-transform: uppercase; color: var(--color-burnt-orange); margin: 0 0 0.35rem; }
+  .wf .val { font-family: var(--font-display); font-weight: 700; font-size: 1.9rem; color: var(--color-paper);
+             line-height: 1; font-variant-numeric: tabular-nums; }
+  .wf .sub { font-size: var(--type-small); color: rgba(245,244,239,0.75); margin-top: 0.35rem; }
+
+  .hero-num { font-family: var(--font-display); font-weight: 700; color: var(--color-anchor-navy);
+              font-variant-numeric: tabular-nums; }
+  .rank td.perday { font-family: var(--font-display); font-weight: 700; color: var(--color-anchor-navy); }
+  .revrank { color: var(--color-ink-black); opacity: 0.55; font-size: var(--type-caption); }
+  tr.pass td.perday { color: #2f6b23; }
+  tr.subsidised { background: rgba(217,83,30,0.06); }
+  tr.subsidised td.perday { color: var(--color-burnt-orange); }
+
+  .bar-wrap { background: var(--tint-navy-08); border-radius: 2px; height: 20px; min-width: 50px; }
+  .bar { background: var(--color-anchor-navy); height: 100%; border-radius: 2px; }
+  tr.subsidised .bar { background: var(--color-burnt-orange); }
+
+  .pill { display: inline-block; font-family: var(--font-caption); font-size: var(--type-caption);
+          letter-spacing: 0.08em; text-transform: uppercase; padding: 0.15rem 0.45rem; border-radius: 2px; }
+  .pill.ok { background: #dcead9; color: #2f6b23; }
+  .pill.bad { background: var(--tint-orange-10); color: var(--color-burnt-orange); }
+
+  .dropzone { border: 2px dashed var(--tint-navy-08); border-radius: 3px; padding: 1.5rem; text-align: center;
+    font-family: var(--font-caption); font-size: var(--type-caption); letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--color-anchor-navy); cursor: pointer; background: var(--color-white); }
+  .dropzone.drag { border-color: var(--color-burnt-orange); background: var(--tint-orange-10); }
+  .pnl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.25rem 0 0.5rem; }
+  @media (max-width: 720px) { .pnl-grid { grid-template-columns: 1fr; } }
+  .pnl-stat { padding: 0.75rem 1rem; background: var(--tint-navy-08); border-radius: 2px; }
+  .pnl-stat.accent { background: var(--tint-orange-10); }
+  .pnl-stat .l { font-family: var(--font-caption); font-size: var(--type-caption); letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--color-anchor-navy); }
+  .pnl-stat .v { font-family: var(--font-display); font-weight: 700; font-size: 1.4rem; color: var(--color-anchor-navy);
+    font-variant-numeric: tabular-nums; }
+  .pnl-lines { font-size: var(--type-small); columns: 2; margin: 0.5rem 0 0; }
+  @media (max-width: 720px) { .pnl-lines { columns: 1; } }
+  .pnl-lines div { display: flex; justify-content: space-between; gap: 1rem; padding: 0.15rem 0;
+    break-inside: avoid; border-bottom: 1px solid var(--tint-ink-08); }
+
+  @media print { .no-print { display: none !important; } input { border: 0; } }
+</style>
+</head>
+<body>
+<main class="page">
+
+  <header class="poster-header">
+    <p class="eyebrow">VBA ELITE · WEEK TWO <span class="index">/ 01</span></p>
+    <h1 class="display">Profit Per Day</h1>
+    <hr class="orange-rule">
+    <p class="lead">Two things this proves. Revenue is not profit. And every job has a cost base: crew at real
+      day rates, plus gear and travel, with profit sitting on top. Rank your clients by that profit per day,
+      not by what they invoice.</p>
+  </header>
+
+  <!-- P&L IMPORT -->
+  <section class="no-print">
+    <div class="card" style="border-left:3px solid var(--color-burnt-orange)">
+      <p class="card-eyebrow">Fast start</p>
+      <h2>Import your operating costs from your P&amp;L</h2>
+      <p style="font-size:var(--type-small)">In Xero: <strong>Accounting &rarr; Reports &rarr; Profit and Loss</strong>,
+        set the date range to the last 12 months, then <strong>Export</strong> to Excel or CSV. Drop the file below.
+        It is read in your browser and nothing is uploaded anywhere.</p>
+      <div class="dropzone" id="dropZone">Drop your Profit &amp; Loss here, or click to choose a file</div>
+      <input type="file" id="pnlFile" accept=".csv,.xlsx,.xls" hidden>
+      <div id="pnlResult" style="display:none"></div>
+    </div>
+  </section>
+
+  <!-- SETTINGS -->
+  <section class="grid-settings">
+    <div class="card">
+      <p class="card-eyebrow">Crew day rates</p>
+      <h2>Your rate card</h2>
+      <p style="font-size:var(--type-small)">What you would pay to bring each role in for a day. Use these to
+        work out the crew cost of each job. Cost your own days too.</p>
+      <div id="crewRates"></div>
+    </div>
+
+    <div class="card">
+      <p class="card-eyebrow">Your breakeven line</p>
+      <h2>The line to clear</h2>
+      <div class="field"><label>Annual operating costs</label>
+        <input type="number" id="overhead" value="54000" step="1000"></div>
+      <div class="field"><label>Billable production days per year</label>
+        <input type="number" id="billDays" value="180" step="5"></div>
+      <div class="field"><label>Profit you want to earn per year</label>
+        <input type="number" id="profit" value="54000" step="1000"></div>
+      <div class="field"><label><strong>Breakeven profit per day</strong></label>
+        <span class="hero-num" id="breakevenOut">€0</span></div>
+      <div class="field"><label><strong>Target profit per day</strong></label>
+        <span class="hero-num" id="targetOut">€0</span></div>
+      <p style="font-size:var(--type-caption);color:#666;margin-top:0.75rem">Operating costs means running
+        costs plus what your gear costs to replace, not just the bills that arrive. The workbook helps you total it.</p>
+    </div>
+  </section>
+
+  <!-- JOBS -->
+  <section>
+    <h2>Your jobs, last 12 months</h2>
+    <p style="font-size:var(--type-small)">One row per job. Crew cost is what it cost to supply the crew. Other
+      costs is gear hire, travel, expendables and outsourced edit. Days is how long the job tied up your capacity.
+      Profit is what is left, and it is not the same as the revenue.</p>
+    <table class="jobs">
+      <thead>
+        <tr>
+          <th style="width:22%">Job</th>
+          <th style="width:14%">Client</th>
+          <th class="num" style="width:12%">Revenue</th>
+          <th class="num" style="width:9%">Days</th>
+          <th class="num" style="width:12%">Crew cost</th>
+          <th class="num" style="width:12%">Other costs</th>
+          <th class="num" style="width:11%">Profit</th>
+          <th class="num" style="width:10%">Profit/day</th>
+          <th class="no-print" style="width:4%"></th>
+        </tr>
+      </thead>
+      <tbody id="jobRows"></tbody>
+    </table>
+    <div class="btn-row no-print">
+      <button class="btn" id="addJob">+ Add job</button>
+      <button class="btn ghost" id="importJobs">Import CSV / Excel</button>
+      <button class="btn ghost" id="jobTemplate">Download template</button>
+      <button class="btn ghost" id="reset">Reset to example</button>
+      <button class="btn ghost" id="printBtn">Print / save PDF</button>
+      <input type="file" id="jobsFile" accept=".csv,.xlsx,.xls" hidden>
+    </div>
+  </section>
+
+  <!-- REVENUE IS NOT PROFIT -->
+  <section>
+    <div class="dark-inset">
+      <p class="card-eyebrow" style="color:var(--color-burnt-orange)">Revenue is not profit</p>
+      <div class="waterfall">
+        <div class="wf">
+          <p class="lab">Revenue invoiced</p>
+          <p class="val" id="wfRev">€0</p>
+          <p class="sub" id="wfRevSub">across your clients</p>
+        </div>
+        <div class="wf">
+          <span class="op">&minus;</span>
+          <p class="lab">Cost base</p>
+          <p class="val" id="wfCost">€0</p>
+          <p class="sub" id="wfCostSub">crew + other</p>
+        </div>
+        <div class="wf">
+          <span class="op">=</span>
+          <p class="lab">Profit before overheads</p>
+          <p class="val" id="wfProfit">€0</p>
+          <p class="sub" id="wfProfitSub">what the work left you</p>
+        </div>
+        <div class="wf">
+          <p class="lab">In every dollar</p>
+          <p class="val" id="wfCents">0c</p>
+          <p class="sub">the rest went out the door</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINDING + RANKING -->
+  <section>
+    <div class="callout">
+      <p id="headline" style="margin:0;font-size:1.1rem;line-height:1.5"></p>
+    </div>
+
+    <h2>Clients ranked by profit per day</h2>
+    <table class="rank">
+      <thead>
+        <tr>
+          <th>Profit&nbsp;#</th>
+          <th>Client</th>
+          <th class="num">Revenue</th>
+          <th class="num">Jobs</th>
+          <th class="num">Days</th>
+          <th class="num">Cost base</th>
+          <th class="num">Profit</th>
+          <th class="num">Profit / day</th>
+          <th class="num">Value of 50 days</th>
+          <th style="width:18%">Same 50 days</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="rankRows"></tbody>
+    </table>
+    <p style="font-size:var(--type-small)">The grey figure under each client is its rank by revenue. Compare it to
+      the profit rank on the left. They rarely match. Green clears your target per day. Orange sits below breakeven,
+      which means the rest of your book is subsidising it.</p>
+  </section>
+
+  <footer class="poster-footer">
+    <span class="wordmark">VBA · Video Business Accelerator</span>
+    <span>Less AI. Used better.</span>
+  </footer>
+
+</main>
+
+<script>
+const ROLES = [
+  ["Producer", 500], ["Director", 1000], ["DP", 800],
+  ["Sound", 400], ["Editor", 400], ["PA", 275]
+];
+
+// crew + other reconcile to the training example (ABC 250, XYZ 333, KLM 667 per day)
+const DEMO = [
+  { job: "ABC brand film",    client: "ABC", rev: 15000, days: 10, crew: 5100, other: 7500 },
+  { job: "ABC event recap",   client: "ABC", rev: 10000, days: 6,  crew: 2500, other: 5900 },
+  { job: "XYZ explainer",     client: "XYZ", rev: 5000,  days: 4,  crew: 1600, other: 2200 },
+  { job: "XYZ social pack",   client: "XYZ", rev: 4000,  days: 3,  crew: 1200, other: 1700 },
+  { job: "XYZ testimonial",   client: "XYZ", rev: 3000,  days: 2,  crew: 1200, other: 1100 },
+  { job: "KLM launch film",   client: "KLM", rev: 12000, days: 4,  crew: 3100, other: 6233 },
+  { job: "KLM case study",    client: "KLM", rev: 9000,  days: 3,  crew: 2500, other: 4500 },
+  { job: "KLM recruit video", client: "KLM", rev: 8000,  days: 3,  crew: 2100, other: 4122 },
+  { job: "KLM product reel",  client: "KLM", rev: 7000,  days: 2,  crew: 1600, other: 3845 },
+];
+
+let jobs = DEMO.map(j => ({ ...j }));
+
+const $ = id => document.getElementById(id);
+const money = n => (n < 0 ? "-€" : "€") + Math.round(Math.abs(n)).toLocaleString("de-DE");
+const num = n => (Math.round(n * 10) / 10).toLocaleString("de-DE");
+
+function renderCrew() {
+  $("crewRates").innerHTML = ROLES.map((r, i) => `
+    <div class="field"><label>${r[0]}</label>
+      <input type="number" data-role="${i}" value="${r[1]}" step="25"></div>`).join("");
+  $("crewRates").querySelectorAll("input").forEach(inp =>
+    inp.addEventListener("input", e => { ROLES[+e.target.dataset.role][1] = +e.target.value || 0; }));
+}
+
+function renderJobs() {
+  $("jobRows").innerHTML = jobs.map((j, i) => {
+    const profit = (j.rev || 0) - (j.crew || 0) - (j.other || 0);
+    const perday = j.days > 0 ? profit / j.days : null;
+    return `<tr>
+      <td><input type="text" data-i="${i}" data-k="job" value="${j.job || ""}"></td>
+      <td><input type="text" data-i="${i}" data-k="client" value="${j.client || ""}"></td>
+      <td class="num"><input type="number" data-i="${i}" data-k="rev" value="${j.rev ?? ""}"></td>
+      <td class="num"><input type="number" data-i="${i}" data-k="days" value="${j.days ?? ""}" step="0.5"></td>
+      <td class="num"><input type="number" data-i="${i}" data-k="crew" value="${j.crew ?? ""}"></td>
+      <td class="num"><input type="number" data-i="${i}" data-k="other" value="${j.other ?? ""}"></td>
+      <td class="num profit">${money(profit)}</td>
+      <td class="num">${perday === null ? "&mdash;" : money(perday)}</td>
+      <td class="no-print"><button class="x" data-del="${i}" title="Remove">&times;</button></td>
+    </tr>`;
+  }).join("");
+  $("jobRows").querySelectorAll("input").forEach(inp =>
+    inp.addEventListener("input", e => {
+      const { i, k } = e.target.dataset;
+      const v = e.target.type === "number" ? (e.target.value === "" ? "" : +e.target.value) : e.target.value;
+      jobs[+i][k] = v; compute();
+    }));
+  $("jobRows").querySelectorAll("[data-del]").forEach(b =>
+    b.addEventListener("click", e => { jobs.splice(+e.target.dataset.del, 1); renderJobs(); compute(); }));
+}
+
+function breakeven() {
+  const oh = +$("overhead").value || 0, d = +$("billDays").value || 0, p = +$("profit").value || 0;
+  const be = d > 0 ? oh / d : 0, tg = d > 0 ? (oh + p) / d : 0;
+  $("breakevenOut").textContent = money(be);
+  $("targetOut").textContent = money(tg);
+  return { be, tg };
+}
+
+function compute() {
+  const { be, tg } = breakeven();
+
+  // totals for the revenue-is-not-profit panel
+  let tRev = 0, tCrew = 0, tOther = 0;
+  jobs.forEach(j => { tRev += +j.rev || 0; tCrew += +j.crew || 0; tOther += +j.other || 0; });
+  const tCost = tCrew + tOther, tProfit = tRev - tCost;
+  $("wfRev").textContent = money(tRev);
+  $("wfRevSub").textContent = jobs.filter(j => (j.client || "").trim()).length + " jobs";
+  $("wfCost").textContent = money(tCost);
+  $("wfCostSub").textContent = `crew ${money(tCrew)} · other ${money(tOther)}`;
+  $("wfProfit").textContent = money(tProfit);
+  const cents = tRev > 0 ? Math.round((tProfit / tRev) * 100) : 0;
+  $("wfCents").textContent = cents + "c";
+
+  // roll up by client
+  const map = {};
+  jobs.forEach(j => {
+    const name = (j.client || "").trim(); if (!name) return;
+    const rev = +j.rev || 0, cost = (+j.crew || 0) + (+j.other || 0), days = +j.days || 0;
+    if (!map[name]) map[name] = { client: name, rev: 0, cost: 0, days: 0, jobs: 0 };
+    map[name].rev += rev; map[name].cost += cost; map[name].days += days; map[name].jobs += 1;
+  });
+  let rows = Object.values(map).map(c => {
+    const profit = c.rev - c.cost, perday = c.days > 0 ? profit / c.days : 0;
+    return { ...c, profit, perday, fifty: perday * 50 };
+  });
+  // revenue rank
+  const byRev = [...rows].sort((a, b) => b.rev - a.rev);
+  rows.forEach(r => r.revRank = byRev.indexOf(r) + 1);
+  // profit-per-day rank (main sort)
+  rows.sort((a, b) => b.perday - a.perday);
+
+  const maxFifty = Math.max(1, ...rows.map(r => r.fifty));
+  const best = rows[0], worst = rows[rows.length - 1];
+
+  $("rankRows").innerHTML = rows.map((r, i) => {
+    const cls = r.perday >= tg ? "pass" : (r.perday < be ? "subsidised" : "");
+    const status = r.perday >= tg ? '<span class="pill ok">On target</span>'
+      : (r.perday < be ? '<span class="pill bad">Subsidised</span>' : '<span class="pill">Above breakeven</span>');
+    const w = Math.max(4, (r.fifty / maxFifty) * 100);
+    return `<tr class="${cls}">
+      <td><strong>${i + 1}</strong></td>
+      <td><strong>${r.client}</strong><br><span class="revrank">#${r.revRank} by revenue</span></td>
+      <td class="num">${money(r.rev)}</td>
+      <td class="num">${r.jobs}</td>
+      <td class="num">${num(r.days)}</td>
+      <td class="num">${money(r.cost)}</td>
+      <td class="num">${money(r.profit)}</td>
+      <td class="num perday">${money(r.perday)}</td>
+      <td class="num">${money(r.fifty)}</td>
+      <td><div class="bar-wrap"><div class="bar" style="width:${w}%"></div></div></td>
+      <td>${status}</td>
+    </tr>`;
+  }).join("");
+
+  // finding: the 50-day gap + the rank inversion
+  let head;
+  if (rows.length < 2) {
+    head = "Add at least two clients to see how differently the same days pay out.";
+  } else {
+    const daysNeeded = worst.perday > 0 ? Math.round(best.fifty / worst.perday) : null;
+    head = `Your best client, ${best.client}, returns ${money(best.perday)} a day. Your weakest, ${worst.client}, `
+      + `returns ${money(worst.perday)}. `;
+    if (daysNeeded) head += `To earn from ${worst.client} what ${best.client} earns in 50 days, you would work ${daysNeeded} days. `;
+    if (worst.revRank < best.revRank)
+      head += `And ${worst.client} out-invoices ${best.client}. The biggest bill is not the best client.`;
+    else
+      head += `Same calendar, very different business.`;
+  }
+  $("headline").textContent = head;
+}
+
+$("addJob").addEventListener("click", () => { jobs.push({ job: "", client: "", rev: "", days: "", crew: "", other: "" }); renderJobs(); });
+$("importJobs").addEventListener("click", () => $("jobsFile").click());
+$("jobsFile").addEventListener("change", e => { if (e.target.files[0]) readJobsFile(e.target.files[0]); e.target.value = ""; });
+$("jobTemplate").addEventListener("click", downloadTemplate);
+$("reset").addEventListener("click", () => { jobs = DEMO.map(j => ({ ...j })); renderJobs(); compute(); });
+$("printBtn").addEventListener("click", () => window.print());
+["overhead", "billDays", "profit"].forEach(id => $(id).addEventListener("input", compute));
+
+// ---------- P&L import (Xero-first, parsed in the browser) ----------
+function toNum(v) {
+  if (typeof v === "number") return isNaN(v) ? null : v;
+  if (v == null) return null;
+  let s = String(v).trim();
+  if (!s) return null;
+  const neg = /^\(.*\)$/.test(s);
+  s = s.replace(/[(),$£€\s]/g, "");
+  if (s === "" || isNaN(+s)) return null;
+  return neg ? -Math.abs(+s) : +s;
+}
+function rowLabel(cells) { return String(cells[0] ?? "").trim(); }
+function rowAmount(cells) {
+  for (let i = 1; i < cells.length; i++) { const n = toNum(cells[i]); if (n !== null) return n; }
+  return null;
+}
+
+// Turn P&L rows (array of arrays) into {income, costOfSales, opex, opexLines}
+function parsePnL(rows) {
+  let section = null;               // 'income' | 'cos' | 'opex'
+  const lines = { income: [], cos: [], opex: [] };
+  for (const cells of rows) {
+    const label = rowLabel(cells);
+    if (!label) { continue; }
+    const low = label.toLowerCase();
+    const amt = rowAmount(cells);
+    const isTotal = /^total\b/.test(low) || /^gross profit|^net profit|^net income|^operating profit/.test(low);
+
+    // section headers (no amount, or a heading line)
+    if (/cost of (sales|goods)|^direct costs|^less cost of/.test(low) && !/^total/.test(low)) { section = "cos"; continue; }
+    if (/operating expense|^less operating expense|^expenses$|^overheads?$/.test(low) && !/^total/.test(low)) { section = "opex"; continue; }
+    if (/^(trading )?income|^revenue|^turnover|^sales$/.test(low) && !/^total/.test(low) && amt === null) { section = "income"; continue; }
+
+    if (isTotal) { section = null; continue; }              // total lines close a section
+    if (section && amt !== null) { lines[section].push({ name: label.replace(/\s+/g, " "), amount: amt }); }
+  }
+  const sum = a => a.reduce((t, x) => t + x.amount, 0);
+  return {
+    income: sum(lines.income),
+    costOfSales: sum(lines.cos),
+    opex: sum(lines.opex),
+    opexLines: lines.opex,
+  };
+}
+
+function csvToRows(text) {
+  const rows = []; let row = [], cur = "", q = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (q) {
+      if (c === '"' && text[i + 1] === '"') { cur += '"'; i++; }
+      else if (c === '"') { q = false; }
+      else cur += c;
+    } else {
+      if (c === '"') q = true;
+      else if (c === ",") { row.push(cur); cur = ""; }
+      else if (c === "\n") { row.push(cur); rows.push(row); row = []; cur = ""; }
+      else if (c === "\r") { /* skip */ }
+      else cur += c;
+    }
+  }
+  if (cur !== "" || row.length) { row.push(cur); rows.push(row); }
+  return rows;
+}
+
+function showPnL(p, note) {
+  const box = $("pnlResult");
+  const lines = p.opexLines.length
+    ? `<p style="font-size:var(--type-small);margin:0.75rem 0 0.25rem"><strong>Operating cost lines found:</strong></p>
+       <div class="pnl-lines">${p.opexLines.map(l =>
+         `<div><span>${l.name}</span><span>${money(l.amount)}</span></div>`).join("")}</div>`
+    : "";
+  box.innerHTML = `
+    <div class="pnl-grid">
+      <div class="pnl-stat"><div class="l">Income</div><div class="v">${money(p.income)}</div></div>
+      <div class="pnl-stat"><div class="l">Cost of sales (delivery)</div><div class="v">${money(p.costOfSales)}</div></div>
+      <div class="pnl-stat accent"><div class="l">Operating costs (overheads)</div><div class="v">${money(p.opex)}</div></div>
+    </div>
+    ${lines}
+    <p style="font-size:var(--type-small)">${note || ""} Your operating costs have been dropped into the breakeven
+      line above. Cost of sales is the cost of delivering the work, and it belongs in your jobs, not your overheads.</p>
+    <p style="font-size:var(--type-caption);color:#666">One thing the P&amp;L will not show you: what your owned gear
+      costs to replace. Add that to your operating costs by hand, or use the workbook. A camera you already paid for
+      still has to be replaced one day.</p>`;
+  box.style.display = "block";
+}
+
+async function fileToRows(file) {
+  const name = (file.name || "").toLowerCase();
+  if (name.endsWith(".csv") || file.type === "text/csv") return csvToRows(await file.text());
+  if (typeof XLSX === "undefined") {
+    alert("Could not load the spreadsheet reader (you may be offline). Export as CSV and try again.");
+    return null;
+  }
+  const wb = XLSX.read(await file.arrayBuffer(), { type: "array" });
+  return XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]], { header: 1, blankrows: false });
+}
+
+async function readFile(file) {   // P&L import
+  const rows = await fileToRows(file);
+  if (!rows) return;
+  const p = parsePnL(rows);
+  if (p.opex === 0 && p.income === 0) {
+    alert("Could not read that as a Profit and Loss. Make sure it is the P&L report exported from your accounting software.");
+    return;
+  }
+  $("overhead").value = Math.round(p.opex);
+  showPnL(p, `Read from ${file.name}.`);
+  compute();
+}
+
+// ---------- jobs import (CSV / Excel) ----------
+const JOB_FIELDS = [
+  ["job", /job|project|title|name|description/],
+  ["client", /client|customer|account|company/],
+  ["rev", /revenue|income|invoice|amount|value|fee|price|sales|\btotal\b/],
+  ["days", /days?/],
+  ["crew", /crew|labour|labor/],
+  ["other", /other|expense|direct|cost/],
+];
+function parseJobs(rows) {
+  // find the header row: has a client-ish cell and a revenue-ish cell
+  let hi = -1;
+  for (let i = 0; i < rows.length; i++) {
+    const cells = rows[i].map(c => String(c ?? "").toLowerCase());
+    if (cells.some(c => /client|customer|company/.test(c)) &&
+        cells.some(c => /revenue|income|amount|value|sales|fee|price/.test(c))) { hi = i; break; }
+  }
+  if (hi === -1) return [];
+  const header = rows[hi].map(c => String(c ?? "").toLowerCase().trim());
+  const map = {};
+  JOB_FIELDS.forEach(([field, re]) => {
+    for (let c = 0; c < header.length; c++) {
+      if (field in map) break;
+      if (re.test(header[c]) && !Object.values(map).includes(c)) { map[field] = c; break; }
+    }
+  });
+  const out = [];
+  for (let i = hi + 1; i < rows.length; i++) {
+    const cells = rows[i];
+    if (!cells || cells.every(c => String(c ?? "").trim() === "")) continue;
+    const get = f => (f in map ? cells[map[f]] : undefined);
+    const client = String(get("client") ?? "").trim();
+    const jobName = String(get("job") ?? "").trim();
+    const rev = toNum(get("rev"));
+    if (!client && !jobName) continue;
+    if (rev === null && toNum(get("crew")) === null && toNum(get("other")) === null) continue;
+    out.push({
+      job: jobName, client,
+      rev: rev ?? "", days: toNum(get("days")) ?? "",
+      crew: toNum(get("crew")) ?? "", other: toNum(get("other")) ?? "",
+    });
+  }
+  return out;
+}
+async function readJobsFile(file) {
+  const rows = await fileToRows(file);
+  if (!rows) return;
+  const parsed = parseJobs(rows);
+  if (!parsed.length) {
+    alert("Could not find jobs in that file. It needs a header row with at least Client and Revenue columns. Use the template as a guide.");
+    return;
+  }
+  jobs = parsed;
+  renderJobs();
+  compute();
+}
+function downloadTemplate() {
+  const csv = "Job,Client,Revenue,Days,Crew cost,Other costs\n"
+    + "ABC brand film,ABC,15000,10,5100,7500\n"
+    + "XYZ explainer,XYZ,5000,4,1600,2200\n";
+  const url = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
+  const a = document.createElement("a");
+  a.href = url; a.download = "jobs-template.csv"; a.click();
+  URL.revokeObjectURL(url);
+}
+
+(function wireDrop() {
+  const dz = $("dropZone"), fi = $("pnlFile");
+  dz.addEventListener("click", () => fi.click());
+  fi.addEventListener("change", e => { if (e.target.files[0]) readFile(e.target.files[0]); });
+  ["dragover", "dragenter"].forEach(ev => dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.add("drag"); }));
+  ["dragleave", "drop"].forEach(ev => dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.remove("drag"); }));
+  dz.addEventListener("drop", e => { if (e.dataTransfer.files[0]) readFile(e.dataTransfer.files[0]); });
+})();
+window._parsePnL = parsePnL;  // exposed for testing
+window._parseJobs = parseJobs;
+
+renderCrew(); renderJobs(); compute();
+</script>
+</body>
+</html>
