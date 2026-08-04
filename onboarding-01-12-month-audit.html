@@ -160,6 +160,18 @@ a:hover { border-bottom-color: var(--color-burnt-orange); }
  .writein{border-bottom:1px solid rgba(11,33,65,0.35);min-height:1.9rem;margin:.6rem 0;}
  .partnum{font-family:var(--font-display);font-weight:700;font-size:var(--type-caption);letter-spacing:.16em;
    text-transform:uppercase;color:var(--color-burnt-orange);margin:3rem 0 .3rem;}
+ .writein{display:block;width:100%;border:0;border-bottom:1px solid rgba(11,33,65,0.35);
+   background:transparent;padding:.45rem .2rem;margin:.6rem 0;font-family:var(--font-body);font-size:var(--type-small);}
+ .writein:focus{outline:none;border-bottom:2px solid var(--color-burnt-orange);}
+ .actions{display:flex;gap:.75rem;flex-wrap:wrap;margin:1.5rem 0 0;}
+ .btn{font-family:var(--font-caption);font-size:var(--type-caption);font-weight:500;letter-spacing:.14em;
+   text-transform:uppercase;padding:.75rem 1.2rem;border-radius:2px;cursor:pointer;border:1px solid var(--color-anchor-navy);
+   background:var(--color-anchor-navy);color:var(--color-paper);}
+ .btn.secondary{background:transparent;color:var(--color-anchor-navy);}
+ .btn:hover{background:var(--color-burnt-orange);border-color:var(--color-burnt-orange);color:var(--color-white);}
+ .about-strip{margin-top:3.5rem;padding-top:2rem;border-top:1px solid var(--tint-ink-08);font-size:var(--type-small);}
+ .about-strip p{margin:0 0 .5rem;max-width:62ch;}
+ @media print{ .actions,.no-print{display:none;} .writein{border-bottom:1px solid #999;} }
 </style>
 </head>
 <body>
@@ -231,7 +243,7 @@ a:hover { border-bottom-color: var(--color-burnt-orange); }
 
   <div class="qbox">
     <h3>Which clients gave you the highest return for the least effort?</h3>
-    <div class="writein"></div><div class="writein"></div>
+    <input type="text" class="writein"><input type="text" class="writein">
     <p class="caption">Not the biggest invoices. The ones where the money came easily and the job ran clean.</p>
   </div>
 
@@ -241,15 +253,15 @@ a:hover { border-bottom-color: var(--color-burnt-orange); }
 
   <div class="qbox">
     <h3>Which work did you enjoy most this year?</h3>
-    <div class="writein"></div><div class="writein"></div>
+    <input type="text" class="writein"><input type="text" class="writein">
   </div>
   <div class="qbox">
     <h3>Which work yielded the most for the effort it took?</h3>
-    <div class="writein"></div><div class="writein"></div>
+    <input type="text" class="writein"><input type="text" class="writein">
   </div>
   <div class="qbox">
     <h3>Do those two answers overlap? Be straight about it.</h3>
-    <div class="writein"></div><div class="writein"></div>
+    <input type="text" class="writein"><input type="text" class="writein">
     <p class="caption">If they do, we build there. If they don't, that's the real conversation, and it's better had now than in three years.</p>
   </div>
 
@@ -275,16 +287,16 @@ a:hover { border-bottom-color: var(--color-burnt-orange); }
   <h2>What you're known for</h2>
   <div class="qbox">
     <h3>If someone in your market described you in one sentence, what would they say?</h3>
-    <div class="writein"></div><div class="writein"></div>
+    <input type="text" class="writein"><input type="text" class="writein">
   </div>
   <div class="qbox">
     <h3>Do you have a specialism? If not, what are you closest to being known for?</h3>
-    <div class="writein"></div><div class="writein"></div>
+    <input type="text" class="writein"><input type="text" class="writein">
     <p class="caption">"I tell great stories" isn't a specialism. That's the point of entry. You can't be a baker without flour.</p>
   </div>
   <div class="qbox">
     <h3>Do you routinely ask for written and video testimonials? How many did you collect this year?</h3>
-    <div class="writein"></div>
+    <input type="text" class="writein">
   </div>
 
   <div class="dark-inset">
@@ -298,11 +310,11 @@ a:hover { border-bottom-color: var(--color-burnt-orange); }
   <h2>Where you want to be</h2>
   <p>Not in a vague way. Three to five years out, with real detail. If you can't answer this yet, that's fine and it's common, and it's exactly what the <strong>What Does Success Look Like For You?</strong> module in the classroom is for.</p>
   <div class="qbox">
-    <h3>What revenue do you want to be making?</h3><div class="writein"></div>
-    <h3>How much do you actually want to be working?</h3><div class="writein"></div>
-    <h3>What kind of projects?</h3><div class="writein"></div>
+    <h3>What revenue do you want to be making?</h3><input type="text" class="writein">
+    <h3>How much do you actually want to be working?</h3><input type="text" class="writein">
+    <h3>What kind of projects?</h3><input type="text" class="writein">
     <h3>What do you want to be doing outside of producing video?</h3>
-    <div class="writein"></div>
+    <input type="text" class="writein">
     <p class="caption">Family, health, an instrument, getting back into something you dropped. This is the part people skip and it's the part that decides whether any of the rest was worth doing.</p>
   </div>
 
@@ -312,15 +324,78 @@ a:hover { border-bottom-color: var(--color-burnt-orange); }
   <p>That's the <strong>Profit Per Day</strong> calculator, and it's the second half of this. It builds the cost of each job up from real day rates rather than asking you to guess a margin, because the margin is the one number nobody knows off the top of their head.</p>
   <div class="qbox">
     <h3>Before you open it, one prediction. Which type of your work do you think pays you best per day?</h3>
-    <div class="writein"></div>
+    <input type="text" class="writein">
     <p class="caption">Write it down now. It's worth knowing whether your instinct matches the arithmetic, and this is the only chance you get to find out.</p>
   </div>
 
+
+  <p class="partnum">Finally</p>
+  <h2>Sending this back</h2>
+  <p>Two buttons below. Take a copy for yourself and send me the other one.</p>
+  <ul class="brand-list">
+    <li><strong>Save as PDF</strong> keeps a copy for you, laid out as you see it here.</li>
+    <li><strong>Download your answers</strong> gives you a small text file with everything you typed. Send me that one on Signal.</li>
+  </ul>
+  <div class="actions no-print">
+    <button class="btn" onclick="exportMarkdown()">Download your answers</button>
+    <button class="btn secondary" onclick="window.print()">Save as PDF</button>
+  </div>
+  <p class="caption" style="margin-top:1rem">Nothing is uploaded anywhere. Both files are built in your browser and saved to your own machine.</p>
+
+  <div class="about-strip">
+    <p><strong>Den Lennie</strong> is an author and business coach for video production company owners. He helps them escape the operator ceiling and build a business that scales without them in every seat.</p>
+    <p><a href="https://denlennie.com">denlennie.com</a></p>
+  </div>
   <footer class="poster-footer">
     <span style="font-family: var(--font-display); font-weight:600; letter-spacing:-0.025em; color: var(--color-anchor-navy); text-transform:none; font-size:1.1rem;">Den Lennie</span>
     <span>VBA Elite · The 12 Month Audit</span>
     <span><a href="https://denlennie.com">denlennie.com</a></span>
   </footer>
 </main>
+
+<script>
+function exportMarkdown(){
+  const val = el => (el && el.value || "").trim();
+  const txt = el => (el ? el.textContent.replace(/\s+/g," ").trim() : "");
+  let out = ["# The 12 Month Audit", "", "Completed: " + new Date().toISOString().slice(0,10), ""];
+  const main = document.querySelector("main.page");
+  main.querySelectorAll("h2, h3, table.brand-table, .qbox").forEach(node => {
+    if (node.closest(".qbox") && node.tagName === "H3") return;
+    if (node.tagName === "H2") { out.push("", "## " + txt(node), ""); return; }
+    if (node.tagName === "H3") { return; }
+    if (node.classList.contains("qbox")) {
+      node.querySelectorAll("h3").forEach(h => {
+        out.push("**" + txt(h) + "**");
+        let n = h.nextElementSibling, answers = [];
+        while (n && n.tagName !== "H3") {
+          if (n.matches && n.matches("input")) answers.push(val(n));
+          n = n.nextElementSibling;
+        }
+        const a = answers.filter(Boolean).join(" ");
+        out.push("", a || "_(not answered)_", "");
+      });
+      return;
+    }
+    const heads = [...node.querySelectorAll("thead th")].map(th => txt(th));
+    const rows = [...node.querySelectorAll("tbody tr")].map(tr =>
+      [...tr.children].map(td => {
+        const i = td.querySelector("input");
+        return i ? val(i) : txt(td);
+      })
+    ).filter(r => r.some(c => c));
+    if (!rows.length) return;
+    if (heads.length) { out.push("| " + heads.join(" | ") + " |", "|" + heads.map(()=>"---").join("|") + "|"); }
+    rows.forEach(r => out.push("| " + r.join(" | ") + " |"));
+    out.push("");
+  });
+  out.push("", "---", "", "Den Lennie · denlennie.com");
+  const blob = new Blob([out.join("\n")], {type:"text/markdown"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "12-month-audit.md";
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+</script>
 </body>
 </html>
