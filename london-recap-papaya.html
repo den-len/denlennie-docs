@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>For This Room Only · VBA · Den Lennie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./brand.css">
+  <style>
+    .masthead { background: var(--color-anchor-navy); }
+    .masthead-inner { max-width: 1080px; margin: 0 auto; padding: 1.35rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .masthead-logo { height: 42px; width: auto; display: block; align-self: flex-start; }
+    .masthead-where { font-family: var(--font-caption); font-size: var(--type-caption); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-paper); opacity: 0.85; white-space: nowrap; }
+
+    .options { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 1.5rem; margin: 2rem 0 0; align-items: start; }
+    .opt { border-radius: 4px; padding: 1.8rem 1.9rem; }
+    .opt.ascend { background: var(--color-anchor-navy); color: var(--color-paper); border-top: 4px solid var(--color-burnt-orange); }
+    .opt.elite { background: var(--color-white); color: var(--color-ink-black); border: 1px solid var(--tint-ink-08); border-top: 4px solid var(--color-anchor-navy); }
+    .opt h2 { margin: 0 0 0.2rem; }
+    .opt.ascend h2 { color: var(--color-white); }
+    .opt-sub { font-family: var(--font-body); font-weight: 300; font-size: 1.02rem; margin: 0 0 1.2rem; }
+    .opt.ascend .opt-sub { color: var(--color-paper); opacity: 0.85; }
+    .opt.elite .opt-sub { color: var(--color-ink-black); opacity: 0.8; }
+    .opt h3 { font-family: var(--font-caption); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-burnt-orange); margin: 1.4rem 0 0.5rem; }
+    .opt p { font-size: 0.96rem; line-height: 1.5; margin: 0 0 0.7rem; }
+
+    .deal { list-style: none; padding: 0; margin: 0.5rem 0 0; }
+    .deal li { position: relative; padding: 0.5rem 0 0.5rem 1.4rem; font-size: 0.96rem; line-height: 1.45; border-top: 1px solid rgba(245,244,239,0.14); }
+    .opt.elite .deal li { border-top-color: var(--tint-ink-08); }
+    .deal li:first-child { border-top: 0; }
+    .deal li::before { content: ""; position: absolute; left: 0; top: 0.95rem; width: 7px; height: 7px; border-radius: 50%; background: var(--color-burnt-orange); }
+    .price { font-family: var(--font-display); font-weight: 700; color: var(--color-white); }
+    .opt.elite .price { color: var(--color-anchor-navy); }
+    .strike { text-decoration: line-through; opacity: 0.6; font-weight: 400; }
+
+    .ratebox { border: 1px solid var(--color-burnt-orange); padding: 1.1rem 1.2rem; margin: 1.3rem 0 0; }
+    .ratebox .rate-line { display: flex; align-items: baseline; gap: 0.8rem; margin: 0 0 0.4rem; }
+    .rate-was { font-family: var(--font-display); font-weight: 600; font-size: 1.4rem; opacity: 0.5; text-decoration: line-through; }
+    .rate-now { font-family: var(--font-display); font-weight: 700; font-size: 2.6rem; color: var(--color-burnt-orange); letter-spacing: -0.04em; line-height: 1; }
+    .ratebox p { margin: 0 0 0.4rem; font-size: 0.94rem; }
+    .ratebox p:last-child { margin-bottom: 0; }
+
+    .cta-btn { display: inline-block; margin-top: 1.4rem; font-family: var(--font-display); font-weight: 600; font-size: 1rem; text-decoration: none; padding: 0.8rem 1.5rem; border-radius: 3px; }
+    .opt.ascend .cta-btn { background: var(--color-burnt-orange); color: var(--color-white); }
+    .opt.ascend .cta-btn:hover { background: var(--color-white); color: var(--color-anchor-navy); }
+    .opt.elite .cta-btn { background: var(--color-anchor-navy); color: var(--color-paper); }
+    .opt.elite .cta-btn:hover { background: var(--color-burnt-orange); }
+
+    .fineprint { font-size: 0.82rem; opacity: 0.7; margin-top: 1rem; }
+    .opt.elite .roi { font-size: 0.96rem; line-height: 1.5; margin: 1.2rem 0 0; border-left: 2px solid var(--color-burnt-orange); padding-left: 0.9rem; }
+    .why-block { margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid var(--tint-ink-08); }
+    .why-block p { font-size: 1.02rem; line-height: 1.6; }
+
+    @media (max-width: 820px) { .options { grid-template-columns: 1fr; } .masthead-inner { padding: 1.1rem 1.25rem; } }
+  </style>
+</head>
+<body>
+
+  <div class="masthead">
+    <div class="masthead-inner">
+      <img class="masthead-logo" src="./VBA_wordmark_grey.png" alt="Video Business Accelerator">
+      <span class="masthead-where">For this room only</span>
+    </div>
+  </div>
+
+  <main class="page">
+
+    <header class="poster-header">
+      <p class="eyebrow">VBA · For this room only<span class="index">AFTER THE LONDON RECAP</span></p>
+      <h1 class="display">Two ways to carry on.</h1>
+      <hr class="orange-rule">
+      <p class="lead">You turned up and gave me an hour, so here are the two doors I mentioned at the end, with the terms I said were for the room. Pick the one that matches where your business actually is, not where you'd like it to be. Open until Sunday 9 August, end of day, wherever you are.</p>
+    </header>
+
+    <section>
+      <div class="options">
+
+        <div class="opt ascend">
+          <h2>VBA Ascend</h2>
+          <p class="opt-sub">For owners between $100K and $250K who want the tools and the coaching around them.</p>
+
+          <h3>What you get</h3>
+          <p>The Prospector Engine and the Nurture Engine, the ones you watched today, plus the rest of the VBA toolset as it grows. Your own SceneOps instance, the same platform I run this business on. Fortnightly group coaching with Matt Smolen and Caleb Maxwell. And the room, which is the part nobody expects to matter most and everybody says did.</p>
+
+          <div class="ratebox">
+            <p style="opacity:0.75; font-size:0.86rem;">Standard rate is $749 a month. Because you were in the room today:</p>
+            <div class="rate-line">
+              <span class="rate-was">$749</span>
+              <span class="rate-now">$649</span>
+            </div>
+            <p>A month, <strong style="color:var(--color-white)">locked for the life of your membership</strong>. Not an introductory rate that steps up. Your rate, for as long as you stay.</p>
+          </div>
+
+          <h3>And if you join by Sunday</h3>
+          <ul class="deal">
+            <li>The <strong style="color:var(--color-white)">$349 Growth Intelligence Report</strong> included. The written diagnostic of your business: Stop, Keep, Do More, your one move, and a recorded walkthrough, back to you within 48 hours of your intake.</li>
+            <li>No contract, cancel anytime. You stay because it's working. If it isn't, you leave.</li>
+          </ul>
+
+          <a class="cta-btn" href="https://creativebusinessaccelerator.thrivecart.com/vba-ascend-lr/" target="_blank" rel="noopener">Join at your locked rate →</a>
+          <p class="fineprint">Figures in US dollars. Closes end of Sunday 9 August 2026.</p>
+        </div>
+
+        <div class="opt elite">
+          <h2>VBA Elite</h2>
+          <p class="opt-sub">For established owners at $250K and up who want the layer underneath the tools.</p>
+
+          <h3>What it is</h3>
+          <p>The deep dive. Building your own AI operating system with me, so the business itself becomes the thing the AI reads from and writes to, rather than you re-briefing a chat window forever. Everything in the toolset, your own SceneOps instance, and the Boardroom: a peer group of owners running businesses at the same level, in the room together twice a year.</p>
+
+          <h3>How it works</h3>
+          <p>Elite is application only, so there's no button here. The next step is a conversation about where your business actually is, and whether this is the right moment. Sometimes the answer is Ascend first, and I'll tell you if that's what I think.</p>
+
+          <p class="roi">If you listened to the operating system part of today and thought <em>that's the thing</em>, this is the door. If you listened to the tools and thought <em>I want those working next week</em>, the other one is.</p>
+
+          <a class="cta-btn" href="https://denlennie.com/elite-consultation" target="_blank" rel="noopener">Apply for Elite →</a>
+          <p class="fineprint">Application, not a checkout. No payment is taken at this step. Or just email <a href="mailto:den@denlennie.com?subject=Elite%20enquiry" style="color:var(--color-anchor-navy); text-decoration:underline; text-underline-offset:3px;">den@denlennie.com</a>.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="why-block">
+      <p class="eyebrow">Why the rate</p>
+      <h2>The thinking behind it.</h2>
+      <hr class="orange-rule">
+      <p>You gave up an hour on a working day to look at something that might change how you run your business. That's a small signal but it's a real one, and in eight years of doing this the people who turn up to the optional thing are reliably the people who do the work afterwards.</p>
+      <p>So the hundred a month isn't a discount on the value, it's a discount on the risk I'm taking. I think you'll stay. Locking your rate for the life of your membership only makes sense for me if you're still here in three years, which means my incentive and yours point the same direction from day one. That's the whole design.</p>
+      <p>What it isn't is pressure. There's no contract in either direction, and nothing here gets worse if you take another month to think about it, other than this particular rate. If the answer is not yet, that's a fine answer, and I'd rather you told me than joined and drifted.</p>
+    </section>
+
+    <div class="dark-inset">
+      <p class="eyebrow" style="color: var(--color-paper)">One ask</p>
+      <hr class="orange-rule">
+      <h2 style="margin-top:0">Keep this in the room.</h2>
+      <p>The rate on this page isn't on the website, it wasn't in the emails, and there's no recording going out to anyone who wasn't here. It's a thank-you for the people who showed up live, and the reason I can hold it for as long as you stay is that it stays a small number of people. Please don't forward the link.</p>
+      <p style="margin-bottom:0;">Open until end of Sunday 9 August. If you'd rather talk it through than click a button, email me at <a href="mailto:den@denlennie.com?subject=Thursday%20session%20follow%20up" style="color:var(--color-burnt-orange); text-decoration:underline; text-underline-offset:3px;">den@denlennie.com</a> and we'll pick it up properly.</p>
+    </div>
+
+    <footer class="poster-footer">
+      <span class="wordmark">Den Lennie.</span>
+      <span>VBA · What Happened in London · 6 August 2026</span>
+    </footer>
+
+  </main>
+</body>
+</html>
