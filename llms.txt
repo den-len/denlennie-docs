@@ -1,6 +1,6 @@
-# Den Lennie knowledge catalogue
+# Den Lennie Field Guides
 
-> Straight answers on pricing, scope, positioning and growth for video production business owners. Den Lennie is an author and business coach for video production company owners, with three decades in production, more than a decade running his own production company, and eight years coaching owners through VBA (Video Business Accelerator). This catalogue holds the questions video business owners actually ask, answered plainly.
+> Straight answers on pricing, scope, positioning and growth for video production business owners. Den Lennie is an author and business coach for video production company owners, with three decades in production, more than a decade running his own production company, and eight years coaching owners through VBA (Video Business Accelerator). These field guides hold the questions video business owners actually ask, answered plainly.
 
 ## About
 
@@ -31,6 +31,9 @@
 ## Sales and clients
 
 - [What to say when a prospect asks for a ballpark price](https://docs.denlennie.com/ballpark-price): Give a real range, make scope the variable, and open a conversation instead of closing one.
+- [What to charge for video work: the pricing checklist](https://docs.denlennie.com/price-checklist): Six checks before your next number leaves your mouth. Price from your numbers, not your nerves.
+- [How to get paid for everything you deliver: the scope checklist](https://docs.denlennie.com/paid-checklist): Agree the line before the job starts, price the invisible work, sell the extras instead of absorbing them.
+- [The profitable quote checklist](https://docs.denlennie.com/quote-checklist): Four sections, a 10 per cent contingency line, and the production company fee of 15 to 30 per cent.
 - [How to qualify a video lead before you pitch](https://docs.denlennie.com/qualify-before-you-pitch): Don't send the showreel and wait. Ask a diagnostic question first and quote the outcome, not the footage.
 - [How to show real authority on a sales call](https://docs.denlennie.com/sales-call-authority): Authority isn't performed with jargon, it's demonstrated by asking better questions.
 - [How to write a follow-up email that gets a reply](https://docs.denlennie.com/follow-up-emails): Stop asking permission. State the next step. A follow-up creates momentum, it doesn't ask to be chosen.
