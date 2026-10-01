@@ -25,6 +25,7 @@
 - [How to price a video project so every quote isn't a guess](https://docs.denlennie.com/pricing-system): The cost-of-delivery method. Build a price from four parts (time, gear, overhead, margin) instead of guessing.
 - [Charging for the invisible work](https://docs.denlennie.com/charging-for-invisible-work): The four things video owners give away for free (travel time, file delivery, storage, admin) and how to put them on the quote.
 - [How many revision rounds to include, and how to charge for extra ones](https://docs.denlennie.com/revision-rounds): Name the rounds, count them out loud, and have the money conversation before the work.
+- [The Revisions Field Guide](https://docs.denlennie.com/revisions-field-guide): What goes in the quote, and three client email templates for each revision round, including what to send when a client asks for changes after round two.
 - [Drop the scope, not the price](https://docs.denlennie.com/drop-scope-not-price): When a budget is lower than the work, hold your rate and reduce what's delivered. Discounting trains clients to underpay you.
 - [Why knowing your numbers lets you price with confidence](https://docs.denlennie.com/know-your-numbers): Margin, cost of delivery, break-even. Financial literacy is the quiet foundation under every confident price.
 
