@@ -141,7 +141,7 @@
 
 <h1>Pricing Calculator: your day rate and a quote that holds</h1>
 
-<p class="lede">Two calculations, the same ones every time. First your floor and day rate, from real overheads and the days you can actually sell. Then a quote built in four sections with the fee and contingency on the page. Nothing leaves your browser. The method behind it is in <a href="/pricing-system">How to price a video project so every quote isn't a guess</a>.</p>
+<p class="lede">Two calculations, the same ones every time. First your floor and day rate, from real overheads and the days you can actually sell. Then a quote built in four sections, with contingency and then the fee on the page. Nothing leaves your browser. The method behind it is in <a href="/pricing-system">How to price a video project so every quote isn't a guess</a>.</p>
 
 <h2>Step one: your floor and day rate</h2>
 <p>Enter your monthly numbers. The floor is what a day has to earn before you make anything. The day rate is the floor plus the margin you've decided on.</p>
@@ -164,15 +164,16 @@
   <div class="row"><label for="pre">Pre-production<small>Recce, scripting, interview prep, planning calls, crew and location booking.</small></label><div class="pfx"><span>$</span><input id="pre" type="number" inputmode="decimal" min="0" step="100" value="1500"></div></div>
   <div class="row"><label for="prod">Production<small>Crew, kit, travel, the shoot days themselves.</small></label><div class="pfx"><span>$</span><input id="prod" type="number" inputmode="decimal" min="0" step="100" value="5000"></div></div>
   <div class="row"><label for="post">Post-production<small>Edit, grade, sound mix, delivery, and the included revision rounds.</small></label><div class="pfx"><span>$</span><input id="post" type="number" inputmode="decimal" min="0" step="100" value="2500"></div></div>
-  <div class="row"><label for="fee">Production company fee<small>On top of the three sections above, as its own line.</small></label><div class="sfx"><input id="fee" type="number" inputmode="numeric" min="0" max="100" step="1" value="20"><span>%</span></div></div>
-  <div class="row"><label for="cont">Contingency<small>Its own line, billed only if it's used.</small></label><div class="sfx"><input id="cont" type="number" inputmode="numeric" min="0" max="100" step="1" value="10"><span>%</span></div></div>
+  <div class="row"><label for="cont">Contingency<small>10 per cent of the subtotal is the standard. Its own line, calculated before the fee, billed only if it's used.</small></label><div class="sfx"><input id="cont" type="number" inputmode="numeric" min="0" max="100" step="1" value="10"><span>%</span></div></div>
+  <div class="row"><label for="fee">Production company fee<small>A percentage of the production cost (the three sections plus contingency), as its own line.</small></label><div class="sfx"><input id="fee" type="number" inputmode="numeric" min="0" max="100" step="1" value="20"><span>%</span></div></div>
   <div class="results">
     <div class="out"><span>Subtotal (the three sections)</span><span class="v" id="q_sub">$9,000</span></div>
-    <div class="out"><span>Production company fee</span><span class="v" id="q_fee">$1,800</span></div>
     <div class="out"><span>Contingency (billed only if used)</span><span class="v" id="q_cont">$900</span></div>
-    <div class="out big"><span>Quote total</span><span class="v" id="q_total">$11,700</span></div>
+    <div class="out"><span>Production cost<span class="note"> (subtotal plus contingency)</span></span><span class="v" id="q_pc">$9,900</span></div>
+    <div class="out"><span>Production company fee<span class="note"> (on the production cost)</span></span><span class="v" id="q_fee">$1,980</span></div>
+    <div class="out big"><span>Quote total</span><span class="v" id="q_total">$11,880</span></div>
     <div class="out"><span>What a day-rate-only quote would have asked for<span class="note"> (the subtotal, and hope nothing changes)</span></span><span class="v" id="q_dayonly">$9,000</span></div>
-    <div class="out"><span>The work you'd have given away</span><span class="v" id="q_gap">$2,700</span></div>
+    <div class="out"><span>The work you'd have given away</span><span class="v" id="q_gap">$2,880</span></div>
   </div>
 </div>
 
@@ -212,8 +213,8 @@
     var floor=total/days, rate=floor*(1+margin/100);
     $('o_total').textContent=money(total); $('o_floor').textContent=money(floor); $('o_rate').textContent=money(rate);
     var w=$('o_warn'); if(num('days')>16){w.textContent='Most owners can sell ten to fourteen days a month. If you divide by more, the floor is a fiction.'; w.hidden=false;} else if(num('salary')===0){w.textContent='Your salary is zero, so the floor is too low. Put in what you would pay someone to do your job.'; w.hidden=false;} else {w.hidden=true;}
-    var sub=num('pre')+num('prod')+num('post'), fee=sub*num('fee')/100, cont=sub*num('cont')/100, qt=sub+fee+cont;
-    $('q_sub').textContent=money(sub); $('q_fee').textContent=money(fee); $('q_cont').textContent=money(cont); $('q_total').textContent=money(qt); $('q_dayonly').textContent=money(sub); $('q_gap').textContent=money(fee+cont);
+    var sub=num('pre')+num('prod')+num('post'), cont=sub*num('cont')/100, pc=sub+cont, fee=pc*num('fee')/100, qt=pc+fee;
+    $('q_sub').textContent=money(sub); $('q_pc').textContent=money(pc); $('q_fee').textContent=money(fee); $('q_cont').textContent=money(cont); $('q_total').textContent=money(qt); $('q_dayonly').textContent=money(sub); $('q_gap').textContent=money(fee+cont);
     $('summary').textContent=
       'Floor: '+money(floor)+' a day ('+money(total)+' monthly overheads including my salary, divided by '+Math.round(days)+' sellable days).\n'+
       'Day rate: '+money(rate)+' a day (floor plus '+margin+'% margin). Any job below '+money(floor)+' a day is me paying to work.\n\n'+
@@ -221,8 +222,9 @@
       'Production: '+money(num('prod'))+'\n'+
       'Post-production (includes two rounds of revisions): '+money(num('post'))+'\n'+
       'Subtotal: '+money(sub)+'\n'+
-      'Production company fee ('+num('fee')+'%): '+money(fee)+'\n'+
-      'Contingency ('+num('cont')+'%, billed only if used): '+money(cont)+'\n'+
+      'Contingency ('+num('cont')+'% of the subtotal, billed only if used): '+money(cont)+'\n'+
+      'Production cost: '+money(pc)+'\n'+
+      'Production company fee ('+num('fee')+'% of the production cost): '+money(fee)+'\n'+
       'Total: '+money(qt);
   }
   ids.forEach(function(id){$(id).addEventListener('input',calc);});
