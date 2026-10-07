@@ -22,7 +22,8 @@
 ## Pricing
 
 - [What it costs to work with Den Lennie and VBA](https://docs.denlennie.com/pricing-guide): One programme, one price. The VBA Elite Boardroom is $1,700 USD a month, flat, cancel anytime. No onboarding fee, no minimum term, no application. Earlier programmes (Ascend, the Growth Strategy Session) are closed to new members.
-- [How to price a video project so every quote isn't a guess](https://docs.denlennie.com/pricing-system): The cost-of-delivery method. Build a price from four parts (time, gear, overhead, margin) instead of guessing.
+- [How to price a video project so every quote isn't a guess](https://docs.denlennie.com/pricing-system): Day rate in four steps, the four-section quote, the ballpark script and what to say when a client pushes back, with a worksheet, quote skeleton and worked example to copy. Downloadable PDF.
+- [Pricing Calculator: your day rate and a quote that holds](https://docs.denlennie.com/pricing-calculator): Floor and day rate from real overheads and sellable days, then a four-section quote with fee and contingency. Free, runs in the browser.
 - [Charging for the invisible work](https://docs.denlennie.com/charging-for-invisible-work): The four things video owners give away for free (travel time, file delivery, storage, admin) and how to put them on the quote.
 - [How many revision rounds to include, and how to charge for extra ones](https://docs.denlennie.com/revision-rounds): Name the rounds, count them out loud, and have the money conversation before the work.
 - [The three revision emails, including the one for round three](https://docs.denlennie.com/revisions-field-guide): Three client email templates for revision rounds, led by the one to send when a client asks for changes after round two, plus what goes in the quote so they hold.

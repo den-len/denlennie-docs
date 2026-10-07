@@ -4,12 +4,30 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>How to price a video project so every quote isn't a guess</title>
-<meta name="description" content="A price isn't something you find, it's something you build. The cost-of-delivery method for pricing video work: time, gear, overhead, margin.">
+<meta name="description" content="How to price video work so the number holds: build your day rate from real overheads and the days you can actually sell, decide your margin once, then quote in four sections with a contingency line. Worksheet, quote skeleton, ballpark script and a worked example, all copy and paste.">
 <link rel="canonical" href="https://docs.denlennie.com/pricing-system">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/brand.css">
 <link rel="stylesheet" href="/catalog.css">
+<style>
+.download{margin:.25rem 0 1.5rem;}
+.download a{font-family:"Poppins",sans-serif; font-weight:600; font-size:.85rem; color:var(--navy,#0B2141); border:1px solid var(--navy,#0B2141); border-radius:6px; padding:.45rem .9rem; text-decoration:none; display:inline-block;}
+.download a:hover{background:var(--navy,#0B2141); color:#fff;}
+.copy-block{background:var(--white,#fff); border:1px solid rgba(11,33,65,.15); border-left:3px solid var(--orange,#D9531E); border-radius:8px; padding:1rem 1.25rem; margin:1rem 0 1.5rem;}
+.copy-head{display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap; border-bottom:1px solid rgba(11,33,65,.12); padding-bottom:.6rem; margin-bottom:.6rem;}
+.copy-title{font-family:"Poppins",sans-serif; font-weight:600; color:var(--navy,#0B2141); font-size:.95rem; margin:0;}
+.copy-body p{margin:.5rem 0;}
+.copy{font-family:"Poppins",sans-serif; font-weight:600; font-size:.8rem; color:var(--navy,#0B2141); background:transparent; border:1px solid var(--navy,#0B2141); border-radius:6px; padding:.35rem .8rem; cursor:pointer;}
+.copy:hover{background:var(--navy,#0B2141); color:#fff;}
+.copy.done{border-color:var(--orange,#D9531E); color:var(--orange,#D9531E); background:transparent;}
+.ph{color:var(--orange,#D9531E);}
+table.quote{border-collapse:collapse; width:100%; max-width:34rem; margin:1rem 0 1.5rem;}
+table.quote td{padding:.45rem .6rem; border-bottom:1px solid rgba(11,33,65,.12);}
+table.quote td:last-child{text-align:right; white-space:nowrap;}
+table.quote tr.total td{font-family:"Poppins",sans-serif; font-weight:600; color:var(--navy,#0B2141); border-top:2px solid var(--navy,#0B2141); border-bottom:0;}
+@media print{.download,.copy,.site-header,.footer-cta{display:none;} .copy-block,.keep{break-inside:avoid;page-break-inside:avoid;}}
+</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -20,15 +38,23 @@
       "name": "How should I price a video project?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A price isn't something you find, it's something you build, the same way every time. Use cost of delivery, four parts: your time (all of it, not just the camera time), your gear (maintenance, upgrades, depreciation), your overhead (insurance, software, marketing), and your margin (a line, not a leftover). Add them up and you have a floor you can explain and hold."
+        "text": "Build the price the same way every time instead of guessing. Work out your day rate from your real monthly overheads (including your own salary) divided by the days you can actually sell (usually ten to fourteen a month, not twenty), then add a margin you decided once. Build every quote in four sections: pre-production, production, post-production, and a production company fee of 15 to 30 per cent, plus a 10 per cent contingency line billed only if used. A price you can explain is a price you can hold."
       }
     },
     {
       "@type": "Question",
-      "name": "Why does every video quote feel like a guess?",
+      "name": "Why does every quote feel like a guess?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Because there is no method under the number. With no system, you feel for a figure, second-guess it, and because fear is doing the pricing you land low. A price you can't explain is a price you'll discount the moment a client leans on it. Build it from your costs every time and you stop negotiating with yourself."
+        "text": "Because the number is coming from what you think the client will accept rather than from what the job costs plus a margin you chose. With no method, fear does the pricing so you land low, you can't explain how you got there so you fold when the client pushes, and every quote eats hours of agonising. It isn't a confidence flaw, it's a missing tool."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What should I say when a client asks for a ballpark price?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Give a range, make scope the variable, and hand the next move back to them: \"Projects like this usually land between X and Y. Where it falls depends on the two or three scope drivers. Tell me a bit about the first one and I'll tighten that up for you.\" A single number ends the conversation. A range starts one."
       }
     }
   ],
@@ -41,7 +67,7 @@
   "publisher": {
     "@id": "https://denlennie.com/#vba"
   },
-  "dateModified": "2026-07-18",
+  "dateModified": "2026-10-07",
   "isPartOf": {
     "@type": "CollectionPage",
     "@id": "https://docs.denlennie.com/field-guides",
@@ -125,29 +151,142 @@
 
 <h1>How to price a video project so every quote isn't a guess</h1>
 
-<p class="lede">A price isn't something you find, it's something you build, the same way every time. A price you can explain is a price you can hold.</p>
+<p class="lede">A price isn't something you find, it's something you build, the same way every time. Work out your day rate from your real overheads and the number of days you can actually sell, decide your margin once, then build every quote in four sections (pre-production, production, post-production, production company fee) with a contingency line. Add them up and you have a floor you can explain and hold. A price you can explain is a price you can hold.</p>
 
-<h2>The method: cost of delivery</h2>
-<p>The sharpest operators don't guess. They run a calculation and the number falls out the other end. It has four parts:</p>
+<p class="download"><a href="/pricing-system.pdf">Download this guide as a PDF</a></p>
+
+<h2>Why does every quote feel like a guess?</h2>
+<p>Every quote feels like a guess because the number is coming from what you think the client will accept, not from what the job costs you plus a margin you chose. Nobody ever built you the second version, so you price from the first.</p>
+<p>I get the same message constantly, from owners who have quoted a hundred jobs and still seize up on every one. They've worked out a number, they're about to send it, and they stop. "Den, does that sound fair?" It's never really a question about the number. It's a question about the method, and the method is missing.</p>
+<p>A price has two possible sources. One is what you imagine they'll pay. The other is cost plus a margin you decided on. Almost everyone prices from the first, which means every quote is a negotiation against your own imagination. Fear does the pricing, so you land low. You can't explain how you got there, so you fold the moment a client pushes. And every quote eats hours of agonising the job never pays you back.</p>
+<p>This isn't a confidence flaw. It's a missing tool. These are capable people, years in, and nobody ever showed them the arithmetic.</p>
+
+<h2>How to build your day rate in four steps</h2>
+<p>Your day rate is your monthly overheads divided by the days you can actually sell, plus a margin you decide once. Four steps, done once, then reused on every quote.</p>
+<ol>
+  <li><strong>Add up your real monthly overheads, including your own salary.</strong> Rent, insurance, software, gear (maintenance, upgrades, the slow wearing-out of kit), marketing, accounting, subscriptions, and the wage you'd have to pay someone to do your job. Owners who don't pay themselves a salary think their overheads are low. They aren't, they're just unpaid.</li>
+  <li><strong>Count the days you can actually bill in a month.</strong> Not twenty. After admin, sales, quoting, client calls and life, most owners have ten to fourteen days a month they can actually bill. Being straight about this number decides whether the floor means anything.</li>
+  <li><strong>Divide overheads by sellable days. That's your floor.</strong> Any day you sell below the floor is a day you're paying to work.</li>
+  <li><strong>Add the margin you've decided on. That's your day rate.</strong> Margin is a choice you make once, not a hope you have on every quote. Decided, not discovered.</li>
+</ol>
+<div class="copy-block">
+  <div class="copy-head"><p class="copy-title">Copy and paste: the day-rate worksheet</p><button class="copy" type="button">Copy</button></div>
+  <div class="copy-body">
+    <p>Monthly overheads (including my salary): $<span class="ph">[A]</span></p>
+    <p>Sellable days a month: <span class="ph">[B]</span></p>
+    <p>Floor (A divided by B): $<span class="ph">[C]</span> a day</p>
+    <p>Decided margin: <span class="ph">[D]</span>%</p>
+    <p>Day rate (C plus D%): $<span class="ph">[E]</span> a day</p>
+    <p>Any job below $<span class="ph">[C]</span> a day is me paying to work.</p>
+  </div>
+</div>
+<p>The <a href="/pricing-calculator">Pricing Calculator</a> runs this for you, and builds the quote underneath. No login, nothing leaves your browser.</p>
+
+<h2>How to build the quote so the number holds</h2>
+<p>A quote that holds has four priced sections plus a contingency line, so the work the client never sees is on the page instead of absorbed. Day rates alone leave the planning, the scripting and the client management unpriced, and you eat them quietly on every job.</p>
+<ol>
+  <li><strong>Pre-production.</strong> Recce, scripting, interview prep, planning calls, crew and location booking. Priced in days or as a fixed line, never free.</li>
+  <li><strong>Production.</strong> Crew, kit, travel, the shoot days themselves.</li>
+  <li><strong>Post-production.</strong> Edit, grade, sound mix, delivery, and the included revision rounds listed by number.</li>
+  <li><strong>Production company fee.</strong> 15 to 30 per cent on top of the three sections above, as a visible line. This is the management, the accountability and the years of knowing how to run a job so the client doesn't have to. Toward 15 per cent for retainer and repeat clients, toward 30 for new clients, tight turnarounds, or jobs with more unknowns.</li>
+  <li><strong>Contingency.</strong> 10 per cent as its own line, with one sentence saying it's only billed if it's used.</li>
+</ol>
+<div class="copy-block">
+  <div class="copy-head"><p class="copy-title">Copy and paste: the quote skeleton</p><button class="copy" type="button">Copy</button></div>
+  <div class="copy-body">
+    <p>Pre-production: $<span class="ph">[ ]</span></p>
+    <p>Production: $<span class="ph">[ ]</span></p>
+    <p>Post-production (includes two rounds of revisions): $<span class="ph">[ ]</span></p>
+    <p>Subtotal: $<span class="ph">[ ]</span></p>
+    <p>Production company fee (<span class="ph">[15 to 30]</span>%): $<span class="ph">[ ]</span></p>
+    <p>Contingency (10%, billed only if used): $<span class="ph">[ ]</span></p>
+    <p>Total: $<span class="ph">[ ]</span></p>
+    <p>The quote includes two rounds of revisions per deliverable. A round is one consolidated set of changes. Further rounds are billed at $<span class="ph">[rate]</span> per round, agreed before we start them.</p>
+  </div>
+</div>
+<p>The full anatomy, with the reasoning behind each section, is in <a href="/anatomy-of-a-profitable-quote">Anatomy of a Profitable Quote</a>.</p>
+
+<h2>What to say when the client asks "roughly how much?"</h2>
+<p>Give a range, make scope the variable, and hand the next move back to them. A single number ends the conversation. A range starts one.</p>
+<p>The ballpark moment is ten seconds of the highest leverage in the whole sale, and it usually comes out as a mumble or a blurted low number that anchors the entire job. The low end of your range keeps them talking, the high end does the anchoring, and the question at the end hands you the next step.</p>
+<div class="copy-block">
+  <div class="copy-head"><p class="copy-title">Copy and paste: the ballpark script</p><button class="copy" type="button">Copy</button></div>
+  <div class="copy-body">
+    <p>"Projects like this usually land between $<span class="ph">[X]</span> and $<span class="ph">[Y]</span>. Where it falls depends on <span class="ph">[the two or three scope drivers]</span>. Tell me a bit about <span class="ph">[driver one]</span> and I'll tighten that up for you."</p>
+  </div>
+</div>
+
+<h2>What to say when the client pushes back on the price</h2>
+<p>Explain the number, don't defend it. When you've built the price from parts, pushback is a walkthrough, not a negotiation with yourself.</p>
+<div class="copy-block">
+  <div class="copy-head"><p class="copy-title">Copy and paste: the walkthrough</p><button class="copy" type="button">Copy</button></div>
+  <div class="copy-body">
+    <p>"Happy to show you how it's built. <span class="ph">[Pre-production]</span> covers <span class="ph">[what]</span>. <span class="ph">[Production]</span> is <span class="ph">[crew and days]</span>. <span class="ph">[Post]</span> includes the edit, grade and two rounds of revisions. The fee covers running the job end to end so you don't have to. If the budget is fixed, we can take scope out, but the rate stays where it is."</p>
+  </div>
+</div>
+<p>That last sentence matters. If a budget is lower than the work, reduce what's delivered, not what a day of your time costs. Discounting teaches the client that the first number was padding.</p>
+
+<h2>A worked example</h2>
+<p>Here's the whole method on one job, in round numbers.</p>
+<p><strong>The day rate.</strong> Monthly overheads including the owner's salary: $18,000. Sellable days: 12. Floor: $1,500 a day. Decided margin: 40 per cent. Day rate: $2,100.</p>
+<div class="keep">
+<p><strong>The quote.</strong> A two-day shoot for a new client with a scripted interview piece and a social cut.</p>
+<table class="quote">
+  <tr><td>Pre-production</td><td>$1,500</td></tr>
+  <tr><td>Production</td><td>$5,000</td></tr>
+  <tr><td>Post-production</td><td>$2,500</td></tr>
+  <tr><td>Subtotal</td><td>$9,000</td></tr>
+  <tr><td>Production company fee (20%)</td><td>$1,800</td></tr>
+  <tr><td>Contingency (10%, billed only if used)</td><td>$900</td></tr>
+  <tr class="total"><td>Total</td><td>$11,700</td></tr>
+</table>
+</div>
+<p>The day-rate version of the same job quotes about $9,000 and hopes nothing changes. Pricing the full anatomy is typically worth around 15 per cent more per job, and it isn't padding. It's work that was always being done and never being charged.</p>
+
+<h2>The mistakes that undo it</h2>
+<p>The method fails in five predictable ways, and every one of them lowers the floor without you noticing.</p>
 <ul>
-  <li><strong>Your time.</strong> All of it. Shooting, editing, travel, admin, the back and forth. The hours the client never sees still cost you the hours.</li>
-  <li><strong>Your gear.</strong> Maintenance, upgrades, the slow depreciation of kit that doesn't replace itself.</li>
-  <li><strong>Your overhead.</strong> Insurance, software, marketing, the cost of simply being open.</li>
-  <li><strong>Your margin.</strong> You're not running a charity. Profit is a line, not a leftover.</li>
+  <li><strong>Counting only the camera days.</strong> The hours the client never sees still cost you the hours. Shooting, editing, travel, admin, the back and forth: all of it goes into overheads and sellable days.</li>
+  <li><strong>Not paying yourself a salary.</strong> Your overheads look low, your floor looks low, and every job looks profitable while you go without.</li>
+  <li><strong>Assuming twenty sellable days.</strong> It's ten to fourteen. Divide by twenty and the floor is a fiction.</li>
+  <li><strong>Treating margin as whatever's left.</strong> Profit is a line, not a leftover. Decide it once, build it in.</li>
+  <li><strong>Setting prices in a quiet month.</strong> One owner cut a $7,000 job to $4,700 because the month had been slow. That discount taught the client the first number was padding. The quiet month is the worst time to set your prices, and it's exactly when most owners do.</li>
 </ul>
-<p>Add those up and you have a floor you can stand on. Now the price isn't a feeling you're defending, it's a calculation you can walk a client through.</p>
 
-<h2>Why it gives you control</h2>
-<p>With no system, every quote is a fresh act of nerve, so you go low and fold the moment a client pushes. This is also the foundation under every other money problem: you can't charge for the invisible work, hold scope instead of price, or move to a retainer if you don't know what your delivery costs.</p>
+<h2>The rule of thumb for pricing a video project</h2>
+<p>A price you can explain is a price you can hold. Build it the same way every time: overheads, real days, floor, decided margin, then four sections and a contingency line. Any job below the floor is you paying to work.</p>
 
-<h2>Try this</h2>
-<p>Take your last real job and build the four-part number on it after the fact. Compare it to what you actually charged. That gap is the conversation.</p>
+<h2>Hold yourself accountable</h2>
+<p>Which of these have you taken on or put in place recently?</p>
+<ul><li>You know your floor, and it includes your own salary.</li><li>Your last quote had pre-production and a production company fee as visible lines.</li><li>You answered the last "roughly how much?" with a range and a question, not a single number.</li><li>The last time a client pushed back, you walked them through the number instead of dropping it.</li></ul>
+
+<h2>Your one move this week</h2>
+<p>What's the one thing you can commit to implementing this week? If you're not sure, start here.</p>
+<p>Take your last real job and build the four-step number on it after the fact: overheads, real days, floor, margin. Then rebuild the quote in the four sections. Compare both to what you actually charged. That gap is the conversation.</p>
+<p><strong>One thing executed every week creates 50 strategic moves a year.</strong></p>
+
+<div class="card"><p>Questions like these come up regularly on our weekly Elite Boardroom calls. If you'd like someone to hold you to account each week, and to learn from a group of peers who run video businesses too, <a href="https://denlennie.com/elite-boardroom">the Boardroom is for you</a>.</p></div>
+
+<p><strong>Related tools and guides.</strong> <a href="/pricing-calculator">Pricing Calculator</a>, <a href="/client-profitability-calculator">Client Profitability Calculator</a> (rank the clients you already have by profit per day), <a href="/anatomy-of-a-profitable-quote">Anatomy of a Profitable Quote</a>, <a href="/charging-for-invisible-work">Charging for the invisible work</a>, <a href="/revisions-field-guide">The three revision emails</a>, <a href="/drop-scope-not-price">Drop the scope, not the price</a>.</p>
 
 <footer class="site-footer">
 <img class="vba-mark" src="/VBA_wordmark_grey.png" alt="Video Business Accelerator">
 <p class="footer-bio">Den Lennie is an author and business coach for video production company owners. He helps them escape the operator ceiling and build a business that scales without them.</p>
+<p class="footer-invite">The field guides show you how the system works. The Boardroom is where I look at your business with you, give you perspective and judgement on what to do next, and hold you to it every week.</p>
 <p class="footer-cta"><a class="btn" href="https://denlennie.com">Work with Den</a><a class="btn-ghost" href="https://denlennie.com/elite-boardroom">Join the Elite Boardroom</a></p>
-<p class="footer-meta">Last reviewed 18 July 2026.</p>
+<p class="footer-meta">Last reviewed 7 October 2026.</p>
 </footer>
+<script>
+document.querySelectorAll('.copy-block').forEach(function(box){
+  var btn=box.querySelector('.copy');
+  btn.addEventListener('click',function(){
+    var text=Array.prototype.map.call(box.querySelectorAll('.copy-body p'),function(p){return p.innerText.trim();}).join('\n');
+    var done=function(){btn.textContent='Copied';btn.classList.add('done');setTimeout(function(){btn.textContent='Copy';btn.classList.remove('done');},2000);};
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(done,function(){fallback(text);done();});}
+    else{fallback(text);done();}
+  });
+});
+function fallback(text){var t=document.createElement('textarea');t.value=text;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(t);}
+</script>
 </body>
 </html>

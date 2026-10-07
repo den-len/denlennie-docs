@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pricing Calculator: your day rate and a quote that holds</title>
+<meta name="description" content="Work out your floor and day rate from real monthly overheads, the days you can actually sell and a margin you decide once, then build a four-section quote with a production company fee and contingency. Free, no login, runs in your browser.">
+<link rel="canonical" href="https://docs.denlennie.com/pricing-calculator">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Ubuntu:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/brand.css">
+<link rel="stylesheet" href="/catalog.css">
+<style>
+.calc{background:var(--white,#fff); border:1px solid rgba(11,33,65,.15); border-left:3px solid var(--orange,#D9531E); border-radius:8px; padding:1.1rem 1.25rem; margin:1rem 0 1.5rem;}
+.row{display:grid; grid-template-columns:1fr 9rem; gap:.75rem; align-items:center; padding:.45rem 0; border-bottom:1px solid rgba(11,33,65,.08);}
+.row:last-child{border-bottom:0;}
+.row label{font-weight:400; color:var(--ink,#0C0C0D);}
+.row small{display:block; font-size:.8rem; opacity:.7; font-weight:300;}
+.row input{font-family:"Ubuntu",sans-serif; font-weight:400; font-size:1rem; padding:.45rem .6rem; border:1px solid rgba(11,33,65,.35); border-radius:6px; width:100%; text-align:right; background:#fff; color:var(--navy,#0B2141);}
+.row input:focus{outline:2px solid var(--orange,#D9531E); border-color:transparent;}
+.row .pfx{position:relative;}
+.row .pfx span{position:absolute; left:.6rem; top:50%; transform:translateY(-50%); opacity:.6; font-size:.95rem;}
+.row .pfx input{padding-left:1.4rem;}
+.row .sfx span{position:absolute; right:.6rem; top:50%; transform:translateY(-50%); opacity:.6; font-size:.95rem;}
+.row .sfx{position:relative;} .row .sfx input{padding-right:1.5rem;}
+.out{display:grid; grid-template-columns:1fr auto; gap:.5rem 1rem; align-items:baseline; padding:.5rem 0; border-bottom:1px solid rgba(11,33,65,.08);}
+.out:last-child{border-bottom:0;}
+.out .v{font-family:"Poppins",sans-serif; font-weight:600; color:var(--navy,#0B2141); font-size:1.1rem; white-space:nowrap;}
+.out.big .v{color:var(--orange,#D9531E); font-size:1.5rem;}
+.out .note{font-size:.85rem; opacity:.75;}
+.results{margin-top:.9rem; padding-top:.6rem; border-top:2px solid var(--navy,#0B2141);}
+.warn{color:var(--orange,#D9531E); font-weight:400; font-size:.9rem; margin:.5rem 0 0;}
+.actions{display:flex; gap:.6rem; flex-wrap:wrap; margin:.75rem 0 0;}
+.copy,.ghost{font-family:"Poppins",sans-serif; font-weight:600; font-size:.8rem; color:var(--navy,#0B2141); background:transparent; border:1px solid var(--navy,#0B2141); border-radius:6px; padding:.4rem .85rem; cursor:pointer;}
+.copy:hover,.ghost:hover{background:var(--navy,#0B2141); color:#fff;}
+.copy.done{border-color:var(--orange,#D9531E); color:var(--orange,#D9531E); background:transparent;}
+.summary{white-space:pre-wrap; font-family:"Ubuntu",sans-serif; font-weight:400; background:var(--paper,#F5F4EF); border-radius:6px; padding:.9rem 1rem; margin:.75rem 0 0; font-size:.95rem; line-height:1.55;}
+@media (max-width:520px){.row{grid-template-columns:1fr 7rem;}}
+@media print{.actions,.site-header,.footer-cta,.download{display:none;} .calc{break-inside:avoid;} input{border:0; padding:0;}}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Pricing Calculator for video production businesses",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Runs in the browser, no login",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "Work out your floor and day rate from real monthly overheads, the days you can actually sell and a margin you decide once, then build a four-section quote with a production company fee and contingency.",
+  "url": "https://docs.denlennie.com/pricing-calculator",
+  "author": {
+    "@type": "Person",
+    "name": "Den Lennie",
+    "@id": "https://denlennie.com/#den-lennie"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "VBA (Video Business Accelerator)",
+    "url": "https://denlennie.com",
+    "@id": "https://denlennie.com/#vba"
+  },
+  "isPartOf": {
+    "@type": "CollectionPage",
+    "@id": "https://docs.denlennie.com/field-guides",
+    "name": "Den Lennie Field Guides"
+  }
+}
+</script>
+<script type="application/ld+json" data-entity-block>
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://denlennie.com/#den-lennie",
+      "name": "Den Lennie",
+      "url": "https://denlennie.com",
+      "jobTitle": "Business coach for video production company owners",
+      "description": "Author and business coach who helps video production company owners escape the operator ceiling and build businesses that scale without them in every seat. Three decades in production, five books, eight years coaching through VBA.",
+      "sameAs": [
+        "https://www.linkedin.com/in/denlennie/",
+        "https://www.youtube.com/@denlennie",
+        "https://www.instagram.com/denlennie/",
+        "https://substack.com/@denlennie"
+      ],
+      "worksFor": {
+        "@id": "https://denlennie.com/#vba"
+      },
+      "knowsAbout": [
+        "video production business",
+        "pricing video production work",
+        "scaling a video production company",
+        "business coaching for filmmakers",
+        "The S.C.A.L.E. Method"
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://denlennie.com/#vba",
+      "name": "VBA (Video Business Accelerator)",
+      "alternateName": "VBA",
+      "url": "https://denlennie.com",
+      "founder": {
+        "@id": "https://denlennie.com/#den-lennie"
+      },
+      "logo": "https://docs.denlennie.com/VBA_wordmark_grey.png",
+      "parentOrganization": {
+        "@type": "Organization",
+        "name": "F-Stop Academy Australia Pty Ltd"
+      },
+      "description": "Coaching, community and a proprietary AI toolset for video production company owners. One programme, the VBA Elite Boardroom."
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://docs.denlennie.com/#website",
+      "name": "Den Lennie Field Guides",
+      "url": "https://docs.denlennie.com/",
+      "publisher": {
+        "@id": "https://denlennie.com/#vba"
+      },
+      "author": {
+        "@id": "https://denlennie.com/#den-lennie"
+      },
+      "inLanguage": "en-GB"
+    }
+  ]
+}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KWF4X7RYBP"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-KWF4X7RYBP');</script>
+</head>
+<body>
+<header class="site-header"><a class="brand" href="https://denlennie.com">Den Lennie</a><a class="brand-cat" href="/field-guides">Field Guides</a></header>
+<p class="crumb"><a href="/field-guides">Field Guides</a> / Pricing / Calculator</p>
+
+<h1>Pricing Calculator: your day rate and a quote that holds</h1>
+
+<p class="lede">Two calculations, the same ones every time. First your floor and day rate, from real overheads and the days you can actually sell. Then a quote built in four sections with the fee and contingency on the page. Nothing leaves your browser. The method behind it is in <a href="/pricing-system">How to price a video project so every quote isn't a guess</a>.</p>
+
+<h2>Step one: your floor and day rate</h2>
+<p>Enter your monthly numbers. The floor is what a day has to earn before you make anything. The day rate is the floor plus the margin you've decided on.</p>
+<div class="calc" id="dayrate">
+  <div class="row"><label for="salary">Your monthly salary<small>What you'd have to pay someone to do your job. Unpaid is not the same as free.</small></label><div class="pfx"><span>$</span><input id="salary" type="number" inputmode="decimal" min="0" step="100" value="8000"></div></div>
+  <div class="row"><label for="overheads">Other monthly overheads<small>Rent, insurance, software, gear upkeep and upgrades, marketing, accounting, subscriptions.</small></label><div class="pfx"><span>$</span><input id="overheads" type="number" inputmode="decimal" min="0" step="100" value="10000"></div></div>
+  <div class="row"><label for="days">Days you can actually sell each month<small>Not twenty. After admin, sales, quoting and life, most owners have ten to fourteen.</small></label><input id="days" type="number" inputmode="numeric" min="1" max="31" step="1" value="12"></div>
+  <div class="row"><label for="margin">Decided margin<small>A choice you make once, not a hope on every quote.</small></label><div class="sfx"><input id="margin" type="number" inputmode="numeric" min="0" max="300" step="5" value="40"><span>%</span></div></div>
+  <div class="results">
+    <div class="out"><span>Total monthly overheads (salary included)</span><span class="v" id="o_total">$18,000</span></div>
+    <div class="out"><span>Your floor per day<span class="note"> (overheads divided by sellable days)</span></span><span class="v" id="o_floor">$1,500</span></div>
+    <div class="out big"><span>Your day rate<span class="note"> (floor plus margin)</span></span><span class="v" id="o_rate">$2,100</span></div>
+    <p class="warn" id="o_warn" hidden></p>
+  </div>
+</div>
+
+<h2>Step two: build the quote</h2>
+<p>Price the three sections, then the fee and contingency go on as visible lines. Use your day rate above to price the days in each section. The fee is 15 to 30 per cent: toward 15 for retainer and repeat clients, toward 30 for new clients, tight turnarounds, or jobs with more unknowns.</p>
+<div class="calc" id="quote">
+  <div class="row"><label for="pre">Pre-production<small>Recce, scripting, interview prep, planning calls, crew and location booking.</small></label><div class="pfx"><span>$</span><input id="pre" type="number" inputmode="decimal" min="0" step="100" value="1500"></div></div>
+  <div class="row"><label for="prod">Production<small>Crew, kit, travel, the shoot days themselves.</small></label><div class="pfx"><span>$</span><input id="prod" type="number" inputmode="decimal" min="0" step="100" value="5000"></div></div>
+  <div class="row"><label for="post">Post-production<small>Edit, grade, sound mix, delivery, and the included revision rounds.</small></label><div class="pfx"><span>$</span><input id="post" type="number" inputmode="decimal" min="0" step="100" value="2500"></div></div>
+  <div class="row"><label for="fee">Production company fee<small>On top of the three sections above, as its own line.</small></label><div class="sfx"><input id="fee" type="number" inputmode="numeric" min="0" max="100" step="1" value="20"><span>%</span></div></div>
+  <div class="row"><label for="cont">Contingency<small>Its own line, billed only if it's used.</small></label><div class="sfx"><input id="cont" type="number" inputmode="numeric" min="0" max="100" step="1" value="10"><span>%</span></div></div>
+  <div class="results">
+    <div class="out"><span>Subtotal (the three sections)</span><span class="v" id="q_sub">$9,000</span></div>
+    <div class="out"><span>Production company fee</span><span class="v" id="q_fee">$1,800</span></div>
+    <div class="out"><span>Contingency (billed only if used)</span><span class="v" id="q_cont">$900</span></div>
+    <div class="out big"><span>Quote total</span><span class="v" id="q_total">$11,700</span></div>
+    <div class="out"><span>What a day-rate-only quote would have asked for<span class="note"> (the subtotal, and hope nothing changes)</span></span><span class="v" id="q_dayonly">$9,000</span></div>
+    <div class="out"><span>The work you'd have given away</span><span class="v" id="q_gap">$2,700</span></div>
+  </div>
+</div>
+
+<h2>The number you can explain</h2>
+<p>This is the quote in words, built from your figures. Copy it into the quote, or keep it beside you on the call.</p>
+<div class="calc">
+  <div class="summary" id="summary"></div>
+  <div class="actions"><button class="copy" type="button" id="copybtn">Copy the summary</button><button class="ghost" type="button" id="resetbtn">Reset to the worked example</button><button class="ghost" type="button" onclick="window.print()">Print or save as PDF</button></div>
+</div>
+
+<h2>What the numbers mean</h2>
+<p>The floor is the line you never quote under, the fee is work you were already doing, and the margin is a decision you make once.</p>
+<ul>
+  <li><strong>Any job below the floor is you paying to work.</strong> If a client's budget can't clear the floor for the days it takes, take scope out, not the rate.</li>
+  <li><strong>The fee isn't padding.</strong> It's the management, the accountability and the years of knowing how to run a job so the client doesn't have to. Pricing the full anatomy is typically worth around 15 per cent more per job.</li>
+  <li><strong>The margin is decided, not discovered.</strong> Set it once here, then stop renegotiating it with yourself on every quote.</li>
+</ul>
+
+<div class="card"><p>The full method, with the worksheet, the quote skeleton, the ballpark script and what to say when a client pushes back: <a href="/pricing-system">How to price a video project so every quote isn't a guess</a>. For ranking the clients you already have by profit per day, use the <a href="/client-profitability-calculator">Client Profitability Calculator</a>.</p></div>
+
+<footer class="site-footer">
+<img class="vba-mark" src="/VBA_wordmark_grey.png" alt="Video Business Accelerator">
+<p class="footer-bio">Den Lennie is an author and business coach for video production company owners. He helps them escape the operator ceiling and build a business that scales without them.</p>
+<p class="footer-invite">The field guides show you how the system works. The Boardroom is where I look at your business with you, give you perspective and judgement on what to do next, and hold you to it every week.</p>
+<p class="footer-cta"><a class="btn" href="https://denlennie.com">Work with Den</a><a class="btn-ghost" href="https://denlennie.com/elite-boardroom">Join the Elite Boardroom</a></p>
+<p class="footer-meta">Built 7 October 2026. Figures stay in your browser and are never sent anywhere.</p>
+</footer>
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  var ids=['salary','overheads','days','margin','pre','prod','post','fee','cont'];
+  var EX={salary:8000,overheads:10000,days:12,margin:40,pre:1500,prod:5000,post:2500,fee:20,cont:10};
+  function num(id){var v=parseFloat($(id).value);return isNaN(v)?0:v;}
+  function money(n){return '$'+Math.round(n).toLocaleString('en-AU');}
+  function calc(){
+    var total=num('salary')+num('overheads'), days=Math.max(1,num('days')), margin=num('margin');
+    var floor=total/days, rate=floor*(1+margin/100);
+    $('o_total').textContent=money(total); $('o_floor').textContent=money(floor); $('o_rate').textContent=money(rate);
+    var w=$('o_warn'); if(num('days')>16){w.textContent='Most owners can sell ten to fourteen days a month. If you divide by more, the floor is a fiction.'; w.hidden=false;} else if(num('salary')===0){w.textContent='Your salary is zero, so the floor is too low. Put in what you would pay someone to do your job.'; w.hidden=false;} else {w.hidden=true;}
+    var sub=num('pre')+num('prod')+num('post'), fee=sub*num('fee')/100, cont=sub*num('cont')/100, qt=sub+fee+cont;
+    $('q_sub').textContent=money(sub); $('q_fee').textContent=money(fee); $('q_cont').textContent=money(cont); $('q_total').textContent=money(qt); $('q_dayonly').textContent=money(sub); $('q_gap').textContent=money(fee+cont);
+    $('summary').textContent=
+      'Floor: '+money(floor)+' a day ('+money(total)+' monthly overheads including my salary, divided by '+Math.round(days)+' sellable days).\n'+
+      'Day rate: '+money(rate)+' a day (floor plus '+margin+'% margin). Any job below '+money(floor)+' a day is me paying to work.\n\n'+
+      'Pre-production: '+money(num('pre'))+'\n'+
+      'Production: '+money(num('prod'))+'\n'+
+      'Post-production (includes two rounds of revisions): '+money(num('post'))+'\n'+
+      'Subtotal: '+money(sub)+'\n'+
+      'Production company fee ('+num('fee')+'%): '+money(fee)+'\n'+
+      'Contingency ('+num('cont')+'%, billed only if used): '+money(cont)+'\n'+
+      'Total: '+money(qt);
+  }
+  ids.forEach(function(id){$(id).addEventListener('input',calc);});
+  $('resetbtn').addEventListener('click',function(){ids.forEach(function(id){$(id).value=EX[id];});calc();});
+  var btn=$('copybtn');
+  btn.addEventListener('click',function(){
+    var text=$('summary').textContent;
+    var done=function(){btn.textContent='Copied';btn.classList.add('done');setTimeout(function(){btn.textContent='Copy the summary';btn.classList.remove('done');},2000);};
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(done,function(){fallback(text);done();});}else{fallback(text);done();}
+  });
+  function fallback(text){var t=document.createElement('textarea');t.value=text;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(t);}
+  calc();
+})();
+</script>
+</body>
+</html>
