@@ -20,6 +20,7 @@ h3{font-weight:600; font-size:1.05rem;}
 .crumb{font-size:.85rem;}
 .crumb a{color:var(--navy);}
 a{color:var(--orange);}
+strong,b{font-family:"Poppins",sans-serif; font-weight:600; color:var(--navy);}
 ul{padding-left:1.1rem;}
 li{margin:.35rem 0;}
 .card{border:1px solid rgba(11,33,65,.15); border-radius:8px; padding:1rem 1.25rem; margin:1rem 0; background:var(--white);}
@@ -51,4 +52,4 @@ footer{margin-top:3rem; font-size:.85rem; color:var(--navy); border-top:1px soli
 .site-footer .footer-meta{font-size:.78rem; color:var(--paper); opacity:.55; margin:.4rem 0 0;}
 
 /* Print: A4, keep headings with their first paragraph, no stranded lines, logo stays at the 42px minimum. */
-@media print{@page{size:A4;margin:16mm 15mm;} h2,h3{break-after:avoid;page-break-after:avoid;} p,li{orphans:3;widows:3;} li,table,.card,.copy-block,.email{break-inside:avoid;page-break-inside:avoid;} .site-footer{break-before:avoid;break-inside:avoid;page-break-before:avoid;page-break-inside:avoid;} .site-footer .vba-mark{height:42px;width:auto;}}
+@media print{@page{size:A4;margin:16mm 15mm;} html,body{background:#fff;} body{padding:0; max-width:none;} h2,h3{break-after:avoid;page-break-after:avoid;} p,li{orphans:3;widows:3;} p+ul,p+ol{break-before:avoid;page-break-before:avoid;} li,table,.card,.copy-block,.email{break-inside:avoid;page-break-inside:avoid;} .site-footer{break-inside:avoid;page-break-inside:avoid;margin-top:1.6rem;} .site-footer .footer-bio{display:none;} .site-footer .vba-mark{height:42px;width:auto;} .site-footer .footer-meta::after{content:" denlennie.com"; margin-left:.6rem;}}
