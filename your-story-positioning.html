@@ -30,6 +30,7 @@ table.ws{border-collapse:collapse; width:100%; margin:1rem 0 1.5rem;}
 table.ws th{font-family:"Poppins",sans-serif; font-weight:600; color:var(--navy,#0B2141); text-align:left; padding:.45rem .6rem; border-bottom:2px solid var(--navy,#0B2141);}
 table.ws td{padding:.45rem .6rem; border-bottom:1px solid rgba(11,33,65,.12); vertical-align:top;}
 @media print{.download,.copy,.site-header,.footer-cta{display:none;} .copy-block,.keep{break-inside:avoid;page-break-inside:avoid;} table.ws{break-inside:auto;page-break-inside:auto;} table.ws tr{break-inside:avoid;page-break-inside:avoid;}}
+@media print{table.ws tr:last-child{break-before:avoid;page-break-before:avoid;} table.ws tr{break-inside:avoid;}}
 </style>
 <script type="application/ld+json">
 {
@@ -217,13 +218,15 @@ table.ws td{padding:.45rem .6rem; border-bottom:1px solid rgba(11,33,65,.12); ve
 <p>Here's the worksheet run on my own background, because it's the only story I can vouch for line by line.</p>
 <p>My background has two versions. The broadcast one is three decades in production, starting on news cameras for Reuters, the BBC and ITV. The business one is about a decade running my own production company.</p>
 <table class="ws">
-  <tr><th>Worksheet line</th><th>What I wrote</th></tr>
+  <thead><tr><th>Worksheet line</th><th>What I wrote</th></tr></thead>
+  <tbody>
   <tr><td>Where I came from</td><td>About a decade running my own production company, after starting in broadcast TV</td></tr>
   <tr><td>What I saw from the inside</td><td>In the early 2010s my company finished within ten grand of the same number every year, because I wouldn't hire. The ceiling was my own hours.</td></tr>
   <tr><td>What it gives my client</td><td>I've sat in their seat. I learned the hard way that you can't brute-force your way to a business that works, and I coach so other owners don't have to learn it the same way.</td></tr>
   <tr><td>The client who'd trust this instantly</td><td>A video production company owner whose turnover won't move while they're in every seat</td></tr>
   <tr><td>The filmmaker version I'm leaving off the top</td><td>Reuters, BBC, ITV</td></tr>
   <tr><td>Proof</td><td>A number of my former clients have gone on to become business coaches themselves.</td></tr>
+  </tbody>
 </table>
 <p>The one-line version I'd use on a first call: "In the early 2010s my company finished within ten grand of the same number every year, because I wouldn't hire. What's holding your number where it is?"</p>
 <p>The business version leads because it matches the work I do now: helping owners understand why growth got harder, then giving them the systems to regain control.</p>

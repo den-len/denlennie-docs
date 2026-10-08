@@ -3,36 +3,74 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Case study: how a video business owner stopped guessing on every quote</title>
-<meta name="description" content="An owner who had quoted a hundred jobs still froze on every one. How building a price from four parts, instead of feeling for a number, ended the pricing anxiety.">
+<title>Case study: why every quote felt like a guess</title>
+<meta name="description" content="Owners with years of quoting behind them still stopped to ask whether a number was fair. A composite, anonymised case study of what pricing from a feeling cost them, and the method that replaced the guessing.">
 <link rel="canonical" href="https://docs.denlennie.com/case-study-pricing-system">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/brand.css">
 <link rel="stylesheet" href="/catalog.css">
+<style>
+.download{margin:.25rem 0 1.5rem;}
+.download a{font-family:"Poppins",sans-serif; font-weight:600; font-size:.85rem; color:var(--navy,#0B2141); border:1px solid var(--navy,#0B2141); border-radius:6px; padding:.45rem .9rem; text-decoration:none; display:inline-block;}
+.download a:hover{background:var(--navy,#0B2141); color:#fff;}
+.copy-block{background:var(--white,#fff); border:1px solid rgba(11,33,65,.15); border-left:3px solid var(--orange,#D9531E); border-radius:8px; padding:1rem 1.25rem; margin:1rem 0 1.5rem;}
+.copy-head{display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap; border-bottom:1px solid rgba(11,33,65,.12); padding-bottom:.6rem; margin-bottom:.6rem;}
+.copy-title{font-family:"Poppins",sans-serif; font-weight:600; color:var(--navy,#0B2141); font-size:.95rem; margin:0;}
+.copy-body p{margin:.5rem 0;}
+.copy{font-family:"Poppins",sans-serif; font-weight:600; font-size:.8rem; color:var(--navy,#0B2141); background:transparent; border:1px solid var(--navy,#0B2141); border-radius:6px; padding:.35rem .8rem; cursor:pointer;}
+.copy:hover{background:var(--navy,#0B2141); color:#fff;}
+.copy.done{border-color:var(--orange,#D9531E); color:var(--orange,#D9531E); background:transparent;}
+.ph{color:var(--orange,#D9531E);}
+table.quote{border-collapse:collapse; width:100%; max-width:34rem; margin:1rem 0 1.5rem;}
+table.quote td{padding:.45rem .6rem; border-bottom:1px solid rgba(11,33,65,.12);}
+table.quote td:last-child{text-align:right; white-space:nowrap;}
+table.quote tr.total td{font-family:"Poppins",sans-serif; font-weight:600; color:var(--navy,#0B2141); border-top:2px solid var(--navy,#0B2141); border-bottom:0;}
+table.compare{border-collapse:collapse; width:100%; max-width:40rem; margin:1rem 0 1.5rem;}
+table.compare th,table.compare td{padding:.45rem .6rem; border-bottom:1px solid rgba(11,33,65,.12); text-align:left; vertical-align:top;}
+table.compare th{font-family:"Poppins",sans-serif; font-weight:600; color:var(--navy,#0B2141);}
+@media print{.download,.copy,.site-header,.footer-cta{display:none;} .copy-block,.keep{break-inside:avoid;page-break-inside:avoid;}}
+</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "How a video business owner stopped guessing on every quote",
-  "description": "An owner who had quoted a hundred jobs still froze on every one. How building a price from four parts ended the pricing anxiety.",
-  "author": {
-    "@type": "Person",
-    "name": "Den Lennie",
-    "@id": "https://denlennie.com/#den-lennie"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "VBA (Video Business Accelerator)",
-    "url": "https://denlennie.com",
-    "@id": "https://denlennie.com/#vba"
-  },
-  "datePublished": "2026-07-27",
-  "about": "Pricing video production work",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why do experienced video business owners still guess on every quote?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Owners at every stage, some with years of quoting behind them, kept stopping before they sent a number to ask whether it was fair. The number came from a feeling, so it went down the moment anyone leaned on it. What replaced the guessing was a method: build the price from what the job costs plus a margin you chose, the same way every time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What was going wrong, and what did pricing from a feeling cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "What was going wrong was that no quote had a method underneath it, so fear set the price. The clearest example came from an owner quoting a customer-story film."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What changed when the owners had a pricing method?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "What changed was the question each owner was asking. Instead of \"is this number fair?\", every thread got the same answer: a way to build the number from parts you can list, which are your time (all of it, not just the camera days), your gear, your overhead, and your margin as a line rather than a leftover."
+      }
+    }
+  ],
   "@id": "https://docs.denlennie.com/case-study-pricing-system#page",
   "url": "https://docs.denlennie.com/case-study-pricing-system",
   "inLanguage": "en-GB",
-  "dateModified": "2026-07-27",
+  "author": {
+    "@id": "https://denlennie.com/#den-lennie"
+  },
+  "publisher": {
+    "@id": "https://denlennie.com/#vba"
+  },
+  "dateModified": "2026-10-08",
   "isPartOf": {
     "@type": "CollectionPage",
     "@id": "https://docs.denlennie.com/field-guides",
@@ -108,29 +146,45 @@
 <header class="site-header"><a class="brand" href="https://denlennie.com">Den Lennie</a><a class="brand-cat" href="/field-guides">Field Guides</a></header>
 <p class="crumb"><a href="/field-guides">Field Guides</a> / Case studies</p>
 
-<h1>How a video business owner stopped guessing on every quote</h1>
-<p class="crumb"><em>Anonymised from a real coaching situation. No names or identifying details.</em></p>
+<h1>Why every quote felt like a guess</h1>
+<p class="crumb"><em>A composite of several members' coaching threads, anonymised. No names or identifying details.</em></p>
 
-<h2>The situation</h2>
-<p>An owner who had quoted a hundred jobs still seized up on every one. He'd work out a number, get his finger over send, and stop: "does that sound fair?" It wasn't really a question about the number. It was a question about the method, and the method was missing.</p>
+<p class="lede">Owners at every stage, some with years of quoting behind them, kept stopping before they sent a number to ask whether it was fair. The number came from a feeling, so it went down the moment anyone leaned on it. What replaced the guessing was a method: build the price from what the job costs plus a margin you chose, the same way every time.</p>
 
-<h2>What was really going on</h2>
-<p>With no system, every quote was a fresh act of nerve. He'd feel for a figure, second-guess it, and because fear was doing the pricing, he'd land low. Then he'd send it and brace for the pushback. He'd done this so many times he assumed the anxiety was just part of the job. It wasn't a confidence flaw. It was a missing tool.</p>
+<p class="download"><a href="/case-study-pricing-system.pdf">Download this case study as a PDF</a></p>
 
-<h2>What changed</h2>
-<p>He stopped trying to find a price and started building one, the same way every time, from four parts he could name: his time (all of it, not just the camera time), his gear, his overhead, and his margin as a line rather than a leftover. Add those up and he had a floor he could stand on. The number was no longer a feeling he was defending. It was a calculation he could walk a client through.</p>
+<h2>What was the situation?</h2>
+<p>The situation was the same moment turning up in thread after thread: a quote ready to send, and a last-minute question before sending it. One owner asked "do you think that's fair?" on quote after quote, and sometimes "I think I may have over-quoted." Another, still building the commercial basics, asked "how should I charge?" again and again.</p>
+<p>A third was pricing a staff film for a health-sector client with a grant-funded budget, and put the bind plainly: "I don't want to come in swinging and have it hit at $7K right off the bat, but I also don't want to price under and leave money on the table."</p>
 
-<h2>The result</h2>
-<p>The agony went away the moment the guessing did. When a client pushed, he wasn't improvising any more, he was explaining, and a price you can explain is a price you can hold. The relief, more than the revenue, was the thing he noticed first.</p>
+<h2>What was going wrong, and what did it cost?</h2>
+<p>What was going wrong was that no quote had a method underneath it, so fear set the price. The clearest example came from an owner quoting a customer-story film.</p>
+<p>He quoted $4,750. The client came back to say they'd set aside $4,000 ex GST. He reworked the job out loud in the thread: a day rate that he treated as covering his travel and gear, two edit days at the same rate, a production fee, and the hire of a second camera. Then he went looking for a number he could hold, offered to come down to $4,350, and gave his own verdict on the reply he'd drafted: "I know it doesn't sound professional."</p>
+<p>That one exchange shows the cost. He had no way to show the client how $4,750 was built, so the only lever left to pull was the price. And his day rate was quietly absorbing travel and gear, so part of the work was being given away inside the number before any discount at all.</p>
 
-<p>The full method: <a href="/pricing-system">how to price a video project so every quote isn't a guess</a>.</p>
+<h2>What changed when the owners had a method?</h2>
+<p>What changed was the question each owner was asking. Instead of "is this number fair?", every thread got the same answer: a way to build the number from parts you can list, which are your time (all of it, not just the camera days), your gear, your overhead, and your margin as a line rather than a leftover.</p>
+<p>The owner pricing to the grant budget used the <a href="/pricing-calculator">Pricing Calculator</a> to build the quote up from the job itself (a one or two day local shoot, and whether to add an assistant) rather than down from the client's figure. Another worked through a business audit worksheet to find his real margin per job once his own time was taken out, which is the groundwork in <a href="/know-your-numbers">know your numbers</a>.</p>
+<p>The owner who had offered $4,350 was coached to present his price with confidence rather than apologise his way into a discount. On a later job, where the budget was lower than the work deserved, he drafted a reply that kept planning and filming intact and reduced the number of social edits instead of cutting his rate (<a href="/drop-scope-not-price">drop the scope, not the price</a>).</p>
+<p>The full method, from day rate to a four-section quote with a contingency line, is on the guide this story belongs to: <a href="/pricing-system">how to price a video project so every quote isn't a guess</a>.</p>
+
+<h2>What happened after?</h2>
+<p>What the coaching record shows after is a change in how the price gets defended, not a revenue figure. Once the parts are on the page, a client who pushes gets a walkthrough of how the number was built.</p>
+<p>The threads don't record what any of these quotes went on to win or earn, so this page doesn't claim a figure.</p>
+
+<h2>Could you explain your last quote line by line?</h2>
+<p>The test is whether you could show a client exactly how your last number was built. Take the last quote you sent: could you explain it line by line, or did you feel for it, send it and hope?</p>
+
+<div class="card"><p><strong>The method behind this story.</strong> <a href="/pricing-system">How to price a video project so every quote isn't a guess</a>: the day-rate worksheet, the quote skeleton, the ballpark script and the pushback walkthrough, all copy and paste.</p></div>
+
+<p><strong>Related tools and guides.</strong> <a href="/pricing-calculator">Pricing Calculator</a>, <a href="/anatomy-of-a-profitable-quote">Anatomy of a Profitable Quote</a>, <a href="/charging-for-invisible-work">Charging for the invisible work</a>.</p>
 
 <footer class="site-footer">
 <img class="vba-mark" src="/VBA_wordmark_grey.png" alt="Video Business Accelerator">
 <p class="footer-bio">Den Lennie is an author and business coach for video production company owners. He helps them escape the operator ceiling and build a business that scales without them.</p>
 <p class="footer-invite">The field guides show you how the system works. The Boardroom is where I look at your business with you, give you perspective and judgement on what to do next, and hold you to it every week.</p>
 <p class="footer-cta"><a class="btn" href="https://denlennie.com">Work with Den</a><a class="btn-ghost" href="https://denlennie.com/elite-boardroom">Join the Elite Boardroom</a></p>
-<p class="footer-meta">Last reviewed 27 July 2026.</p>
+<p class="footer-meta">Last reviewed 8 October 2026.</p>
 </footer>
 </body>
 </html>
