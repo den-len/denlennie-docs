@@ -130,7 +130,7 @@ a:hover { border-bottom-color: var(--color-burnt-orange); }
   border-color: var(--color-paper);
 }
 @media print {
-  @page { size: A4 portrait; margin: 14mm 15mm; }
+  @page { size: A4 portrait; margin: 3.8cm 1.1cm 1.8cm 1.1cm; } /* brand-rules section 6 */
   html, body { background: var(--color-white); }
   .masthead-pdf { display: none; }
   /* Masthead and cover butt together into one navy field on page one. */
@@ -139,9 +139,12 @@ a:hover { border-bottom-color: var(--color-burnt-orange); }
   .page-break { break-before: page; }
   .card, .callout, .dark-inset { break-inside: avoid; }
   table.brand-table tr { break-inside: avoid; }
+  .eyebrow, h2, h3 { break-after: avoid; page-break-after: avoid; }
+  table.brand-table tr.subtotal { break-before: avoid; page-break-before: avoid; }
+  table.brand-table.ladder { break-inside: avoid; page-break-inside: avoid; }
   /* Cover fills page one alongside the masthead band, which prints once
      at the top. Reduced from a full-page 250mm to leave room for it. */
-  .cover { min-height: 208mm; }
+  .cover { min-height: 180mm; } /* 208mm less the 28mm the brand margins add */
 }
 @media (max-width: 720px) {
   .page { padding: 2rem 1.25rem 3.5rem; }
@@ -290,7 +293,7 @@ a:hover { border-bottom-color: var(--color-burnt-orange); }
   </section>
 
   <!-- ============ WORKED EXAMPLE ============ -->
-  <section class="page-break">
+  <section>
     <p class="eyebrow">The worked example <span class="index">06</span></p>
     <h1>A real budget: the Zeiss promo</h1>
     <hr class="orange-rule">
@@ -299,16 +302,19 @@ a:hover { border-bottom-color: var(--color-burnt-orange); }
 
     <h3>Pre-production and creative</h3>
     <table class="brand-table">
-      <tr><th>Role</th><th class="num">Day rate</th><th class="num">Days</th><th class="num">Amount</th></tr>
+      <thead><tr><th>Role</th><th class="num">Day rate</th><th class="num">Days</th><th class="num">Amount</th></tr></thead>
+      <tbody>
       <tr><td>Producer</td><td class="num">650</td><td class="num">6</td><td class="num">3,900</td></tr>
       <tr><td>Director (prep)</td><td class="num">650</td><td class="num">3</td><td class="num">1,950</td></tr>
       <tr><td>Storyboard</td><td class="num">200</td><td class="num">&nbsp;</td><td class="num">150</td></tr>
       <tr class="subtotal"><td colspan="3">Pre-production subtotal</td><td class="num">6,000</td></tr>
+      </tbody>
     </table>
 
     <h3>Production (two-day internal shoot plus one exterior location day)</h3>
     <table class="brand-table">
-      <tr><th>Item</th><th class="num">2-day internal</th><th class="num">1-day location</th></tr>
+      <thead><tr><th>Item</th><th class="num">2-day internal</th><th class="num">1-day location</th></tr></thead>
+      <tbody>
       <tr><td>Director</td><td class="num">2,500</td><td class="num">1,250</td></tr>
       <tr><td>DP</td><td class="num">2,500</td><td class="num">1,250</td></tr>
       <tr><td>Model</td><td class="num">500</td><td class="num">250</td></tr>
@@ -327,11 +333,13 @@ a:hover { border-bottom-color: var(--color-burnt-orange); }
       <tr><td>Props</td><td class="num">800</td><td class="num">&nbsp;</td></tr>
       <tr class="subtotal"><td>Production subtotal</td><td class="num">17,550</td><td class="num">3,900</td></tr>
       <tr class="subtotal"><td colspan="2">Production total</td><td class="num">21,450</td></tr>
+      </tbody>
     </table>
 
     <h3>Post-production</h3>
     <table class="brand-table">
-      <tr><th>Item</th><th class="num">Rate</th><th class="num">Days</th><th class="num">Amount</th></tr>
+      <thead><tr><th>Item</th><th class="num">Rate</th><th class="num">Days</th><th class="num">Amount</th></tr></thead>
+      <tbody>
       <tr><td>Offline edit</td><td class="num">650</td><td class="num">3</td><td class="num">1,950</td></tr>
       <tr><td>Online</td><td class="num">200</td><td class="num">4</td><td class="num">800</td></tr>
       <tr><td>Music and sound mix</td><td class="num">&nbsp;</td><td class="num">&nbsp;</td><td class="num">1,800</td></tr>
@@ -340,10 +348,11 @@ a:hover { border-bottom-color: var(--color-burnt-orange); }
       <tr><td>BTS grade</td><td class="num">&nbsp;</td><td class="num">&nbsp;</td><td class="num">600</td></tr>
       <tr><td>BTS music and sound mix</td><td class="num">&nbsp;</td><td class="num">&nbsp;</td><td class="num">600</td></tr>
       <tr class="subtotal"><td colspan="3">Post-production subtotal</td><td class="num">8,000</td></tr>
+      </tbody>
     </table>
 
     <h3>The ladder to the total</h3>
-    <table class="brand-table">
+    <table class="brand-table ladder">
       <tr><td>Pre-production</td><td class="num">6,000</td></tr>
       <tr><td>Production</td><td class="num">21,450</td></tr>
       <tr><td>Post-production</td><td class="num">8,000</td></tr>
@@ -357,7 +366,7 @@ a:hover { border-bottom-color: var(--color-burnt-orange); }
   </section>
 
   <!-- ============ COMMON MISTAKES ============ -->
-  <section class="page-break">
+  <section>
     <p class="eyebrow">The leaks <span class="index">07</span></p>
     <h1>Five ways quotes lose 15%</h1>
     <hr class="orange-rule">

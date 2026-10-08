@@ -30,6 +30,7 @@ table.compare{border-collapse:collapse; width:100%; max-width:40rem; margin:1rem
 table.compare th,table.compare td{padding:.45rem .6rem; border-bottom:1px solid rgba(11,33,65,.12); text-align:left; vertical-align:top;}
 table.compare th{font-family:"Poppins",sans-serif; font-weight:600; color:var(--navy,#0B2141);}
 @media print{.download,.copy,.site-header,.footer-cta{display:none;} .copy-block,.keep{break-inside:avoid;page-break-inside:avoid;}}
+@media print{table.compare{break-inside:auto;page-break-inside:auto;} table.compare tr{break-inside:avoid;page-break-inside:avoid;} table.compare tbody tr:last-child{break-before:avoid;page-break-before:avoid;}}
 </style>
 <script type="application/ld+json">
 {
@@ -220,15 +221,17 @@ table.compare th{font-family:"Poppins",sans-serif; font-weight:600; color:var(--
 
 <h2>A worked example: two buyers for the same production company</h2>
 <p>Beth and Bill are illustrations from my avatar workshop, not real clients. Either could hire the same production company, and you wouldn't talk to them the same way.</p>
-<div class="keep">
+<div>
 <table class="compare">
-  <tr><th>Step</th><th>Beth</th><th>Bill</th></tr>
+  <thead><tr><th>Step</th><th>Beth</th><th>Bill</th></tr></thead>
+  <tbody>
   <tr><td>2. Who they are</td><td>29, marketing lead at a large healthcare device manufacturer, lives in the London suburbs. Yoga, vegan, lives as green as she can.</td><td>62, owns an engineering firm making parts for aircraft and yacht vacuum toilets. His wife is the CFO. Golf every Saturday, likes to spend on quality.</td></tr>
   <tr><td>3. Top needs</td><td>Gain praise, have fun. Profit sits low.</td><td>Avoid risk, avoid hassle, make a profit.</td></tr>
   <tr><td>6. Emotional triggers</td><td>Spending part of her department's budget on a product launch. Two video campaigns behind her, stretched across several projects, nervous about the spend next to print.</td><td>Spending his own money. Can't be fooled by flashy creative, wants a tangible outcome.</td></tr>
   <tr><td>7. Awareness</td><td>Solution aware: she worked with a production company in her last job and still knows the crew.</td><td>Problem aware: his daughter, who works in marketing, keeps telling him to make a video for Facebook.</td></tr>
   <tr><td>12. Who else has a say</td><td>Her boss, who fears a budget blowout and is testing Beth on a bigger project before promoting her.</td><td>His wife, protecting profit ahead of an exit in three years, and his daughter, wary he'll get ripped off.</td></tr>
   <tr><td>13. Raving fan</td><td>Her boss credits her judgement, the MD praises the campaign, and the team line you up for a chat about more projects.</td><td>A lapsed client sees the video on LinkedIn and places an order. He recommends you to his suppliers.</td></tr>
+  </tbody>
 </table>
 </div>
 <p>Beth needs the step 10 lines: a clear brief, on time and on budget, an enjoyable process, and a film that earns her praise for the decision. Bill needs the budget, the outcome and a reference: "We did a project for a wheel manufacturing company last year, and I think that film might work well here."</p>
