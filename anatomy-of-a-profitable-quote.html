@@ -130,7 +130,13 @@ a:hover { border-bottom-color: var(--color-burnt-orange); }
   border-color: var(--color-paper);
 }
 @media print {
-  @page { size: A4 portrait; margin: 3.8cm 1.1cm 1.8cm 1.1cm; } /* brand-rules section 6 */
+  @page { size: A4 portrait; margin: 3.8cm 1.1cm 1.8cm 1.1cm; /* brand-rules section 6 */
+    @top-left { content: "Den Lennie"; font-family: "Poppins", sans-serif; font-weight: 700; font-size: 10.5pt; color: #0B2141; vertical-align: bottom; padding-bottom: 5mm; }
+    @top-right { content: "Anatomy of a Profitable Quote"; font-family: "Poppins", sans-serif; font-weight: 600; font-size: 9pt; color: #D9531E; vertical-align: bottom; padding-bottom: 5mm; }
+    @bottom-left { content: "\00A9  2026 Den Lennie  \00B7  denlennie.com"; font-family: "Ubuntu", sans-serif; font-weight: 300; font-size: 8pt; color: #0B2141; vertical-align: top; padding-top: 4mm; }
+    @bottom-right { content: "Page " counter(page) " of " counter(pages); font-family: "Ubuntu", sans-serif; font-weight: 300; font-size: 8pt; color: #0B2141; vertical-align: top; padding-top: 4mm; }
+  }
+  @page :first { @top-left { content: none; } @top-right { content: none; } }
   html, body { background: var(--color-white); }
   .masthead-pdf { display: none; }
   /* Masthead and cover butt together into one navy field on page one. */
@@ -139,7 +145,8 @@ a:hover { border-bottom-color: var(--color-burnt-orange); }
   .page-break { break-before: page; }
   .card, .callout, .dark-inset { break-inside: avoid; }
   table.brand-table tr { break-inside: avoid; }
-  .eyebrow, h2, h3 { break-after: avoid; page-break-after: avoid; }
+  .eyebrow, h1, h2, h3, hr.orange-rule { break-after: avoid; page-break-after: avoid; }
+  ul li:last-child, ol li:last-child { break-before: avoid; page-break-before: avoid; }
   table.brand-table tr.subtotal { break-before: avoid; page-break-before: avoid; }
   table.brand-table.ladder { break-inside: avoid; page-break-inside: avoid; }
   /* Cover fills page one alongside the masthead band, which prints once
@@ -415,6 +422,7 @@ a:hover { border-bottom-color: var(--color-burnt-orange); }
     <img src="https://docs.denlennie.com/VBA_wordmark_grey.png" alt="Video Business Accelerator">
     <p>The field guides show you how the system works. The Boardroom is where I look at your business with you, give you perspective and judgement on what to do next, and hold you to it every week.</p>
     <p class="vb-cta"><a class="vb-btn" href="https://denlennie.com">Work with Den</a><a class="vb-ghost" href="https://denlennie.com/elite-boardroom">Join the Elite Boardroom</a></p>
+      <p style="font-size:.75rem;opacity:.6;margin:.8rem 0 0;">&copy; 2026 Den Lennie. Free to read and use in your own business. Not for republishing or resale.</p>
   </section>
   <footer class="poster-footer">
     <span style="font-family: var(--font-display); font-weight:600; letter-spacing:-0.025em; color: var(--color-anchor-navy); text-transform:none; font-size:1.1rem;">Den Lennie</span>
