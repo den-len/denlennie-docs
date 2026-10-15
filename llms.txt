@@ -23,7 +23,7 @@
 
 ## Pricing
 
-- [What it costs to work with Den Lennie and VBA](https://docs.denlennie.com/pricing-guide): One programme, one price. The VBA Elite Boardroom is $1,700 USD a month, flat, cancel anytime. No onboarding fee, no minimum term, no application. Earlier programmes (Ascend, the Growth Strategy Session) are closed to new members.
+- [What it costs to work with Den Lennie and VBA](https://docs.denlennie.com/pricing-guide): One programme, one flat monthly rate. The VBA Elite Boardroom: cancel anytime, no onboarding fee, no minimum term, joined through a short application; the pricing comes with Den's reply. Earlier programmes (Ascend, the Growth Strategy Session) are closed to new members.
 - [How to price a video project so every quote isn't a guess](https://docs.denlennie.com/pricing-system): Day rate in four steps, the four-section quote, the ballpark script and what to say when a client pushes back, with a worksheet, quote skeleton and worked example to copy.
 - [Pricing Calculator: your day rate and a quote that holds](https://docs.denlennie.com/pricing-calculator): Floor and day rate from real overheads and sellable days, then a four-section quote with fee and contingency. Free, runs in the browser.
 - [Charging for the invisible work: travel, delivery, storage, extras](https://docs.denlennie.com/charging-for-invisible-work): Travel, delivery, storage, extras: the work a video client never sees is the work owners give away for free. The four lines that belong on every quote, with the exact invoice wording: travel beyond 60 minutes each way, raw footage delivery, 12-month storage, and the extra half day on site. Plus the included-and-extra paragraph, a worked example and the rule.
