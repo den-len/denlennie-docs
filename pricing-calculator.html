@@ -6,7 +6,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pricing Calculator: your day rate and a quote that holds</title>
-<meta name="description" content="Work out your floor and day rate from real monthly overheads, the days you can actually sell and a margin you decide once, then build a four-section quote with a production company fee and contingency. Free, no login, runs in your browser.">
+<meta name="description" content="Work out your break-even and day rate from real monthly overheads, the days you can actually sell and a margin you decide once, then build a four-section quote with a production company fee and contingency. Free, no login, runs in your browser.">
 <link rel="canonical" href="https://denlennie.com/field-guides/pricing-calculator">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Ubuntu:wght@300;400&display=swap" rel="stylesheet">
@@ -54,7 +54,7 @@
     "price": "0",
     "priceCurrency": "USD"
   },
-  "description": "Work out your floor and day rate from real monthly overheads, the days you can actually sell and a margin you decide once, then build a four-section quote with a production company fee and contingency.",
+  "description": "Work out your break-even and day rate from real monthly overheads, the days you can actually sell and a margin you decide once, then build a four-section quote with a production company fee and contingency.",
   "url": "https://docs.denlennie.com/pricing-calculator",
   "author": {
     "@type": "Person",
@@ -143,10 +143,10 @@
 
 <h1>Pricing Calculator: your day rate and a quote that holds</h1>
 
-<p class="lede">Two calculations, the same ones every time. First your floor and day rate, from real overheads and the days you can actually sell. Then a quote built in four sections, with contingency and then the fee on the page. Nothing leaves your browser. The method behind it is in <a href="/pricing-system">How to price a video project so every quote isn't a guess</a>.</p>
+<p class="lede">Two calculations, the same ones every time. First your break-even and day rate, from real overheads and the days you can actually sell. Then a quote built in four sections, with contingency and then the fee on the page. Nothing leaves your browser. The method behind it is in <a href="/pricing-system">How to price a video project so every quote isn't a guess</a>.</p>
 
-<h2>Step one: your floor and day rate</h2>
-<p>Enter your monthly numbers. The floor is what a day has to earn before you make anything. The day rate is the floor plus the margin you've decided on.</p>
+<h2>Step one: your break-even and day rate</h2>
+<p>Enter your monthly numbers. The break-even is what a day has to earn before you make anything. The day rate is break-even plus the margin you've decided on.</p>
 <div class="calc" id="dayrate">
   <div class="row"><label for="salary">Your monthly salary<small>What you'd have to pay someone to do your job. Unpaid is not the same as free.</small></label><div class="pfx"><span>$</span><input id="salary" type="number" inputmode="decimal" min="0" step="100" value="8000"></div></div>
   <div class="row"><label for="overheads">Other monthly overheads<small>Rent, insurance, software, gear upkeep and upgrades, marketing, accounting, subscriptions.</small></label><div class="pfx"><span>$</span><input id="overheads" type="number" inputmode="decimal" min="0" step="100" value="10000"></div></div>
@@ -154,8 +154,8 @@
   <div class="row"><label for="margin">Decided margin<small>A choice you make once, not a hope on every quote.</small></label><div class="sfx"><input id="margin" type="number" inputmode="numeric" min="0" max="300" step="5" value="40"><span>%</span></div></div>
   <div class="results">
     <div class="out"><span>Total monthly overheads (salary included)</span><span class="v" id="o_total">$18,000</span></div>
-    <div class="out"><span>Your floor per day<span class="note"> (overheads divided by sellable days)</span></span><span class="v" id="o_floor">$1,500</span></div>
-    <div class="out big"><span>Your day rate<span class="note"> (floor plus margin)</span></span><span class="v" id="o_rate">$2,100</span></div>
+    <div class="out"><span>Your break-even per day<span class="note"> (overheads divided by sellable days)</span></span><span class="v" id="o_floor">$1,500</span></div>
+    <div class="out big"><span>Your day rate<span class="note"> (break-even plus margin)</span></span><span class="v" id="o_rate">$2,100</span></div>
     <p class="warn" id="o_warn" hidden></p>
   </div>
 </div>
@@ -187,9 +187,9 @@
 </div>
 
 <h2>What the numbers mean</h2>
-<p>The floor is the line you never quote under, the fee is work you were already doing, and the margin is a decision you make once.</p>
+<p>The break-even is the line you never quote under, the fee is work you were already doing, and the margin is a decision you make once.</p>
 <ul>
-  <li><strong>Any job below the floor is you paying to work.</strong> If a client's budget can't clear the floor for the days it takes, take scope out, not the rate.</li>
+  <li><strong>Any job below break-even is you paying to work.</strong> If a client's budget can't clear break-even for the days it takes, take scope out, not the rate.</li>
   <li><strong>The fee isn't padding.</strong> It's the management, the accountability and the years of knowing how to run a job so the client doesn't have to. Pricing the full anatomy is typically worth around 15 per cent more per job.</li>
   <li><strong>The margin is decided, not discovered.</strong> Set it once here, then stop renegotiating it with yourself on every quote.</li>
 </ul>
@@ -215,12 +215,12 @@
     var total=num('salary')+num('overheads'), days=Math.max(1,num('days')), margin=num('margin');
     var floor=total/days, rate=floor*(1+margin/100);
     $('o_total').textContent=money(total); $('o_floor').textContent=money(floor); $('o_rate').textContent=money(rate);
-    var w=$('o_warn'); if(num('days')>16){w.textContent='Most owners can sell ten to fourteen days a month. If you divide by more, the floor is a fiction.'; w.hidden=false;} else if(num('salary')===0){w.textContent='Your salary is zero, so the floor is too low. Put in what you would pay someone to do your job.'; w.hidden=false;} else {w.hidden=true;}
+    var w=$('o_warn'); if(num('days')>16){w.textContent='Most owners can sell ten to fourteen days a month. If you divide by more, the break-even comes out lower than it really is.'; w.hidden=false;} else if(num('salary')===0){w.textContent='Your salary is zero, so the break-even is too low. Put in what you would pay someone to do your job.'; w.hidden=false;} else {w.hidden=true;}
     var sub=num('pre')+num('prod')+num('post'), cont=sub*num('cont')/100, pc=sub+cont, fee=pc*num('fee')/100, qt=pc+fee;
     $('q_sub').textContent=money(sub); $('q_pc').textContent=money(pc); $('q_fee').textContent=money(fee); $('q_cont').textContent=money(cont); $('q_total').textContent=money(qt); $('q_dayonly').textContent=money(sub); $('q_gap').textContent=money(fee+cont);
     $('summary').textContent=
-      'Floor: '+money(floor)+' a day ('+money(total)+' monthly overheads including my salary, divided by '+Math.round(days)+' sellable days).\n'+
-      'Day rate: '+money(rate)+' a day (floor plus '+margin+'% margin). Any job below '+money(floor)+' a day is me paying to work.\n\n'+
+      'Break-even: '+money(floor)+' a day ('+money(total)+' monthly overheads including my salary, divided by '+Math.round(days)+' sellable days).\n'+
+      'Day rate: '+money(rate)+' a day (break-even plus '+margin+'% margin). Any job below '+money(floor)+' a day is me paying to work.\n\n'+
       'Pre-production: '+money(num('pre'))+'\n'+
       'Production: '+money(num('prod'))+'\n'+
       'Post-production (includes two rounds of revisions): '+money(num('post'))+'\n'+
