@@ -43,6 +43,21 @@ h3 { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; col
 .card ul { margin: 0; padding-left: 1.1rem; font-size: 0.92rem; }
 .card li { margin-bottom: 0.3rem; }
 .foot { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--line); font-size: 0.78rem; opacity: 0.7; }
+.tabs { display: flex; gap: 0.5rem; margin: 0 0 1.4rem; border-bottom: 1px solid var(--line); }
+.tabs button { font-family: var(--font-display); font-weight: 600; font-size: 0.92rem; color: var(--navy); background: none; border: 0; border-bottom: 3px solid transparent; padding: 0.6rem 0.9rem; margin-bottom: -1px; cursor: pointer; }
+.tabs button[aria-selected="true"] { border-bottom-color: var(--orange); }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.8rem; }
+.steps li { background: var(--white); border: 1px solid var(--line); border-radius: 2px; padding: 1rem 1.1rem; }
+.steps .n { font-family: var(--font-display); font-weight: 700; color: var(--orange); margin-right: 0.5rem; }
+.steps h4 { font-family: var(--font-display); font-weight: 600; font-size: 1.02rem; color: var(--navy); margin: 0 0 0.35rem; display: flex; align-items: baseline; }
+.steps p { margin: 0 0 0.4rem; font-size: 0.95rem; }
+.steps p:last-child { margin-bottom: 0; }
+.steps ul { margin: 0.3rem 0 0; padding-left: 1.1rem; font-size: 0.95rem; }
+.steps li.commit { border: 1.5px solid var(--navy); }
+.quote { font-family: var(--font-display); font-weight: 600; color: var(--navy); font-size: 1.05rem; line-height: 1.5; margin: 0.2rem 0 0.5rem; }
+.btn { display: inline-block; background: var(--orange); color: var(--white); border: 0; font-family: var(--font-display); font-weight: 600; font-size: 0.92rem; padding: 0.7rem 1.1rem; border-radius: 2px; }
+.after { border-left: 3px solid var(--orange); background: var(--white); padding: 0.9rem 1.1rem; margin: 1rem 0 0; font-size: 0.95rem; }
+.after p { margin: 0 0 0.4rem; } .after p:last-child { margin: 0; }
 @media (min-width: 860px) { .days { grid-template-columns: repeat(3, 1fr); align-items: start; } .cols { grid-template-columns: repeat(3, 1fr); align-items: start; } .masthead-inner, .page { padding-left: 2rem; padding-right: 2rem; } .masthead-logo { height: 52px; } }
 </style>
 </head>
@@ -51,6 +66,11 @@ h3 { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; col
 <main class="page">
 <p class="eyebrow">VBA Elite Boardroom, Hobart</p>
 <h1>Hobart Boardroom: the three days</h1>
+<div class="tabs" role="tablist">
+<button role="tab" id="tab-days" aria-controls="panel-days" aria-selected="true">The three days</button>
+<button role="tab" id="tab-plan" aria-controls="panel-plan" aria-selected="false">One-lever plan</button>
+</div>
+<div role="tabpanel" id="panel-days" aria-labelledby="tab-days">
 <p class="lede">Tuesday 17 to Thursday 19 November 2026. Two days in the room at the Mövenpick Hotel Hobart, <a href="https://www.google.com/maps/search/?api=1&query=Movenpick+Hotel+Hobart%2C+28+Elizabeth+Street%2C+Hobart">28 Elizabeth Street</a>, then MoNA on Thursday. Catering is booked for 14.</p>
 <div class="days"><section class="day"><h2>Tuesday 17 November</h2><p class="sub">Mövenpick Hotel Hobart, room kannenner 1</p><ol class="tl"><li><span class="t">8:00 am</span><span class="w"><b>Room opens for setup</b><i>Bump in, kannenner 1</i></span></li><li class="key"><span class="t">9:30 am</span><span class="w"><b>Everyone arrives, we start</b><i>kannenner 1</i></span></li><li class="key"><span class="t">11:00 am</span><span class="w"><b>Morning tea</b><i>Pre-Conference Lobby</i></span></li><li class="key"><span class="t">1:00 pm</span><span class="w"><b>Lunch</b><i>Tesoro Restaurant, in the hotel</i></span></li><li class="key"><span class="t">3:30 pm</span><span class="w"><b>Afternoon tea</b><i>Pre-Conference Lobby</i></span></li><li class="key"><span class="t">5:30 pm</span><span class="w"><b>Finish</b></span></li><li><span class="t">6:00 pm</span><span class="w"><b>Room cleared</b><i>Bump out</i></span></li><li class="key"><span class="t">7:30 pm</span><span class="w"><b>Dinner</b><i>The Drunken Admiral, <a href="https://www.google.com/maps/search/?api=1&query=The+Drunken+Admiral%2C+17-19+Hunter+Street%2C+Hobart">17-19 Hunter Street</a>. The bar is open earlier</i></span></li></ol></section><section class="day"><h2>Wednesday 18 November</h2><p class="sub">Mövenpick Hotel Hobart, room kannenner 1</p><ol class="tl"><li><span class="t">9:00 am</span><span class="w"><b>Room opens for setup</b><i>Bump in, kannenner 1</i></span></li><li class="key"><span class="t">9:30 am</span><span class="w"><b>Everyone arrives, we start</b><i>kannenner 1</i></span></li><li class="key"><span class="t">11:00 am</span><span class="w"><b>Morning tea</b><i>Pre-Conference Lobby</i></span></li><li class="key"><span class="t">1:00 pm</span><span class="w"><b>Lunch</b><i>Tesoro Restaurant, in the hotel</i></span></li><li class="key"><span class="t">3:30 pm</span><span class="w"><b>Afternoon tea</b><i>Pre-Conference Lobby</i></span></li><li class="key"><span class="t">5:30 pm</span><span class="w"><b>Finish</b></span></li><li><span class="t">6:00 pm</span><span class="w"><b>Room cleared</b><i>Bump out</i></span></li><li class="key"><span class="t">6:45 pm</span><span class="w"><b>Dinner</b><i>The Hope and Anchor, <a href="https://www.google.com/maps/search/?api=1&query=Hope+and+Anchor+Tavern%2C+65+Macquarie+Street%2C+Hobart">65 Macquarie Street</a>. The kitchen closes at 8:30 pm</i></span></li></ol></section><section class="day"><h2>Thursday 19 November</h2><p class="sub">MoNA, the Museum of Old and New Art</p><ol class="tl"><li class="key"><span class="t">9:15 am</span><span class="w"><b>Ferry leaves, sharp</b><i><a href="https://www.google.com/maps/search/?api=1&query=Brooke+Street+Pier%2C+Hobart">Brooke Street Pier</a>, on the waterfront</i></span></li><li class="key"><span class="t">Midday</span><span class="w"><b>Lunch at MoNA</b><i>No set time on record</i></span></li><li class="key"><span class="t">3:00 pm</span><span class="w"><b>Ferry back from MoNA</b></span></li></ol></section></div>
 
@@ -77,6 +97,38 @@ h3 { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; col
 </ul></div>
 </div>
 <p class="foot">Times are from the hotel's event sheets and the event plan, as at 16 November 2026. The hotel sheets give start times only, not how long each break runs.</p>
+</div>
+<div role="tabpanel" id="panel-plan" aria-labelledby="tab-plan" hidden>
+<p class="lede">Wednesday, in the room. Look back over the year, find the one move that matters most, and commit to it in front of the room. Everyone fills it in on their own Hobart page, under their six-month review.</p>
+<p><a class="btn" href="https://hobart-lever-plan.den-lennie-website.pages.dev/hobart/room?k=preview-den#plan" style="border:0">Open the form (Den's test link)</a></p>
+<ol class="steps">
+<li><h4><span class="n">1</span>Three wins from the last twelve months</h4><p>Put a number on each one where you can.</p></li>
+<li><h4><span class="n">2</span>Three lessons from the last twelve months</h4><p>What cost you time, money or sleep, and what you'd do differently.</p></li>
+<li><h4><span class="n">3</span>Where you want to be in twelve months</h4><p>One sentence and one number (revenue, profit, or what you pay yourself).</p></li>
+<li><h4><span class="n">4</span>Your one lever</h4><p>Read your wins and lessons together. Which single move, done properly, makes most of the rest easier or unnecessary? Three checks before you write it down:</p>
+<ul><li><b>Does it come up more than once?</b> If the same thing sits behind two or three of your lessons, that's usually the lever.</li>
+<li><b>Is it yours to move?</b> Not something that waits on a client, a partner or the market changing first.</li>
+<li><b>Is it right for now?</b> It makes the business easier to run as it is today, not something that needs the business to be bigger first.</li></ul></li>
+<li class="commit"><h4><span class="n">5</span>The commitment</h4><p class="quote">By [date], I'll [the move], and I'll know it's done because [what you can see or count].</p><p>Plus your first step this week, and what you're stopping to make room for it. Read it to the room at the end of Wednesday.</p></li>
+</ol>
+<div class="after"><p><b>After Hobart.</b> Your commitment goes into your Boardroom notes. Each week on the call: did the lever move, what's the next step, and what's in the way?</p><p>At ninety days we read it back to you, and if it's done, you pick the next lever.</p></div>
+</div>
+<script>
+(function () {
+  var tabs = document.querySelectorAll('[role="tab"]');
+  function show(id) {
+    tabs.forEach(function (t) {
+      var on = t.id === "tab-" + id;
+      t.setAttribute("aria-selected", on ? "true" : "false");
+      document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+    });
+  }
+  tabs.forEach(function (t) {
+    t.addEventListener("click", function () { var id = t.id.slice(4); show(id); history.replaceState(null, "", id === "days" ? location.pathname : "#" + id); });
+  });
+  if (location.hash === "#plan") show("plan");
+})();
+</script>
 </main>
 </body>
 </html>
