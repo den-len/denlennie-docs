@@ -232,7 +232,7 @@ When the owner says "run the brief test":
    missing fact on one page, or one new page from the waiting list.
    Record it in `job-pages.md`.
 
-Tell the owner plainly: results vary by person, place and day, and you
+Tell the owner simply: results vary by person, place and day, and you
 can't see what a buyer sees. Treat the test as a direction, not a score.
 What it reliably shows is the reasons the tools give, and those are what
 the pages can answer.
