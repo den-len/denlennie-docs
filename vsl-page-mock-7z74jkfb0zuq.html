@@ -98,6 +98,12 @@ footer { background: var(--ink); color: var(--paper); font-size: 0.8rem; padding
 footer p { margin: 0 0 0.5rem; opacity: 0.8; max-width: 52em; }
 footer a { color: var(--paper); }
 
+/* explicit colours on the dark sections: the shared brand.css sets headings to navy, which vanishes on navy */
+.hero h1, .hero .pre, .hero .sub, .hero .btn-note, .hero .qualifier, .band h2, .band p, .band li, footer p { color: var(--paper); }
+.hero h1 .hl, .band h2 .hl { color: var(--hl-fg); }
+.band .eyebrow { color: var(--orange); }
+.btn, .hero .btn, .band .btn { color: var(--white); }
+
 /* mock controls (not part of the page) */
 .mockbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; background: #111; color: #eee; font-family: var(--font-body); font-size: 0.74rem; display: flex; flex-wrap: wrap; gap: 0.4rem 0.9rem; align-items: center; justify-content: center; padding: 0.5rem 0.75rem; }
 .mockbar b { font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #f0a987; }
